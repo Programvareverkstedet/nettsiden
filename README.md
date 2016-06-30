@@ -13,7 +13,8 @@ $oauth2 = new OAuth2(
 	$authorization_type,
 	$session,
 	$verify,
-	$grant_type, $response_type);
+	$grant_type,
+	$response_type);
 ```
 
 ```$client_id``` is client id of the OAuth2 application  
