@@ -1,8 +1,19 @@
 # General OAuth2-Client
 
 To use this general OAuth2 client-class, include it with
-``` require_once('OAuth2Client.php'); 
-	$oauth2 = new OAuth2( $client_id, $client_secret, $redirect_uri, $auth, $token, $user, $authorization_type, $session, $verify, $grant_type, $response_type);
+```
+require_once('OAuth2Client.php'); 
+$oauth2 = new OAuth2( 
+	$client_id,
+	$client_secret,
+	$redirect_uri,
+	$auth,
+	$token,
+	$user,
+	$authorization_type,
+	$session,
+	$verify,
+	$grant_type, $response_type);
 ```
 
 ```$client_id``` is client id of the OAuth2 application  
