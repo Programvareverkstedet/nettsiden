@@ -1,6 +1,6 @@
 # General Authorization Code Flow OAuth2-Client
 
-This client is made for Authorization Code Flow for now.
+This client is made for Authorization Code Flow and Bearer as authorization option for now.
 
 To use this general OAuth2 client-class, include it with
 ```
