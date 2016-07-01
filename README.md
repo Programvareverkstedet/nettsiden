@@ -1,19 +1,21 @@
-# General OAuth2-Client
+# General Authorization Code Flow OAuth2-Client
+
+This client is made for Authorization Code Flow for now.
 
 To use this general OAuth2 client-class, include it with
 ```
-	require_once('OAuth2Client.php'); 
+	require_once('OAuth2Client.php');
 	$oauth2 = new OAuth2([
 		"client_id" 		 => $client_id,
 		"client_secret" 	 => $client_secret,
-		"redirect_uri" 		 => $redirect_uri, 
-		"auth" 				 => $auth, 
+		"redirect_uri" 		 => $redirect_uri,
+		"auth" 				 => $auth,
 		"token" 			 => $token,
-		"authorization_type" => $authorization_type, 
-		"session" 			 => $session, 
-		"verify" 			 => $verify, 
-		"grant_type" 		 => $grant_type, 
-		"response_type" 	 => $response_type 
+		"authorization_type" => $authorization_type,
+		"session" 			 => $session,
+		"verify" 			 => $verify,
+		"grant_type" 		 => $grant_type,
+		"response_type" 	 => $response_type
 	]);
 ```
 
@@ -23,7 +25,7 @@ To use this general OAuth2 client-class, include it with
 ```(string) $auth``` is the full url for authorization  
 ```(string) $token``` is the full token url  
 
-Optional - 
+Optional -
 
 ```(string) $authorization_type``` defaults to Bearer  
 ```(boolean) $session``` specifies whether the state is to be saved in _SESSION storage, defaults to false  
@@ -52,4 +54,3 @@ To get identity
 ```(string) $user_url``` is the endpoint for fetching info, example: https://auth.dataporten.no/userinfo
 
 returns the identity-object as returned from the OAuth2-provider.
-
