@@ -1,7 +1,6 @@
 # General OAuth2-Client
 
 To use this general OAuth2 client-class, include it with
-<<<<<<< HEAD
 ```
 	require_once('OAuth2Client.php'); 
 	$oauth2 = new OAuth2([
@@ -26,7 +25,6 @@ To use this general OAuth2 client-class, include it with
 
 Optional - 
 
-<<<<<<< HEAD
 ```(string) $authorization_type``` defaults to Bearer
 ```(boolean) $session``` specifies whether the state is to be saved in _SESSION storage, defaults to false
 ```(boolean) $verify``` is whether to verify SSL of host and peer, defaults to true
