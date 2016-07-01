@@ -17,31 +17,22 @@ class OAuth2 {
 	private $grant_type;
 	private $response_type;
 
-	public function __construct(
-		$client_id, 
-		$client_secret, 
-		$redirect_uri, 
-		$auth, 
-		$token, 
-		$user, 
-		$authorization_type = 'Bearer', 
-		$session = false, 
-		$verify = false, 
-		$grant_type = 'authorization_code',
-		$response_type = 'code'){
+	public function __construct($params){
 
-		$this->client_id 	   = $client_id;
-		$this->client_secret   = $client_secret;
-		$this->redirect_uri    = $redirect_uri;
-		$this->URL_AUTH 	   = $auth . "?";
-		$this->URL_TOKEN 	   = $token . "?";
-		$this->URL_USER 	   = $user . "?";
-		$this->auth_type 	   = $authorization_type;
-		$this->session 		   = $session;
-		$this->verify_ssl_peer = $verify ? 1 : 0;
-		$this->verify_ssl_host = $verify ? 2 : 0;
-		$this->grant_type 	   = $grant_type;
-		$this->response_type   = $response_type;
+		/* REQUIRED */
+		$this->client_id 	   = $params["client_id"];
+		$this->client_secret   = $params["client_secret"];
+		$this->redirect_uri    = $params["redirect_uri"];
+		$this->URL_AUTH 	   = $params["auth"] . "?";
+		$this->URL_TOKEN 	   = $params["token"] . "?";
+
+		/* OPTIONAL */
+		$this->auth_type 	   = isset($params["authorization_type"]) ? $params["authorization_type"] : "Bearer";
+		$this->session 		   = isset($params["session"]) ? $params["session"] : false;
+		$this->verify_ssl_peer = isset($params["verify"]) ? ($params["verify"] ? 1 : 0) : 1;
+		$this->verify_ssl_host = $this->verify_ssl_peer === 1 ? 2 : 0;
+		$this->grant_type 	   = isset($params["grant_type"]) ? $params["grant_type"] : "authorization_code";
+		$this->response_type   = isset($params["response_type"]) ? $params["response_type"] : "code";
 	}
 
 	public function get_access_token($state = false) {
@@ -77,12 +68,12 @@ class OAuth2 {
 		return $access_token;
 	}
 
-	public function get_identity($access_token) {
+	public function get_identity($access_token, $identity_url) {
 		$params = array(
 			'access_token' => $access_token,
 		);
 		$url_params = http_build_query($params);
-		$url 		= $this->URL_USER . $url_params;
+		$url 		= $identity_url . "?" . $url_params;
 		$result 	= curl_exec($this->create_curl($url, array('Authorization: ' . $this->auth_type . ' ' . $access_token), false));
 		$result_obj = json_decode($result, true);
 
