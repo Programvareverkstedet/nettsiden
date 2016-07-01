@@ -27,7 +27,7 @@ class OAuth2 {
 		$this->URL_TOKEN 	   = $params["token"] . "?";
 
 		/* OPTIONAL */
-		$this->auth_type 	   = isset($params["authorization_type"]) ? $params["authorization_type"] : "Bearer";
+		$this->auth_type 	   = isset($params["authorization_type"]) ? $params["authorization_type"] : "Bearer";
 		$this->session 		   = isset($params["session"]) ? $params["session"] : false;
 		$this->verify_ssl_peer = isset($params["verify"]) ? ($params["verify"] ? 1 : 0) : 1;
 		$this->verify_ssl_host = $this->verify_ssl_peer === 1 ? 2 : 0;
