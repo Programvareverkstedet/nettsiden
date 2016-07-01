@@ -21,14 +21,14 @@ class OAuth2 {
 
 		/* REQUIRED */
 		$this->client_id 	   = $params["client_id"];
-		$this->client_secret   = $params["client_secret"];
-		$this->redirect_uri    = $params["redirect_uri"];
+		$this->client_secret = $params["client_secret"];
+		$this->redirect_uri  = $params["redirect_uri"];
 		$this->URL_AUTH 	   = $params["auth"] . "?";
 		$this->URL_TOKEN 	   = $params["token"] . "?";
 
 		/* OPTIONAL */
-		$this->auth_type 	   = isset($params["authorization_type"]) ? $params["authorization_type"] : "Bearer";
-		$this->session 		   = isset($params["session"]) ? $params["session"] : false;
+		$this->auth_type 	   	 = isset($params["authorization_type"]) ? $params["authorization_type"] : "Bearer";
+		$this->session 		   	 = isset($params["session"]) ? $params["session"] : false;
 		$this->verify_ssl_peer = isset($params["verify"]) ? ($params["verify"] ? 1 : 0) : 1;
 		$this->verify_ssl_host = $this->verify_ssl_peer === 1 ? 2 : 0;
 		$this->grant_type 	   = isset($params["grant_type"]) ? $params["grant_type"] : "authorization_code";
@@ -49,22 +49,22 @@ class OAuth2 {
 	private function get_oauth_token() {
 		$code   = htmlspecialchars($_GET['code']);
 		$params = array(
-			'grant_type' 	=> $this->grant_type,
-			'client_id'  	=> $this->client_id,
+			'grant_type' 		=> $this->grant_type,
+			'client_id'  		=> $this->client_id,
 			'client_secret' => $this->client_secret,
-			'code' 			=> $code,
+			'code' 					=> $code,
 			'redirect_uri'  => $this->redirect_uri,
 		);
 
 		$url_params = http_build_query($params);
-		$url  		= $this->URL_TOKEN . $url_params;
+		$url  			= $this->URL_TOKEN . $url_params;
 
-		$result 	  = curl_exec($this->create_curl($url, false, $params));
+		$result 	  	= curl_exec($this->create_curl($url, false, $params));
 		$result_obj   = json_decode($result, true);
 		$access_token = $result_obj['access_token'];
 		$expires_in   = $result_obj['expires_in'];
 		$expires_at   = time() + $expires_in;
-		
+
 		return $access_token;
 	}
 
@@ -73,8 +73,8 @@ class OAuth2 {
 			'access_token' => $access_token,
 		);
 		$url_params = http_build_query($params);
-		$url 		= $identity_url . "?" . $url_params;
-		$result 	= curl_exec($this->create_curl($url, array('Authorization: ' . $this->auth_type . ' ' . $access_token), false));
+		$url 				= $identity_url . "?" . $url_params;
+		$result 		= curl_exec($this->create_curl($url, array('Authorization: ' . $this->auth_type . ' ' . $access_token), false));
 		$result_obj = json_decode($result, true);
 
 		return $result_obj;
@@ -83,16 +83,16 @@ class OAuth2 {
 	public function redirect($state = false) {
 		if(!$state) $state = uniqid('', true);
 		$params = array(
-			'client_id' 	=> $this->client_id,
+			'client_id' 		=> $this->client_id,
 			'response_type' => $this->response_type,
 			'redirect_uri'  => $this->redirect_uri,
-			'state' 		=> $state,
+			'state' 				=> $state,
 		);
 
 		if($this->session) $_SESSION['state'] = $state;
 
 		$url = $this->URL_AUTH . http_build_query($params);
-		
+
 		header("Location: $url");
 		exit;
 	}
