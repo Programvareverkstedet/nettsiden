@@ -10,8 +10,6 @@ class OAuth2 {
 	private $url;
 	private $URL_AUTH;
 	private $URL_TOKEN;
-	private $URL_USER;
-	private $URL_GROUP;
 	private $auth_type;
 	private $session;
 	private $grant_type;
