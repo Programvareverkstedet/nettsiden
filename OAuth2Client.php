@@ -1,5 +1,7 @@
 <?php
 
+namespace Kasperrt;
+
 class OAuth2 {
 
 	private $client_id;
