@@ -35,9 +35,13 @@ class OAuth2 {
 		$this->response_type   = isset($params["response_type"]) ? $params["response_type"] : "code";
 	}
 
-	public function get_access_token(
-		$state = mysql_real_escape_string($_GET['state']),
-		$code  = mysql_real_escape_string($_GET['code'])) {
+	public function get_access_token($state = false, $code = false) {
+		if(!$state) {
+			$state = htmlspecialchars($_GET['state']);
+		}
+		if(!$code) {
+			$state = htmlspecialchars($_GET['code']);
+		}
 		if($this->session && $state) {
 			if($_SESSION['state'] != $state) {
 				die('States does not match');
@@ -68,7 +72,7 @@ class OAuth2 {
 	}
 
 	public function get_identity($access_token, $identity_url) {
-		if(!$access_token || !$identity_url) throw new Exception("Missing either \$access_token or \$identity_url in get_identity function.");
+		if(!$access_token || !$identity_url) throw new \Exception("Missing either \$access_token or \$identity_url in get_identity function.");
 		$params = array(
 			'access_token' => $access_token,
 		);
