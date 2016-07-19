@@ -4,7 +4,6 @@
   "license": "MIT",
   "keywords": ["authentication"],
   "homepage": "https://github.com/kasperrt/oauth2-client",
-  "minimum-stability": "dev",
   "authors": [
     {
       "name": "Kasper Rynning-Tønnesen",
