@@ -3,7 +3,6 @@
   "description": "OAuth2 Client with Bearer tokens",
   "license": "MIT",
   "keywords": ["authentication"],
-  "type": "simplesamlphp-module",
   "homepage": "https://github.com/kasperrt/oauth2-client",
   "minimum-stability": "dev",
   "authors": [
