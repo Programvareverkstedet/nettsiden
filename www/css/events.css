@@ -1,0 +1,55 @@
+h2 em {
+	display: inline-block;
+	color: gray;
+	font-size: .5em;
+	line-height: 2em;
+	float: left;
+	margin-right: 1em;
+	border: .1em solid gray;
+	padding: 0 1em;
+	border-radius: .25em;
+	font-style: normal;
+}
+h2 strong em {
+	background: #084;
+	border-color: #084;
+	color: white;
+}
+h2 img {
+	float: right;
+	max-width: 5em;
+	border: .2em solid white;
+	box-shadow: 0 2px 2px black;
+	margin-left: 1em;
+}
+article:first-child h2 img {
+	max-width: 10em;
+}
+
+.subtext {
+	margin: -1.5em 0 1em 0;
+	padding: 0;
+	list-style: none;
+}
+.subtext li {
+	display: inline;
+	margin-right: 3em;
+	font-size: .7em;
+	color: gray;
+}
+.subtext li a {
+	color: black;
+	font-size: 1.2em;
+}
+
+@media screen and (max-width: 50rem) {
+	h2 img {
+		display: none;
+	}
+	.subtext {
+		margin-top: -1em;
+	}
+	.subtext li {
+		display: block;
+	}
+}

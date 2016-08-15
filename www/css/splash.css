@@ -1,0 +1,70 @@
+img.float-right {
+	float: right;
+	max-width: 12em;
+	max-height: 12em;
+	vertical-align: baseline;
+}
+
+.calendar-events {
+	padding: 0;
+	list-style: none;
+}
+.calendar-events p span {
+	float: right;
+	display: inline-block;
+	color: rgba(0,0,0,.5);
+	font-size: 0.8em;
+}
+.calendar-events > li > p {
+	border-bottom: .1em solid rgba(0,0,0,.2);
+}
+
+.calendar-events ul {
+	list-style: none;
+	padding: 0 .5em;
+}
+.calendar-events a, #ticker a {
+	text-decoration: none;
+	font-weight: bold;
+	color: black;
+}
+.calendar-events a:hover, #ticker a:hover {
+	text-decoration: underline;
+}
+.calendar-events ul span {
+	float: left;
+	width: 4em;
+}
+.calendar-events ul .icon {
+	float: right;
+}
+
+#ticker {
+	position: absolute;
+	max-width: 60rem;
+	margin: 0 auto;
+	top: 11rem;
+	left: 0;
+	right: 0;
+	padding: 0;
+	list-style: none;
+}
+#ticker li {
+	margin: 0 1rem;
+	padding: .5em 1em;
+	background: linear-gradient(to bottom, #fff 75%,#fafafa 100%);
+	border-radius: .5rem;
+	box-shadow: 0 .1rem .15rem rgba(0,0,0,.3);
+}
+
+@media screen and (max-width: 50rem) {
+	#ticker {
+		top: 7rem;
+	}
+	#ticker li {
+		margin: 0 .5rem;
+	}
+	main {
+		margin: -11rem auto 0 auto;
+	}
+}
