@@ -28,7 +28,7 @@
 	<p>Programvareverkstedet (PVV) vil skape et miljø for datainteresserte personer tilknyttet universitetet. Nåværende og tidligere studenter ved NTNU, samt ansatte ved NTNU og tilstøtende miljø, kan bli medlemmer. </p>
 	<p>
 		<a class="btn" href="paamelding/index.html">Bli medlem</a>
-		<a class="btn" href="rom/index.html">Veibeskrivelse</a>
+		<a class="btn" href="https://use.mazemap.com/?v=1&amp;left=10.4032&amp;right=10.4044&amp;top=63.4178&amp;bottom=63.4172&amp;campusid=1&amp;zlevel=2&amp;sharepoitype=point&amp;sharepoi=10.40355%2C63.41755%2C2&amp;utm_medium=longurl">Veibeskrivelse</a>
 	</p>
 </article>
 
@@ -60,7 +60,12 @@ foreach($events as $ev){
     echo "	</li>";
 }
 #echo "	<li>";
-#echo "		<a href=\"\">animekveld</a>";
+#echo "		<a href=\"nerdepitsa/index.html\">nerdepitsa</a>";
+#echo "		<span>19.00</span>";
+#echo "		<a class=\"icon subscribe\" href=\"\">+</a>";
+#echo "	</li>";
+#echo "	<li>";
+#echo "		<a href=\"animekveld/index.html\">animekveld</a>";
 #echo "		<span>19.30</span>";
 #echo "		<a class=\"icon subscribe\" href=\"\">+</a>";
 #echo "	</li>";
