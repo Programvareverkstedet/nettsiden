@@ -11,7 +11,7 @@
 	<li><a href="kurs/index.html">kurs</a></li>
 	<li><a href="prosjekt/index.html">prosjekt</a></li>
 	<li><a href="sosiale/index.html">sosiale</a></li>
-	<li><a href="wiki/index.html">wiki</a></li>
+	<li><a href="pvv/">wiki</a></li>
 </nav>
 
 <header>Program&shy;vare&shy;verk&shy;stedet</header>
