@@ -9,7 +9,7 @@ class NerdepitsaActivity implements RepeatingActivity {
 
 	public function nextDate(DateTimeImmutable $date) {
 		if ($date->format('H') > 19)
-			return $this->nextDate($date->add(new DateInterval('P1D')));
+			return $this->nextDate($date->add(new DateInterval('P1D'))->setTime(19, 0, 0));
 		$date = $date->setTime(19, 0, 0);
 		if ($date->format('N') != 5)
 			return $this->nextDate($date->add(new DateInterval('P1D')));
@@ -20,7 +20,7 @@ class NerdepitsaActivity implements RepeatingActivity {
 
 	public function prevDate(DateTimeImmutable $date) {
 		if ($date->format('H') < 19)
-			return $this->prevDate($date->sub(new DateInterval('P1D')));
+			return $this->prevDate($date->sub(new DateInterval('P1D'))->setTime(19, 0, 0));
 		$date = $date->setTime(19, 0, 0);
 		if ($date->format('N') != 5)
 			return $this->prevDate($date->sub(new DateInterval('P1D')));
