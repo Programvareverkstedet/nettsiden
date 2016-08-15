@@ -36,29 +36,31 @@
 <article>
 <h2>Kommende arrangement</h2>
 <ul class="calendar-events">
-<li><p>i dag<span>2016-08-12</span></p>
-<ul>
-	<li>
-		<a href="">nerdepitsa</a>
-		<span>19.00</span>
-		<a class="icon subscribe" href="">+</a>
-	</li>
-	<li>
-		<a href="">animekveld</a>
-		<span>19.30</span>
-		<a class="icon subscribe" href="">+</a>
-	</li>
-</ul>
-</li>
-<li><p>noen gang<span>2016-08-XX</span></p>
-<ul>
-	<li>
-		<a href="">styremøte</a>
-		<span>XX.00</span>
-		<a class="icon subscribe" href="">+</a>
-	</li>
-</ul>
-</li>
+<?php
+echo "<li><p>i dag<span>".date("Y-m-d")."</span></p>";
+echo "<ul>";
+echo "<li>";
+echo "<a href=\"\">nerdepitsa</a>";
+echo "<span>19.00</span>";
+echo "		<a class=\"icon subscribe\" href=\"\">+</a>";
+echo "	</li>";
+echo "	<li>";
+echo "		<a href=\"\">animekveld</a>";
+echo "		<span>19.30</span>";
+echo "		<a class=\"icon subscribe\" href=\"\">+</a>";
+echo "	</li>";
+echo "</ul>";
+echo "</li>";
+echo "<li><p>noen gang<span>2016-08-XX</span></p>";
+echo "<ul>";
+echo "	<li>";
+echo "		<a href=\"\">styremøte</a>";
+echo "		<span>XX.00</span>";
+echo "		<a class=\"icon subscribe\" href=\"\">+</a>";
+echo "	</li>";
+echo "</ul>";
+echo "</li>";
+?>
 </ul>
 <p><a class="btn" href="kalender/index.html">Flere aktiviteter</a></p>
 </article>
