@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<?php require '../src/_autoload.php'; ?><!DOCTYPE html>
 <title>Programvareverkstedet</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="css/splash.css">
 
 <nav>
-	<li class="active"><a href="index.html">hjem</a></li>
+	<li class="active"><a href="index.php">hjem</a></li>
 	<li><a href="kurs/index.html">kurs</a></li>
 	<li><a href="prosjekt/index.html">prosjekt</a></li>
 	<li><a href="sosiale/index.html">sosiale</a></li>
@@ -36,9 +36,12 @@
 <article>
 <h2>Kommende arrangement</h2>
 <ul class="calendar-events">
+
+
+
 <?php
-include "../../nettsiden/src/_autoload.php";
-use \pvv\side\Events;
+/* include "../../nettsiden/src/_autoload.php"; */
+/* use \pvv\side\Events; */
 # TEST START
 #Class Event {
 #    private $start, $name;
@@ -46,41 +49,56 @@ use \pvv\side\Events;
 #    function getName(){return $this->name;}
 #    function getStart(){return $this->start;}
 #}
-$evs = new Events();
-$events = $evs->getAllEvents();
-# TEST END
+/* $evs = new Events(); */
+/* $events = $evs->getAllEvents(); */
+/* # TEST END */
+/* 		<a href="">animekveld</a> */
 
-echo "<li><p>i dag<span>".date("Y-m-d")."</span></p>";
-    echo "<ul>";
-foreach($events as $ev){
-    echo "<li>";
-    echo "<a href=\"\">".$ev->getName()."</a>";
-    echo "<span>".$ev->getStart()."</span>";
-    echo "		<a class=\"icon subscribe\" href=\"\">+</a>";
-    echo "	</li>";
-}
-#echo "	<li>";
-#echo "		<a href=\"nerdepitsa/index.html\">nerdepitsa</a>";
-#echo "		<span>19.00</span>";
-#echo "		<a class=\"icon subscribe\" href=\"\">+</a>";
-#echo "	</li>";
-#echo "	<li>";
-#echo "		<a href=\"animekveld/index.html\">animekveld</a>";
-#echo "		<span>19.30</span>";
-#echo "		<a class=\"icon subscribe\" href=\"\">+</a>";
-#echo "	</li>";
-echo "</ul>";
-echo "</li>";
-echo "<li><p>noen gang<span>2016-08-XX</span></p>";
-echo "<ul>";
-echo "	<li>";
-echo "		<a href=\"\">styremøte</a>";
-echo "		<span>XX.00</span>";
-echo "		<a class=\"icon subscribe\" href=\"\">+</a>";
-echo "	</li>";
-echo "</ul>";
-echo "</li>";
+/* echo "<li><p>i dag<span>".date("Y-m-d")."</span></p>"; */
+/*     echo "<ul>"; */
+/* foreach($events as $ev){ */
+/*     echo "<li>"; */
+/*     echo "<a href=\"\">".$ev->getName()."</a>"; */
+/*     echo "<span>".$ev->getStart()."</span>"; */
+/*     echo "		<a class=\"icon subscribe\" href=\"\">+</a>"; */
+/*     echo "	</li>"; */
+/* } */
 ?>
+
+<?php 
+$a = new \pvv\side\social\NerdepitsaActivity;
+$nextPizzaDate = $a->nextDate(new \DateTimeImmutable);
+$a = new \pvv\side\social\AnimekveldActivity;
+$nextAnimeDate = $a->nextDate(new \DateTimeImmutable);
+?>
+
+<li><p><?=$nextPizzaDate->format('l')?><span><?=$nextPizzaDate->format('Y-m-d')?></span></p>
+<ul>
+	<li>
+        <a href="nerdepitsa/index.html">nerdepitsa</a>
+        <span><?=$nextPizzaDate->format('H.i')?></span>
+		<a class="icon subscribe" href="">+</a>
+	</li>
+	<li>
+    	<a href="animekveld/index.html">animekveld</a>
+        <span><?=$nextAnimeDate->format('H.i')?></span>
+		<a class="icon subscribe" href="">+</a>
+	</li>
+</ul>
+</li>
+
+<li><p>noen gang<span>2016-08-XX</span></p>
+<ul>
+	<li>
+		<a href="">styremøte</a>
+		<span>XX.00</span>
+		<a class="icon subscribe" href="">+</a>
+	</li>
+</ul>
+</li>
+
+
+
 </ul>
 <p><a class="btn" href="kalender/index.html">Flere aktiviteter</a></p>
 </article>
