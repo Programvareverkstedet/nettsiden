@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php //declare(strict_types=1);
 namespace pvv\side;
 
 interface Event extends Activity {
