@@ -37,18 +37,33 @@
 <h2>Kommende arrangement</h2>
 <ul class="calendar-events">
 <?php
+include "../../nettsiden/src/_autoload.php";
+use \pvv\side\Events;
+# TEST START
+#Class Event {
+#    private $start, $name;
+#    function Event($name,$start){$this->start = $start;$this->name=$name;}
+#    function getName(){return $this->name;}
+#    function getStart(){return $this->start;}
+#}
+$evs = new Events();
+$events = $evs->getAllEvents();
+# TEST END
+
 echo "<li><p>i dag<span>".date("Y-m-d")."</span></p>";
-echo "<ul>";
-echo "<li>";
-echo "<a href=\"\">nerdepitsa</a>";
-echo "<span>19.00</span>";
-echo "		<a class=\"icon subscribe\" href=\"\">+</a>";
-echo "	</li>";
-echo "	<li>";
-echo "		<a href=\"\">animekveld</a>";
-echo "		<span>19.30</span>";
-echo "		<a class=\"icon subscribe\" href=\"\">+</a>";
-echo "	</li>";
+    echo "<ul>";
+foreach($events as $ev){
+    echo "<li>";
+    echo "<a href=\"\">".$ev->getName()."</a>";
+    echo "<span>".$ev->getStart()."</span>";
+    echo "		<a class=\"icon subscribe\" href=\"\">+</a>";
+    echo "	</li>";
+}
+#echo "	<li>";
+#echo "		<a href=\"\">animekveld</a>";
+#echo "		<span>19.30</span>";
+#echo "		<a class=\"icon subscribe\" href=\"\">+</a>";
+#echo "	</li>";
 echo "</ul>";
 echo "</li>";
 echo "<li><p>noen gang<span>2016-08-XX</span></p>";
