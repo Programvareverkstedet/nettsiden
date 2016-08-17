@@ -1,4 +1,9 @@
+<<<<<<< e4e8b0972bbec3fff581f7a97b34315265104f3a
 <?php require '../src/_autoload.php'; ?><!DOCTYPE html>
+=======
+<?php require "../src/_autoload.php"; ?>
+<!DOCTYPE html>
+>>>>>>> Add automatic agenda on front page.
 <title>Programvareverkstedet</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
@@ -36,69 +41,21 @@
 <article>
 <h2>Kommende arrangement</h2>
 <ul class="calendar-events">
-
-
-
-<?php
-/* include "../../nettsiden/src/_autoload.php"; */
-/* use \pvv\side\Events; */
-# TEST START
-#Class Event {
-#    private $start, $name;
-#    function Event($name,$start){$this->start = $start;$this->name=$name;}
-#    function getName(){return $this->name;}
-#    function getStart(){return $this->start;}
-#}
-/* $evs = new Events(); */
-/* $events = $evs->getAllEvents(); */
-/* # TEST END */
-/* 		<a href="">animekveld</a> */
-
-/* echo "<li><p>i dag<span>".date("Y-m-d")."</span></p>"; */
-/*     echo "<ul>"; */
-/* foreach($events as $ev){ */
-/*     echo "<li>"; */
-/*     echo "<a href=\"\">".$ev->getName()."</a>"; */
-/*     echo "<span>".$ev->getStart()."</span>"; */
-/*     echo "		<a class=\"icon subscribe\" href=\"\">+</a>"; */
-/*     echo "	</li>"; */
-/* } */
-?>
-
-<?php 
-$a = new \pvv\side\social\NerdepitsaActivity;
-$nextPizzaDate = $a->nextDate(new \DateTimeImmutable);
-$a = new \pvv\side\social\AnimekveldActivity;
-$nextAnimeDate = $a->nextDate(new \DateTimeImmutable);
-?>
-
-<li><p><?=$nextPizzaDate->format('l')?><span><?=$nextPizzaDate->format('Y-m-d')?></span></p>
+<?php $translation = ['i dag', 'i morgen', 'denne uka', 'denne måned', 'neste måned'] ?>
+<?php $counter1 = 0; ?>
+<?php $counter2 = 0; ?>
+<?php foreach((new \pvv\side\Agenda())->getNextDays() as $period => $events) if ($events && $counter1 < 2 && $counter2 < 10) { $counter1++ ?>
+<li><p><?= $translation[$period] ?> <span><?= reset($events)->getStart()->format('Y-m-d'); ?></span></p>
 <ul>
-	<li>
-        <a href="nerdepitsa/index.html">nerdepitsa</a>
-        <span><?=$nextPizzaDate->format('H.i')?></span>
-		<a class="icon subscribe" href="">+</a>
-	</li>
-	<li>
-    	<a href="animekveld/index.html">animekveld</a>
-        <span><?=$nextAnimeDate->format('H.i')?></span>
-		<a class="icon subscribe" href="">+</a>
-	</li>
-</ul>
+<?php foreach($events as $event) { $counter2++ ?>
+<li>
+<a><?= $event->getName(); ?></a>
+<span><?= $event->getStart()->format('H:i'); ?></span>
+<a class="icon subscribe" href="">+</a>
 </li>
-
-<li><p>noen gang<span>2016-08-XX</span></p>
-<ul>
-	<li>
-		<a href="">styremøte</a>
-		<span>XX.00</span>
-		<a class="icon subscribe" href="">+</a>
-	</li>
+<?php } ?>
 </ul>
-</li>
-
-
-
+<?php } ?>
 </ul>
 <p><a class="btn" href="kalender/index.html">Flere aktiviteter</a></p>
 </article>

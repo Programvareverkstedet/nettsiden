@@ -1,7 +1,7 @@
 <?php //declare(strict_types=1);
 namespace pvv\side;
 
-use \DateTime;
+use \DateTimeImmutable;
 
 interface Activity {
 

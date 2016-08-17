@@ -1,10 +1,11 @@
 <?php //declare(strict_types=1);
 namespace pvv\side\social;
 
+use \pvv\side\RepeatingActivity;
 use \DateTimeImmutable;
 use \DateInterval;
 
-class AnimekveldActivity  {
+class AnimekveldActivity implements RepeatingActivity {
 
 	public function nextDate(DateTimeImmutable $date) {
 		if ($date->format('H') > 20 || $date->format('H') == 19 && $date->format('i') > 30)
