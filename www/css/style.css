@@ -50,6 +50,7 @@ article {
 }
 article p {
 	text-align: justify;
+	hyphens: auto;
 }
 article:first-child {
 	border-radius: .5rem .5rem 0 0;
