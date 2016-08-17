@@ -146,3 +146,12 @@ a.btn:active {
 		height: 13em;
 	}
 }
+
+
+
+.collapsable {
+	display: none;
+}
+.collapsable:target {
+	display: block;
+}
