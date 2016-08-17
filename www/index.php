@@ -63,7 +63,7 @@
 <h2>Opptak</h2>
 <p>
 Alle med tilknytning til NTNU kan bli medlem hos oss
-og benytte seg av våre ressurs.
+og benytte seg av våre ressurser.
 For å bli med i våre prosjekter og komitéer må du søke.
 </p>
 <p>
