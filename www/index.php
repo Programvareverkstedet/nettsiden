@@ -1,7 +1,14 @@
 <?php
 require '../src/_autoload.php';
 date_default_timezone_set('Europe/Oslo');
-//include __DIR__.'/../sql_config.php';
+require __DIR__ . '/../sql_config.php';
+$pdo = new \PDO($dbDsn, $dbUser, $dbPass);
+$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$agenda = new \pvv\side\Agenda([
+		new \pvv\side\social\NerdepitsaActivity,
+		new \pvv\side\social\AnimekveldActivity,
+		new \pvv\side\DBActivity($pdo),
+	]); ?>
 ?><!DOCTYPE html>
 <html lang="no">
 <title>Programvareverkstedet</title>
@@ -44,11 +51,6 @@ date_default_timezone_set('Europe/Oslo');
 <?php $translation = ['i dag', 'i morgen', 'denne uka', 'denne måned', 'neste måned'] ?>
 <?php $counter1 = 0; ?>
 <?php $counter2 = 0; ?>
-<?php $agenda = new \pvv\side\Agenda([
-			new \pvv\side\social\NerdepitsaActivity,
-			new \pvv\side\social\AnimekveldActivity,
-			new \pvv\side\DBActivity('sqlite:../pvv.sqlite', null, null),
-		]); ?>
 <?php foreach($agenda->getNextDays() as $period => $events) if ($events && $counter1 < 2 && $counter2 < 10) { $counter1++ ?>
 <li><p><?= $translation[$period] ?> <span><?= reset($events)->getStart()->format('Y-m-d'); ?></span></p>
 <ul>
