@@ -15,30 +15,29 @@ class Agenda {
 	const THIS_MONTH = 3;
 	const NEXT_MONTH = 4;
 
-	public function __construct() {
-		$this->activities = [
-			new NerdepitsaActivity,
-			new AnimekveldActivity,
-		];
+	public function __construct($activities) {
+		$this->activities = $activities;
 	}
 
 	public function getEventsBetween(DateTimeImmutable $from, DateTimeImmutable $to) {
-		$results = [[], []];
-		do {
-			$run = false;
-			for($i = 0; $i < sizeof($this->activities); $i++) {
-				if (sizeof($results[$i])) {
-					$date = end($results[$i])->getStop();
+		$results = [];
+		for($i = 0; $i < sizeof($this->activities); $i++) {
+			$result = [];
+			do {
+				$run = false;
+				if (sizeof($result)) {
+					$date = end($result)->getStop();
 				} else {
 					$date = $from;
 				}
 				$next = $this->activities[$i]->getNextEventFrom($date);
 				if (isset($next) && $next->getStart() < $to) {
-					$results[$i][] = $this->activities[$i]->getNextEventFrom($date);
+					$result[] = $this->activities[$i]->getNextEventFrom($date);
 					$run = true;
 				}
-			}
-		} while ($run);
+			} while ($run);
+			$results[] = $result;
+		}
 		$result = [];
 		foreach($results as $a) foreach($a as $b) $result[] = $b;
 		usort($result, function($a, $b) {

@@ -1,9 +1,9 @@
 <?php
 namespace pvv\side;
 
-Class OnceEvent implements Event {
+Class OnceEvent extends Event {
     private $name, $start, $end, $org, $loc;
-    public function __construct($name,$start,$end,$org, $loc){
+    public function __construct($name,\DateTimeImmutable $start,\DateTimeImmutable $end,$org, $loc){
     $this->name = $name;
     $this->start = $start;
     $this->end = $end;
