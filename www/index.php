@@ -9,7 +9,7 @@ $agenda = new \pvv\side\Agenda([
 		new \pvv\side\social\AnimekveldActivity,
 		new \pvv\side\DBActivity($pdo),
 	]); ?>
-?><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="no">
 <title>Programvareverkstedet</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
