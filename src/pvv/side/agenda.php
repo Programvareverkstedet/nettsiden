@@ -12,8 +12,9 @@ class Agenda {
 	const TODAY = 0;
 	const TOMORROW = 1;
 	const THIS_WEEK = 2;
-	const THIS_MONTH = 3;
-	const NEXT_MONTH = 4;
+	const NEXT_WEEK = 3;
+	const THIS_MONTH = 4;
+	const NEXT_MONTH = 5;
 
 	public function __construct($activities) {
 		$this->activities = $activities;
@@ -47,7 +48,7 @@ class Agenda {
 	}
 
 	public function getNextDays() {
-		$result = [[], [], [], [], []];
+		$result = [[], [], [], [], [], []];
 		$events = $this->getEventsBetween(
 				(new DateTimeImmutable)->sub(new DateInterval('PT1H')), 
 				(new DateTimeImmutable)->add(new DateInterval('P1M'))
@@ -57,6 +58,7 @@ class Agenda {
 			if (self::isToday($event->getStart())) $index = self::TODAY;
 			elseif (self::isTomorrow($event->getStart())) $index = self::TOMORROW;
 			elseif (self::isThisWeek($event->getStart())) $index = self::THIS_WEEK;
+			elseif (self::isNextWeek($event->getStart())) $index = self::NEXT_WEEK;
 			elseif (self::isThisMonth($event->getStart())) $index = self::THIS_MONTH;
 			$result[$index][] = $event;
 		}
@@ -73,6 +75,10 @@ class Agenda {
 
 	public static function isThisWeek(DateTimeImmutable $date) {
 		return $date->format('WY') == date('WY');
+	}
+
+	public static function isNextWeek(DateTimeImmutable $date) {
+		return $date->sub(new DateInterval('P7D'))->format('WY') == date('WY');
 	}
 
 	public static function isThisMonth(DateTimeImmutable $date) {

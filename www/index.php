@@ -2,6 +2,7 @@
 require '../src/_autoload.php';
 date_default_timezone_set('Europe/Oslo');
 require __DIR__ . '/../sql_config.php';
+setlocale(LC_ALL, 'no_NO');
 $pdo = new \PDO($dbDsn, $dbUser, $dbPass);
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $agenda = new \pvv\side\Agenda([
@@ -48,17 +49,25 @@ $agenda = new \pvv\side\Agenda([
 <article>
 <h2>Kommende arrangement</h2>
 <ul class="calendar-events">
-<?php $translation = ['i dag', 'i morgen', 'denne uka', 'denne måned', 'neste måned'] ?>
+<?php $translation = ['i dag', 'i morgen', 'denne uka', 'neste uke', 'denne måneden', 'neste måned'] ?>
 <?php $counter1 = 0; ?>
 <?php $counter2 = 0; ?>
-<?php foreach($agenda->getNextDays() as $period => $events) if ($events && $counter1 < 2 && $counter2 < 10) { $counter1++ ?>
-<li><p><?= $translation[$period] ?> <span><?= reset($events)->getStart()->format('Y-m-d'); ?></span></p>
+<?php foreach($agenda->getNextDays() as $period => $events) if ($events && $counter1 < 3 && $counter2 < 10) { $counter1++ ?>
+<li>
+<p><?= $translation[$period] ?></p>
 <ul>
 <?php foreach($events as $event) { $counter2++ ?>
 <li>
 <a><?= $event->getName(); ?></a>
-<span><?= $event->getStart()->format('H:i'); ?></span>
 <a class="icon subscribe" href="">+</a>
+<?php if ($period) {
+	if (\pvv\side\Agenda::isThisWeek($event->getStart()) || $event->getStart()->sub(new DateInterval('P3D'))->getTimestamp() < time()) {
+		echo '<span class="date">' . strftime('%A', $event->getStart()->getTimestamp()) . '</span>';
+	} else {
+		echo '<span class="date">' . strftime('%e. %b', $event->getStart()->getTimestamp()) . '</span>';
+	}
+} ?>
+<span class="time"><?= $event->getStart()->format('H:i'); ?></span>
 </li>
 <?php } ?>
 </ul>
