@@ -5,13 +5,13 @@ use \pvv\side\RepeatingActivity;
 use \DateTimeImmutable;
 use \DateInterval;
 
-class AnimekveldActivity implements RepeatingActivity {
+class BrettspillActivity implements RepeatingActivity {
 
 	public function nextDate(DateTimeImmutable $date) {
 		if ($date->format('H') > 20 || $date->format('H') == 19 && $date->format('i') > 30)
 			return $this->nextDate($date->add(new DateInterval('P1D'))->setTime(19, 30, 0));
 		$date = $date->setTime(19, 30, 0);
-		if ($date->format('N') != 5)
+		if ($date->format('N') != 4)
 			return $this->nextDate($date->add(new DateInterval('P1D')));
 		return $date;
 	}
@@ -20,21 +20,21 @@ class AnimekveldActivity implements RepeatingActivity {
 		if ($date->format('H') < 19 || $date->format('H') == 20 && $date->format('i') < 30)
 			return $this->prevDate($date->sub(new DateInterval('P1D'))->setTime(19, 30, 0));
 		$date = $date->setTime(19, 30, 0);
-		if ($date->format('N') != 5)
+		if ($date->format('N') != 4)
 			return $this->prevDate($date->sub(new DateInterval('P1D')));
 		return $date;
 	}
 
 	public function getNextEventFrom(DateTimeImmutable $date) /* : Event */ {
-		return new AnimekveldEvent($this->nextDate($date));
+		return new BrettspillEvent($this->nextDate($date));
 	}
 
 	public function getPreviousEventFrom(DateTimeImmutable $date) /* : Event */ {
-		return new AnimekveldEvent($this->prevDate($date));
+		return new BrettspillEvent($this->prevDate($date));
 	}
 
 	public function getName() /* : string */ {
-		return "Animekveld";
+		return "Brettspillkveld";
 	}
 
 	public function getLocation() /* : Location */ {
@@ -42,7 +42,7 @@ class AnimekveldActivity implements RepeatingActivity {
 	}
 
 	public function getOrganiser() /* : User */ {
-		return "Liang Zhu";
+		return "PVV";
 	}
 
 }

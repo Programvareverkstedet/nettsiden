@@ -5,14 +5,14 @@ use \pvv\side\Event;
 
 use \DateInterval;
 
-class AnimekveldEvent extends Event {
+class BrettspillEvent extends Event {
 
 	public function getStop() {
 		return $this->getStart()->add(new DateInterval('PT4H1800S'));
 	}
 
 	public function getName() /* : string */ {
-		return "Animekveld";
+		return "Brettspillkveld";
 	}
 
 	public function getLocation() /* : Location */ {
@@ -20,7 +20,7 @@ class AnimekveldEvent extends Event {
 	}
 
 	public function getOrganiser() /* : User */ {
-		return "Liang Zhu";
+		return "PVV";
 	}
 
 }
