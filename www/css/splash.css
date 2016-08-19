@@ -9,9 +9,7 @@ img.float-right {
 	padding: 0;
 	list-style: none;
 }
-.calendar-events p span {
-	float: right;
-	display: inline-block;
+.calendar-events ul .date {
 	color: rgba(0,0,0,.5);
 	font-size: 0.8em;
 }
@@ -31,12 +29,13 @@ img.float-right {
 .calendar-events a:hover, #ticker a:hover {
 	text-decoration: underline;
 }
-.calendar-events ul span {
+.calendar-events ul .time {
 	float: left;
 	width: 4em;
 }
-.calendar-events ul .icon {
+.calendar-events ul .icon, .calendar-events ul .date {
 	float: right;
+	margin-right: .5em;
 }
 
 #ticker {
