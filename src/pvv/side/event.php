@@ -2,6 +2,7 @@
 namespace pvv\side;
 
 use \DateTimeImmutable;
+use \DateInterval;
 
 abstract class Event {
 
