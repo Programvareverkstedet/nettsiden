@@ -20,6 +20,10 @@ class Agenda {
 		$this->activities = $activities;
 	}
 
+    public static function getFormattedDate($date) {
+       return trim(strftime('%A %e. %b %H.%M', $date->getTimeStamp()));
+    }
+
 	public function getEventsBetween(DateTimeImmutable $from, DateTimeImmutable $to) {
 		$results = [];
 		for($i = 0; $i < sizeof($this->activities); $i++) {

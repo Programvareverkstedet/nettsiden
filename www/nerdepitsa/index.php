@@ -4,6 +4,7 @@ date_default_timezone_set('Europe/Oslo');
 setlocale(LC_ALL, 'no_NO');
 require __DIR__ . '/../../src/_autoload.php';
 require __DIR__ . '/../../sql_config.php';
+use \pvv\side\Agenda;
 ?>
 <html lang="no">
 <title>Sosialverkstedet</title>
@@ -37,7 +38,7 @@ $nextEvent = $activity->getNextEventFrom(new DateTimeImmutable);
 	<ul class="subtext">
         <li>Tid:
         <strong>
-            <?= $nextEvent->getStart()->format('Y-m-d H:i');?>
+            <?= Agenda::getFormattedDate($nextEvent->getStart());?>
         </strong>
 		<li>Sted:
         <strong>
