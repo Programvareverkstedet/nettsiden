@@ -33,7 +33,7 @@ $nextEvent = $activity->getNextEventFrom(new DateTimeImmutable);
 <article>
 
 
-	<h2><img src="../sosiale/nerdepitsa.jpg"><em>neste uke</em> Nerdepitsa</h2>
+	<h2><img src="../sosiale/nerdepitsa.jpg"><em><?= $nextEvent->getRelativeDate()?></em> Nerdepitsa</h2>
 	<ul class="subtext">
         <li>Tid:
         <strong>
