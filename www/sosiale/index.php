@@ -17,11 +17,11 @@ $agenda = new \pvv\side\Agenda([
 <link rel="stylesheet" href="../css/events.css">
 
 <nav>
-	<li><a href="../index.php">hjem</a></li>
-	<li><a href="../kurs/index.html">kurs</a></li>
-	<li><a href="../prosjekt/index.html">prosjekt</a></li>
-	<li class="active"><a href="../sosiale/index.html">sosiale</a></li>
-	<li><a href="../wiki/index.html">wiki</a></li>
+	<li><a href="../">hjem</a></li>
+	<li><a href="../kurs/">kurs</a></li>
+	<li><a href="../prosjekt/">prosjekt</a></li>
+	<li class="active"><a href="../sosiale/">sosiale</a></li>
+	<li><a href="../wiki/">wiki</a></li>
 </nav>
 
 <header>Sosial&shy;verk&shy;stedet</header>
