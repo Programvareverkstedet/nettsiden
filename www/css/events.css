@@ -30,6 +30,7 @@ article:first-child h2 img {
 	margin: -1.5em 0 1em 0;
 	padding: 0;
 	list-style: none;
+    clear: left;
 }
 .subtext li {
 	display: inline;
@@ -37,9 +38,10 @@ article:first-child h2 img {
 	font-size: .7em;
 	color: gray;
 }
-.subtext li a {
+.subtext li a, .subtext li strong {
 	color: black;
 	font-size: 1.2em;
+    font-weight: normal;
 }
 
 @media screen and (max-width: 50rem) {
