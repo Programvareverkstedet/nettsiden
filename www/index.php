@@ -3,6 +3,7 @@ date_default_timezone_set('Europe/Oslo');
 setlocale(LC_ALL, 'no_NO');
 require __DIR__ . '/../src/_autoload.php';
 require __DIR__ . '/../sql_config.php';
+$translation = ['i dag', 'i morgen', 'denne uka', 'neste uke', 'denne måneden', 'neste måned'];
 $pdo = new \PDO($dbDsn, $dbUser, $dbPass);
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $agenda = new \pvv\side\Agenda([
@@ -31,7 +32,13 @@ $agenda = new \pvv\side\Agenda([
 <header>Program&shy;vare&shy;verk&shy;stedet</header>
 
 <ul id="ticker">
-	<li>I DAG: <a href="">nerdepitsa</a>
+<?php
+foreach($agenda->getNextDays() as $period => $events) {
+	$event = reset($events);
+	echo '<li>' . strtoupper($translation[$period]) . ': <a href="' . $event->getURL() . '">' . $event->getName() . '</a>';
+	break;
+}
+?>
 </ul>
 
 <main>
@@ -50,7 +57,6 @@ $agenda = new \pvv\side\Agenda([
 <article>
 <h2>Kommende arrangement</h2>
 <ul class="calendar-events">
-<?php $translation = ['i dag', 'i morgen', 'denne uka', 'neste uke', 'denne måneden', 'neste måned'] ?>
 <?php $counter1 = 0; ?>
 <?php $counter2 = 0; ?>
 <?php foreach($agenda->getNextDays() as $period => $events) if ($events && $counter1 < 2 && $counter2 < 10) { $counter1++ ?>
