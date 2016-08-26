@@ -70,11 +70,11 @@ class Agenda {
 	}
 
 	public function getNextOfEach(DateTimeImmutable $startDate) {
-		$result = array_map(
+		$result = array_filter(array_map(
 			function($a) use ($startDate){
 				return $a->getNextEventFrom($startDate);
 			}, $this->activities
-		);
+		), function($a){return $a;});
 		usort($result, function($a, $b) {
 			return ($a->getStart()->getTimeStamp() < $b->getStart()->getTimeStamp())
 				? -1
