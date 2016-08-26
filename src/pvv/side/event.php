@@ -37,6 +37,16 @@ abstract class Event {
 
 	public abstract function getStop(); /* : DateTimeImmutable */
 
+	public abstract function getName();
+
+	public abstract function getLocation();
+
+	public abstract function getOrganiser();
+
 	public abstract function getURL(); /* : string */
+
+	public abstract function getImageURL(); /* : string */
+
+	public abstract function getDescription(); /* : string */
 
 }

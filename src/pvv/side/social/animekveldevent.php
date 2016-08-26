@@ -27,4 +27,18 @@ class AnimekveldEvent extends Event {
 		return '/anime/';
 	}
 
+	public function getImageURL() {
+		return '/sosiale/animekveld.jpg';
+	}
+
+	public function getDescription() {
+		return [
+			'Er du glad i japansk tegnefilm eller er du bare nysgjerrige på hva animeer er?' . "\n" .
+			'Bli med oss. Hver fredag finner vi de nyeste episodene og ser på dem mens vi nyter noe godt.' . "\n" .
+			'Vi viser denne senongens nye animeer.',
+
+			'Alle kan være med på å anbefalle eller veto serier.'
+			];
+	}
+
 }
