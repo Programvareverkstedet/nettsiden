@@ -1,4 +1,10 @@
 <!DOCTYPE html>
+<?php
+date_default_timezone_set('Europe/Oslo');
+setlocale(LC_ALL, 'no_NO');
+require __DIR__ . '/../../src/_autoload.php';
+require __DIR__ . '/../../sql_config.php';
+?>
 <html lang="no">
 <title>Sosialverkstedet</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -19,16 +25,30 @@
 
 <main>
 
+<?php
+$activity = new \pvv\side\social\AnimekveldActivity;
+$nextEvent = $activity->getNextEventFrom(new DateTimeImmutable);
+?>
+
 <article>
 	<h2><img src="../sosiale/animekveld.jpg"><em>fredag</em> Animekveld</h2>
 	<ul class="subtext">
-		<li>Tid: <a>Hver fredag 19:30</a>
-		<li>Sted: <a>Koserommet</a>
-		<li>Arrangør: <a>Liang Zhu</a>
+        <li>Tid:
+        <strong>
+            <?= $nextEvent->getStart()->format('Y-m-d H:i');?>
+        </strong>
+		<li>Sted:
+        <strong>
+            <?= $nextEvent->getLocation();?>
+        </strong>
+		<li>Arrangør:
+        <strong>
+            <?= $nextEvent->getOrganiser();?>
+        </strong>
 	</ul>
 	<p>Er du glad i japansk tegnefilm eller er du bare nysgjerrige på hva animeer er? Bli med oss. Hver fredag finner vi de nyeste episodene og ser på dem mens vi nyter noe godt. Vi viser denne senongens nye animeer.
 
-	<p>Alle kan være med på å anbefalle eller veto serier.
+	<p>Alle kan være med på å anbefale eller veto serier.
 
 	<p><a class="btn" href="http://anichart.net/">Sesongoversikten</a>
 
