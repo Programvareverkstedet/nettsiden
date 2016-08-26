@@ -34,18 +34,18 @@ $nextEvent = $activity->getNextEventFrom(new DateTimeImmutable);
 <article>
 	<h2><img src="../sosiale/animekveld.jpg"><em><?= $nextEvent->getRelativeDate()?></em> Animekveld</h2>
 	<ul class="subtext">
-        <li>Tid:
-        <strong>
-            <?= Agenda::getFormattedDate($nextEvent->getStart());?>
-        </strong>
+		<li>Tid:
+		<strong>
+			<?= Agenda::getFormattedDate($nextEvent->getStart());?>
+		</strong>
 		<li>Sted:
-        <strong>
-            <?= $nextEvent->getLocation();?>
-        </strong>
+		<strong>
+			<?= $nextEvent->getLocation();?>
+		</strong>
 		<li>Arrangør:
-        <strong>
-            <?= $nextEvent->getOrganiser();?>
-        </strong>
+		<strong>
+			<?= $nextEvent->getOrganiser();?>
+		</strong>
 	</ul>
 	<p>Er du glad i japansk tegnefilm eller er du bare nysgjerrige på hva animeer er? Bli med oss. Hver fredag finner vi de nyeste episodene og ser på dem mens vi nyter noe godt. Vi viser denne senongens nye animeer.
 

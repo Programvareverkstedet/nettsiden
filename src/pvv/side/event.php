@@ -32,7 +32,7 @@ abstract class Event {
 		if (Agenda::isThisMonth($this->getStart())) {
 			return 'denne måneden';
 		}
-		return strftime('%e. %b', $this->getStart()->getTimestamp());
+		return trim(strftime('%e. %B', $this->getStart()->getTimestamp()));
 	}
 
 	public abstract function getStop(); /* : DateTimeImmutable */

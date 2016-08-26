@@ -36,18 +36,18 @@ $nextEvent = $activity->getNextEventFrom(new DateTimeImmutable);
 
 	<h2><img src="../sosiale/nerdepitsa.jpg"><em><?= $nextEvent->getRelativeDate()?></em> Nerdepitsa</h2>
 	<ul class="subtext">
-        <li>Tid:
-        <strong>
-            <?= Agenda::getFormattedDate($nextEvent->getStart());?>
-        </strong>
+		<li>Tid:
+		<strong>
+			<?= Agenda::getFormattedDate($nextEvent->getStart());?>
+		</strong>
 		<li>Sted:
-        <strong>
-            <?= $nextEvent->getLocation();?>
-        </strong>
+		<strong>
+			<?= $nextEvent->getLocation();?>
+		</strong>
 		<li>Arrangør:
-        <strong>
-            <?= $nextEvent->getOrganiser();?>
-        </strong>
+		<strong>
+			<?= $nextEvent->getOrganiser();?>
+		</strong>
 	</ul>
 	<p>Hei, har du lyst til å bli med på pizzaspising på Peppes i Kjøpmannsgata annenhver fredag klokken 19.00?
 

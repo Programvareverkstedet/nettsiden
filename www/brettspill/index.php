@@ -35,24 +35,24 @@ $nextEvent = $activity->getNextEventFrom(new DateTimeImmutable);
 
 <h2><em><?= $nextEvent->getRelativeDate()?></em> Brettspillkveld</h2>
 	<ul class="subtext">
-        <li>Tid:
-        <strong>
-            <?= Agenda::getFormattedDate($nextEvent->getStart());?>
-        </strong>
+		<li>Tid:
+		<strong>
+			<?= Agenda::getFormattedDate($nextEvent->getStart());?>
+		</strong>
 		<li>Sted:
-        <strong>
-            <?= $nextEvent->getLocation();?>
-        </strong>
+		<strong>
+			<?= $nextEvent->getLocation();?>
+		</strong>
 		<li>Arrangør:
-        <strong>
-            <?= $nextEvent->getOrganiser();?>
-        </strong>
+		<strong>
+			<?= $nextEvent->getOrganiser();?>
+		</strong>
 	</ul>
 	<p>Er du en hardcore brettspillentusiast eller en nybegynner som har bare spilt ludo? Da er vårt brettspillkveld noe for deg. Vi tar ut et par spill fra vår samling og spiller så mye vi orker. Kom innom!
 
 	<p><a class="btn" href="#b_spill">Vår samling</a>
 
-    <div id="b_spill" class="collapsable">
+	<div id="b_spill" class="collapsable">
 		<ul>
 			<li>Dominion*
 			<li>Three cheers for master
@@ -69,7 +69,7 @@ $nextEvent = $activity->getNextEventFrom(new DateTimeImmutable);
 		</ul>
 			<p>*  Vi har flere ekspansjon til spillet
 			<P>** Vi har flere varianter av spillet
-    </div>
+	</div>
 
 	<p><a class="btn" href="#">Påminn meg</a>
 </article>

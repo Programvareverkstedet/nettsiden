@@ -1,7 +1,7 @@
 <?php
 namespace pvv\side;
 
-Class SimpleEvent extends Event {
+class SimpleEvent extends Event {
 
 	private $name, $start, $end, $org, $loc;
 
