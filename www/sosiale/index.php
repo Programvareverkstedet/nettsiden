@@ -36,7 +36,9 @@ $agenda = new \pvv\side\Agenda([
 		<?php if ($event->getImageURL()) { ?>
 		<img src="<?= $event->getImageURL() ?>">
 		<?php } ?>
+		<?php if (\pvv\side\Agenda::isToday($event->getStart())) { ?><strong><?php } ?>
 		<em><?= $event->getRelativeDate() ?></em>
+		<?php if (\pvv\side\Agenda::isToday($event->getStart())) { ?></strong><?php } ?>
 		<a href="<?= $event->getURL() ?>"><?= $event->getName() ?></a>
 	</h2>
 	<ul class="subtext">
