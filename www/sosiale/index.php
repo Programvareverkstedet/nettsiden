@@ -6,7 +6,7 @@ $agenda = new \pvv\side\Agenda([
 		new \pvv\side\social\NerdepitsaActivity,
 		new \pvv\side\social\AnimekveldActivity,
 		new \pvv\side\social\BrettspillActivity,
-	]); ?>
+	]);
 ?><!DOCTYPE html>
 <html lang="no">
 <title>Sosialverkstedet</title>
