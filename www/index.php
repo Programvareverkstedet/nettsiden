@@ -34,8 +34,17 @@ $agenda = new \pvv\side\Agenda([
 <ul id="ticker">
 <?php
 foreach($agenda->getNextDays() as $period => $events) {
-	$event = reset($events);
-	echo '<li>' . strtoupper($translation[$period]) . ': <a href="' . $event->getURL() . '">' . $event->getName() . '</a>';
+	if (!$events) continue;
+	$first = true;
+	foreach($events as $event){
+		if (!$first){
+			echo '<i style="opacity:0.7;">&nbsp;og&nbsp;</i>';
+		} else {
+			echo '<li style="text-align: center;"><span style="text-transform: uppercase;">' . $translation[$period] . '</span>: ';
+		}
+		echo '<a href="' . $event->getURL() . '">' . $event->getName() . '</a>';
+		$first = false;
+	}
 	break;
 }
 ?>
