@@ -1,2 +1,3 @@
 sql_config.php
 *.sqlite
+php.ini
