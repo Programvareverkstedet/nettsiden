@@ -5,10 +5,8 @@ use \DateTimeImmutable;
 
 interface Activity {
 
-	public function getName(); /* : string */
+	public function getNextEventFrom(DateTimeImmutable $date) /* : Event */;
 
-	public function getLocation(); /* : Location */
-
-	public function getOrganiser(); /* : User */
+	public function getPreviousEventFrom(DateTimeImmutable $date) /* : Event */;
 
 }

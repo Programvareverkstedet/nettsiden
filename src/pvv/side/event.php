@@ -3,7 +3,7 @@ namespace pvv\side;
 
 use \DateTimeImmutable;
 
-abstract class Event implements Activity {
+abstract class Event {
 
 	private $start;
 
@@ -16,5 +16,7 @@ abstract class Event implements Activity {
 	}
 
 	public abstract function getStop(); /* : DateTimeImmutable */
+
+	public abstract function getURL(); /* : string */
 
 }

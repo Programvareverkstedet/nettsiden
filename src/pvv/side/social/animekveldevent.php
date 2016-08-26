@@ -23,4 +23,8 @@ class AnimekveldEvent extends Event {
 		return "Liang Zhu";
 	}
 
+	public function getURL() /* : string */ {
+		return '/anime/';
+	}
+
 }

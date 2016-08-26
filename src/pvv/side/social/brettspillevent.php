@@ -23,4 +23,8 @@ class BrettspillEvent extends Event {
 		return "PVV";
 	}
 
+	public function getURL() /* : string */ {
+		return '/brettspill/';
+	}
+
 }
