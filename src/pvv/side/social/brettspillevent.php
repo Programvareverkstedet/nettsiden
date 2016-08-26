@@ -28,7 +28,7 @@ class BrettspillEvent extends Event {
 	}
 
 	public function getImageURL() {
-		return null;
+		return '/sosiale/brettspill.jpg';
 	}
 
 	public function getDescription() {
