@@ -15,6 +15,25 @@ abstract class Event {
 		return $this->start;
 	}
 
+	public function getRelativeDate() {
+		if (Agenda::isToday($this->getStart())) {
+			return 'i dag';
+		}
+		if (Agenda::isTomorrow($this->getStart())) {
+			return 'i morgen';
+		}
+		if (Agenda::isThisWeek($this->getStart()) || $this->getStart()->sub(new DateInterval('P4D'))->getTimestamp() < time()) {
+			return strftime('%A', $this->getStart()->getTimestamp());
+		}
+		if (Agenda::isNextWeek($this->getStart())) {
+			return 'neste uke';
+		}
+		if (Agenda::isThisMonth($this->getStart())) {
+			return 'denne måneden';
+		}
+		return strftime('%e. %b', $this->getStart()->getTimestamp());
+	}
+
 	public abstract function getStop(); /* : DateTimeImmutable */
 
 	public abstract function getURL(); /* : string */
