@@ -53,7 +53,7 @@ $agenda = new \pvv\side\Agenda([
 <?php $translation = ['i dag', 'i morgen', 'denne uka', 'neste uke', 'denne måneden', 'neste måned'] ?>
 <?php $counter1 = 0; ?>
 <?php $counter2 = 0; ?>
-<?php foreach($agenda->getNextDays() as $period => $events) if ($events && $counter1 < 3 && $counter2 < 10) { $counter1++ ?>
+<?php foreach($agenda->getNextDays() as $period => $events) if ($events && $counter1 < 2 && $counter2 < 10) { $counter1++ ?>
 <li>
 <p><?= $translation[$period] ?></p>
 <ul>
@@ -63,12 +63,15 @@ $agenda = new \pvv\side\Agenda([
 <a class="icon subscribe" href="">+</a>
 <?php if ($period) {
 	if (\pvv\side\Agenda::isThisWeek($event->getStart()) || $event->getStart()->sub(new DateInterval('P3D'))->getTimestamp() < time()) {
-		echo '<span class="date">' . strftime('%A', $event->getStart()->getTimestamp()) . '</span>';
+		echo '<span class="time">' . strftime('%a', $event->getStart()->getTimestamp()) . '</span>';
 	} else {
-		echo '<span class="date">' . strftime('%e. %b', $event->getStart()->getTimestamp()) . '</span>';
+		echo '<span class="time">' . strftime('%e. %b', $event->getStart()->getTimestamp()) . '</span>';
 	}
-} ?>
-<span class="time"><?= $event->getStart()->format('H:i'); ?></span>
+	echo '<span class="date">' . $event->getStart()->format('H:i') . '</span>';
+} else {
+	echo '<span class="time">' . $event->getStart()->format('H:i') . '</span>';
+}
+?>
 </li>
 <?php } ?>
 </ul>
