@@ -69,6 +69,21 @@ class Agenda {
 		return $result;
 	}
 
+	public function getNextOfEach(DateTimeImmutable $startDate) {
+		$result = array_map(
+			function($a) use ($startDate){
+				return $a->getNextEventFrom($startDate);
+			}, $this->activities
+		);
+		usort($result, function($a, $b) {
+			return ($a->getStart()->getTimeStamp() < $b->getStart()->getTimeStamp())
+				? -1
+				: 1
+				;
+		});
+		return $result;
+	}
+
 	public static function isToday(DateTimeImmutable $date) {
 		return $date->format('dmY') == date('dmY');
 	}
