@@ -3,7 +3,7 @@ namespace pvv\side;
 
 use \DateTimeImmutable;
 
-abstract class Event implements Activity {
+abstract class Event {
 
 	private $start;
 

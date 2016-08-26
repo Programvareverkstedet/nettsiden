@@ -4,7 +4,7 @@ namespace pvv\side;
 use \DateTimeImmutable;
 use \PDO;
 
-class DBActivity implements RepeatingActivity {
+class DBActivity implements Activity {
 
 	public function __construct(PDO $pdo) {
 		$this->pdo = $pdo;
@@ -48,18 +48,4 @@ class DBActivity implements RepeatingActivity {
 		return "User";
 	}
 
-	/*
-    public function getAllEvents(){
-	global $url, $user,$pass,$db;
-	$events = array();
-	$mysqli = new mysqli($url,$user,$pass,$db);
-	$result = $mysqli->query("SELECT name,start,stop,organiser,location FROM events");
-	while($row = $result->fetch_assoc()){
-	$ev = new OnceEvent($row['name'],$row['start'],$row['stop'],$row['organiser'],$row['location']);
-	array_push($events,$ev);
-	}
-	#array_sort($events);
-	return $events;
-    }
-    */
 }

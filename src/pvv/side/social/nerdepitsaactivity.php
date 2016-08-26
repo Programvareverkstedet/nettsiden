@@ -1,11 +1,11 @@
 <?php //declare(strict_types=1);
 namespace pvv\side\social;
 
-use \pvv\side\RepeatingActivity;
+use \pvv\side\Activity;
 use \DateTimeImmutable;
 use \DateInterval;
 
-class NerdepitsaActivity implements RepeatingActivity {
+class NerdepitsaActivity implements Activity {
 
 	public function nextDate(DateTimeImmutable $date) {
 		if ($date->format('H') > 19)
@@ -35,18 +35,6 @@ class NerdepitsaActivity implements RepeatingActivity {
 
 	public function getPreviousEventFrom(DateTimeImmutable $date) /* : Event */ {
 		return new NerdepitsaEvent($this->prevDate($date));
-	}
-
-	public function getName() /* : string */ {
-		return "Nerdepitsa";
-	}
-
-	public function getLocation() /* : Location */ {
-		return "Peppes Kjøpmansgata";
-	}
-
-	public function getOrganiser() /* : User */ {
-		return "Anders Christensen";
 	}
 
 }
