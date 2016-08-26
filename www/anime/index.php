@@ -47,11 +47,8 @@ $nextEvent = $activity->getNextEventFrom(new DateTimeImmutable);
 			<?= $nextEvent->getOrganiser();?>
 		</strong>
 	</ul>
-	<p>Er du glad i japansk tegnefilm eller er du bare nysgjerrige på hva animeer er? Bli med oss. Hver fredag finner vi de nyeste episodene og ser på dem mens vi nyter noe godt. Vi viser denne senongens nye animeer.
 
-	<p>Alle kan være med på å anbefale eller veto serier.
-
-	<p><a class="btn" href="http://anichart.net/">Sesongoversikten</a>
+    <?= implode($nextEvent->getDescription(), "<p>\n</p>")?> 
 
 	<p><a class="btn" href="#">Påminn meg</a>
 </article>

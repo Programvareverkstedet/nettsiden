@@ -38,8 +38,9 @@ class BrettspillEvent extends Event {
 			'Vi tar ut et par spill fra vårt samling of spiller så mye vi orker. Kom innom!',
 
 			'<a class="btn" href="#b_spill">Vår samling</a>',
-
-			'<ul id="b_spill" class="collapsable">' . "\n" .
+            
+            '<div id="b_spill" class="collapsable">' . "\n" .
+			'<ul>' . "\n" .
 			'<li>Dominion*' . "\n" .
 			'<li>Three cheers for master' . "\n" .
 			'<li>Avalon' . "\n" .
@@ -54,7 +55,8 @@ class BrettspillEvent extends Event {
 			'<li>og mange flere...' . "\n" .
 			'</ul>',
 			'*  Vi har flere ekspansjon til spillet',
-			'** Vi har flere varianter av spillet'
+            '** Vi har flere varianter av spillet',
+            '</div>'
 			];
 	}
 
