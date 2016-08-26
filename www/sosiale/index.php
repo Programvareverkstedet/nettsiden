@@ -28,11 +28,17 @@ $agenda = new \pvv\side\Agenda([
 
 <main>
 
-<?php $limit = PHP_INT_MAX; ?>
+<?php $limit = 0; ?>
 <?php foreach($agenda->getNextOfEach(new \DateTimeImmutable) as $event) { ?>
 
 <article>
-	<h2><img src="<?= $event->getImageURL() ?>"><em><?= $event->getRelativeDate() ?></em> <a href="<?= $event->getURL() ?>"><?= $event->getName() ?></a></h2>
+	<h2>
+		<?php if ($event->getImageURL()) { ?>
+		<img src="<?= $event->getImageURL() ?>">
+		<?php } ?>
+		<em><?= $event->getRelativeDate() ?></em>
+		<a href="<?= $event->getURL() ?>"><?= $event->getName() ?></a>
+	</h2>
 	<ul class="subtext">
 		<li>Tid: <strong><?= trim(strftime('%e. %b %H.%M', $event->getStart()->getTimeStamp())) ?></strong>
 		<li>Sted: <strong><?= $event->getLocation() ?></strong>
@@ -40,13 +46,13 @@ $agenda = new \pvv\side\Agenda([
 	</ul>
 
 	<?php $description = $event->getDescription(); ?>
-	<?php array_splice($description, $limit); ?>
+	<?php if ($limit) array_splice($description, $limit); ?>
 	<p><?= implode($description, "</p>\n<p>") ?></p>
 
 	<p><a class="btn" href="#">Påminn meg</a>
 </article>
 
-<?php if ($limit > 4) {$limit = 4;} else $limit = 2; ?>
+<?php if (!$limit || $limit > 4) {$limit = 4;} else $limit = 2; ?>
 <?php } ?>
 
 </main>
