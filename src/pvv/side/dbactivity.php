@@ -24,7 +24,7 @@ class DBActivity implements Activity {
 		$stmt = $this->pdo->prepare($query);
 		$stmt->execute(['date' => $date->format('Y-m-d H:i:s')]);
 		if ($result = $stmt->fetch(PDO::FETCH_ASSOC)){
-			$ev = new OnceEvent(
+			$ev = new SimpleEvent(
 				$result['name'],
 				DateTimeImmutable::createFromFormat('Y-m-d H:i:s', $result['start']),
 				DateTimeImmutable::createFromFormat('Y-m-d H:i:s', $result['stop']),

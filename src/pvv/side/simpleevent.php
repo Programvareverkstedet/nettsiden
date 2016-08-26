@@ -33,4 +33,8 @@ Class SimpleEvent extends Event {
 		return $this->name;
 	}
 
+	public function getURL() {
+		
+	}
+
 }
