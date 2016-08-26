@@ -1,8 +1,8 @@
 <?php
-require '../src/_autoload.php';
 date_default_timezone_set('Europe/Oslo');
-require __DIR__ . '/../sql_config.php';
 setlocale(LC_ALL, 'no_NO');
+require __DIR__ . '/../src/_autoload.php';
+require __DIR__ . '/../sql_config.php';
 $pdo = new \PDO($dbDsn, $dbUser, $dbPass);
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $agenda = new \pvv\side\Agenda([
@@ -59,8 +59,8 @@ $agenda = new \pvv\side\Agenda([
 <ul>
 <?php foreach($events as $event) { $counter2++ ?>
 <li>
-<a><?= $event->getName(); ?></a>
-<a class="icon subscribe" href="">+</a>
+<a href="<?= htmlspecialchars($event->getURL()) ?>"><?= $event->getName(); ?></a>
+<?php /* <a class="icon subscribe">+</a> */ ?>
 <?php if ($period) {
 	if (\pvv\side\Agenda::isThisWeek($event->getStart()) || $event->getStart()->sub(new DateInterval('P3D'))->getTimestamp() < time()) {
 		echo '<span class="time">' . strftime('%a', $event->getStart()->getTimestamp()) . '</span>';

@@ -17,4 +17,6 @@ abstract class Event {
 
 	public abstract function getStop(); /* : DateTimeImmutable */
 
+	public abstract function getURL(); /* : string */
+
 }

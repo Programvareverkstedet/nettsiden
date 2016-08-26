@@ -23,4 +23,8 @@ class NerdepitsaEvent extends Event {
 		return "Anders Christensen";
 	}
 
+	public function getURL() /* : string */ {
+		return '/nerdepitsa/';
+	}
+
 }
