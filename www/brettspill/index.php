@@ -49,7 +49,7 @@ $nextEvent = $activity->getNextEventFrom(new DateTimeImmutable);
 		</strong>
 	</ul>
 
-    <?= implode($nextEvent->getDescription(), "<p>\n</p>")?> 
+	<?= implode($nextEvent->getDescription(), "<p>\n</p>")?> 
 
 	<p><a class="btn" href="#">Påminn meg</a>
 </article>
