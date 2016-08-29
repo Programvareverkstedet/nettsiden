@@ -49,7 +49,7 @@ $agenda = new \pvv\side\Agenda([
 
 	<?php $description = $event->getDescription(); ?>
 	<?php if ($limit) array_splice($description, $limit); ?>
-	<p><?= implode($description, "</p>\n<p>") ?></p>
+	<?= implode($description, "</p>\n<p>") ?>
 
 	<p><a class="btn" href="#">Påminn meg</a>
 </article>

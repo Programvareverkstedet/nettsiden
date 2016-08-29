@@ -33,11 +33,11 @@ class BrettspillEvent extends Event {
 
 	public function getDescription() {
 		return [
-			'Er du en hardcore brettspillentusiast eller en nybegynner som har bare spilt ludo?' . "\n" .
+			'<p>Er du en hardcore brettspillentusiast eller en nybegynner som har bare spilt ludo?' . "\n" .
 			'Da er vårt brettspillkveld noe for deg.' . "\n" .
 			'Vi tar ut et par spill fra vårt samling of spiller så mye vi orker. Kom innom!',
 
-			'<a class="btn" href="#b_spill">Vår samling</a>',
+			'<p><a class="btn" href="#b_spill">Vår samling</a>',
 			
 			'<div id="b_spill" class="collapsable">' . "\n" .
 			'<ul>' . "\n" .
@@ -54,8 +54,8 @@ class BrettspillEvent extends Event {
 			'<li>Risk**' . "\n" .
 			'<li>og mange flere...' . "\n" .
 			'</ul>',
-			'*  Vi har flere ekspansjon til spillet',
-			'** Vi har flere varianter av spillet',
+			'<p>*  Vi har flere ekspansjon til spillet',
+			'<p>** Vi har flere varianter av spillet',
 			'</div>'
 			];
 	}
