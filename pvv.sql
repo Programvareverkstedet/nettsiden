@@ -5,5 +5,6 @@ CREATE TABLE "events" (
 "start" TEXT,
 "stop" TEXT,
 "organiser" TEXT,
-"location" TEXT
+"location" TEXT,
+"description" TEXT
 );
