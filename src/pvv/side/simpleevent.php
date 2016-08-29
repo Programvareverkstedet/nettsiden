@@ -5,12 +5,13 @@ class SimpleEvent extends Event {
 
 	private $name, $start, $end, $org, $loc;
 
-	public function __construct($name,\DateTimeImmutable $start,\DateTimeImmutable $end,$org, $loc){
+	public function __construct($name,\DateTimeImmutable $start,\DateTimeImmutable $end,$org, $loc, $descr){
 		$this->name = $name;
 		$this->start = $start;
 		$this->end = $end;
 		$this->org = $org;
-		$this->log = $loc;
+		$this->loc = $loc;
+		$this->descr = explode("\n", $descr);
 	}
 
 	public function getStart(){
@@ -42,7 +43,7 @@ class SimpleEvent extends Event {
 	}
 
 	public function getDescription() {
-		return [];
+		return $this->descr;
 	}
 
 }
