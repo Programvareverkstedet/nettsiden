@@ -9,4 +9,7 @@ Put it in a folder your webserver can find.
 
 ## Development setup
 
+Make sure you have PHP installed, and the pdo-sqlite module.
+These can be obtained from your package manager.
+
 	./dev.sh
