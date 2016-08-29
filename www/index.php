@@ -21,14 +21,6 @@ $agenda = new \pvv\side\Agenda([
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/splash.css">
 
-<nav>
-	<li class="active"><a href="index.php">hjem</a></li>
-	<li><a href="kurs/">kurs</a></li>
-	<li><a href="prosjekt/">prosjekt</a></li>
-	<li><a href="sosiale/">sosiale</a></li>
-	<li><a href="pvv/">wiki</a></li>
-</nav>
-
 <header>Program&shy;vare&shy;verk&shy;stedet</header>
 
 <ul id="ticker">
@@ -110,3 +102,11 @@ For å bli med i våre prosjekter og komitéer må du søke.
 </div>
 
 </main>
+
+<nav><ul>
+	<li class="active"><a href="index.php">hjem</a></li>
+	<li><a href="kurs/">kurs</a></li>
+	<li><a href="prosjekt/">prosjekt</a></li>
+	<li><a href="sosiale/">sosiale</a></li>
+	<li><a href="pvv/">wiki</a></li>
+</nav>

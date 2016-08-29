@@ -16,14 +16,6 @@ $agenda = new \pvv\side\Agenda([
 <link rel="stylesheet" href="../css/style.css">
 <link rel="stylesheet" href="../css/events.css">
 
-<nav>
-	<li><a href="../">hjem</a></li>
-	<li><a href="../kurs/">kurs</a></li>
-	<li><a href="../prosjekt/">prosjekt</a></li>
-	<li class="active"><a href="../sosiale/">sosiale</a></li>
-	<li><a href="../wiki/">wiki</a></li>
-</nav>
-
 <header>Sosial&shy;verk&shy;stedet</header>
 
 <main>
@@ -56,3 +48,11 @@ $agenda = new \pvv\side\Agenda([
 <?php } ?>
 
 </main>
+
+<nav><ul>
+	<li><a href="../">hjem</a></li>
+	<li><a href="../kurs/">kurs</a></li>
+	<li><a href="../prosjekt/">prosjekt</a></li>
+	<li class="active"><a href="../sosiale/">sosiale</a></li>
+	<li><a href="../wiki/">wiki</a></li>
+</nav>
