@@ -6,4 +6,4 @@ IF EXIST "pvv.sqlite" goto sqlite_end
 sqlite3 pvv.sqlite < pvv.sql
 :sqlite_end
 
-php -S [::]:1080 -t www/ -c php.ini
+php -S [::1]:1080 -t www/ -c php.ini
