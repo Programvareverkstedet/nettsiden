@@ -1,17 +1,31 @@
-<!DOCTYPE html><!DOCTYPE html>
+<?php
+date_default_timezone_set('Europe/Oslo');
+setlocale(LC_ALL, 'no_NO');
+require __DIR__ . '/../../src/_autoload.php';
+require __DIR__ . '/../../sql_config.php';
+$translation = ['i dag', 'i morgen', 'denne uka', 'neste uke', 'denne måneden', 'neste måned'];
+$pdo = new \PDO($dbDsn, $dbUser, $dbPass);
+$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$agenda = new \pvv\side\Agenda([
+		new \pvv\side\social\NerdepitsaActivity,
+		new \pvv\side\social\AnimekveldActivity,
+		new \pvv\side\social\BrettspillActivity,
+		new \pvv\side\DBActivity($pdo),
+	]); ?>
+<!DOCTYPE html>
 <html lang="no">
-<title>Søkeverkstedet</title>
+<title>Aktivitetsverkstedet</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <link rel="stylesheet" href="../css/normalize.css">
 <link rel="stylesheet" href="../css/style.css">
 <link rel="stylesheet" href="../css/splash.css">
 
-<header>Søke&shy;verk&shy;stedet</header>
+<header>Aktivitets&shy;verk&shy;stedet</header>
 
-<ul id="ticker">
-	<li>I DAG: <a href="">nerdepitsa</a>
-</ul>
+<?php 
+include '../../inc/ticker.php';
+?>
 
 <main>
 
@@ -26,13 +40,15 @@
 	</p>
 	-->
 </article>
-
-
 <div class="split">
+
+
 <article>
 <h2>Projekter</h2>
 <p>
-	
+	Lyst til å gjøre noe kult? Her er de prosjektene som PVVere er ivrige i å gjøre. Mangler det noe, eller brenner du for noe annet? Sett opp et prosjekt da!<br>
+	<br>
+	<a class="btn" href="/aktiviteter/lag">Lag prosjekt</a>
 </p>
 <ul class="calendar-events">
 <li><p><a href="project.html?id=1">Fikse Brzeczyszczykiewicz</a></p>
@@ -94,7 +110,7 @@
 <nav><ul>
 	<li><a href="../">hjem</a></li>
 	<li><a href="../kurs/">kurs</a></li>
-	<li><a href="../prosjekt/">prosjekt</a></li>
+	<li class="active"><a href="../aktiviteter/">aktiviteter</a></li>
 	<li><a href="../sosiale/">sosiale</a></li>
 	<li><a href="../pvv/">wiki</a></li>
 </nav>

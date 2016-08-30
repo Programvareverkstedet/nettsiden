@@ -23,24 +23,9 @@ $agenda = new \pvv\side\Agenda([
 
 <header>Program&shy;vare&shy;verk&shy;stedet</header>
 
-<ul id="ticker">
-<?php
-foreach($agenda->getNextDays() as $period => $events) {
-	if (!$events) continue;
-	$first = true;
-	foreach($events as $event){
-		if (!$first){
-			echo '<i style="opacity:0.7;">&nbsp;og&nbsp;</i>';
-		} else {
-			echo '<li style="text-align: center;"><span style="text-transform: uppercase;">' . $translation[$period] . '</span>: ';
-		}
-		echo '<a href="' . $event->getURL() . '">' . $event->getName() . '</a>';
-		$first = false;
-	}
-	break;
-}
+<?php 
+include '../inc/ticker.php';
 ?>
-</ul>
 
 <main>
 
@@ -95,8 +80,8 @@ For å bli med i våre prosjekter og komitéer må du søke.
 </p>
 <p>
 <a class="btn" href="paamelding/">Bli medlem</a>
-<a class="btn" href="soek/">Søk prosjekt</a>
-<a class="btn" href="soek/">Søk komité</a>
+<a class="btn" href="aktiviteter/">Søk prosjekt</a>
+<a class="btn" href="aktiviteter/">Søk komité</a>
 </p>
 </article>
 </div>
@@ -106,7 +91,7 @@ For å bli med i våre prosjekter og komitéer må du søke.
 <nav><ul>
 	<li class="active"><a href="index.php">hjem</a></li>
 	<li><a href="kurs/">kurs</a></li>
-	<li><a href="prosjekt/">prosjekt</a></li>
+	<li><a href="aktiviteter/">aktiviteter</a></li>
 	<li><a href="sosiale/">sosiale</a></li>
 	<li><a href="pvv/">wiki</a></li>
 </nav>

@@ -1,3 +1,5 @@
+REM php og sqlite3 må være tilgjengelig i PATH
+
 IF EXIST "sql_config.php" goto config_end
 cp sql_config_example.php sql_config.php 
 :config_end
