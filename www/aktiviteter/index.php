@@ -112,5 +112,6 @@ include '../../inc/ticker.php';
 	<li><a href="../kurs/">kurs</a></li>
 	<li class="active"><a href="../aktiviteter/">aktiviteter</a></li>
 	<li><a href="../sosiale/">sosiale</a></li>
+	<li><a href="../kommunikasjon">kommunikasjon</a></li>
 	<li><a href="../pvv/">wiki</a></li>
 </nav>
