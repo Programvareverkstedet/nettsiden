@@ -2,6 +2,7 @@
 date_default_timezone_set('Europe/Oslo');
 setlocale(LC_ALL, 'no_NO');
 require __DIR__ . '/../../src/_autoload.php';
+use \pvv\side\Agenda;
 $agenda = new \pvv\side\Agenda([
 		new \pvv\side\social\NerdepitsaActivity,
 		new \pvv\side\social\AnimekveldActivity,
@@ -34,7 +35,7 @@ $agenda = new \pvv\side\Agenda([
 		<a href="<?= $event->getURL() ?>"><?= $event->getName() ?></a>
 	</h2>
 	<ul class="subtext">
-		<li>Tid: <strong><?= trim(strftime('%e. %b %H.%M', $event->getStart()->getTimeStamp())) ?></strong>
+		<li>Tid: <strong><?= Agenda::getFormattedDate($event->getStart()) ?></strong>
 		<li>Sted: <strong><?= $event->getLocation() ?></strong>
 		<li>Arrangør: <strong><?= $event->getOrganiser() ?></strong>
 	</ul>
