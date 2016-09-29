@@ -55,6 +55,6 @@ $agenda = new \pvv\side\Agenda([
 	<li><a href="../kurs/">kurs</a></li>
 	<li><a href="../aktiviteter/">aktiviteter</a></li>
 	<li class="active"><a href="../sosiale/">sosiale</a></li>
-	<li><a href="../kommunikasjon">kommunikasjon</a></li>
+	<li><a href="../kontakt">kontakt</a></li>
 	<li><a href="../pvv/">wiki</a></li>
 </nav>
