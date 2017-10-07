@@ -20,7 +20,7 @@ class BrettspillEvent extends Event {
 	}
 
 	public function getOrganiser() /* : User */ {
-		return "PVV";
+		return "Robert Maikher";
 	}
 
 	public function getURL() /* : string */ {
