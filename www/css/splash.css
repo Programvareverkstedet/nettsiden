@@ -33,7 +33,6 @@ img.float-right {
 .calendar-events ul .time {
 	color: rgba(0,0,0,.5);
 	float: right;
-	width: 4em;
 }
 .calendar-events ul .icon, .calendar-events ul .date {
 	float: right;

@@ -54,14 +54,14 @@ include '../inc/ticker.php';
 <a href="<?= htmlspecialchars($event->getURL()) ?>"><?= $event->getName(); ?></a>
 <?php /* <a class="icon subscribe">+</a> */ ?>
 <?php if ($period !== \pvv\side\Agenda::TODAY) {
+	echo '<span class="time">' . $event->getStart()->format('H:i') . '</span>';
 	if (\pvv\side\Agenda::isThisWeek($event->getStart()) || $event->getStart()->sub(new DateInterval('P3D'))->getTimestamp() < time()) {
 		echo '<span class="date">' . strftime('%a', $event->getStart()->getTimestamp()) . '</span>';
 	} else {
 		echo '<span class="date">' . strftime('%e. %b', $event->getStart()->getTimestamp()) . '</span>';
 	}
-	echo '<span class="time">' . $event->getStart()->format('H:i') . '</span>';
 } else {
-	echo '<span class="date">' . $event->getStart()->format('H:i') . '</span>';
+	echo '<span class="time">' . $event->getStart()->format('H:i') . '</span>';
 }
 ?>
 </li>
