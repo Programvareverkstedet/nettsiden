@@ -53,6 +53,7 @@ $agenda = new \pvv\side\Agenda([
 <nav><ul>
 	<li><a href="../">hjem</a></li>
 	<li class="active"><a href="../kurs/">kurs</a></li>
+	<li><a href="../kalender/">kalender</a></li>
 	<li><a href="../aktiviteter/">aktiviteter</a></li>
 	<li><a href="../sosiale/">sosiale</a></li>
 	<li><a href="../kontakt">kontakt</a></li>
