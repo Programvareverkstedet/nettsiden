@@ -3,7 +3,7 @@
 {
 	require __DIR__ . '/../src/_autoload.php';
 	require __DIR__ . '/../sql_config.php';
-	$translation = ['i dag', 'i morgen', 'denne uken', 'neste uke', 'denne måneden', 'neste måned'];
+	$translation = ['i dag', 'i morgen', 'denne uken', 'neste uke', 'denne mÃ¥neden', 'neste mÃ¥ned'];
 	$pdo = new \PDO($dbDsn, $dbUser, $dbPass);
 	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	$agenda = new \pvv\side\Agenda([
