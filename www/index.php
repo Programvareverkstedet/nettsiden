@@ -23,10 +23,6 @@ $agenda = new \pvv\side\Agenda([
 
 <header>Program&shy;vare&shy;verk&shy;stedet</header>
 
-<?php 
-include '../inc/ticker.php';
-?>
-
 <main>
 
 <article class="threed">
