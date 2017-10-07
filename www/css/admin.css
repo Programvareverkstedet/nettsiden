@@ -1,0 +1,77 @@
+header.admin {
+	margin-top: 3rem;
+	height: 16rem;
+	overflow: hidden;
+	text-align: right;
+	color: #fff;
+	font-family: monospace;
+	padding: 1rem;
+	font-size: 4em;
+	background: url('ja.png') no-repeat 1% 50% #024;
+	background-size: contain;
+}
+
+.event-list {
+	padding: 0;
+	list-style: none;
+}
+
+.event {
+	display: grid;
+	grid-template-columns: 90% 10%;
+	margin-bottom: 2em;
+	padding-bottom: .5em;
+	border-bottom: 1px solid gray;
+}
+
+.event-info {
+	grid-column: 1;
+}
+
+.event-info h3 {
+	padding: 0;
+	margin-top: 0;
+}
+
+.event-info p {
+	word-wrap: break-word;
+}
+
+.event-actions {
+	grid-column: 2;
+	text-align: center;
+	display: inline-block;
+}
+
+.event-actions a {
+	text-decoration: none;
+}
+
+.no-chin {
+	margin-bottom: 0;
+}
+
+.gridsplit {
+	display: grid;
+	grid-template-columns: 75% 25%;
+}
+
+.gridl {
+	height: 100%;
+	grid-column: 1;
+}
+
+.gridr {
+	height: 100%;
+	padding: 0 1em;
+	margin-left: 1em;
+	border-left: 1px solid gray;
+	grid-column: 2;
+}
+
+.subnote {
+	margin-top: 0;
+	color: gray;
+	font-size: .7em;
+	font-style: italic;
+}

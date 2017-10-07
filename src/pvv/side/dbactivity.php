@@ -10,6 +10,29 @@ class DBActivity implements Activity {
 		$this->pdo = $pdo;
 	}
 
+	public function getAllEvents() {
+		$query = 'SELECT * FROM events ORDER BY id ASC';
+		$statement = $this->pdo->prepare($query);
+		$statement->execute();
+
+		$events = [];
+		foreach($statement->fetchAll() as $dbEvent){
+			$event = new SimpleEvent(
+				$dbEvent['id'],
+				$dbEvent['name'],
+				DateTimeImmutable::createFromFormat('Y-m-d H:i:s', $dbEvent['start']),
+				DateTimeImmutable::createFromFormat('Y-m-d H:i:s', $dbEvent['stop']),
+				$dbEvent['organiser'],
+				$dbEvent['location'],
+				$dbEvent['description']
+			);
+			$events[] = $event;
+		}
+
+		return $events;
+	}
+
+
 	public function getNextEventFrom(DateTimeImmutable $date) {
 		$query = 'SELECT name,start,stop,organiser,location,description FROM events WHERE start > :date ORDER BY start ASC LIMIT 1';
 		return $this->retrieve($date, $query);
@@ -25,6 +48,7 @@ class DBActivity implements Activity {
 		$stmt->execute(['date' => $date->format('Y-m-d H:i:s')]);
 		if ($result = $stmt->fetch(PDO::FETCH_ASSOC)){
 			$ev = new SimpleEvent(
+				$result['id'],
 				$result['name'],
 				DateTimeImmutable::createFromFormat('Y-m-d H:i:s', $result['start']),
 				DateTimeImmutable::createFromFormat('Y-m-d H:i:s', $result['stop']),

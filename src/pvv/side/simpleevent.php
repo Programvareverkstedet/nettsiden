@@ -5,13 +5,19 @@ class SimpleEvent extends Event {
 
 	private $name, $start, $end, $org, $loc;
 
-	public function __construct($name,\DateTimeImmutable $start,\DateTimeImmutable $end,$org, $loc, $descr){
+	public function __construct($id, $name,\DateTimeImmutable $start,\DateTimeImmutable $end,$org, $loc, $descr, $isDBEvent = false){
+		$this->id = $id;
 		$this->name = $name;
 		$this->start = $start;
 		$this->end = $end;
 		$this->org = $org;
 		$this->loc = $loc;
 		$this->descr = explode("\n", $descr);
+		$this->isDBEvent = $isDBEvent;
+	}
+
+	public function getID(){
+		return $this->id;
 	}
 
 	public function getStart(){
@@ -44,6 +50,10 @@ class SimpleEvent extends Event {
 
 	public function getDescription() {
 		return $this->descr;
+	}
+
+	public function isDBEvent() {
+		return $this->isDBEvent;
 	}
 
 }
