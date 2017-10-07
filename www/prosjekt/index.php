@@ -62,20 +62,11 @@ include '../../inc/ticker.php';
 	PVV trenger en fin hjemmeside! Hadde vært kult om noen ville være med meg å ordne denne.
 </p></span>
 </li>
-
-<li><p><a href="project.html?id=3">Spis Peder</a></p>
-<span><p>
-	Jeg er ensom...
-</p></span>
-</li>
 </article>
 
 
 <article>
 <h2>Komitéer</h2>
-<p>
-	De er deilige
-</p>
 <ul class="calendar-events">
 
 <li><p><a href="trikom.html">Trikom</a></p>
