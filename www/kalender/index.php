@@ -72,19 +72,24 @@ $days_in_month = date('t', mktime(0, 0, 0, $month, 1, $year));
 	<?php } ?>
 	
 	<?php for ($day=1; $day <= $days_in_month; $day++) { ?>
-
-	<?php $events = $agenda->getEventsBetween(
-		new DateTimeImmutable("$year-$month-$day 00:00:00"),
-		new DateTimeImmutable("$year-$month-$day 23:59:59")); ?>
-	<?php if ($day==$day_of_month) { ?>
-	<li class="active"><?= $day ?>.
-	<?php } else { ?>
-	<li><?= $day ?>.
-	<?php } ?>
-	
-	<?php foreach($events as $event) { ?>
-	<section><?=$event->getName()?></section>
-	<?php } ?>
+		<?php $events = $agenda->getEventsBetween(
+			new DateTimeImmutable("$year-$month-$day 00:00:00"),
+			new DateTimeImmutable("$year-$month-$day 23:59:59")); ?>
+		<?php if ($day==$day_of_month) { ?>
+			<li class="active">
+		<?php } else { ?>
+			<li>
+		<?php } ?>
+		<?php if (sizeof($events)!=0) { ?>
+			<a href="../aktiviteter/?<?="year=$year&amp;month=$month&amp;day=$day"?>"><div>
+				<?= $day ?>.
+				<?php foreach($events as $event) { ?>
+					<section><?=$event->getName()?></section>
+				<?php } ?>
+			</div></a>
+		<?php } else { ?>
+			<?= $day ?>.
+		<?php } ?>
 	<?php } ?>
 	
 	</ul>
