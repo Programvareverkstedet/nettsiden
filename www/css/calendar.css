@@ -1,0 +1,65 @@
+figure.calendar {
+	margin: 0;
+	padding:0;
+}
+
+.calendar ul {
+	list-style-type: none;
+	padding-left:0;
+
+	display: grid;
+	grid-template-columns: repeat(7, 4fr);
+	grid-template-rows: auto;
+}
+
+
+.calendar ul li {
+	margin: 2px;
+	
+	border-style: solid;
+	border-color: #e0e0e0;
+	border-width: 1px;
+	border-radius: 5px;
+	
+	background-color: #f3f3f3;
+	padding: 0.2em 0.5em;
+	padding-bottom: 0.5em;
+	min-height: 4.8em;
+	font-size: 0.8em;
+	color: #444;
+	
+	transition: 0.1s;
+}
+
+.calendar ul li.header {
+	text-align: center;
+	min-height: 1em;
+	
+	background-color: #fff;
+	border: None;
+	border-radius: 0;
+	margin: 0px;
+	padding: 0.2em 0;
+	font-size: 1em;
+	font-weight: 500;
+	color: #666;
+}
+.calendar ul li.outOfMonth {
+	opacity: 0;
+}
+
+.calendar ul li.active {
+	color: #222;
+	border-color: #456;
+	box-shadow: 0 0 3px #89f;
+}
+
+.calendar ul li:hover {
+	background-color: #fff;
+}
+
+
+.calendar ul li section::before {
+	content: "\26AB   ";
+	color: #038;
+}
