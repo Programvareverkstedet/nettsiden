@@ -2,11 +2,16 @@
 date_default_timezone_set('Europe/Oslo');
 setlocale(LC_ALL, 'no_NO');
 require __DIR__ . '/../../src/_autoload.php';
+require __DIR__ . '/../../sql_config.php';
+$pdo = new \PDO($dbDsn, $dbUser, $dbPass);
+$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
 use \pvv\side\Agenda;
 $agenda = new \pvv\side\Agenda([
 		new \pvv\side\social\NerdepitsaActivity,
 		new \pvv\side\social\AnimekveldActivity,
 		new \pvv\side\social\BrettspillActivity,
+		new \pvv\side\DBActivity($pdo),
 	]);
 ?><!DOCTYPE html>
 <html lang="no">
