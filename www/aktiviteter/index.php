@@ -25,14 +25,14 @@ $day = (isset($_GET['day']))
 
 ?><!DOCTYPE html>
 <html lang="no">
-<title>Aktivitetverkstedet</title>
+<title>Aktivitetsverkstedet</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <link rel="stylesheet" href="../css/normalize.css">
 <link rel="stylesheet" href="../css/style.css">
 <link rel="stylesheet" href="../css/events.css">
 
-<header>Aktivitet&shy;verk&shy;stedet</header>
+<header>Aktivitets&shy;verk&shy;stedet</header>
 
 <main>
 
