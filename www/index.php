@@ -76,12 +76,14 @@ include '../inc/ticker.php';
 <p>
 Alle med tilknytning til NTNU kan bli medlem hos oss
 og benytte seg av våre ressurser.
-For å bli med i våre prosjekter og komitéer må du søke.
+<!--For å bli med i våre prosjekter og komitéer må du søke.-->
 </p>
 <p>
 <a class="btn" href="paamelding/">Bli medlem</a>
-<a class="btn" href="aktiviteter/">Søk prosjekt</a>
-<a class="btn" href="aktiviteter/">Søk komité</a>
+<!--
+<a class="btn" href="prosjekt/">Søk prosjekt</a>
+<a class="btn" href="prosjekt/">Søk komité</a>
+-->
 </p>
 </article>
 </div>
@@ -90,9 +92,8 @@ For å bli med i våre prosjekter og komitéer må du søke.
 
 <nav><ul>
 	<li class="active"><a href="index.php">hjem</a></li>
-	<li><a href="kurs/">kurs</a></li>
+	<!--<li><a href="prosjekt/">prosjekter</a></li>-->
 	<li><a href="aktiviteter/">aktiviteter</a></li>
-	<li><a href="sosiale/">sosiale</a></li>
 	<li><a href="kontakt">kontakt</a></li>
 	<li><a href="pvv/">wiki</a></li>
 </nav>
