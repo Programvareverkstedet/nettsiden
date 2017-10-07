@@ -4,6 +4,7 @@ setlocale(LC_ALL, 'no_NO');
 require __DIR__ . '/../../src/_autoload.php';
 require __DIR__ . '/../../sql_config.php';
 use \pvv\side\Agenda;
+$months_translations = ['Januar', 'Februar', 'Mars', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Desember'];
 $pdo = new \PDO($dbDsn, $dbUser, $dbPass);
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $agenda = new \pvv\side\Agenda([
@@ -41,7 +42,7 @@ $days_in_month = date('t', mktime(0, 0, 0, $month, 1, $year));
 <main>
 
 <article>
-	<h2 style="text-align:center;">Aktiviteter for <?= date('F Y', mktime(0, 0, 0, $month, 1, $year)) ?></h2>
+	<h2 style="text-align:center;">Aktiviteter for <?=$months_translations[$month-1]?> <?=$year?></h2>
 	
 	<p><?php
 	$pmonth = $month-1;
@@ -76,9 +77,9 @@ $days_in_month = date('t', mktime(0, 0, 0, $month, 1, $year));
 		new DateTimeImmutable("$year-$month-$day 00:00:00"),
 		new DateTimeImmutable("$year-$month-$day 23:59:59")); ?>
 	<?php if ($day==$day_of_month) { ?>
-	<li class="active"><?= $day ?>
+	<li class="active"><?= $day ?>.
 	<?php } else { ?>
-	<li><?= $day ?>
+	<li><?= $day ?>.
 	<?php } ?>
 	
 	<?php foreach($events as $event) { ?>
