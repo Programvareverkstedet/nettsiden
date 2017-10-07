@@ -5,7 +5,6 @@ require __DIR__ . '/../../src/_autoload.php';
 require __DIR__ . '/../../sql_config.php';
 $pdo = new \PDO($dbDsn, $dbUser, $dbPass);
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
 use \pvv\side\Agenda;
 $agenda = new \pvv\side\Agenda([
 		new \pvv\side\social\NerdepitsaActivity,
@@ -13,22 +12,40 @@ $agenda = new \pvv\side\Agenda([
 		new \pvv\side\social\BrettspillActivity,
 		new \pvv\side\DBActivity($pdo),
 	]);
+
+$year = (isset($_GET['year']))
+	? $_GET['year']
+	: date("Y");
+$month = (isset($_GET['month']))
+	? $_GET['month']
+	: date("m");
+$day = (isset($_GET['day']))
+	? $_GET['day']
+	: -1;
+
 ?><!DOCTYPE html>
 <html lang="no">
-<title>Aktivitetverkstedet</title>
+<title>Aktivitetsverkstedet</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <link rel="stylesheet" href="../css/normalize.css">
 <link rel="stylesheet" href="../css/style.css">
 <link rel="stylesheet" href="../css/events.css">
 
-<header>Aktivitet&shy;verk&shy;stedet</header>
+<header>Aktivitets&shy;verk&shy;stedet</header>
 
 <main>
 
-<?php $limit = 0; ?>
-<?php foreach($agenda->getNextOfEach(new \DateTimeImmutable) as $event) { ?>
+<?php
+$events = ($day==-1)
+	? $agenda->getNextOfEach(new \DateTimeImmutable)
+	: $agenda->getEventsBetween(
+		new DateTimeImmutable("$year-$month-$day 00:00:00"),
+		new DateTimeImmutable("$year-$month-$day 23:59:59"));
 
+$limit = 0;
+foreach($events as $event) {
+?>
 <article>
 	<h2>
 		<?php if ($event->getImageURL()) { ?>
