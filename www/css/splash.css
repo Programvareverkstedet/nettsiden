@@ -12,6 +12,7 @@ img.float-right {
 .calendar-events ul .date {
 	color: rgba(0,0,0,.5);
 	font-size: 0.8em;
+	margin-top: .2em;
 }
 .calendar-events > li > p {
 	border-bottom: .1em solid rgba(0,0,0,.2);
@@ -30,7 +31,8 @@ img.float-right {
 	text-decoration: underline;
 }
 .calendar-events ul .time {
-	float: left;
+	color: rgba(0,0,0,.5);
+	float: right;
 	width: 4em;
 }
 .calendar-events ul .icon, .calendar-events ul .date {
