@@ -14,14 +14,14 @@ $agenda = new \pvv\side\Agenda([
 	]); ?>
 <!DOCTYPE html>
 <html lang="no">
-<title>Aktivitetsverkstedet</title>
+<title>Prosjektverkstedet</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <link rel="stylesheet" href="../css/normalize.css">
 <link rel="stylesheet" href="../css/style.css">
 <link rel="stylesheet" href="../css/splash.css">
 
-<header>Aktivitets&shy;verk&shy;stedet</header>
+<header>Prosjekt&shy;verk&shy;stedet</header>
 
 <?php 
 include '../../inc/ticker.php';
@@ -109,7 +109,7 @@ include '../../inc/ticker.php';
 
 <nav><ul>
 	<li><a href="../">hjem</a></li>
-	<!--<li class="active"><a href="../prosjekt/">prosjekter</a></li>-->
+	<li class="active"><a href="../prosjekt/">prosjekter</a></li>
 	<li><a href="../aktiviteter/">aktiviteter</a></li>
 	<li><a href="../kontakt">kontakt</a></li>
 	<li><a href="../pvv/">wiki</a></li>
