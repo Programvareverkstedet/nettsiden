@@ -1,9 +1,6 @@
 <?php //declare(strict_types=1);
 namespace pvv\side;
 
-use \pvv\side\social\NerdepitsaActivity;
-use \pvv\side\social\AnimekveldActivity;
-
 use \DateTimeImmutable;
 use \DateInterval;
 
@@ -74,7 +71,9 @@ class Agenda {
 			function($a) use ($startDate){
 				return $a->getNextEventFrom($startDate);
 			}, $this->activities
-		), function($a){return $a;});
+		), function($a){
+			return isset($a);
+		});
 		usort($result, function($a, $b) {
 			return ($a->getStart()->getTimeStamp() < $b->getStart()->getTimeStamp())
 				? -1

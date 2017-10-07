@@ -54,13 +54,13 @@ include '../inc/ticker.php';
 <li>
 <a href="<?= htmlspecialchars($event->getURL()) ?>"><?= $event->getName(); ?></a>
 <?php /* <a class="icon subscribe">+</a> */ ?>
-<?php if ($period) {
+<?php if ($period !== \pvv\side\Agenda::TODAY) {
+	echo '<span class="time">' . $event->getStart()->format('H:i') . '</span>';
 	if (\pvv\side\Agenda::isThisWeek($event->getStart()) || $event->getStart()->sub(new DateInterval('P3D'))->getTimestamp() < time()) {
-		echo '<span class="time">' . strftime('%a', $event->getStart()->getTimestamp()) . '</span>';
+		echo '<span class="date">' . strftime('%a', $event->getStart()->getTimestamp()) . '</span>';
 	} else {
-		echo '<span class="time">' . strftime('%e. %b', $event->getStart()->getTimestamp()) . '</span>';
+		echo '<span class="date">' . strftime('%e. %b', $event->getStart()->getTimestamp()) . '</span>';
 	}
-	echo '<span class="date">' . $event->getStart()->format('H:i') . '</span>';
 } else {
 	echo '<span class="time">' . $event->getStart()->format('H:i') . '</span>';
 }
@@ -77,7 +77,9 @@ include '../inc/ticker.php';
 <p>
 Alle med tilknytning til NTNU kan bli medlem hos oss
 og benytte seg av våre ressurser.
-<!--For å bli med i våre prosjekter og komitéer må du søke.-->
+<!--
+For å bli med i våre prosjekter og komitéer må du søke.
+-->
 </p>
 <p>
 <a class="btn" href="paamelding/">Bli medlem</a>
