@@ -1,3 +1,4 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel="stylesheet" href="../css/normalize.css">
 <link rel="stylesheet" href="../css/style.css">
 <link rel="stylesheet" href="../css/events.css">
@@ -16,8 +17,9 @@
 
 <article>
 	<h2>Verktøy</h2>
-	<a class="btn adminbtn" href="admin/aktiviteter/">Aktiviteter/Hendelser</a>
+	<a class="btn adminbtn" href="admin/aktiviteter?page=1">Aktiviteter/Hendelser</a>
 	<a class="btn adminbtn" href="admin/prosjekter/">Prosjekter</a>
 </article>
 
+</main>
 </main>
