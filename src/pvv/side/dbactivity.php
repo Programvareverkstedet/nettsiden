@@ -32,6 +32,26 @@ class DBActivity implements Activity {
 		return $events;
 	}
 
+	public function getEventByID($id) {
+		$query = 'SELECT * FROM events WHERE id=:id LIMIT 1';
+		$statement = $this->pdo->prepare($query);
+		$statement->bindParam(':id', $id, PDO::PARAM_INT);
+		$statement->execute();
+
+		$dbEvent = $statement->fetch();
+		$event = new SimpleEvent(
+			$dbEvent['id'],
+			$dbEvent['name'],
+			DateTimeImmutable::createFromFormat('Y-m-d H:i:s', $dbEvent['start']),
+			DateTimeImmutable::createFromFormat('Y-m-d H:i:s', $dbEvent['stop']),
+			$dbEvent['organiser'],
+			$dbEvent['location'],
+			$dbEvent['description']
+		);
+
+		return $event;
+	}
+
 
 	public function getNextEventFrom(DateTimeImmutable $date) {
 		$query = 'SELECT name,start,stop,organiser,location,description FROM events WHERE start > :date ORDER BY start ASC LIMIT 1';

@@ -9,7 +9,10 @@ $pdo = new \PDO($dbDsn, $dbUser, $dbPass);
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $customActivity = new \pvv\side\DBActivity($pdo);
 
-$page = $_GET['page'];
+$page = 1;
+if(isset($_GET['page'])){
+	$page = $_GET['page'];
+}
 ?>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -48,6 +51,7 @@ $page = $_GET['page'];
 					$event = $events[$i];
 					$eventID = $event->getID();
 			?>
+
 				<li>
 					<div class="event admin">
 						<div class="event-info">
@@ -57,14 +61,17 @@ $page = $_GET['page'];
 						</div>
 
 						<div class="event-actions">
-							<a href="/">🖊</a> <!-- emojis are for big boys -->
-							<?php
-								echo '<a href="delete.php?id=' . $eventID . '" onclick="return confirm(\'Knallsikker? (ID: ' . $eventID . ')\');">🗑</a>';
-							?>
+							<!-- emojis are for big boys -->
+							<?= '<a href="edit.php?id=' . $eventID . '">🖊</a>'; ?>
+							<?= '<a href="delete.php?id=' . $eventID . '" onclick="return confirm(\'Knallsikker? (ID: ' . $eventID . ')\');">🗑</a>'; ?>
 						</div>
 					</div>
 				</li>
-			<?php $counter++; } ?>
+
+			<?php
+					$counter++;
+				}
+			?>
 		</ul>
 
 		<?php
@@ -80,7 +87,8 @@ $page = $_GET['page'];
 
 	<div class="gridr">
 		<h2>Verktøy</h2>
-		<a class="btn adminbtn" href="./ny">Legg inn ny aktivitet</a>
+		<a class="btn adminbtn" href="edit.php?new=1">Legg inn ny aktivitet</a>
+		<a class="btn adminbtn" href="">test</a>
 	</div>
 </article>
 

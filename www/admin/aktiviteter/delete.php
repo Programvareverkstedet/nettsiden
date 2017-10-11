@@ -9,7 +9,7 @@ $query = 'DELETE FROM events WHERE id=\'' . $eventID . '\'';
 $statement = $pdo->prepare($query);
 $statement->execute();
 
-
+header('Location: ' . $_SERVER['HTTP_REFERER']);
 ?>
 
 <a href=".?page=1">Om du ikke ble automatisk omdirigert tilbake klikk her</a>

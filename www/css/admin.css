@@ -56,6 +56,11 @@ header.admin {
 	grid-template-columns: 75% 25%;
 }
 
+.gridsplit5050 {
+	display: grid;
+	grid-template-columns: 50% 50%;
+}
+
 .gridl {
 	height: 100%;
 	grid-column: 1;
@@ -67,6 +72,14 @@ header.admin {
 	margin-left: 1em;
 	border-left: 1px solid gray;
 	grid-column: 2;
+}
+
+.allgrids {
+	grid-column: 1 / -1;
+}
+
+.noborder {
+	border: none;
 }
 
 .subnote {
@@ -82,4 +95,25 @@ header.admin {
 
 .float-left {
 	float: left;
+}
+
+.btn {
+	text-decoration: none;
+	border: 1px solid #048;
+	color: #048;
+	padding: .2em 1em;
+	border-radius: .2em;
+	white-space: nowrap;
+	display: inline-block;
+	margin-bottom: .25em;
+}
+.btn:hover {
+	border-color: #084;
+	background: #eee;
+	color: #084;
+}
+.btn:active {
+	border-color: #084;
+	background: #084;
+	color: white;
 }
