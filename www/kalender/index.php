@@ -104,6 +104,6 @@ $days_in_month = date('t', mktime(0, 0, 0, $month, 1, $year));
 	<!--<li><a href="../prosjekt/">prosjekter</a></li>-->
 	<li class="active"><a href="../kalender/">kalender</a></li>
 	<li><a href="../aktiviteter/">aktiviteter</a></li>
-	<li><a href="../kontakt">kontakt</a></li>
+	<li><a href="../kontakt/">kontakt</a></li>
 	<li><a href="../pvv/">wiki</a></li>
 </nav>
