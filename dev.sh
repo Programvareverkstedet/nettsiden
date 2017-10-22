@@ -3,8 +3,10 @@
 which sqlite3 > /dev/null 2>&1 && test \! -e pvv.sqlite && sqlite3 pvv.sqlite < dist/pvv.sql
 test \! -e sql_config.php && cp dist/sql_config_example.php sql_config.php
 
+test -e composer.phar || curl -O https://getcomposer.org/composer.phar
+
 if test \! -d vendor; then
-	composer install
+	php composer.phar install
 	cp -v dist/authsources_example.php vendor/simplesamlphp/simplesamlphp/config/authsources.php
 	cp -v dist/saml20-idp-remote.php vendor/simplesamlphp/simplesamlphp/metadata/saml20-idp-remote.php
 	# cp -v vendor/simplesamlphp/simplesamlphp/config-templates/config.php vendor/simplesamlphp/simplesamlphp/config/config.php
