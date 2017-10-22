@@ -88,7 +88,6 @@ if(isset($_GET['page'])){
 	<div class="gridr">
 		<h2>Verktøy</h2>
 		<a class="btn adminbtn" href="edit.php?new=1">Legg inn ny aktivitet</a>
-		<a class="btn adminbtn" href="">test</a>
 	</div>
 </article>
 

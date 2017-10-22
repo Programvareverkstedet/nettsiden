@@ -19,8 +19,8 @@
 
 <article>
 	<h2>Verktøy</h2>
-	<a class="btn adminbtn" href="admin/aktiviteter?page=1">Aktiviteter/Hendelser</a>
-	<a class="btn adminbtn" href="admin/prosjekter/">Prosjekter</a>
+	<a class="btn adminbtn" href="aktiviteter/?page=1">Aktiviteter/Hendelser</a>
+	<a class="btn adminbtn" href="prosjekter/">Prosjekter</a>
 </article>
 
 </main>
