@@ -68,15 +68,15 @@ if($new == 0){
 
 			<p class="subtitle">Beskrivelse</p>
 			<textarea name="desc" cols="40" rows="5" class="boxinput"><?= implode($event->getDescription(), "\n"); ?></textarea>
+		</div>
 
+		<div class="gridr noborder">
 			<p class="subtitle">Starttid (YYYY-MM-DD HH:MM:SS)</p>
 			<?= '<input name="start" type="text"  class="boxinput" value="' . $event->getStart()->format('Y-m-d H:00:00') . '"><br>' ?>
 
 			<p class="subtitle">Sluttid (YYYY-MM-DD HH:MM:SS)</p>
 			<?= '<input name="end" type="text"  class="boxinput" value="' . $event->getStop()->format('Y-m-d H:00:00') . '"><br>' ?>
-		</div>
 
-		<div class="gridr noborder">
 			<p class="subtitle">Organisert av</p>
 			<?= '<input type="text" name="organiser" value="' . $event->getOrganiser(). '" class="boxinput">' ?><br>
 

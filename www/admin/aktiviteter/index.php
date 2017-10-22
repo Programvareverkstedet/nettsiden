@@ -24,6 +24,7 @@ if(isset($_GET['page'])){
 <nav><ul>
 	<li class="active"><a href="index.php">hjem</a></li>
 	<li><a href="aktiviteter/">aktiviteter</a></li>
+	<li><a href="../prosjekt/">prosjekter</a></li>
 	<li><a href="kontakt">kontakt</a></li>
 	<li><a href="pvv/">wiki</a></li>
 </nav>
@@ -56,7 +57,9 @@ if(isset($_GET['page'])){
 					<div class="event admin">
 						<div class="event-info">
 							<h3 class="no-chin"><?= $event->getName() . " (ID: " . $eventID . ")"; ?></h3>
-							<p class="subnote"><?= $event->getStart()->format("(Y-m-d H:i:s)") . " - " . $event->getStop()->format("(Y-m-d H:i:s)"); ?></p>
+							<p class="subnote">
+								<?= $event->getStart()->format("(Y-m-d H:i:s)") . " - " . $event->getStop()->format("(Y-m-d H:i:s)"); ?>
+							</p>
 							<p><?= implode($event->getDescription(), "</p>\n<p>"); ?></p>
 						</div>
 

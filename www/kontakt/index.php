@@ -41,6 +41,7 @@ Det er også mulig å ta i bruk analog kontakt ved å møte opp <a href="https:/
 	<!--<li><a href="../prosjekt/">prosjekter</a></li>-->
 	<li><a href="../kalender/">kalender</a></li>
 	<li><a href="../aktiviteter/">aktiviteter</a></li>
+	<li><a href="../prosjekt/">prosjekter</a></li>
 	<li class="active"><a href="../kontakt/">kontakt</a></li>
 	<li><a href="../pvv/">wiki</a></li>
 </nav>

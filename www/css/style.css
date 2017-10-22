@@ -119,10 +119,24 @@ a.btn:active {
 	color: #048;
 	padding: .2em .4em;
 	border-radius: .2em;
-	white-space: nowrap;
 	display: inline-block;
 	margin-bottom: .25em;
 	resize: none;
+}
+
+.noborder {
+	border: none !important;
+}
+
+.subnote {
+	margin-top: 0;
+	color: gray;
+	font-size: .7em;
+	font-style: italic;
+}
+
+.no-chin {
+	margin-bottom: 0;
 }
 
 .icon.subscribe {

@@ -3,7 +3,7 @@ namespace pvv\side;
 
 class SimpleEvent extends Event {
 
-	private $name, $start, $end, $org, $loc;
+	private $id, $name, $descr, $start, $end, $org, $loc;
 
 	public function __construct($id, $name,\DateTimeImmutable $start,\DateTimeImmutable $end,$org, $loc, $descr, $isDBEvent = false){
 		$this->id = $id;

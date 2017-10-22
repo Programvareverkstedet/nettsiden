@@ -47,10 +47,6 @@ header.admin {
 	text-decoration: none;
 }
 
-.no-chin {
-	margin-bottom: 0;
-}
-
 .gridsplit {
 	display: grid;
 	grid-template-columns: 75% 25%;
@@ -76,17 +72,6 @@ header.admin {
 
 .allgrids {
 	grid-column: 1 / -1;
-}
-
-.noborder {
-	border: none;
-}
-
-.subnote {
-	margin-top: 0;
-	color: gray;
-	font-size: .7em;
-	font-style: italic;
 }
 
 .float-right {

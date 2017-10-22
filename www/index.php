@@ -93,6 +93,7 @@ For å bli med i våre prosjekter og komitéer må du søke.
 	<!--<li><a href="prosjekt/">prosjekter</a></li>-->
 	<li><a href="kalender/">kalender</a></li>
 	<li><a href="aktiviteter/">aktiviteter</a></li>
+	<li><a href="prosjekt/">prosjekter</a></li>
 	<li><a href="kontakt/">kontakt</a></li>
 	<li><a href="pvv/">wiki</a></li>
 </nav>

@@ -12,4 +12,4 @@ $statement->execute();
 header('Location: ' . $_SERVER['HTTP_REFERER']);
 ?>
 
-<a href=".?page=1">Om du ikke ble automatisk omdirigert tilbake klikk her</a>
+<a href=".?page=1">Om du ikke ble omdirigert tilbake klikk her</a>
