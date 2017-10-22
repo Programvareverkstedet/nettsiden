@@ -9,7 +9,6 @@
 	$agenda = new \pvv\side\Agenda([
 			new \pvv\side\social\NerdepitsaActivity,
 			new \pvv\side\social\AnimekveldActivity,
-			new \pvv\side\social\BrettspillActivity,
 			new \pvv\side\DBActivity($pdo),
 		]);
 	
