@@ -1,0 +1,8 @@
+{
+	"require": {
+		"simplesamlphp/simplesamlphp": "~1"
+	},
+	"require-dev": {
+		"ext-pdo_sqlite": "*"
+	}
+}

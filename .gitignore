@@ -2,3 +2,4 @@ sql_config.php
 *.sqlite
 php.ini
 test.sql
+vendor/
