@@ -54,7 +54,11 @@ foreach($events as $event) {
 		<?php if (\pvv\side\Agenda::isToday($event->getStart())) { ?><strong><?php } ?>
 		<em><?= $event->getRelativeDate() ?></em>
 		<?php if (\pvv\side\Agenda::isToday($event->getStart())) { ?></strong><?php } ?>
+		<?php if ($event->getURL()) { ?>
 		<a href="<?= $event->getURL() ?>"><?= $event->getName() ?></a>
+		<?php } else { ?>
+		<?= $event->getName() ?>
+		<?php } ?>
 	</h2>
 	<ul class="subtext">
 		<li>Tid: <strong><?= Agenda::getFormattedDate($event->getStart()) ?></strong>

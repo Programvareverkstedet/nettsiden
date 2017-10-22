@@ -41,7 +41,7 @@ class SimpleEvent extends Event {
 	}
 
 	public function getURL() {
-		return '/';
+		return '';
 	}
 
 	public function getImageURL() {
