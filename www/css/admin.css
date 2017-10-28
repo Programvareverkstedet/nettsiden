@@ -37,6 +37,15 @@ header.admin {
 	word-wrap: break-word;
 }
 
+.event-info a {
+	color: black;
+	text-decoration: none;
+}
+
+.event-info a:hover {
+	text-decoration: underline;
+}
+
 .event-actions {
 	grid-column: 2;
 	text-align: center;

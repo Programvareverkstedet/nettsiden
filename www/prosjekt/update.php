@@ -51,7 +51,7 @@ if($id == 0){
 
 $statement->execute();
 
-header('Location: ..');
+header('Location: ./mine.php');
 ?>
 
 <a href="..">Om du ikke ble omdirigert tilbake klikk her</a>

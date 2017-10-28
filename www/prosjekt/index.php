@@ -35,12 +35,14 @@ $projects = $projectManager->getAll();
 ?>
 	<p>PVV har for øyeblikket ingen aktive prosjekter. Tenker du at noe bør gjøres? Har du en kul ide for noe PVV kan samarbeide om? Sett opp et prosjekt!</p>
 	<br>
-	<a class="btn" href="ny.php">Lag prosjekt</a>
+	<a class="btn" href="edit.php?new=1">Lag prosjekt</a>
+	<a class="btn" href="mine.php">Mine prosjekter</a>
 <?php
 	}else{
 ?>
 	<p>Lyst til å gjøre noe kult? Her er et utvalg av de prosjektene som PVVere har laget. Mangler det noe, eller brenner du for noe annet? Sett opp et eget prosjekt!</p>
-	<a class="btn" href="ny.php">Lag prosjekt</a>
+	<a class="btn" href="edit.php?new=1">Lag prosjekt</a>
+	<a class="btn" href="mine.php">Mine prosjekter</a>
 
 	<ul class="calendar-events">
 		<?php

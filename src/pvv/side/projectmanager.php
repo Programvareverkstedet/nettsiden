@@ -49,4 +49,26 @@ class ProjectManager{
 
 		return $project;
 	}
+
+	public function getByUName($uname){
+		$query = 'SELECT * FROM projects WHERE owneruname=:uname';
+		$statement = $this->pdo->prepare($query);
+		$statement->bindParam(':uname', $uname, PDO::PARAM_STR);
+		$statement->execute();
+
+		$projects = [];
+		foreach($statement->fetchAll() as $dbProj){
+			$project = new Project(
+				$dbProj['id'],
+				$dbProj['name'],
+				$dbProj['description'],
+				$dbProj['owner'],
+				$dbProj['owneruname'],
+				$dbProj['active']
+			);
+			$projects[] = $project;
+		}
+
+		return $projects;
+	}
 }

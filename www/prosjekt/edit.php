@@ -15,6 +15,19 @@ $pdo = new \PDO($dbDsn, $dbUser, $dbPass);
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $projectManager = new \pvv\side\ProjectManager($pdo);
 
+$new = 0;
+if(isset($_GET['new'])){
+	$new = $_GET['new'];
+}
+
+$projectID = 0;
+if(isset($_GET['id'])){
+	$projectID = $_GET['id'];
+}else if($new == 0){
+	echo "\nID not set";
+	exit();
+}
+
 $project = new \pvv\side\Project(
 	0,
 	'Nytt Prosjekt',
@@ -23,6 +36,15 @@ $project = new \pvv\side\Project(
 	$attrs["uid"][0],
 	1
 );
+if($new == 0){
+	$project = $projectManager->getByID($projectID);
+
+	if($project->getOwnerUName() != $attrs["uid"][0]){
+		header('HTTP/1.0 403 Forbidden');
+		echo "wrong user";
+		exit();
+	}
+}
 ?>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -68,10 +90,12 @@ $project = new \pvv\side\Project(
 		<p class="subnote">Hva går prosjektet ditt ut på?</p>
 		<textarea name="desc" cols="40" rows="5" class="boxinput"><?= $project->getDescription() ?></textarea>
 
+		<?= '<input type="hidden" name="id" value="' . $project->getID() . '" />' ?>
+
 		<div style="margin-top: 2em;">
 			<hr class="ruler">
 
-			<input type="submit" class="btn" value="Opprett prosjekt"></a>
+			<?= '<input type="submit" class="btn" value="' . ($new ? 'Opprett prosjekt' : 'Lagre endringer') . '"></a>'; ?>
 		</div>
 	</form>
 </article>
