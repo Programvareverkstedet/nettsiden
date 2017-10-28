@@ -47,9 +47,11 @@ $projects = $projectManager->getAll();
 	<ul class="calendar-events">
 		<?php
 			$randProjects = array_rand($projects, min(3, count($projects)));
-
-			for($i = 0; $i < count($randProjects); $i++){
-				$project = $projects[$randProjects[$i]];
+			if (!is_array($randProjects)) {
+				$randProjects = [$randProjects];
+			};
+			foreach($randProjects as $i) {
+				$project = $projects[$i];
 		?>
 
 		<li>
