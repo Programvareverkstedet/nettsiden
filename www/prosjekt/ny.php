@@ -32,15 +32,16 @@ $project = new \pvv\side\Project(
 <link rel="stylesheet" href="../../css/admin.css">
 
 <nav><ul>
-	<li><a href="index.php">hjem</a></li>
+	<li><a href="../index.php">hjem</a></li>
 	<li><a href="../kalender/">kalender</a></li>
-	<li><a href="aktiviteter/">aktiviteter</a></li>
+	<li><a href="../aktiviteter/">aktiviteter</a></li>
 	<li class="active"><a href="../prosjekt/">prosjekter</a></li>
-	<li><a href="kontakt">kontakt</a></li>
-	<li><a href="pvv/">wiki</a></li>
+	<li><a href="../kontakt/">kontakt</a></li>
+	<li><a href="../pvv/">wiki</a></li>
 </nav>
 
-<header class="admin">Prosjekter</header>
+
+<header>Prosjekt&shy;verk&shy;stedet</header>
 
 <main>
 
