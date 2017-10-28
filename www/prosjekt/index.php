@@ -25,20 +25,7 @@ $projects = $projectManager->getAll();
 <main>
 
 <article class="threed">
-	<img src="favicon-search-light.svg" width=140 style="margin: 20px;" class="float-right">
-	<h2>Søk projekt eller komité</h2>
-	<p>Ønsker du å bli med på en komité eller et projekt? Søk her da vel!</p>
-	<!--
-	<p>
-		<a class="btn" href="/paamelding/">Bli medlem</a>
-		<a class="btn" href="/rom/">Veibeskrivelse</a>
-	</p>
-	-->
-</article>
-<div class="split">
-
-<article>
-<h2>Projekter</h2>
+<h2>Prosjekter</h2>
 <?php
 	if(count($projects) == 0){
 ?>
@@ -48,8 +35,7 @@ $projects = $projectManager->getAll();
 <?php
 	}else{
 ?>
-	<p>Lyst til å gjøre noe kult? Her er et utvalg av de prosjektene som PVVere har laget. Mangler det noe, eller brenner du for noe annet? Sett opp et prosjekt!</p>
-	<br>
+	<p>Lyst til å gjøre noe kult? Her er et utvalg av de prosjektene som PVVere har laget. Mangler det noe, eller brenner du for noe annet? Sett opp et eget prosjekt!</p>
 	<a class="btn" href="ny.php">Lag prosjekt</a>
 
 	<ul class="calendar-events">
@@ -74,38 +60,6 @@ $projects = $projectManager->getAll();
 	}
 ?>
 </article>
-
-
-<article>
-<h2>Komitéer</h2>
-<ul class="calendar-events">
-
-<li><p><a href="trikom.html">Trikom</a></p>
-<span><p>
-	Trikom er trivselskomitéen til PVV. Trikoms ønske er å holde trivselen på PVV på topp! Vi har ansvaret for å holde PVV åpent og ryddig. 
-</p></span>
-</li>
-
-<li><p><a href="PR.html">PR</a></p>
-<span><p>
-	PR jobber med å reklamere for PVVs kurs, arrangementer og andre diverse foretak. Spesiell stor innsats ønskes rundt immatrikuleringen. Vi styrer PVVs Facebookside, og sender meldinger ut på mailingslistene. Tror du dette er noe for deg, så søk da vel! :)
-</p></span>
-</li>
-
-<li><p><a href="drift.html">Drift</a></p>
-<span><p>
-	Drift holder maskinene og serverene på PVV i god stand. Vi drifter også nettsidene, brukersystemene og mye mye mer. Er du intressert i eller vil lære om servere og infrastruktur er dette tingen for deg! Alle i drift har full tilgang til systemene til PVV.
-</p></span>
-</li>
-
-<li><p><a href="styret.html">Styret</a></p>
-<span><p>
-	Styret bestemmer hvilke kurs, hackehelger og innkjøp som skal foretas. Er det noen som kan få ordnet opp i noe er det Styret. Intressert? Vi velger styret på halvårsmøtene på starten av semestrene. Kom og bli med da vel! 
-</p></span>
-</li>
-</ul>
-</article>
-</div>
 
 </main>
 
