@@ -32,4 +32,8 @@ class Project{
 	public function getOwnerUName(){
 		return $this->owneruname;
 	}
+
+	public function getActive(){
+		return $this->active;
+	}
 }

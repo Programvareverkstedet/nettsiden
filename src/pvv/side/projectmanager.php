@@ -43,6 +43,7 @@ class ProjectManager{
 			$dbProj['name'],
 			$dbProj['description'],
 			$dbProj['owner'],
+			$dbProj['owneruname'],
 			$dbProj['active']
 		);
 
