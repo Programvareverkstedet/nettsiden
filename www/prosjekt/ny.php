@@ -31,13 +31,24 @@ $project = new \pvv\side\Project(
 <link rel="stylesheet" href="../../css/events.css">
 <link rel="stylesheet" href="../../css/admin.css">
 
-<nav><ul>
+<nav>
+	<ul>
 	<li><a href="../index.php">hjem</a></li>
 	<li><a href="../kalender/">kalender</a></li>
 	<li><a href="../aktiviteter/">aktiviteter</a></li>
 	<li class="active"><a href="../prosjekt/">prosjekter</a></li>
 	<li><a href="../kontakt/">kontakt</a></li>
 	<li><a href="../pvv/">wiki</a></li>
+	</ul>
+
+	<?php
+		if($attrs){
+			$uname = $attrs["uid"][0];
+			echo '<p class="login">logget inn som: ' . $uname . '</p>';
+		}else{
+			echo '<a class="login" href="' . $as->getLoginURL() . '">logg inn</a>';
+		}
+	?>
 </nav>
 
 

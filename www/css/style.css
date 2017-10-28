@@ -14,7 +14,7 @@ nav li {
 	line-height: 3em;
 	margin: auto 1em;
 }
-nav li a {
+nav a {
 	display: inline-block;
 	margin: auto;
 	color: gray;
@@ -22,6 +22,14 @@ nav li a {
 }
 nav li.active a {
 	color: #048;
+}
+nav .login{
+	position: fixed;
+	top: .8em;
+	right: .8em;
+	margin: auto;
+	z-index: 3;
+	color: gray;
 }
 header {
 	margin-top: 3rem;

@@ -3,6 +3,10 @@ date_default_timezone_set('Europe/Oslo');
 setlocale(LC_ALL, 'no_NO');
 require __DIR__ . '/../../src/_autoload.php';
 require __DIR__ . '/../../sql_config.php';
+require_once(__DIR__ . '/../../vendor/simplesamlphp/simplesamlphp/lib/_autoload.php');
+$as = new SimpleSAML_Auth_Simple('default-sp');
+$attrs = $as->getAttributes();
+
 use \pvv\side\Agenda;
 $months_translations = ['Januar', 'Februar', 'Mars', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Desember'];
 $pdo = new \PDO($dbDsn, $dbUser, $dbPass);
@@ -98,7 +102,8 @@ $days_in_month = date('t', mktime(0, 0, 0, $month, 1, $year));
 
 </main>
 
-<nav><ul>
+<nav>
+	<ul>
 	<li><a href="../">hjem</a></li>
 	<!--<li><a href="../prosjekt/">prosjekter</a></li>-->
 	<li class="active"><a href="../kalender/">kalender</a></li>
@@ -106,4 +111,15 @@ $days_in_month = date('t', mktime(0, 0, 0, $month, 1, $year));
 	<li><a href="../prosjekt/">prosjekter</a></li>
 	<li><a href="../kontakt/">kontakt</a></li>
 	<li><a href="../pvv/">wiki</a></li>
+	</ul>
+
+	<?php
+		$attr = $as->getAttributes();
+		if($attr){
+			$uname = $attr["uid"][0];
+			echo '<p class="login">logget inn som: ' . $uname . '</p>';
+		}else{
+			echo '<a class="login" href="' . $as->getLoginURL() . '">logg inn</a>';
+		}
+	?>
 </nav>
