@@ -84,11 +84,11 @@ if($new == 0){
 	<form action="update.php", method="post">
 		<p class="subtitle no-chin">Prosjektnavn</p>
 		<p class="subnote">Gi prosjektet ditt et passende navn</p>
-		<?= '<input type="text" name="title" value="' . $project->getName() . '" class="boxinput">' ?><br>
+		<input type="text" name="title" value="<?= $project->getName() ?>" class="boxinput" style="width:66%;"><br>
 
 		<p class="subtitle no-chin">Beskrivelse</p>
 		<p class="subnote">Hva går prosjektet ditt ut på?</p>
-		<textarea name="desc" cols="40" rows="5" class="boxinput"><?= $project->getDescription() ?></textarea>
+		<textarea name="desc" style="width:100%" rows="8" class="boxinput"><?= $project->getDescription() ?></textarea>
 
 		<?= '<input type="hidden" name="id" value="' . $project->getID() . '" />' ?>
 

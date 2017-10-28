@@ -21,7 +21,7 @@ header.admin {
 	grid-template-columns: 90% 10%;
 	margin-bottom: 2em;
 	padding-bottom: .5em;
-	border-bottom: 1px solid gray;
+	border-bottom: 1px dotted rgba(0,0,0,0.5);
 }
 
 .event-info {
@@ -57,13 +57,14 @@ header.admin {
 }
 
 .gridsplit {
+	padding-top: 1.3em;
 	display: grid;
-	grid-template-columns: 75% 25%;
+	grid-template-columns: 3fr 1fr;
 }
 
 .gridsplit5050 {
 	display: grid;
-	grid-template-columns: 50% 50%;
+	grid-template-columns: 1fr 1fr;
 }
 
 .gridl {
@@ -75,8 +76,17 @@ header.admin {
 	height: 100%;
 	padding: 0 1em;
 	margin-left: 1em;
-	border-left: 1px solid gray;
+	border-left: 1px dotted rgba(0,0,0,0.5);
 	grid-column: 2;
+}
+
+.gridsplit h1:first-child,
+.gridsplit h2:first-child,
+.gridsplit h3:first-child,
+.gridsplit h4:first-child,
+.gridsplit h5:first-child,
+.gridsplit h6:first-child {
+	margin-top: 0;
 }
 
 .allgrids {

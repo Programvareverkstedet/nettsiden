@@ -15,7 +15,7 @@ img.float-right {
 	margin-top: .2em;
 }
 .calendar-events > li > p {
-	border-bottom: .1em solid rgba(0,0,0,.2);
+	border-bottom: .1em dotted rgba(0,0,0,.2);
 }
 
 .calendar-events ul {

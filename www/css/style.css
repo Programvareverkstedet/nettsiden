@@ -94,10 +94,8 @@ main:before {
 }
 
 .ruler {
-	border-style: inset;
-	height: 1px;
-	border-width: 0px;
-	background-color: black;
+	border: none;
+	border-bottom: 1px dotted rgba(0,0,0,.5);
 }
 
 a.btn {
