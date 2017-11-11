@@ -53,20 +53,20 @@ $days_in_month = date('t', mktime(0, 0, 0, $month, 1, $year));
 	if ($pmonth==0) {$pmonth=12; $pyear--;}
 	if ($nmonth==13) {$nmonth=1; $nyear++;}
 	?>
-	<a class="btn" href="../kalender?year=<?=$pyear?>&amp;month=<?=$pmonth?>">Forrige måned</a>
-	<a class="btn" style="float:right;" href="../kalender?year=<?=$nyear?>&amp;month=<?=$nmonth?>">Neste måned</a>
+	<a class="btn noselect" href="../kalender?year=<?=$pyear?>&amp;month=<?=$pmonth?>">Forrige måned</a>
+	<a class="btn noselect" style="float:right;" href="../kalender?year=<?=$nyear?>&amp;month=<?=$nmonth?>">Neste måned</a>
 	</p>
 	
 	
 	<figure class="calendar">
 	<ul>
-	<li class="header">Mandag
-	<li class="header">Tirsdag
-	<li class="header">Onsdag
-	<li class="header">Torsdag
-	<li class="header">Fredag
-	<li class="header">Lørdag
-	<li class="header">Søndag
+	<li class="header noselect">Mandag
+	<li class="header noselect">Tirsdag
+	<li class="header noselect">Onsdag
+	<li class="header noselect">Torsdag
+	<li class="header noselect">Fredag
+	<li class="header noselect">Lørdag
+	<li class="header noselect">Søndag
 	
 	<?php if ($days_before_the_first != 0) { ?>
 	<li class="outOfMonth" style="grid-column: 1/<?=$days_before_the_first+1?>;">
@@ -83,13 +83,13 @@ $days_in_month = date('t', mktime(0, 0, 0, $month, 1, $year));
 		<?php } ?>
 		<?php if (sizeof($events)!=0) { ?>
 			<a href="../aktiviteter/?<?="year=$year&amp;month=$month&amp;day=$day"?>"><div>
-				<?= $day ?>.
+				<span class="noselect"><?= $day ?>.</span>
 				<?php foreach($events as $event) { ?>
 					<section><?=$event->getName()?></section>
 				<?php } ?>
 			</div></a>
 		<?php } else { ?>
-			<?= $day ?>.
+			<span class="noselect"><?= $day ?>.</span>
 		<?php } ?>
 	<?php } ?>
 	
