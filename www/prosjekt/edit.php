@@ -1,12 +1,11 @@
 <?php
-ini_set('display_errors', '1');
 date_default_timezone_set('Europe/Oslo');
 setlocale(LC_ALL, 'no_NO');
-error_reporting(E_ALL);
+require __DIR__ . '/../../inc/navbar.php';
 require __DIR__ . '/../../src/_autoload.php';
 require __DIR__ . '/../../sql_config.php';
 
-require_once(__DIR__ . '/../../vendor/simplesamlphp/simplesamlphp/lib/_autoload.php');
+require_once __DIR__ . '/../../vendor/simplesamlphp/simplesamlphp/lib/_autoload.php';
 $as = new SimpleSAML_Auth_Simple('default-sp');
 $as->requireAuth();
 $attrs = $as->getAttributes();
@@ -53,27 +52,6 @@ if($new == 0){
 <link rel="stylesheet" href="../../css/events.css">
 <link rel="stylesheet" href="../../css/admin.css">
 
-<nav>
-	<ul>
-	<li><a href="../index.php">hjem</a></li>
-	<li><a href="../kalender/">kalender</a></li>
-	<li><a href="../aktiviteter/">aktiviteter</a></li>
-	<li class="active"><a href="../prosjekt/">prosjekter</a></li>
-	<li><a href="../kontakt/">kontakt</a></li>
-	<li><a href="../pvv/">wiki</a></li>
-	</ul>
-
-	<?php
-		if($attrs){
-			$uname = $attrs["uid"][0];
-			echo '<p class="login">logget inn som: ' . $uname . '</p>';
-		}else{
-			echo '<a class="login" href="' . $as->getLoginURL() . '">logg inn</a>';
-		}
-	?>
-</nav>
-
-
 <header>Prosjekt&shy;verk&shy;stedet</header>
 
 <main>
@@ -101,3 +79,8 @@ if($new == 0){
 </article>
 
 </main>
+
+<nav>
+	<?= navbar(1, 'prosjekt'); ?>
+	<?= loginbar(); ?>
+</nav>

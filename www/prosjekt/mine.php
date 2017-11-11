@@ -1,10 +1,9 @@
 <?php
-ini_set('display_errors', '1');
 date_default_timezone_set('Europe/Oslo');
 setlocale(LC_ALL, 'no_NO');
-error_reporting(E_ALL);
 require __DIR__ . '/../../src/_autoload.php';
 require __DIR__ . '/../../sql_config.php';
+
 require_once(__DIR__ . '/../../vendor/simplesamlphp/simplesamlphp/lib/_autoload.php');
 $as = new SimpleSAML_Auth_Simple('default-sp');
 $as->requireAuth();
@@ -44,26 +43,6 @@ $projects = array_values(array_filter(
 <link rel="stylesheet" href="../css/style.css">
 <link rel="stylesheet" href="../css/events.css">
 <link rel="stylesheet" href="../css/admin.css">
-
-<nav>
-	<ul>
-	<li class="active"><a href="index.php">hjem</a></li>
-	<li><a href="aktiviteter/">aktiviteter</a></li>
-	<li><a href="../prosjekt/">prosjekter</a></li>
-	<li><a href="kontakt">kontakt</a></li>
-	<li><a href="pvv/">wiki</a></li>
-	</ul>
-
-	<?php
-		$attr = $as->getAttributes();
-		if($attr){
-			$uname = $attr["uid"][0];
-			echo '<p class="login">logget inn som: ' . $uname . '</p>';
-		}else{
-			echo '<a class="login" href="' . $as->getLoginURL() . '">logg inn</a>';
-		}
-	?>
-</nav>
 
 <header>Prosjekt&shy;verkstedet</header>
 
@@ -129,3 +108,8 @@ $projects = array_values(array_filter(
 </article>
 
 </main>
+
+<nav>
+	<?= navbar(1, 'prosjekt'); ?>
+	<?= loginbar(); ?>
+</nav>

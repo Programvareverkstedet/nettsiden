@@ -1,13 +1,9 @@
 <?php
-ini_set('display_errors', '1');
 date_default_timezone_set('Europe/Oslo');
 setlocale(LC_ALL, 'no_NO');
-error_reporting(E_ALL);
+require __DIR__ . '/../../../inc/navbar.php';
 require __DIR__ . '/../../../src/_autoload.php';
 require __DIR__ . '/../../../sql_config.php';
-require_once(__DIR__ . '/../../../vendor/simplesamlphp/simplesamlphp/lib/_autoload.php');
-$as = new SimpleSAML_Auth_Simple('default-sp');
-$attrs = $as->getAttributes();
 
 $pdo = new \PDO($dbDsn, $dbUser, $dbPass);
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -43,27 +39,6 @@ $events = array_values(array_filter(
 <link rel="stylesheet" href="../../css/style.css">
 <link rel="stylesheet" href="../../css/events.css">
 <link rel="stylesheet" href="../../css/admin.css">
-
-<nav>
-	<ul>
-	<li><a href="../../index.php">hjem</a></li>
-	<li><a href="../../kalender/">kalender</a></li>
-	<li><a href="../../aktiviteter/">aktiviteter</a></li>
-	<li><a href="../../prosjekt/">prosjekter</a></li>
-	<li><a href="../../kontakt">kontakt</a></li>
-	<li><a href="../../pvv/">wiki</a></li>
-	</ul>
-
-	<?php
-		$attr = $as->getAttributes();
-		if($attr){
-			$uname = $attr["uid"][0];
-			echo '<p class="login">logget inn som: ' . $uname . '</p>';
-		}else{
-			echo '<a class="login" href="' . $as->getLoginURL() . '">logg inn</a>';
-		}
-	?>
-</nav>
 
 <header class="admin">Aktivitets&shy;administrasjon</header>
 
@@ -141,3 +116,8 @@ $events = array_values(array_filter(
 </article>
 
 </main>
+
+<nav>
+	<?= navbar(2); ?>
+	<?= loginbar(); ?>
+</nav>
