@@ -13,7 +13,11 @@ $as->requireAuth();
 $attrs = $as->getAttributes();
 $uname = $attrs['uid'][0];
 
-if(!($userManager->isAdmin($uname) | $userManager->hasGroup($uname, 'prosjekt') | $userManager->hasGroup($uname, 'aktiviteter'))){
+$isAdmin = $userManager->isAdmin($uname);
+$projectGroup = $userManager->hasGroup($uname, 'prosjekt');
+$activityGroup = $userManager->hasGroup($uname, 'aktiviteter');
+
+if(!($isAdmin | $projectGroup | $activityGroup)){
 	echo 'Ingen tilgang';
 	exit();
 }
@@ -31,8 +35,19 @@ if(!($userManager->isAdmin($uname) | $userManager->hasGroup($uname, 'prosjekt') 
 
 <article>
 	<h2>Verktøy</h2>
-	<a class="btn adminbtn" href="aktiviteter/?page=1">Aktiviteter/Hendelser</a>
-	<a class="btn adminbtn" href="prosjekter/">Prosjekter</a>
+	<?php
+		if($isAdmin | $activityGroup){
+			echo '<a class="btn adminbtn" href="aktiviteter/?page=1">Aktiviteter/Hendelser</a>';
+		}
+
+		if($isAdmin | $projectGroup){
+			echo '<a class="btn adminbtn" href="prosjekter/">Prosjekter</a>';
+		}
+
+		if($isAdmin){
+			echo '<a class="btn adminbtn" href="brukere/">Brukere</a>';
+		}
+	?>
 </article>
 
 </main>
