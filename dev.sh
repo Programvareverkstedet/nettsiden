@@ -1,7 +1,9 @@
 #!/bin/sh
 
 which sqlite3 > /dev/null 2>&1 && test \! -e pvv.sqlite && sqlite3 pvv.sqlite < dist/pvv.sql
-test \! -e sql_config.php && cp dist/sql_config_example.php sql_config.php
+test \! -e sql_config.php && cp -v dist/sql_config_example.php sql_config.php
+
+test \! -e dataporten_config.php && cp -v dist/dataporten_config.php dataporten_config.php
 
 test -e composer.phar || curl -O https://getcomposer.org/composer.phar
 
