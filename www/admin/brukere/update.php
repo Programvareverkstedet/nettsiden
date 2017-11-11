@@ -20,10 +20,28 @@ if(!$userManager->isAdmin($uname)){
 	exit();
 }
 
+$newUser;
+if(isset($_POST['newuser'])){
+	$newUser = $_POST['newuser'];	
+}
+
 // 2d array of usernames and their corresponding group flags
 $userFlags = [];
 foreach($_POST as $namegroup => $check){
+	// new user field, don't use that
+	if($namegroup == 'newuser'){
+		continue;
+	}
+
 	$data = explode('_', $namegroup);
+	if($data[0] == 'newuser'){
+		if(!$newUser){
+			continue;
+		}
+
+		$data[0] = $newUser;
+	}
+
 	if(!isset($userFlags[$data[0]])){
 		$userFlags[$data[0]] = 0;
 	}

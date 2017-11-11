@@ -69,10 +69,10 @@ $users = $userManager->getAllUserData();
 	?>
 
 		<tr>
-			<td><?= $uname; ?></td>
+			<td><?= $uname ?></td>
 			<?php
 			foreach($userManager->usergroups as $name => $group){
-				echo '<td><input type="checkbox" ' . (($groupFlag & $group) ? 'checked' : '') . ' name="' . $uname . '_' . $name . '">' . $name . '</td>';
+				echo '<td><input type="checkbox" ' . (($groupFlag & $group) ? 'checked' : '') . ' name="' . $uname . '_' . $name . '" class="usergroupcheckbox">' . $name . '</td>';
 			}
 			?>
 		</tr>
@@ -80,6 +80,15 @@ $users = $userManager->getAllUserData();
 	<?php
 	}
 	?>
+
+	<tr class="newuserrow">
+		<td class="newuserelement"><input type="text" name="newuser" class="newuserinput"></td>
+		<?php
+			foreach($userManager->usergroups as $name => $group){
+				echo '<td><input type="checkbox" name="newuser_' . $name . '" class="usergroupcheckbox">' . $name . '</td>';
+			}
+		?>
+	</tr>
 </table>
 <input type="submit" class="btn" value="Lagre">
 </form>
