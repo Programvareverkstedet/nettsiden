@@ -5,7 +5,8 @@
 $dataportenConfig = [
 	'client_id' => "",
 	'client_secret' => "",
-	'redirect_uri' => "",
+	//'redirect_uri' => "https://pvv.ntnu.no/paamelding/",
+	'redirect_uri' => "http://localhost:1080/paamelding/",
 	'auth' => "https://auth.dataporten.no/oauth/authorization",#Authorization endpoint
 	'token' => "https://auth.dataporten.no/oauth/token",#Token endpoint
 	
