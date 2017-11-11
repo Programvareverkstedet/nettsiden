@@ -1,7 +1,19 @@
 <?php
 require_once __DIR__ . '/../../vendor/simplesamlphp/simplesamlphp/lib/_autoload.php';
+
+$pdo = new \PDO($dbDsn, $dbUser, $dbPass);
+$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$userManager = new \pvv\admin\UserManager($pdo);
+
 $as = new SimpleSAML_Auth_Simple('default-sp');
+$as->requireAuth();
 $attrs = $as->getAttributes();
+$uname = $attrs['uid'][0];
+
+if(!($userManager->isAdmin($uname) | $userManager->hasGroup($uname, 'prosjekt') | $userManager->hasGroup($uname, 'aktiviteter'))){
+	echo 'Ingen tilgang';
+	exit();
+}
 ?>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">

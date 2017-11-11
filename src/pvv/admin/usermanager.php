@@ -9,7 +9,7 @@ class UserManager{
 	public $usergroups = [
 		'admin' => 1,
 		'prosjekt' => 2,
-		'hendelser' => 4
+		'aktiviteter' => 4
 	];
 
 	public function __construct($pdo){
