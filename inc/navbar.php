@@ -11,7 +11,7 @@ function navbar($depth, $active = NULL) {
 	];
 	foreach($menuItems as $caption => $link) {
 		$result .= "\t\t<li" . ($active === $link ? ' class="active"' : '') . '>'
-			. '<a href="' . str_repeat('../', $depth) . $link . '/">'
+			. '<a href="' . rtrim(str_repeat('../', $depth) . $link, '/') . '/">'
 			. $caption
 			. "</a></li>\n"
 			;
