@@ -16,23 +16,26 @@ $attrs = $as->getAttributes();
 $uname = $attrs['uid'][0];
 
 if(!$userManager->isAdmin($uname)){
-	echo 'Ingen tilgang';
+	echo 'Her har du ikke lov\'t\'å\'værra!!!';
 	exit();
 }
 
 $newUser;
 if(isset($_POST['newuser'])){
-	$newUser = $_POST['newuser'];	
+	$newUser = $_POST['newuser'];
+	unset($_POST['newuser']);	
 }
+
+$updatingUsers = explode('_', $_POST['users']);
+unset($_POST['users']);
 
 // 2d array of usernames and their corresponding group flags
 $userFlags = [];
-foreach($_POST as $namegroup => $check){
-	// new user field, don't use that
-	if($namegroup == 'newuser'){
-		continue;
-	}
+if($newUser){
+	$userFlags[$newUser] = 0;
+}
 
+foreach($_POST as $namegroup => $info){
 	$data = explode('_', $namegroup);
 	if($data[0] == 'newuser'){
 		if(!$newUser){
@@ -47,6 +50,12 @@ foreach($_POST as $namegroup => $check){
 	}
 
 	$userFlags[$data[0]] = ($userFlags[$data[0]] | $userManager->usergroups[$data[1]]);
+}
+
+foreach($updatingUsers as $uname){
+	if(!array_key_exists($uname, $userFlags)){
+		$userFlags[$uname] = 0;
+	}
 }
 
 foreach($userFlags as $uname => $flag){

@@ -12,7 +12,7 @@ $attrs = $as->getAttributes();
 $uname = $attrs['uid'][0];
 
 if(!$userManager->hasGroup($uname, 'aktiviteter')){
-	echo 'Ingen tilgang';
+	echo 'Her har du ikke lov\'t\'å\'værra!!!';
 	exit();
 }
 

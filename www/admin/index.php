@@ -18,7 +18,7 @@ $projectGroup = $userManager->hasGroup($uname, 'prosjekt');
 $activityGroup = $userManager->hasGroup($uname, 'aktiviteter');
 
 if(!($isAdmin | $projectGroup | $activityGroup)){
-	echo 'Ingen tilgang';
+	echo 'Her har du ikke lov\'t\'å\'værra!!!';
 	exit();
 }
 ?>

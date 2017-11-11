@@ -16,7 +16,7 @@ class UserManager{
 		$this->pdo = $pdo;
 	}
 
-	public function setupUser($uname, $groups){
+	public function setupUser($uname, $groups=0){
 		$query = 'INSERT INTO users (uname, groups) VALUES (:uname, :groups)';
 		$statement = $this->pdo->prepare($query);
 		$statement->bindParam(':uname', $uname, PDO::PARAM_STR);
@@ -37,8 +37,6 @@ class UserManager{
 		if($userFlags){
 			$newFlags = ($group | $userFlags);
 			$this->updateFlags($uname, $newFlags);
-		}else{
-			$this->setupUser($uname, $group);
 		}
 	}
 
@@ -56,8 +54,9 @@ class UserManager{
 		$statement = $this->pdo->prepare($query);
 		$statement->bindParam(':uname', $uname, PDO::PARAM_STR);
 		$statement->execute();
+		$row = $statement->fetch();
 
-		if($statement->fetch()){
+		if($row){
 			$query = 'UPDATE users set groups=:groups WHERE uname=:uname';
 			$statement = $this->pdo->prepare($query);
 			$statement->bindParam(':groups', $groups, PDO::PARAM_INT);
@@ -70,9 +69,6 @@ class UserManager{
 
 	public function hasGroup($uname, $groupName){
 		$userFlags = $this->getUsergroups($uname);
-		if(!$userFlags){
-			$this->setupUser($uname);
-		}
 
 		return ($userFlags & $this->usergroups[$groupName]);
 	}
@@ -107,9 +103,6 @@ class UserManager{
 		$usersGroups = [];
 
 		$userFlags = $this->getUsergroups($uname);
-		if(!$userFlags){
-			$this->setupUser($uname);
-		}
 
 		foreach($this->usergroups as $name => $flag){
 			if($userFlags & $flag){

@@ -20,7 +20,7 @@ $attrs = $as->getAttributes();
 $uname = $attrs['uid'][0];
 
 if(!$userManager->isAdmin($uname)){
-	echo 'Ingen tilgang';
+	echo 'Her har du ikke lov\'t\'å\'værra!!!';
 	exit();
 }
 
@@ -63,9 +63,16 @@ $users = $userManager->getAllUserData();
 	<tr><th>Brukernavn</th><th>Brukergrupper</th></tr>
 
 	<?php
+	$users_value = '';
 	foreach($users as $i => $data){
 		$uname = $data['name'];
 		$groupFlag = $userManager->getUsergroups($uname);
+
+		if(!$users_value){
+			$users_value = $uname;
+		}else{
+			$users_value = $users_value . '_' . $uname;
+		}
 	?>
 
 		<tr>
@@ -79,6 +86,7 @@ $users = $userManager->getAllUserData();
 
 	<?php
 	}
+	echo '<input type="hidden" name="users" value="' . $users_value . '" />';
 	?>
 
 	<tr class="newuserrow">
