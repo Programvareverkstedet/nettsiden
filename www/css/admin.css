@@ -121,3 +121,18 @@ header.admin {
 	background: #084;
 	color: white;
 }
+
+.userlist {
+	table-layout: fixed;
+	width: 100%;
+	margin: 1em 0;
+}
+
+.userlist tr th {
+	text-align: left;
+}
+
+.userlist tr {
+    border-bottom: 1px solid gray;
+    min-width: 100%;
+}

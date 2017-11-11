@@ -73,7 +73,7 @@ if($new == 0){
 		<div class="allgrids" style="margin-top: 2em;">
 			<hr class="ruler">
 
-			<input type="submit" class="btn" value="Lagre"></a>
+			<input type="submit" class="btn" value="Lagre">
 		</div>
 	</form>
 	<p>

@@ -16,3 +16,8 @@ CREATE TABLE "projects" (
 "description" TEXT,
 "active" BOOLEAN
 );
+
+CREATE TABLE "users" (
+"uname" TEXT,
+"groups" INT DEFAULT 0
+);
