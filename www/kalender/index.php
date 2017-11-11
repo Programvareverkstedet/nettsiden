@@ -1,9 +1,9 @@
 <?php
 date_default_timezone_set('Europe/Oslo');
 setlocale(LC_ALL, 'no_NO');
-require __DIR__ . '/../../inc/navbar.php';
-require __DIR__ . '/../../src/_autoload.php';
-require __DIR__ . '/../../sql_config.php';
+require_once __DIR__ . '/../../inc/navbar.php';
+require_once __DIR__ . '/../../src/_autoload.php';
+require_once __DIR__ . '/../../sql_config.php';
 
 use \pvv\side\Agenda;
 $months_translations = ['Januar', 'Februar', 'Mars', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Desember'];
