@@ -25,10 +25,21 @@ $agenda = new \pvv\side\Agenda([
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/splash.css">
 	<link rel="stylesheet" href="css/landing.css">
+
+	<script>
+	function navbar() {
+		var x = document.getElementById("navbar");
+		if (x.className === "opennav") {
+			x.className = "";
+		} else {
+			x.className = "opennav";
+		}
+	}
+	</script>
 </head>
 
 <body>
-	<nav>
+	<nav id="navbar" class="">
 		<?php echo navbar(0, ''); ?>
 		<?php echo loginbar(); ?>
 	</nav>
