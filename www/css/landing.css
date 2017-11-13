@@ -5,16 +5,15 @@ header {
 	flex-direction: column;
 
 	margin-top: 50px;
-	padding: 2em 0;
-	width: 100vw;
-	height: 50vh;
+	padding: 3vh 15vw;
+	width: 70vw;
 	background-color: #002244;
 	color: #fff;
 }
 
 header img {
-	width: 30vh;
-	height: 30vh;
+	width: 24vh;
+	height: 24vh;
 }
 
 main {
@@ -23,12 +22,15 @@ main {
 
 .info {
 	text-align: center;
-	padding: 1em 15vw;
-	height: 20vh;
+	width: 100%;
+	padding: 0 0;
 	margin-top: 0;
+
+	overflow-y: hidden;
 }
 
 .essentials {
+	width: 100%;
 	margin: 1.8em 0;
 	padding: .2em 0;
 	list-style: none;
@@ -49,4 +51,14 @@ main {
 .essentials .join {
 	padding: 1em;
 	font-size: 1.2em;
+}
+
+@media(max-width: 600px){
+	.essentials {
+		flex-direction: column;
+	}
+
+	.essentials a {
+		margin: .2em 0;
+	}
 }

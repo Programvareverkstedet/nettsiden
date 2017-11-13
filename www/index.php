@@ -36,12 +36,9 @@ $agenda = new \pvv\side\Agenda([
 	<header>
 		<img src="css/pvv-background.png"/>
 		<div class="info">
-			<h2>Velkommen til Programvareverkstedet</h2>
-			<p>
-				Programvareverkstedet (PVV) er en studentorganisasjon ved NTNU som vil skape et miljø for datainteresserte personer tilknyttet universitetet.
-				<br>
-				Nåværende og tidligere studenter ved NTNU, samt ansatte ved NTNU og tilstøtende miljø, kan bli medlemmer.
-			</p>
+			<h2>Velkommen til Programvare&shy;verkstedet</h2>
+			<p>Programvareverkstedet (PVV) er en studentorganisasjon ved NTNU som vil skape et miljø for datainteresserte personer tilknyttet universitetet.</p>
+			<p>Nåværende og tidligere studenter ved NTNU, samt ansatte ved NTNU og tilstøtende miljø, kan bli medlemmer.</p>
 			<ul class="essentials">
 				<a class="btn" href="om/"><li>Om PVV</li></a>
 				<a class="btn join" href="paamelding/"><li>Bli medlem</li></a>
