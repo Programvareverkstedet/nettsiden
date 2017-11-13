@@ -1,22 +1,20 @@
 <?php
 function navbar($depth, $active = NULL) {
-	$result = "\n\t<ul>\n";
+	$result = "<ul>\n";
 	$menuItems = [
 		'hjem' => '',
 		'kalender' => 'kalender',
 		'aktiviteter' => 'aktiviteter',
 		'prosjekter' => 'prosjekt',
 		'kontakt' => 'kontakt',
-		'wiki' => 'pvv',
+		'wiki' => 'pvv'
 	];
 	foreach($menuItems as $caption => $link) {
-		$result .= "\t\t<li" . ($active === $link ? ' class="active"' : '') . '>'
-			. '<a href="' . rtrim(str_repeat('../', $depth) . $link, '/') . '/">'
-			. $caption
-			. "</a></li>\n"
+		$result .= "\t\t\t<a href=\"" . rtrim(str_repeat('../', $depth) . $link, '/') . "/\"" . ($active === $link ? ' class="active"' : '') . ">"
+			. "<li>" . $caption . "</li></a>\n"
 			;
 	}
-	return $result . "\t</ul>\n";
+	return $result . "\t\t</ul>\n";
 }
 
 function loginBar($sp = 'default-sp') {
@@ -27,9 +25,9 @@ function loginBar($sp = 'default-sp') {
 	$attr = $as->getAttributes();
 	if($attr) {
 		$uname = $attr['uid'][0];
-		$result .= "\t<p class=\"login\">logget inn som: " . htmlspecialchars($uname) . "</p>\n";
+		$result .= "\t\t<p class=\"login\">logget inn som: " . htmlspecialchars($uname) . "</p>\n";
 	} else {
-		$result .= "\t<a class=\"login\" href=\"" . htmlspecialchars($as->getLoginURL()) . "\">logg inn</a>\n";
+		$result .= "\t\t<a class=\"login\" href=\"" . htmlspecialchars($as->getLoginURL()) . "\">logg inn</a>\n";
 	}
 
 	return $result;

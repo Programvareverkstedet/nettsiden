@@ -1,0 +1,49 @@
+header {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+
+	margin-top: 50px;
+	padding: 2em 0;
+	width: 100vw;
+	height: 40vh;
+	background-color: #002244;
+	color: #fff;
+}
+
+header img {
+	width: 30vh;
+	height: 30vh;
+}
+
+main {
+	margin-top: 0;
+}
+
+.intro {
+	text-align: center;
+}
+
+.essentials {
+	margin: 1.8em 0;
+	padding: .2em 0;
+	list-style: none;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.essentials li {
+	display: inline-block;
+}
+
+.essentials a {
+	margin: 0 2em;
+	height: 100%;
+}
+
+.essentials .join {
+	padding: 1em;
+	font-size: 1.2em;
+}
