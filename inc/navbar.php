@@ -7,11 +7,15 @@ function navbar($depth, $active = NULL) {
 		'aktiviteter' => 'aktiviteter',
 		'prosjekter' => 'prosjekt',
 		'kontakt' => 'kontakt',
+		'webmail' => 'https://webmail.pvv.ntnu.no/',
 		'wiki' => 'pvv',
 	];
 	foreach($menuItems as $caption => $link) {
+		if ($caption !== 'webmail') {
+			$link = rtrim(str_repeat('../', $depth) . $link, '/') . '/';
+		}
 		$result .= "\t\t<li" . ($active === $link ? ' class="active"' : '') . '>'
-			. '<a href="' . rtrim(str_repeat('../', $depth) . $link, '/') . '/">'
+			. '<a href="' . $link . '">'
 			. $caption
 			. "</a></li>\n"
 			;
