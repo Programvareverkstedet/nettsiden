@@ -77,7 +77,7 @@ if (isset($_SESSION['userdata'])) { // if logged in with feide
 		<br>
 		Todo: Legg til en "send mail" knapp
 	<?php } else { // not logged in?>
-		<a class="btn" href=".?login">æ kanj itj lææv uten dæ piær!</a>
+		<a class="btn" href=".?login">Hent navn og epost fra Feide</a>
 	<?php }?>
 		
 </article>
