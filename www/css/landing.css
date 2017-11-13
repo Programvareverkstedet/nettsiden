@@ -7,7 +7,7 @@ header {
 	margin-top: 50px;
 	padding: 2em 0;
 	width: 100vw;
-	height: 40vh;
+	height: 50vh;
 	background-color: #002244;
 	color: #fff;
 }
@@ -21,8 +21,11 @@ main {
 	margin-top: 0;
 }
 
-.intro {
+.info {
 	text-align: center;
+	padding: 1em 15vw;
+	height: 20vh;
+	margin-top: 0;
 }
 
 .essentials {
