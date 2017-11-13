@@ -20,7 +20,7 @@ p {hyphens: auto;}
 <article>
 	<h2>Om Programvareverkstedet</h2>
 
-	<p>Velkommen til Programvareverkstedets wiki. Programvareverkstedet (PVV) er en studentorganisasjon ved Norges Teknisk-Naturvitenskapelige Universitet (NTNU). PVVs formål er å skape et miljø for datainteresserte personer tilknyttet universitetet. Nåværende og tidligere studenter ved NTNU, samt ansatte ved NTNU og tilstøtende miljø, kan bli medlemmer.</p>
+	<p>Velkommen til Programvareverkstedets nettside. Programvareverkstedet (PVV) er en studentorganisasjon ved Norges Teknisk-Naturvitenskapelige Universitet (NTNU). PVVs formål er å skape et miljø for datainteresserte personer tilknyttet universitetet. Nåværende og tidligere studenter ved NTNU, samt ansatte ved NTNU og tilstøtende miljø, kan bli medlemmer.</p>
 </article>
 
 <article>
