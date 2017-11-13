@@ -34,7 +34,7 @@ $agenda = new \pvv\side\Agenda([
 	</nav>
 
 	<header>
-		<img src="css/pvv-background.png"/>
+		<img class="logo" src="css/logo-white.png"/>
 		<div class="info">
 			<h2>Velkommen til Programvare&shy;verkstedet</h2>
 			<p>Programvareverkstedet (PVV) er en studentorganisasjon ved NTNU som vil skape et miljø for datainteresserte personer tilknyttet universitetet.</p>

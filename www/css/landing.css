@@ -11,7 +11,7 @@ header {
 	color: #fff;
 }
 
-header img {
+header .logo {
 	width: 24vh;
 	height: 24vh;
 }
