@@ -21,3 +21,6 @@ CREATE TABLE "users" (
 "uname" TEXT,
 "groups" INT DEFAULT 0
 );
+
+INSERT INTO users (uname, groups)
+VALUES ("min_test_bruker", 1);
