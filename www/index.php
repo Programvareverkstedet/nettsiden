@@ -2,17 +2,9 @@
 date_default_timezone_set('Europe/Oslo');
 setlocale(LC_ALL, 'nb_NO');
 require __DIR__ . '/../inc/navbar.php';
-require __DIR__ . '/../src/_autoload.php';
-require __DIR__ . '/../sql_config.php';
+require __DIR__ . '/../inc/agenda.php';
 
 $translation = ['i dag', 'i morgen', 'denne uka', 'neste uke', 'denne måneden', 'neste måned'];
-$pdo = new \PDO($dbDsn, $dbUser, $dbPass);
-$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-$agenda = new \pvv\side\Agenda([
-		new \pvv\side\social\NerdepitsaActivity,
-		new \pvv\side\social\AnimekveldActivity,
-		new \pvv\side\DBActivity($pdo),
-	]);
 ?>
 <!DOCTYPE html>
 <html lang="no">
