@@ -18,6 +18,7 @@ $projects = $projectManager->getAll();
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <link rel="stylesheet" href="../css/normalize.css">
 <link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/nav.css">
 <link rel="stylesheet" href="../css/splash.css">
 
 <header>Prosjekt&shy;verk&shy;stedet</header>

@@ -1,0 +1,165 @@
+nav {
+	position: fixed;
+	z-index: 99;
+	top: 0;
+	width: 100vw;
+	height: 50px;
+	background-color: #002244;
+	overflow: hidden;
+}
+
+nav * {
+	background-color: #002244;
+	color: #fff;
+	margin: 0;
+	padding: 0;
+}
+
+nav h2 {
+	display: inline-block;
+	position: fixed;
+	top: 0;
+	margin-left: .65em;
+
+	line-height: 5vh;
+
+	color: #002244;
+}
+
+nav .logo{
+	position: fixed;
+	top: 6px;
+	left: 6px;
+	width: 38px;
+	height: 38px;
+}
+
+nav ul {
+	position: fixed;
+	top: 0;
+	left: 50px;
+	width: 100vw;
+	height: 45px;
+
+	list-style: none;
+}
+
+nav li {
+	height: 100%;
+	line-height: 50px;
+}
+
+nav a {
+	display: inline-block;
+	height: 40px;
+	margin: 0 .7em;
+
+	text-decoration: none;
+	font-size: 1.2em;
+	text-align: center;
+
+	border-bottom: 2px solid rgba(255, 255, 255, 0);
+
+	transition: border-bottom .3s ease;
+}
+
+nav a:hover {
+	border-bottom: 2px solid rgba(255, 255, 255, 1);
+
+	transition: border-bottom .3s ease;
+}
+
+nav a.active {
+	border-bottom: 2px solid rgba(255, 255, 255, 1);
+
+	transition: none;
+}
+
+nav .login {
+	position: fixed;
+	top: 0;
+	right: 0;
+	height: 45px;
+	line-height: 55px;
+}
+
+#navopen {
+	display: none;
+}
+
+@media(max-width: 800px){
+	nav .logo {
+		visibility: hidden;
+	}
+
+	nav .login {
+		display: none;
+	}
+
+	nav ul {
+		left: 0px;
+		height: 50px;
+	}
+
+	nav a {
+		display: none;
+		border-bottom: none;
+		text-align: left;
+		margin: 0;
+	}
+
+	nav a:hover {
+		border-bottom: none;
+	}
+
+	nav a.active {
+		display: block;
+		height: 50px;
+		line-height: 50px;
+		padding: 0 .5em;
+		border-bottom: none;
+	}
+
+	#navopen {
+		display: block;
+		position: fixed;
+		top: 0;
+		right: 0;
+		line-height: 50px;
+		text-align: center;
+		width: 50px;
+		height: 50px;
+		margin: 0;
+		padding: 0;
+		background-color: #002244;
+	}
+
+	.opennav a {
+		display: block;
+		text-align: left;
+		margin: 0;
+		padding: 0 .5em;
+	}
+
+	.opennav a:hover {
+		background-color: #00407F;
+	}
+
+	.opennav a:hover li {
+		background-color: #00407F;
+	}
+
+	.opennav a.active:hover {
+		background-color: #002244;
+	}
+
+	.opennav a.active:hover li {
+		background-color: #002244;
+	}
+
+	.opennav .login {
+		position: relative;
+		display: block;
+		border-top: 1px solid gray;
+	}
+}

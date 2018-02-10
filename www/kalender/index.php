@@ -35,6 +35,7 @@ $days_in_month = date('t', mktime(0, 0, 0, $month, 1, $year));
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <link rel="stylesheet" href="../css/normalize.css">
 <link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/nav.css">
 <link rel="stylesheet" href="../css/events.css">
 <link rel="stylesheet" href="../css/calendar.css">
 

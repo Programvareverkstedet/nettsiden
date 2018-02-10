@@ -42,6 +42,7 @@ if (isset($_SESSION['userdata'])) { // if logged in with feide
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel="stylesheet" href="../css/normalize.css">
 <link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/nav.css">
 
 <header>Registrerings&shy;verks&shy;stedet</header>
 
