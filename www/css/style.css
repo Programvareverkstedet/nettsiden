@@ -15,7 +15,7 @@
   src: local('Raleway'), local('Raleway-Regular'), url("/css/raleway-latin.woff2") format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2212, U+2215;
 }
-html{
+h1, h2, h3, h4, h5, h6, li, a.btn, p.login{
     font-family: Raleway, sans-serif;
     font-style: normal;
     font-variant: normal;	
