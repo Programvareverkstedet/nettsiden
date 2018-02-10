@@ -27,59 +27,61 @@ $day = (isset($_GET['day']))
 ?>
 <!DOCTYPE html>
 <html lang="no">
-<title>Aktivitetsverkstedet</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<link rel="stylesheet" href="../css/normalize.css">
-<link rel="stylesheet" href="../css/style.css">
-<link rel="stylesheet" href="../css/nav.css">
-<link rel="stylesheet" href="../css/events.css">
 
-<header>Aktivitets&shy;verk&shy;stedet</header>
+<head>
+	<title>Aktivitetsverkstedet</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+	<link rel="stylesheet" href="../css/normalize.css">
+	<link rel="stylesheet" href="../css/style.css">
+	<link rel="stylesheet" href="../css/nav.css">
+	<link rel="stylesheet" href="../css/events.css">
+</head>
 
-<main>
+<body>
+	<nav>
+		<?php echo navbar(1, 'aktiviteter'); ?>
+		<?php echo loginbar(); ?>
+	</nav>
 
-<?php
-$events = ($day==-1)
-	? $agenda->getNextOfEach(new \DateTimeImmutable)
-	: $agenda->getEventsBetween(
-		new DateTimeImmutable("$year-$month-$day 00:00:00"),
-		new DateTimeImmutable("$year-$month-$day 23:59:59"));
+	<main>
+		<?php
+		$events = ($day==-1)
+			? $agenda->getNextOfEach(new \DateTimeImmutable)
+			: $agenda->getEventsBetween(
+				new DateTimeImmutable("$year-$month-$day 00:00:00"),
+				new DateTimeImmutable("$year-$month-$day 23:59:59"));
 
-$limit = 0;
-foreach($events as $event) {
-?>
-<article>
-	<h2>
-		<?php if ($event->getImageURL()) { ?>
-		<img src="<?= $event->getImageURL() ?>">
+		$limit = 0;
+		foreach($events as $event) {
+		?>
+		<div>
+			<h2>
+				<?php if ($event->getImageURL()) { ?>
+				<img src="<?= $event->getImageURL() ?>">
+				<?php } ?>
+				<?php if (\pvv\side\Agenda::isToday($event->getStart())) { ?><strong><?php } ?>
+				<em><?= $event->getRelativeDate() ?></em>
+				<?php if (\pvv\side\Agenda::isToday($event->getStart())) { ?></strong><?php } ?>
+				<?php if ($event->getURL()) { ?>
+				<a href="<?= $event->getURL() ?>"><?= $event->getName() ?></a>
+				<?php } else { ?>
+				<?= $event->getName() ?>
+				<?php } ?>
+			</h2>
+			<ul class="subtext">
+				<li>Tid: <strong><?= Agenda::getFormattedDate($event->getStart()) ?></strong></li>
+				<li>Sted: <strong><?= $event->getLocation() ?></strong></li>
+				<li>Arrangør: <strong><?= $event->getOrganiser() ?></strong></li>
+			</ul>
+
+			<?php $description = $event->getDescription(); ?>
+			<?php if ($limit) array_splice($description, $limit); ?>
+			<?= implode($description, "</p>\n<p>") ?>
+		</div>
+
+		<?php if (!$limit || $limit > 4) {$limit = 4;} else $limit = 2; ?>
 		<?php } ?>
-		<?php if (\pvv\side\Agenda::isToday($event->getStart())) { ?><strong><?php } ?>
-		<em><?= $event->getRelativeDate() ?></em>
-		<?php if (\pvv\side\Agenda::isToday($event->getStart())) { ?></strong><?php } ?>
-		<?php if ($event->getURL()) { ?>
-		<a href="<?= $event->getURL() ?>"><?= $event->getName() ?></a>
-		<?php } else { ?>
-		<?= $event->getName() ?>
-		<?php } ?>
-	</h2>
-	<ul class="subtext">
-		<li>Tid: <strong><?= Agenda::getFormattedDate($event->getStart()) ?></strong>
-		<li>Sted: <strong><?= $event->getLocation() ?></strong>
-		<li>Arrangør: <strong><?= $event->getOrganiser() ?></strong>
-	</ul>
+	</main>
 
-	<?php $description = $event->getDescription(); ?>
-	<?php if ($limit) array_splice($description, $limit); ?>
-	<?= implode($description, "</p>\n<p>") ?>
-</article>
-
-<?php if (!$limit || $limit > 4) {$limit = 4;} else $limit = 2; ?>
-<?php } ?>
-
-</main>
-
-<nav>
-	<?= navbar(1, 'aktiviteter'); ?>
-	<?= loginbar(); ?>
-</nav>
+</body>

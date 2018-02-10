@@ -91,10 +91,10 @@ if($new == 0){
 				<p class="subtitle">Sluttid (YYYY-MM-DD HH:MM:SS)</p>
 				<?= '<input name="end" type="text"  class="boxinput" value="' . $event->getStop()->format('Y-m-d H:00:00') . '"><br>' ?>
 
-				<p class="subtitle">Organisert av</p>
+				<p class="subtitle">Arrangør</p>
 				<?= '<input type="text" name="organiser" value="' . $event->getOrganiser(). '" class="boxinput">' ?><br>
 
-				<p class="subtitle">Hvor?</p>
+				<p class="subtitle">Sted</p>
 				<?= '<input type="text" name="location" value="' . $event->getLocation(). '" class="boxinput">' ?><br>
 			</div>
 

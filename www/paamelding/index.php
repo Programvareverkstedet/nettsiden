@@ -37,55 +37,53 @@ if (isset($_SESSION['userdata'])) { // if logged in with feide
 
 ?>
 <!DOCTYPE html>
-<title>PVV registrering</title>
 
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link rel="stylesheet" href="../css/normalize.css">
-<link rel="stylesheet" href="../css/style.css">
-<link rel="stylesheet" href="../css/nav.css">
+<head>
+	<title>PVV registrering</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<link rel="stylesheet" href="../css/normalize.css">
+	<link rel="stylesheet" href="../css/style.css">
+	<link rel="stylesheet" href="../css/nav.css">
+</head>
 
-<header>Registrerings&shy;verks&shy;stedet</header>
+<body>
+	<nav>
+		<?php echo navbar(1); ?>
+		<?php echo loginbar(); ?>
+	</nav>
 
-<main>
-
-<article>
-	<h2>Registrer deg som bruker</h2>
-	
-	<p>
-		PVV har for øyeblikket et manuelt system for å legge til nye brukere.
-		Vi foretrekker at du kommer inn på besøk på <a href="https://use.mazemap.com/?v=1&left=10.4032&right=10.4044&top=63.4178&bottom=63.4172&campusid=1&zlevel=2&sharepoitype=point&sharepoi=10.40355%2C63.41755%2C2&utm_medium=longurl">våre lokaler på stripa</a>
-		for å sette sette opp din PVV bruker. Hvis du vil, kan du også sende oss
-		en melding fra denne siden med ditt navn, epost og NTNU brukernavn.
-		For å aktivere din brukerkonto på PVV, må du møte opp på
-		lokalene våre slik at vi kan få satt et passord.
-	</p>
-	
-	<h3>Meldingen som du kan sendes:</h3>
-	
-	
-	<?php if($attrs) { //logged in with pvv account?>
-		<p>
-			Du er logget in som <i><?= htmlspecialchars($attrs['uid'][0]) ?></i>,
-			du trenger ikke sende melding om ny bruker fordi du helt klart har en.
-		</p>
-	<?php } elseif (isset($_SESSION['userdata'])) { //logged in with feide ?>
-		<code>
-			Til: drift@pvv.ntnu.no<br>
-			Fra: nettsiden<br>
-			<br/>
-			<?= nl2br($mailBody) ?>
-		</code><br>
-		<br>
-		Todo: Legg til en "send mail" knapp
-	<?php } else { // not logged in?>
-		<a class="btn" href=".?login">æ kanj itj lææv uten dæ piær!</a>
-	<?php }?>
+	<main>
+		<h2>Registrer deg som bruker</h2>
 		
-</article>
-
-</main>
-
-<nav>
-	<?= navbar(1); ?>
-	<?= loginbar(); ?>
-</nav>
+		<p>
+			PVV har for øyeblikket et manuelt system for å legge til nye brukere.
+			Vi foretrekker at du kommer inn på besøk på <a href="https://use.mazemap.com/?v=1&left=10.4032&right=10.4044&top=63.4178&bottom=63.4172&campusid=1&zlevel=2&sharepoitype=point&sharepoi=10.40355%2C63.41755%2C2&utm_medium=longurl">våre lokaler på stripa</a>
+			for å sette sette opp din PVV bruker. Hvis du vil, kan du også sende oss
+			en melding fra denne siden med ditt navn, epost og NTNU brukernavn.
+			For å aktivere din brukerkonto på PVV, må du møte opp på
+			lokalene våre slik at vi kan få satt et passord.
+		</p>
+		
+		<h3>Meldingen du kan sende:</h3>
+		
+		
+		<?php if($attrs) { //logged in with pvv account?>
+			<p>
+				Du er logget in som <i><?= htmlspecialchars($attrs['uid'][0]) ?></i>,
+				du trenger ikke sende melding om ny bruker fordi du helt klart har en.
+			</p>
+		<?php } elseif (isset($_SESSION['userdata'])) { //logged in with feide ?>
+			<code>
+				Til: drift@pvv.ntnu.no<br>
+				Fra: nettsiden<br>
+				<br/>
+				<?= nl2br($mailBody) ?>
+			</code><br>
+			<br>
+			Todo: Legg til en "send mail" knapp
+		<?php } else { // not logged in?>
+			<a class="btn" href=".?login">æ kanj itj lææv uten dæ piær!</a>
+		<?php }?>
+			
+	</main>
+</body>
