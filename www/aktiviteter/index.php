@@ -1,6 +1,6 @@
 <?php
 date_default_timezone_set('Europe/Oslo');
-setlocale(LC_ALL, 'no_NO');
+setlocale(LC_ALL, 'nb_NO');
 require_once __DIR__ . '/../../inc/navbar.php';
 require_once __DIR__ . '/../../src/_autoload.php';
 require_once __DIR__ . '/../../sql_config.php';

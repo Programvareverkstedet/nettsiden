@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php
 date_default_timezone_set('Europe/Oslo');
-setlocale(LC_ALL, 'no_NO');
+setlocale(LC_ALL, 'nb_NO');
 require __DIR__ . '/../../inc/navbar.php';
 require __DIR__ . '/../../src/_autoload.php';
 require __DIR__ . '/../../sql_config.php';

@@ -1,12 +1,12 @@
 <?php
 date_default_timezone_set('Europe/Oslo');
-setlocale(LC_ALL, 'no_NO');
+setlocale(LC_ALL, 'nb_NO');
 require_once __DIR__ . '/../../inc/navbar.php';
 require_once __DIR__ . '/../../src/_autoload.php';
 require_once __DIR__ . '/../../sql_config.php';
 
 use \pvv\side\Agenda;
-$months_translations = ['Januar', 'Februar', 'Mars', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Desember'];
+$months_translations = ['januar', 'februar', 'mars', 'april', 'mai', 'juni', 'juli', 'august', 'september', 'oktober', 'november', 'desember'];
 $pdo = new \PDO($dbDsn, $dbUser, $dbPass);
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $agenda = new \pvv\side\Agenda([
@@ -60,13 +60,13 @@ $days_in_month = date('t', mktime(0, 0, 0, $month, 1, $year));
 	
 	<figure class="calendar">
 	<ul>
-	<li class="header noselect">Mandag
-	<li class="header noselect">Tirsdag
-	<li class="header noselect">Onsdag
-	<li class="header noselect">Torsdag
-	<li class="header noselect">Fredag
-	<li class="header noselect">Lørdag
-	<li class="header noselect">Søndag
+	<li class="header noselect">mandag
+	<li class="header noselect">tirsdag
+	<li class="header noselect">onsdag
+	<li class="header noselect">torsdag
+	<li class="header noselect">fredag
+	<li class="header noselect">lørdag
+	<li class="header noselect">søndag
 	
 	<?php if ($days_before_the_first != 0) { ?>
 	<li class="outOfMonth" style="grid-column: 1/<?=$days_before_the_first+1?>;">

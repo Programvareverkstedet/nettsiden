@@ -1,7 +1,7 @@
 <?php
 ini_set('display_errors', '1');
 date_default_timezone_set('Europe/Oslo');
-setlocale(LC_ALL, 'no_NO');
+setlocale(LC_ALL, 'nb_NO');
 error_reporting(E_ALL);
 require __DIR__ . '/../../../inc/navbar.php';
 require __DIR__ . '/../../../src/_autoload.php';
