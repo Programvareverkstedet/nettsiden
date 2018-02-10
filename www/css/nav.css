@@ -49,7 +49,7 @@ nav li {
 	line-height: 50px;
 }
 
-nav a {
+nav a, nav p {
 	display: inline-block;
 	height: 40px;
 	margin: 0 .7em;
@@ -81,6 +81,10 @@ nav .login {
 	right: 0;
 	height: 45px;
 	line-height: 55px;
+}
+
+nav p.login {
+	right: .5em;
 }
 
 #navopen {

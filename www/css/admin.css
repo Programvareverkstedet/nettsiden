@@ -1,14 +1,12 @@
-header.admin {
-	margin-top: 3rem;
-	height: 16rem;
-	overflow: hidden;
-	text-align: right;
-	color: #fff;
-	font-family: monospace;
-	padding: 1rem;
-	font-size: 4em;
-	background: url('ja.png') no-repeat 1% 50% #024;
-	background-size: contain;
+.tools {
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.tools li {
+	margin: 1.5em 0;
 }
 
 .event-list {
@@ -101,27 +99,6 @@ header.admin {
 	float: left;
 }
 
-.btn {
-	text-decoration: none;
-	border: 1px solid #048;
-	color: #048;
-	padding: .2em 1em;
-	border-radius: .2em;
-	white-space: nowrap;
-	display: inline-block;
-	margin-bottom: .25em;
-}
-.btn:hover {
-	border-color: #084;
-	background: #eee;
-	color: #084;
-}
-.btn:active {
-	border-color: #084;
-	background: #084;
-	color: white;
-}
-
 .userlist {
 	table-layout: fixed;
 	width: 100%;
@@ -153,4 +130,20 @@ header.admin {
 .newuserelement input {
 	border: none;
 	background-color: #ddd;
+}
+
+.subnote {
+	margin-top: 0;
+	color: gray;
+	font-size: .7em;
+	font-style: italic;
+}
+
+.no-chin {
+	margin-bottom: 0;
+}
+
+.ruler {
+	border: none;
+	border-bottom: 1px dotted rgba(0,0,0,.5);
 }

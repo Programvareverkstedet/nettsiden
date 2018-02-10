@@ -3,6 +3,7 @@ ini_set('display_errors', '1');
 date_default_timezone_set('Europe/Oslo');
 setlocale(LC_ALL, 'no_NO');
 error_reporting(E_ALL);
+require __DIR__ . '/../../../inc/navbar.php';
 require __DIR__ . '/../../../src/_autoload.php';
 require __DIR__ . '/../../../sql_config.php';
 require_once(__DIR__ . '/../../../vendor/simplesamlphp/simplesamlphp/lib/_autoload.php');
@@ -27,80 +28,68 @@ if(!$userManager->isAdmin($uname)){
 $users = $userManager->getAllUserData();
 ?>
 
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link rel="stylesheet" href="../../css/normalize.css">
-<link rel="stylesheet" href="../../css/style.css">
-<link rel="stylesheet" href="../css/nav.css">
-<link rel="stylesheet" href="../../css/events.css">
-<link rel="stylesheet" href="../../css/admin.css">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<link rel="stylesheet" href="../../css/normalize.css">
+	<link rel="stylesheet" href="../../css/style.css">
+	<link rel="stylesheet" href="../../css/nav.css">
+	<link rel="stylesheet" href="../../css/events.css">
+	<link rel="stylesheet" href="../../css/admin.css">
 
-<nav>
-	<ul>
-	<li class="active"><a href="index.php">hjem</a></li>
-	<li><a href="aktiviteter/">aktiviteter</a></li>
-	<li><a href="../prosjekt/">prosjekter</a></li>
-	<li><a href="kontakt">kontakt</a></li>
-	<li><a href="pvv/">wiki</a></li>
-	</ul>
+	<header class="admin">Bruker&shy;administrasjon</header>
+</head>
 
-	<?php
-		$attr = $as->getAttributes();
-		if($attr){
-			$uname = $attr["uid"][0];
-			echo '<p class="login">logget inn som: ' . $uname . '</p>';
-		}else{
-			echo '<a class="login" href="' . $as->getLoginURL() . '">logg inn</a>';
-		}
-	?>
-</nav>
+<body>
+	<nav>
+		<?php echo navbar(2, 'admin'); ?>
+		<?php echo loginbar(); ?>
+	</nav>
 
-<header class="admin">Bruker&shy;administrasjon</header>
+	<main>
+		<h2>Brukeradministrasjon</h2>
+		<hr class="ruler">
 
-<main>
-<article>
+		<form action="./update.php" method="post">
+		<table class="userlist">
+			<tr><th>Brukernavn</th><th>Brukergrupper</th></tr>
 
-<form action="./update.php" method="post">
-<table class="userlist">
-	<tr><th>Brukernavn</th><th>Brukergrupper</th></tr>
-
-	<?php
-	$users_value = '';
-	foreach($users as $i => $data){
-		$uname = $data['name'];
-		$groupFlag = $userManager->getUsergroups($uname);
-
-		if(!$users_value){
-			$users_value = $uname;
-		}else{
-			$users_value = $users_value . '_' . $uname;
-		}
-	?>
-
-		<tr>
-			<td><?= $uname ?></td>
 			<?php
-			foreach($userManager->usergroups as $name => $group){
-				echo '<td><input type="checkbox" ' . (($groupFlag & $group) ? 'checked' : '') . ' name="' . $uname . '_' . $name . '" class="usergroupcheckbox">' . $name . '</td>';
-			}
+			$users_value = '';
+			foreach($users as $i => $data){
+				$uname = $data['name'];
+				$groupFlag = $userManager->getUsergroups($uname);
+
+				if(!$users_value){
+					$users_value = $uname;
+				}else{
+					$users_value = $users_value . '_' . $uname;
+				}
 			?>
-		</tr>
 
-	<?php
-	}
-	echo '<input type="hidden" name="users" value="' . $users_value . '" />';
-	?>
+				<tr>
+					<td><?= $uname ?></td>
+					<?php
+					foreach($userManager->usergroups as $name => $group){
+						echo '<td><input type="checkbox" ' . (($groupFlag & $group) ? 'checked' : '') . ' name="' . $uname . '_' . $name . '" class="usergroupcheckbox">' . $name . '</td>';
+					}
+					?>
+				</tr>
 
-	<tr class="newuserrow">
-		<td class="newuserelement"><input type="text" name="newuser" class="newuserinput"></td>
-		<?php
-			foreach($userManager->usergroups as $name => $group){
-				echo '<td><input type="checkbox" name="newuser_' . $name . '" class="usergroupcheckbox">' . $name . '</td>';
+			<?php
 			}
-		?>
-	</tr>
-</table>
-<input type="submit" class="btn" value="Lagre">
-</form>
+			echo '<input type="hidden" name="users" value="' . $users_value . '" />';
+			?>
 
-</article>
-</main>
+			<tr class="newuserrow">
+				<td class="newuserelement"><input type="text" name="newuser" class="newuserinput"></td>
+				<?php
+					foreach($userManager->usergroups as $name => $group){
+						echo '<td><input type="checkbox" name="newuser_' . $name . '" class="usergroupcheckbox">' . $name . '</td>';
+					}
+				?>
+			</tr>
+		</table>
+		<input type="submit" class="btn" value="Lagre">
+		</form>
+	</main>
+</body>

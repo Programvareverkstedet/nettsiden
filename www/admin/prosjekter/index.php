@@ -47,87 +47,91 @@ $projects = array_values(array_filter(
 ));
 ?>
 
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link rel="stylesheet" href="../../css/normalize.css">
-<link rel="stylesheet" href="../../css/style.css">
-<link rel="stylesheet" href="../css/nav.css">
-<link rel="stylesheet" href="../../css/events.css">
-<link rel="stylesheet" href="../../css/admin.css">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<link rel="stylesheet" href="../../css/normalize.css">
+	<link rel="stylesheet" href="../../css/style.css">
+	<link rel="stylesheet" href="../../css/nav.css">
+	<link rel="stylesheet" href="../../css/events.css">
+	<link rel="stylesheet" href="../../css/admin.css">
+</head>
 
-<header class="admin">Prosjekt&shy;administrasjon</header>
+<body>
+	<nav>
+		<?php echo navbar(2, 'admin'); ?>
+		<?php echo loginbar(); ?>
+	</nav>
 
-<main>
+	<main>
+		<h2>Prosjektadministrasjon</h2>
+		<hr class="ruler">
 
-<article class="gridsplit">
-	<div class="gridl">
-		<h2 class="no-chin">Prosjekter</h2>
+		<div class="gridsplit">
+			<div class="gridl">
+				<h2 class="no-chin">Prosjekter</h2>
 
-		<ul class="event-list">
-			<?php
-				$counter = 0;
-				$pageLimit = 4;
+				<ul class="event-list">
+					<?php
+						$counter = 0;
+						$pageLimit = 4;
 
-				for($i = ($pageLimit * ($page - 1)); $i < count($projects); $i++){
-					if($counter == $pageLimit){
-						break;
+						for($i = ($pageLimit * ($page - 1)); $i < count($projects); $i++){
+							if($counter == $pageLimit){
+								break;
+							}
+
+							$project = $projects[$i];
+							$projectID = $project->getID();
+					?>
+
+						<li>
+							<div class="event admin">
+								<div class="event-info">
+									<h3 class="no-chin"><?= $project->getName() . " (ID: " . $projectID . ")"; ?></h3>
+									<p class="subnote"><?= 'Organisert av: ' . $project->getOwner(); ?></p>
+									<p><?= $project->getDescription(); ?></p>
+								</div>
+
+								<div class="event-actions">
+									<?= '<a href="edit.php?id=' . $projectID . '">🖊</a>'; ?>
+									<?= '<a href="delete.php?id=' . $projectID . '" onclick="return confirm(\'Knallsikker? (ID: ' . $projectID . ')\');">🗑</a>'; ?>
+								</div>
+							</div>
+						</li>
+
+					<?php
+							$counter++;
+						}
+					?>
+				</ul>
+
+				<?php
+					if($page != 1){
+						echo '<a class="btn float-left" href="?page=' . ($page - 1) . '">Forrige side</a>';
 					}
 
-					$project = $projects[$i];
-					$projectID = $project->getID();
-			?>
-
-				<li>
-					<div class="event admin">
-						<div class="event-info">
-							<h3 class="no-chin"><?= $project->getName() . " (ID: " . $projectID . ")"; ?></h3>
-							<p class="subnote"><?= 'Organisert av: ' . $project->getOwner(); ?></p>
-							<p><?= $project->getDescription(); ?></p>
-						</div>
-
-						<div class="event-actions">
-							<?= '<a href="edit.php?id=' . $projectID . '">🖊</a>'; ?>
-							<?= '<a href="delete.php?id=' . $projectID . '" onclick="return confirm(\'Knallsikker? (ID: ' . $projectID . ')\');">🗑</a>'; ?>
-						</div>
-					</div>
-				</li>
-
-			<?php
-					$counter++;
-				}
-			?>
-		</ul>
-
-		<?php
-			if($page != 1){
-				echo '<a class="btn float-left" href="?page=' . ($page - 1) . '">Forrige side</a>';
-			}
-
-			if(($counter == $pageLimit) and (($pageLimit * $page) < count($projects))){
-				echo '<a class="btn float-right" href="?page=' . ($page + 1) . '">Neste side</a>';
-			}
-		?>
-	</div>
-
-	<div class="gridr">
-		<h2>Verktøy</h2>
-		<a class="btn adminbtn" href="edit.php?new=1">Legg inn nytt prosjekt</a>
-		<h2>Filter</h2>
-		<form action="." method="post">
-			<p class="no-chin">Navn</p>
-			<?= '<input type="text" name="title" class="boxinput" value="' . $filterTitle . '">' ?><br>
-			<p class="no-chin">Organisator</p>
-			<?= '<input type="text" name="organiser" class="boxinput" value="' . $filterOrganiser . '">' ?><br>
-
-			<div style="margin-top: 2em;">
-				<input type="submit" class="btn" value="Filtrer"></input>
+					if(($counter == $pageLimit) and (($pageLimit * $page) < count($projects))){
+						echo '<a class="btn float-right" href="?page=' . ($page + 1) . '">Neste side</a>';
+					}
+				?>
 			</div>
-		</form>
-	</div>
-</article>
 
-</main>
+			<div class="gridr">
+				<h2>Verktøy</h2>
+				<a class="btn adminbtn" href="edit.php?new=1">Legg inn nytt prosjekt</a>
+				<h2>Filter</h2>
+				<form action="." method="post">
+					<p class="no-chin">Prosjektnavn</p>
+					<?= '<input type="text" name="title" class="boxinput" value="' . $filterTitle . '">' ?><br>
+					<p class="no-chin">Leders brukernavn</p>
+					<?= '<input type="text" name="organiser" class="boxinput" value="' . $filterOrganiser . '">' ?><br>
 
-<nav>
-	<?= navbar(2); ?>
-	<?= loginbar(); ?>
-</nav>
+					<div style="margin-top: 2em;">
+						<input type="submit" class="btn" value="Filtrer"></input>
+					</div>
+				</form>
+			</div>
+		</div>
+	</main>
+
+</body>
