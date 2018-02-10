@@ -131,19 +131,3 @@
 	border: none;
 	background-color: #ddd;
 }
-
-.subnote {
-	margin-top: 0;
-	color: gray;
-	font-size: .7em;
-	font-style: italic;
-}
-
-.no-chin {
-	margin-bottom: 0;
-}
-
-.ruler {
-	border: none;
-	border-bottom: 1px dotted rgba(0,0,0,.5);
-}

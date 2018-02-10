@@ -46,41 +46,39 @@ if($new == 0){
 }
 ?>
 
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link rel="stylesheet" href="../../css/normalize.css">
-<link rel="stylesheet" href="../../css/style.css">
-<link rel="stylesheet" href="../../css/events.css">
-<link rel="stylesheet" href="../../css/admin.css">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<link rel="stylesheet" href="../css/normalize.css">
+	<link rel="stylesheet" href="../css/style.css">
+	<link rel="stylesheet" href="../css/nav.css">
+	<link rel="stylesheet" href="../css/splash.css">
+</head>
 
-<header>Prosjekt&shy;verk&shy;stedet</header>
+<body>
+	<nav>
+		<?php echo navbar(1, 'prosjekt'); ?>
+		<?php echo loginbar(); ?>
+	</nav>
 
-<main>
+	<main>
+		<h2>Nytt prosjekt</h2>
 
-<article>
-	<h2>Nytt prosjekt</h2>
+		<form action="update.php", method="post">
+			<p class="subtitle no-chin">Prosjektnavn</p>
+			<p class="subnote">Gi prosjektet ditt et passende navn</p>
+			<input type="text" name="title" value="<?= $project->getName() ?>" class="boxinput" style="width:66%;"><br>
 
-	<form action="update.php", method="post">
-		<p class="subtitle no-chin">Prosjektnavn</p>
-		<p class="subnote">Gi prosjektet ditt et passende navn</p>
-		<input type="text" name="title" value="<?= $project->getName() ?>" class="boxinput" style="width:66%;"><br>
+			<p class="subtitle no-chin">Beskrivelse</p>
+			<p class="subnote">Hva går prosjektet ditt ut på?</p>
+			<textarea name="desc" style="width:100%" rows="8" class="boxinput"><?= $project->getDescription() ?></textarea>
 
-		<p class="subtitle no-chin">Beskrivelse</p>
-		<p class="subnote">Hva går prosjektet ditt ut på?</p>
-		<textarea name="desc" style="width:100%" rows="8" class="boxinput"><?= $project->getDescription() ?></textarea>
+			<?= '<input type="hidden" name="id" value="' . $project->getID() . '" />' ?>
 
-		<?= '<input type="hidden" name="id" value="' . $project->getID() . '" />' ?>
+			<div style="margin-top: 2em;">
+				<hr class="ruler">
 
-		<div style="margin-top: 2em;">
-			<hr class="ruler">
-
-			<?= '<input type="submit" class="btn" value="' . ($new ? 'Opprett prosjekt' : 'Lagre endringer') . '"></a>'; ?>
-		</div>
-	</form>
-</article>
-
-</main>
-
-<nav>
-	<?= navbar(1, 'prosjekt'); ?>
-	<?= loginbar(); ?>
-</nav>
+				<?= '<input type="submit" class="btn" value="' . ($new ? 'Opprett prosjekt' : 'Lagre endringer') . '"></a>'; ?>
+			</div>
+		</form>
+	</main>
+</body>
