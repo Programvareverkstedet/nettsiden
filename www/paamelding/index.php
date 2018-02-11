@@ -30,8 +30,9 @@ if (isset($_GET['code'])) {
 if (isset($_SESSION['userdata'])) { // if logged in with feide
 	$mailHeaders  = "MIME-Version: 1.0" . "\r\n";
 	$mailHeaders .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-	$mailHeaders .= 'From: <spikkjeposche@pvv.ntnu.com>' . "\r\n";
+	$mailHeaders .= 'From: <spikkjeposche@pvv.ntnu.no>' . "\r\n";
 	$mailHeaders .= 'Cc: <' . htmlspecialchars($_SESSION['userdata']['user']['email']) .'>' . "\r\n";
+	$mailParams   = "-fspikkjeposche@pvv.ntnu.no";
 	$mailTo       = "nybruker@pvv.ntnu.no";
 	$mailSubject  = "Nytt medlem for PVV";
 	$mailBody
@@ -41,7 +42,7 @@ if (isset($_SESSION['userdata'])) { // if logged in with feide
 		. "Epost: " . htmlspecialchars($_SESSION['userdata']['user']['email']) . "\n"
 		. "Jeg skal betale medlemsavgiften, og kommer innom PVVs lokaler for å aktivere kontoen min";
 	if (isset($_GET['send_mail'])) { // if logged in with feide
-		mail($mailTo, $mailSubject, $mailBody, $mailHeaders);
+		mail($mailTo, $mailSubject, $mailBody, $mailHeaders, $mailParams);
 	}
 }
 
