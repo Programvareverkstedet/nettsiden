@@ -42,7 +42,12 @@ $translation = ['i dag', 'i morgen', 'denne uka', 'neste uke', 'denne måneden',
 <ul>
 <?php foreach($events as $event) { $counter2++ ?>
 <li>
-<a href="<?= htmlspecialchars($event->getURL()) ?>"><?= $event->getName(); ?></a>
+	
+<?php if ($event->getURL()) { ?>
+	<a href="<?= htmlspecialchars($event->getURL()) ?>"><?= $event->getName(); ?></a>
+<?php } else { ?>
+	<strong><?= $event->getName(); ?></strong>
+<?php } ?>
 <?php /* <a class="icon subscribe">+</a> */ ?>
 <?php if ($period !== \pvv\side\Agenda::TODAY) {
 	echo '<span class="time">' . $event->getStart()->format('H:i') . '</span>';

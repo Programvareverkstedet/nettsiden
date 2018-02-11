@@ -51,15 +51,15 @@ foreach($events as $event) {
 <article>
 	<h2>
 		<?php if ($event->getImageURL()) { ?>
-		<img src="<?= $event->getImageURL() ?>">
+			<img src="<?= $event->getImageURL() ?>">
 		<?php } ?>
 		<?php if (\pvv\side\Agenda::isToday($event->getStart())) { ?><strong><?php } ?>
 		<em><?= $event->getRelativeDate() ?></em>
 		<?php if (\pvv\side\Agenda::isToday($event->getStart())) { ?></strong><?php } ?>
 		<?php if ($event->getURL()) { ?>
-		<a href="<?= $event->getURL() ?>"><?= $event->getName() ?></a>
+			<a href="<?= $event->getURL() ?>"><?= $event->getName() ?></a>
 		<?php } else { ?>
-		<?= $event->getName() ?>
+			<?= $event->getName() ?>
 		<?php } ?>
 	</h2>
 	<ul class="subtext">
