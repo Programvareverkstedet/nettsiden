@@ -23,33 +23,43 @@ h1, h2, h3, h4, h5, h6, li, a.btn, p.login{
 
 nav, #menu {
 	background: #024;
+	padding: 0;
 }
 nav {
 	position: fixed;
+	width: 100%;
 	top: 0;
 	left: 0;
 	right: 0;
 	height: 3em;
+	display: table;
 }
+nav #menu, nav #login {
+	display: table-cell;
+}
+nav #login {
+	text-align: right;
+	padding: 0 .75em;
+	margin: 0;
+}
+
 nav ul {
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
 	margin: .1em auto 0 auto;
 	text-align: center;
 	margin: 0;
 	z-index: 3;
 } 
 nav li {
+	display: inline-block;
 	margin: auto .25em;
 }
 nav #menu_toggle {
 	margin: 0;
+	display: none;
 }
-nav li, nav #menu_toggle {
-	display: inline-block;
+nav li, nav #menu_toggle, nav #login {
 	line-height: 3em;
+	height: 3em;
 }
 nav a {
 	display: inline-block;
@@ -61,21 +71,13 @@ nav a {
 nav li.active, nav li:hover {
 	border-bottom: 2px solid white;
 }
-nav .login{
-	position: fixed;
-	top: .8em;
-	right: .8em;
-	margin: auto;
-	z-index: 3;
-	color: gray;
-}
-nav #menu_toggle {
-	display: none;
-}
 
 @media(max-width: 800px){
 	nav {
 		z-index: 1000;
+	}
+	nav #login {
+		z-index: 2000;
 	}
 	nav li.active, nav li:hover {
 		border: none;
@@ -90,6 +92,7 @@ nav #menu_toggle {
 	}
 	nav #menu li, nav #menu li a {
 		margin-left: 0;
+		display: block;
 	}
 	nav #menu, nav #menu li.active a {
 		padding-left: 1em;
@@ -109,16 +112,22 @@ nav #menu_toggle {
 	nav #menu_toggle, nav #menu:target li.active a {
 		display: block;
 		position: fixed;
+		top: 0;
 		left: 0;
 		right: 0;
 	}
 	nav #menu_toggle {
 		text-align: center;
 	}
-	nav #menu_toggle:hover {
+	nav #menu_toggle:hover, nav #login:hover {
 		background: rgba(255,255,255,.1);
 	}
 
+	nav #login {
+		position: fixed;
+		right: 0;
+		top: 0;
+	}
 }
 header {
 	margin-top: 3rem;

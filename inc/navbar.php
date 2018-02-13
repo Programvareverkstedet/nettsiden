@@ -32,9 +32,9 @@ function loginBar($sp = 'default-sp') {
 	$attr = $as->getAttributes();
 	if($attr) {
 		$uname = $attr['uid'][0];
-		$result .= "\t<p class=\"login\">logget inn som: " . htmlspecialchars($uname) . "</p>\n";
+		$result .= "\t<p id=\"login\">logget inn som: " . htmlspecialchars($uname) . "</p>\n";
 	} else {
-		$result .= "\t<a class=\"login\" href=\"" . htmlspecialchars($as->getLoginURL()) . "\">logg inn</a>\n";
+		$result .= "\t<a id=\"login\" href=\"" . htmlspecialchars($as->getLoginURL()) . "\">logg inn</a>\n";
 	}
 	$result .= "\t<a href=\"#menu\" id=\"menu_toggle\">MENU<big>&nbsp;&#9776;</big></a>\n";
 
