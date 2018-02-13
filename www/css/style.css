@@ -51,6 +51,7 @@ nav #menu {
 	text-align: center;
 	margin: 0;
 	z-index: 3; /* Make appear under #login */
+	width: 100%; /* Claim as much of the CSS table as possible */
 } 
 nav li {
 	display: inline-block;
