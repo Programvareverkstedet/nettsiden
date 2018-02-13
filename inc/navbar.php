@@ -44,14 +44,14 @@ function loginBar($sp = 'default-sp') {
 	if($attr) {
 		$uname = $attr['uid'][0];
 		$result .= "\t<a id=\"login\" href=\"#usermenu\" aria-hidden=\"true\">${svgWhite}" . htmlspecialchars($uname) . "</a>\n";
+
+		$result .= "\n\t<ul id=\"usermenu\">\n";
+		$result .= "\n\t\t<li><a id=\"login\" href=\"#\">${svgBlue}" . htmlspecialchars($uname) . "</a></li>\n";
+		$result .= "\n\t\t<li><a href=\"" . htmlspecialchars($as->getLogoutURL()) . "\">Logg ut</a></li>\n";
+		$result .= "\n\t</ul>\n";
 	} else {
 		$result .= "\t<a id=\"login\" href=\"" . htmlspecialchars($as->getLoginURL()) . "\">${svgWhite}Logg inn</a>\n";
 	}
-
-	$result .= "\n\t<ul id=\"usermenu\">\n";
-	$result .= "\n\t\t<li><a id=\"login\" href=\"#\">${svgBlue}" . htmlspecialchars($uname) . "</a></li>\n";
-	$result .= "\n\t\t<li><a href=\"" . htmlspecialchars($as->getLogoutURL()) . "\">Logg ut</a></li>\n";
-	$result .= "\n\t</ul>\n";
 
 	$result .= "\n\t<a href=\"#menu\" id=\"menu_toggle\" aria-hidden=\"true\"><big>&#9776;&nbsp;</big>MENU</a>\n";
 
