@@ -73,6 +73,10 @@ nav li.active, nav li:hover {
 }
 
 @media(max-width: 800px){
+	nav #menu, nav #menu li.active, nav #menu_toggle, nav #menu:target li.active a, nav #login {
+		position: fixed;
+	}
+
 	nav {
 		z-index: 1000;
 	}
@@ -83,7 +87,6 @@ nav li.active, nav li:hover {
 		border: none;
 	}
 	nav #menu {
-		position: fixed;
 		text-align: left;
 		top: 3em;
 		left: 0;
@@ -104,14 +107,12 @@ nav li.active, nav li:hover {
 		display: block;
 	}
 	nav #menu li.active {
-		position: fixed;
 		top: 0;
 		left: 0;
 	}
 
 	nav #menu_toggle, nav #menu:target li.active a {
 		display: block;
-		position: fixed;
 		top: 0;
 		left: 0;
 		right: 0;
@@ -124,7 +125,6 @@ nav li.active, nav li:hover {
 	}
 
 	nav #login {
-		position: fixed;
 		right: 0;
 		top: 0;
 	}
