@@ -22,10 +22,10 @@ h1, h2, h3, h4, h5, h6, li, a.btn, p.login{
 }
 
 nav, #menu {
-	background: #024;
 	padding: 0;
 }
 nav {
+	background: #024;
 	position: absolute;
 	width: 100%;
 	top: 0;
@@ -106,6 +106,7 @@ nav #usermenu:target {
 	nav #menu li.active {
 		top: -3em; /* -3em for absolute, 0 for fixed.. huh? */
 		left: 0;
+		background: transparent;
 	}
 
 	nav {
@@ -124,15 +125,29 @@ nav #usermenu:target {
 		right: 0;
 		padding: 0;
 	}
+	nav #menu:target {
+		top: 0;
+		padding-top: 3em;
+	}
 	nav #menu li, nav #menu li a {
 		margin-left: 0;
 		display: block;
 	}
-	nav #menu, nav #menu li.active a {
+	nav #menu li a {
 		padding-left: 1em;
 	}
 	nav #menu li {
 		display: none;
+		background: #024;
+	}
+	nav #menu li:hover {
+		background: #1a3957;
+	}
+	nav #menu li.active:hover {
+		background: transparent;
+	}
+	nav #menu:target li.active:hover {
+		background: rgba(255,255,255,.1);
 	}
 	nav #menu:target li, nav #menu li.active {
 		display: block;
@@ -146,6 +161,7 @@ nav #usermenu:target {
 	}
 	nav #menu:target li.active {
 		right: 0;
+		top: 0;
 	}
 	nav #menu_toggle {
 		text-align: center;
