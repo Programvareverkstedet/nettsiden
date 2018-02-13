@@ -1,10 +1,5 @@
 <?php
-date_default_timezone_set('Europe/Oslo');
-setlocale(LC_ALL, 'nb_NO');
-require __DIR__ . '/../../inc/navbar.php';
-require __DIR__ . '/../../inc/agenda.php';
-
-$months_translations = ['januar', 'februar', 'mars', 'april', 'mai', 'juni', 'juli', 'august', 'september', 'oktober', 'november', 'desember'];
+require_once dirname(__DIR__, 2) . implode(DIRECTORY_SEPARATOR, ['', 'inc', 'include.php']);
 
 $year = (isset($_GET['year']))
 	? $_GET['year']
@@ -93,5 +88,5 @@ $days_in_month = date('t', mktime(0, 0, 0, $month, 1, $year));
 
 <nav>
 	<?= navbar(1, 'kalender'); ?>
-	<?= loginbar(); ?>
+	<?= loginbar($sp, $pdo); ?>
 </nav>

@@ -1,11 +1,8 @@
 <?php
-require_once __DIR__ . '/../../inc/navbar.php';
-require_once __DIR__ . '/../../lib/OAuth2-Client/OAuth2Client.php';
-require_once __DIR__ . '/../../dataporten_config.php';
-require_once __DIR__ . '/../../vendor/simplesamlphp/simplesamlphp/lib/_autoload.php';
+require_once dirname(__DIR__, 2) . implode(DIRECTORY_SEPARATOR, ['', 'inc', 'include.php']);
+
 session_start();
 
-$as = new SimpleSAML_Auth_Simple('default-sp');
 $attrs = $as->getAttributes();
 
 $oauth2 = new Kasperrt\Oauth2($dataportenConfig);

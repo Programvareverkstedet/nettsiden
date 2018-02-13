@@ -1,13 +1,7 @@
 <?php
-error_reporting(E_ALL);
-date_default_timezone_set('Europe/Oslo');
-require __DIR__ . '/../../inc/navbar.php';
-require __DIR__ . '/../../src/_autoload.php';
-require __DIR__ . '/../../sql_config.php';
+require_once dirname(__DIR__, 2) . implode(DIRECTORY_SEPARATOR, ['', 'inc', 'include.php']);
 
 $translation = ['i dag', 'i morgen', 'denne uka', 'neste uke', 'denne måneden', 'neste måned'];
-$pdo = new \PDO($dbDsn, $dbUser, $dbPass);
-$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $projectManager = new \pvv\side\ProjectManager($pdo);
 $projects = $projectManager->getAll();
 ?>
@@ -69,5 +63,5 @@ $projects = $projectManager->getAll();
 
 <nav>
 	<?= navbar(1, 'prosjekt'); ?>
-	<?= loginbar(null, $pdo); ?>
+	<?= loginbar($sp, $pdo); ?>
 </nav>

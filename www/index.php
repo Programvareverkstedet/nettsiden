@@ -1,8 +1,5 @@
 <?php
-date_default_timezone_set('Europe/Oslo');
-setlocale(LC_ALL, 'nb_NO');
-require __DIR__ . '/../inc/navbar.php';
-require __DIR__ . '/../inc/agenda.php';
+require_once dirname(__DIR__, 1) . implode(DIRECTORY_SEPARATOR, ['', 'inc', 'include.php']);
 
 $translation = ['i dag', 'i morgen', 'denne uka', 'neste uke', 'denne måneden', 'neste måned'];
 ?>
@@ -91,5 +88,5 @@ For å bli med i våre prosjekter og komitéer må du søke.
 
 <nav>
 	<?php echo navbar(0, ''); ?>
-	<?php echo loginbar(); ?>
+	<?php echo loginbar($sp, $pdo); ?>
 </nav>

@@ -1,5 +1,5 @@
 <?php 
-require_once __DIR__ . '/../../inc/navbar.php';
+require_once dirname(__DIR__, 2) . implode(DIRECTORY_SEPARATOR, ['', 'inc', 'include.php']);
 ?>
 <!DOCTYPE html>
 <html lang=no>
@@ -59,5 +59,5 @@ p {hyphens: auto;}
 
 <nav>
 	<?= navbar(1); ?>
-	<?= loginbar(); ?>
+	<?= loginbar($sp, $pdo); ?>
 </nav>

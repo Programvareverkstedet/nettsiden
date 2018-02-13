@@ -1,11 +1,6 @@
-<!DOCTYPE html>
 <?php
-date_default_timezone_set('Europe/Oslo');
-setlocale(LC_ALL, 'nb_NO');
-require __DIR__ . '/../../inc/navbar.php';
-require __DIR__ . '/../../src/_autoload.php';
-require __DIR__ . '/../../sql_config.php';
-?>
+require_once dirname(__DIR__, 2) . implode(DIRECTORY_SEPARATOR, ['', 'inc', 'include.php']);
+?><!DOCTYPE html>
 <html lang="no">
 <title>Kommunikasjonsverkstedet</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -39,5 +34,5 @@ Det er også mulig å ta i bruk analog kontakt ved å møte opp <a href="https:/
 
 <nav>
 	<?= navbar(1, 'kontakt'); ?>
-	<?= loginbar(null, $pdo); ?>
+	<?= loginbar($sp, $pdo); ?>
 </nav>
