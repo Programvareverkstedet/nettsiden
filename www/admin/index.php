@@ -39,7 +39,7 @@ if(!($isAdmin | $projectGroup | $activityGroup)){
 	</nav>
 
 	<main>
-		<h2>Stor-gutt-leketøy</h2>
+		<h2>Voksenleketøy</h2>
 		<ul class="tools">
 			<?php
 				if($isAdmin | $activityGroup){
