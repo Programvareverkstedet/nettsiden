@@ -26,7 +26,7 @@ nav, #menu {
 	padding: 0;
 }
 nav {
-	position: fixed;
+	position: absolute;
 	width: 100%;
 	top: 0;
 	left: 0;
@@ -74,7 +74,7 @@ nav li.active, nav li:hover {
 
 @media(max-width: 800px){
 	nav #menu, nav #menu li.active, nav #menu_toggle, nav #menu:target li.active a, nav #login {
-		position: fixed;
+		position: absolute;
 	}
 
 	nav {
