@@ -1,5 +1,5 @@
 <?php 
-require_once dirname(__DIR__, 2) . implode(DIRECTORY_SEPARATOR, ['', 'inc', 'include.php']);
+require_once dirname(dirname(__DIR__)) . implode(DIRECTORY_SEPARATOR, ['', 'inc', 'include.php']);
 ?>
 <!DOCTYPE html>
 <html lang=no>
