@@ -14,6 +14,7 @@ $translation = ['i dag', 'i morgen', 'denne uka', 'neste uke', 'denne måneden',
 <link rel="stylesheet" href="css/normalize.css">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/splash.css">
+<link rel="shortcut icon" href="favicon.ico">
 
 <header>Program&shy;vare&shy;verk&shy;stedet</header>
 
