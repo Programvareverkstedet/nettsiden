@@ -50,7 +50,7 @@ nav #menu {
 	margin: .1em auto 0 auto;
 	text-align: center;
 	margin: 0;
-	z-index: 3;
+	z-index: 3; /* Make appear under #login */
 } 
 nav li {
 	display: inline-block;
@@ -83,10 +83,10 @@ nav #usermenu {
 	margin: 0;
 	background: #fff;
 	padding: 0;
-	z-index: 2; /* Make appear over #login */
+	z-index: 5; /* Make appear over #login */
 }
 nav #login {
-	z-index: 1; /* Make appear under #usermenu */
+	z-index: 4; /* Make appear under #usermenu and over #menu */
 }
 
 nav #usermenu li:first-child, nav #usermenu li:first-child a {
@@ -205,7 +205,7 @@ article {
 	margin: 0 1rem 0 1rem;
 	background: white;
 
-	z-index: 2;
+	z-index: 2; /* Make appear under #menu */
 	position: relative;
 }
 article p {
@@ -224,7 +224,7 @@ main:before {
 	right: 1rem;
 	margin: 0 auto;
 	height: 8em;
-	z-index: 1;
+	z-index: 1; /* Make appear under article */
 	max-width: 58rem;
 	box-shadow: 0 -.2rem .15rem rgba(0,0,0,.3);
 	border-radius: 0 0 .3em .3em;
