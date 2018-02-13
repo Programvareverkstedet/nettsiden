@@ -73,8 +73,12 @@ nav li.active, nav li:hover {
 }
 
 @media(max-width: 800px){
-	nav #menu, nav #menu li.active, nav #menu_toggle, nav #menu:target li.active a, nav #login {
+	nav #menu, nav #menu li.active, nav #menu_toggle, nav #login {
 		position: absolute;
+	}
+	nav #menu li.active {
+		top: -3em; /* -3em for absolute, 0 for fixed.. huh? */
+		left: 0;
 	}
 
 	nav {
@@ -105,10 +109,6 @@ nav li.active, nav li:hover {
 	}
 	nav #menu:target li, nav #menu li.active {
 		display: block;
-	}
-	nav #menu li.active {
-		top: 0;
-		left: 0;
 	}
 
 	nav #menu_toggle, nav #menu:target li.active a {
