@@ -1,5 +1,5 @@
 header {
-	margin-top: 50px;
+	margin: 0;
 	padding: 3vh 15vw;
 	width: 70vw;
 	background-color: #002244;
@@ -48,6 +48,62 @@ main {
 .essentials .join {
 	padding: 1em;
 	font-size: 1.2em;
+}
+
+img.float-right {
+	float: right;
+	max-width: 12em;
+	max-height: 12em;
+	vertical-align: baseline;
+}
+
+.calendar-events {
+	padding: 0;
+	list-style: none;
+}
+
+.calendar-events ul .date {
+	color: rgba(0,0,0,.5);
+	font-size: 0.8em;
+	margin-top: .2em;
+}
+
+.calendar-events > li > p {
+	border-bottom: .1em dotted rgba(0,0,0,.2);
+}
+
+.calendar-events ul {
+	list-style: none;
+	padding: 0;
+}
+
+.calendar-events a, #ticker a {
+	text-decoration: none;
+	font-weight: bold;
+	color: black;
+}
+
+.calendar-events a:hover, #ticker a:hover {
+	text-decoration: underline;
+}
+
+.calendar-events ul .time {
+	color: rgba(0,0,0,.5);
+	float: right;
+}
+
+.calendar-events ul .icon, .calendar-events ul .date {
+	float: right;
+	margin-right: .5em;
+}
+
+.contentsplit {
+	display: grid;
+	grid-template-columns: 2.5fr 1.5fr;
+}
+
+.gridr {
+	border-left: 0;
 }
 
 @media(max-width: 600px){

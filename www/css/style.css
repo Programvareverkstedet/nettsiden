@@ -19,6 +19,51 @@ main h2 {
 	color: #002244;
 }
 
+article {
+	margin-bottom: 7vh;
+}
+
+.gridsplit {
+	padding-top: 1.3em;
+	display: grid;
+	grid-template-columns: 3fr 1fr;
+}
+
+.gridsplit5050 {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}
+
+.gridsplitthirds {
+	display: grid;
+	grid-column-gap: 2em;
+	column-rule-style: dotted;
+	grid-template-columns: 1fr 1fr 1fr;
+}
+
+.gridl {
+	height: 100%;
+	grid-column: 1;
+	grid-row: 1;
+}
+
+.gridr {
+	height: 100%;
+	padding: 0 1em;
+	margin-left: 1em;
+	border-left: 1px dotted rgba(0,0,0,0.5);
+	grid-column: 2;
+}
+
+.gridsplit h1:first-child,
+.gridsplit h2:first-child,
+.gridsplit h3:first-child,
+.gridsplit h4:first-child,
+.gridsplit h5:first-child,
+.gridsplit h6:first-child {
+	margin-top: 0;
+}
+
 .btn {
 	padding: .5em;
 	border-radius: 4px;
