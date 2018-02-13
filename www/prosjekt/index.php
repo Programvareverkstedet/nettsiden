@@ -60,7 +60,7 @@ $projects = $projectManager->getAll();
 					<p class="noborder no-chin"><?= "<a href=\"project/?id=" . $project->getID() . "\">" . $project->getName() . "</a>"; ?></p>
 					<p class="subnote"><?= "Organisert av: " . $project->getOwner(); ?></p>
 					<span>
-						<p><?= $project->getDescription(); ?></p>
+						<p><?= implode($project->getDescription(), "</p>\n<p>"); ?></p>
 					</span>
 				</li>
 

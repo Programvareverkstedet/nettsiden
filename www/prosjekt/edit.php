@@ -70,7 +70,7 @@ if($new == 0){
 
 			<p class="subtitle no-chin">Beskrivelse</p>
 			<p class="subnote">Hva går prosjektet ditt ut på?</p>
-			<textarea name="desc" style="width:100%" rows="8" class="boxinput"><?= $project->getDescription() ?></textarea>
+			<textarea name="desc" style="width:100%" rows="8" class="boxinput"><?= implode($project->getDescription(), "\n"); ?></textarea>
 
 			<?= '<input type="hidden" name="id" value="' . $project->getID() . '" />' ?>
 
