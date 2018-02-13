@@ -112,6 +112,12 @@ nav #usermenu:target ~ #login {
 	fill: #024; /* SVG icon */
 	background: white;
 }
+nav #usermenu li:hover {
+	background: #eee;
+}
+nav #usermenu li:first-child:hover {
+	background: transparent;
+}
 
 @media(max-width: 800px){
 	nav #menu, nav #menu li.active, nav #menu_toggle, nav #login {
