@@ -99,11 +99,12 @@ $motd = $motdfetcher->getMOTD();
 		<div class="gridl">
 			<?php
 				$title = $motd["title"];
-				$title_text = " - " . $title;
 
-				echo "<h2>Dagens melding";
-				if($title != ""){
-					echo $title_text;
+				echo "<h2>";
+				if($title == ""){
+					echo "Dagens melding";
+				}else{
+					echo $title;
 				}
 				echo "</h2>";
 
