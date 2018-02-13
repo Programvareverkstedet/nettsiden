@@ -69,5 +69,5 @@ $projects = $projectManager->getAll();
 
 <nav>
 	<?= navbar(1, 'prosjekt'); ?>
-	<?= loginbar(); ?>
+	<?= loginbar(null, $pdo); ?>
 </nav>

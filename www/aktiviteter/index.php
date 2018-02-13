@@ -80,5 +80,5 @@ foreach($events as $event) {
 
 <nav>
 	<?= navbar(1, 'aktiviteter'); ?>
-	<?= loginbar(); ?>
+	<?= loginbar(null, $pdo); ?>
 </nav>

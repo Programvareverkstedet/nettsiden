@@ -25,7 +25,8 @@ function navbar($depth, $active = NULL) {
 	return $result . "\t</ul>\n";
 }
 
-function loginBar($sp = 'default-sp') {
+function loginBar($sp = null, $pdo = null) {
+	if (is_null($sp)) $sp = 'default-sp';
 	$result = "\n";
 	require_once(__DIR__ . '/../vendor/simplesamlphp/simplesamlphp/lib/_autoload.php');
 	$as = new SimpleSAML_Auth_Simple($sp);
@@ -44,10 +45,19 @@ function loginBar($sp = 'default-sp') {
 	$attr = $as->getAttributes();
 	if($attr) {
 		$uname = $attr['uid'][0];
+		if (isset($pdo)) {
+			$userManager = new \pvv\admin\UserManager($pdo);
+			$isAdmin = $userManager->isAdmin($uname);
+		} else {
+			$isAdmin = false;
+		}
 		$result .= "\t<a id=\"login\" href=\"#usermenu\" aria-hidden=\"true\">${svgWhite}" . htmlspecialchars($uname) . "</a>\n";
 
 		$result .= "\n\t<ul id=\"usermenu\">\n";
 		$result .= "\n\t\t<li><a id=\"login\" href=\"#\">${svgBlue}" . htmlspecialchars($uname) . "</a></li>\n";
+		if ($isAdmin) {
+			$result .= "\n\t\t<li><a href=\"/admin/\">Admin</a></li>\n";
+		}
 		$result .= "\n\t\t<li><a href=\"" . htmlspecialchars($as->getLogoutURL()) . "\">Logg ut</a></li>\n";
 		$result .= "\n\t</ul>\n";
 	} else {

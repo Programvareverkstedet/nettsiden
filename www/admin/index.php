@@ -18,7 +18,8 @@ $projectGroup = $userManager->hasGroup($uname, 'prosjekt');
 $activityGroup = $userManager->hasGroup($uname, 'aktiviteter');
 
 if(!($isAdmin | $projectGroup | $activityGroup)){
-	echo 'Her har du ikke lov\'t\'å\'værra!!!';
+	header('Content-Type: text/plain', true, 403);
+	echo "Her har du ikke lov't'å'værra!!!\r\n";
 	exit();
 }
 ?>
@@ -54,5 +55,5 @@ if(!($isAdmin | $projectGroup | $activityGroup)){
 
 <nav>
 	<?= navbar(1); ?>
-	<?= loginbar(); ?>
+	<?= loginbar(null, $pdo); ?>
 </nav>

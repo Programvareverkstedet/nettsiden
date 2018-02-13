@@ -39,5 +39,5 @@ Det er også mulig å ta i bruk analog kontakt ved å møte opp <a href="https:/
 
 <nav>
 	<?= navbar(1, 'kontakt'); ?>
-	<?= loginbar(); ?>
+	<?= loginbar(null, $pdo); ?>
 </nav>
