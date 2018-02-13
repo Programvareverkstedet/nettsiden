@@ -84,7 +84,6 @@ nav #usermenu {
 nav #usermenu li:first-child, nav #usermenu li:first-child a {
 	line-height: 3em;
 	height: 3em;
-	margin: 0;
 }
 nav #usermenu li, nav #usermenu li a {
 	line-height: 2em;
@@ -92,6 +91,7 @@ nav #usermenu li, nav #usermenu li a {
 	color: #024;
 	border: none;
 	display: block;
+	margin: 0;
 }
 nav #usermenu:target {
 	display: block;
