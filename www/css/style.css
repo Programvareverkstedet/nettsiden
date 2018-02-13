@@ -21,6 +21,16 @@ h1, h2, h3, h4, h5, h6, li, a.btn, p.login{
 	font-variant: normal;	
 }
 
+nav, #menu {
+	background: #024;
+}
+nav {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 3em;
+}
 nav ul {
 	position: fixed;
 	top: 0;
@@ -28,21 +38,25 @@ nav ul {
 	right: 0;
 	margin: .1em auto 0 auto;
 	text-align: center;
-	background: #024;
 	margin: 0;
 	z-index: 3;
 } 
 nav li {
+	margin: auto .25em;
+}
+nav #menu_toggle {
+	margin: 0;
+}
+nav li, nav #menu_toggle {
 	display: inline-block;
 	line-height: 3em;
-	margin: auto .5em;
 }
 nav a {
 	display: inline-block;
 	margin: auto;
 	color: white;
 	text-decoration: none;
-	margin: 0 .5em;
+	margin: 0 .75em;
 }
 nav li.active, nav li:hover {
 	border-bottom: 2px solid white;
@@ -54,6 +68,57 @@ nav .login{
 	margin: auto;
 	z-index: 3;
 	color: gray;
+}
+nav #menu_toggle {
+	display: none;
+}
+
+@media(max-width: 800px){
+	nav {
+		z-index: 1000;
+	}
+	nav li.active, nav li:hover {
+		border: none;
+	}
+	nav #menu {
+		position: fixed;
+		text-align: left;
+		top: 3em;
+		left: 0;
+		right: 0;
+		padding: 0;
+	}
+	nav #menu li, nav #menu li a {
+		margin-left: 0;
+	}
+	nav #menu, nav #menu li.active a {
+		padding-left: 1em;
+	}
+	nav #menu li {
+		display: none;
+	}
+	nav #menu:target li, nav #menu li.active {
+		display: block;
+	}
+	nav #menu li.active {
+		position: fixed;
+		top: 0;
+		left: 0;
+	}
+
+	nav #menu_toggle, nav #menu:target li.active a {
+		display: block;
+		position: fixed;
+		left: 0;
+		right: 0;
+	}
+	nav #menu_toggle {
+		text-align: center;
+	}
+	nav #menu_toggle:hover {
+		background: rgba(255,255,255,.1);
+	}
+
 }
 header {
 	margin-top: 3rem;

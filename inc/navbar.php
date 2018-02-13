@@ -36,6 +36,7 @@ function loginBar($sp = 'default-sp') {
 	} else {
 		$result .= "\t<a class=\"login\" href=\"" . htmlspecialchars($as->getLoginURL()) . "\">logg inn</a>\n";
 	}
+	$result .= "\t<a href=\"#menu\" id=\"menu_toggle\">MENU<big>&nbsp;&#9776;</big></a>\n";
 
 	return $result;
 }
