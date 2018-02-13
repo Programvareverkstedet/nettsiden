@@ -38,10 +38,12 @@ nav {
 nav #menu, nav #login {
 	display: table-cell;
 }
-nav #login {
-	text-align: right;
+nav #login, nav #usermenu a {
 	padding: 0 .75em;
 	margin: 0;
+}
+nav #login {
+	text-align: right;
 }
 
 nav #menu {
