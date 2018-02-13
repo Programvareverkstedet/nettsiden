@@ -59,6 +59,7 @@ img.float-right {
 
 .calendar-events {
 	padding: 0;
+	margin-bottom: 1.5em;
 	list-style: none;
 }
 
@@ -106,12 +107,35 @@ img.float-right {
 	border-left: 0;
 }
 
-@media(max-width: 600px){
+@media screen and (max-width: 50rem) {
 	.essentials {
 		flex-direction: column;
 	}
 
 	.essentials a {
 		margin: .2em 0;
+	}
+}
+
+@media screen and (max-width: 65rem) {
+	.contentsplit {
+		display: block;
+	}
+
+	.gridr {
+		height: auto;
+		padding: 0;
+		margin-left: 0;
+		margin-bottom: 3em;
+	}
+
+	.gridr br {
+		margin: 0;
+		height: 0px;
+	}
+
+	.gridl {
+		margin-top: 0;
+		padding: 0;
 	}
 }
