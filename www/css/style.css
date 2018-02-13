@@ -33,6 +33,7 @@ nav {
 	right: 0;
 	height: 3em;
 	display: table;
+	white-space: nowrap;
 }
 nav #menu, nav #login {
 	display: table-cell;
@@ -135,10 +136,13 @@ nav #usermenu:target {
 		display: block;
 	}
 
-	nav #menu_toggle, nav #menu:target li.active a {
+	nav #menu_toggle {
 		display: block;
 		top: 0;
 		left: 0;
+		right: 0;
+	}
+	nav #menu:target li.active {
 		right: 0;
 	}
 	nav #menu_toggle {
