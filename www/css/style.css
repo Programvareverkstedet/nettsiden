@@ -68,6 +68,7 @@ nav a {
 	display: inline-block;
 	margin: auto;
 	color: white;
+	fill: white; /* SVG icon */
 	text-decoration: none;
 	margin: 0 .75em;
 }
@@ -97,6 +98,13 @@ nav #usermenu li, nav #usermenu li a {
 }
 nav #usermenu:target {
 	display: block;
+}
+/* Style #login when #usermenu is targeted */
+/* Requires #login to appear after #usermenu, directly under nav */
+nav #usermenu:target ~ #login {
+	color: #024;
+	fill: #024; /* SVG icon */
+	background: white;
 }
 
 @media(max-width: 800px){
