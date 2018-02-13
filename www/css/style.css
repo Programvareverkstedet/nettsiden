@@ -83,7 +83,12 @@ nav #usermenu {
 	margin: 0;
 	background: #fff;
 	padding: 0;
+	z-index: 2; /* Make appear over #login */
 }
+nav #login {
+	z-index: 1; /* Make appear under #usermenu */
+}
+
 nav #usermenu li:first-child, nav #usermenu li:first-child a {
 	line-height: 3em;
 	height: 3em;
@@ -92,6 +97,7 @@ nav #usermenu li, nav #usermenu li a {
 	line-height: 2em;
 	height: 2em;
 	color: #024;
+	fill: #024; /* SVG icon */
 	border: none;
 	display: block;
 	margin: 0;
@@ -117,12 +123,6 @@ nav #usermenu:target ~ #login {
 		background: transparent;
 	}
 
-	nav {
-		z-index: 1000;
-	}
-	nav #login {
-		z-index: 2000;
-	}
 	nav li.active, nav li:hover {
 		border: none;
 	}
