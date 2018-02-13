@@ -35,8 +35,6 @@ $users = $userManager->getAllUserData();
 	<link rel="stylesheet" href="../../css/nav.css">
 	<link rel="stylesheet" href="../../css/events.css">
 	<link rel="stylesheet" href="../../css/admin.css">
-
-	<header class="admin">Bruker&shy;administrasjon</header>
 </head>
 
 <body>
