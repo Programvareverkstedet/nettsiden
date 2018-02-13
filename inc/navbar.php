@@ -1,14 +1,14 @@
 <?php
 function navbar($depth, $active = NULL) {
-	$result = "\n\t<ul>\n";
+	$result = "\n\t<ul id=\"menu\">\n";
 	$menuItems = [
-		'hjem' => '',
-		'kalender' => 'kalender',
-		'aktiviteter' => 'aktiviteter',
-		'prosjekter' => 'prosjekt',
-		'kontakt' => 'kontakt',
-		'webmail' => 'https://webmail.pvv.ntnu.no/',
-		'wiki' => 'pvv',
+		'Hjem' => '',
+		'Kalender' => 'kalender',
+		'Aktiviteter' => 'aktiviteter',
+		'Prosjekter' => 'prosjekt',
+		'Kontakt' => 'kontakt',
+		'Webmail' => 'https://webmail.pvv.ntnu.no/',
+		'Wiki' => 'pvv',
 	];
 	foreach($menuItems as $caption => $link) {
 		$isActive = $active === $link;
