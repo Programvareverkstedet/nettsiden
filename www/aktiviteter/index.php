@@ -1,4 +1,4 @@
-<?php
+<?php namespace pvv\side;
 require_once dirname(dirname(__DIR__)) . implode(DIRECTORY_SEPARATOR, ['', 'inc', 'include.php']);
 
 $year = (isset($_GET['year']))
@@ -40,9 +40,9 @@ foreach($events as $event) {
 		<?php if ($event->getImageURL()) { ?>
 			<img src="<?= $event->getImageURL() ?>">
 		<?php } ?>
-		<?php if (\pvv\side\Agenda::isToday($event->getStart())) { ?><strong><?php } ?>
+		<?php if (Agenda::isToday($event->getStart())) { ?><strong><?php } ?>
 		<em><?= $event->getRelativeDate() ?></em>
-		<?php if (\pvv\side\Agenda::isToday($event->getStart())) { ?></strong><?php } ?>
+		<?php if (Agenda::isToday($event->getStart())) { ?></strong><?php } ?>
 		<?php if ($event->getURL()) { ?>
 			<a href="<?= $event->getURL() ?>"><?= $event->getName() ?></a>
 		<?php } else { ?>
