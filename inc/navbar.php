@@ -11,10 +11,11 @@ function navbar($depth, $active = NULL) {
 		'wiki' => 'pvv',
 	];
 	foreach($menuItems as $caption => $link) {
+		$isActive = $active === $link;
 		if ($caption !== 'webmail') {
 			$link = rtrim(str_repeat('../', $depth) . $link, '/') . '/';
 		}
-		$result .= "\t\t<li" . ($active === $link ? ' class="active"' : '') . '>'
+		$result .= "\t\t<li" . ($isActive ? ' class="active"' : '') . '>'
 			. '<a href="' . $link . '">'
 			. $caption
 			. "</a></li>\n"
