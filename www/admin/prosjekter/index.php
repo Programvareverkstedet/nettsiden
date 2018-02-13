@@ -89,7 +89,7 @@ $projects = array_values(array_filter(
 								<div class="event-info">
 									<h3 class="no-chin"><?= $project->getName() . " (ID: " . $projectID . ")"; ?></h3>
 									<p class="subnote"><?= 'Organisert av: ' . $project->getOwner(); ?></p>
-									<p><?= $project->getDescription(); ?></p>
+									<p><?= implode($event->getDescription(), "</p>\n<p>"); ?></p>
 								</div>
 
 								<div class="event-actions">
