@@ -50,6 +50,10 @@ if(!($isAdmin | $projectGroup | $activityGroup)){
 					echo '<li><a class="btn" href="prosjekter/">Prosjekter</a></li>';
 				}
 
+				if($isAdmin) {
+					echo '<li><a class="btn" href="motd/">Dagens melding</a></li>';
+				}
+
 				if($isAdmin){
 					echo '<li><a class="btn" href="brukere/">Brukere</a></li>';
 				}
