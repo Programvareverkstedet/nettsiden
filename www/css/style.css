@@ -28,23 +28,24 @@ nav ul {
 	right: 0;
 	margin: .1em auto 0 auto;
 	text-align: center;
-	background: rgba(255,255,255,.8);
+	background: #024;
 	margin: 0;
 	z-index: 3;
 } 
 nav li {
 	display: inline-block;
 	line-height: 3em;
-	margin: auto 1em;
+	margin: auto .5em;
 }
 nav a {
 	display: inline-block;
 	margin: auto;
-	color: gray;
+	color: white;
 	text-decoration: none;
+	margin: 0 .5em;
 }
-nav li.active a {
-	color: #048;
+nav li.active, nav li:hover {
+	border-bottom: 2px solid white;
 }
 nav .login{
 	position: fixed;
