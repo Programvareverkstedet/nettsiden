@@ -69,7 +69,8 @@ if($new == 0){
 			<input type="text" name="title" value="<?= $project->getName() ?>" class="boxinput" style="width:66%;"><br>
 
 			<p class="subtitle no-chin">Beskrivelse</p>
-			<p class="subnote">Hva går prosjektet ditt ut på?</p>
+			<p class="subnote no-chin">Hva går prosjektet ditt ut på?</p>
+			<p class="subnote">Den første linjen blir vist på prosjektkortet, prøv å holde den kort!</p>
 			<textarea name="desc" style="width:100%" rows="8" class="boxinput"><?= implode($project->getDescription(), "\n"); ?></textarea>
 
 			<?= '<input type="hidden" name="id" value="' . $project->getID() . '" />' ?>

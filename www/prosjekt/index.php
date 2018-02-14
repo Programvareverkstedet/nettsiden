@@ -22,6 +22,7 @@ $projects = $projectManager->getAll();
 	<link rel="stylesheet" href="../css/style.css">
 	<link rel="stylesheet" href="../css/nav.css">
 	<link rel="stylesheet" href="../css/splash.css">
+	<link rel="stylesheet" href="../css/projects.css"
 </head>
 
 <body>
@@ -45,27 +46,26 @@ $projects = $projectManager->getAll();
 			<p>Lyst til å gjøre noe kult? Her er et utvalg av de prosjektene som PVVere har laget. Mangler det noe, eller brenner du for noe annet? Sett opp et eget prosjekt!</p>
 			<a class="btn" href="edit.php?new=1">Lag prosjekt</a>
 			<a class="btn" href="mine.php">Mine prosjekter</a>
+			<hr class="projects-divider">
 
-			<ul class="calendar-events">
-				<?php
-					$randProjects = array_rand($projects, min(3, count($projects)));
-					if (!is_array($randProjects)) {
-						$randProjects = [$randProjects];
-					};
-					foreach($randProjects as $i) {
-						$project = $projects[$i];
-				?>
+			<?php
+				$randProjects = array_rand($projects, min(6, count($projects)));
+				if (!is_array($randProjects)) {
+					$randProjects = [$randProjects];
+				};
+				foreach($randProjects as $i) {
+					$project = $projects[$i];
+			?>
 
-				<li>
-					<p class="noborder no-chin"><?= "<a href=\"project/?id=" . $project->getID() . "\">" . $project->getName() . "</a>"; ?></p>
-					<p class="subnote"><?= "Organisert av: " . $project->getOwner(); ?></p>
-					<span>
-						<p><?= implode($project->getDescription(), "</p>\n<p>"); ?></p>
-					</span>
-				</li>
+			<div class="project-card">
+				<div class="card-content">
+					<h4 class="project-title"><?= $project->getName(); ?></h4>
+					<p><?= $project->getDescription()[0]; ?></p>
+				</div>
+				<p class="project-organizer">Organisert av<br><?= $project->getOwner(); ?></p>
+			</div>
 
-				<?php } ?>
-			</ul>
+			<?php } ?>
 		<?php
 			}
 		?>
