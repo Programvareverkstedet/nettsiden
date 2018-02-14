@@ -43,7 +43,7 @@ $agenda = new \pvv\side\Agenda([
 
 	<?php $description = $event->getDescription(); ?>
 	<?php if ($limit) array_splice($description, $limit); ?>
-	<?= implode($description, "</p>\n<p>") ?>
+	<?= implode($description, "<br>") ?>
 </article>
 
 <?php if (!$limit || $limit > 4) {$limit = 4;} else $limit = 2; ?>

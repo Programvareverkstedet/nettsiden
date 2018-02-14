@@ -92,7 +92,7 @@ $events = array_values(array_filter(
 									<p class="subnote">
 										<?= $event->getStart()->format("(Y-m-d H:i:s)") . " - " . $event->getStop()->format("(Y-m-d H:i:s)"); ?>
 									</p>
-									<p><?= implode($event->getDescription(), "</p>\n<p>"); ?></p>
+									<p><?= implode($event->getDescription(), "<br>"); ?></p>
 								</div>
 
 								<div class="event-actions">

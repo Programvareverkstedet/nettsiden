@@ -107,7 +107,7 @@ $motd = $motdfetcher->getMOTD();
 				}
 				echo "</h2>";
 
-				echo "<p>" . implode($motd["content"], "</p>\n<p>") . "</p>";
+				echo "<p>" . implode($motd["content"], "<br>") . "</p>";
 			?>
 		</div>
 	</main>

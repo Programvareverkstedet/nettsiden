@@ -77,7 +77,7 @@ $day = (isset($_GET['day']))
 
 			<?php $description = $event->getDescription(); ?>
 			<?php if ($limit) array_splice($description, $limit); ?>
-			<?= implode($description, "</p>\n<p>") ?>
+			<?= implode($description, "<br>") ?>
 		</div>
 
 		<?php if (!$limit || $limit > 4) {$limit = 4;} else $limit = 2; ?>
