@@ -21,3 +21,8 @@ CREATE TABLE "users" (
 "uname" TEXT,
 "groups" INT DEFAULT 0
 );
+
+CREATE TABLE "motd" (
+"title" TEXT,
+"content" TEXT
+);
