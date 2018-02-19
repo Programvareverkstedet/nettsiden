@@ -12,7 +12,7 @@ function navbar($depth, $active = NULL) {
 	];
 	foreach($menuItems as $caption => $link) {
 		$isActive = $active === $link;
-		if ($caption !== 'webmail') {
+		if ($caption !== 'Webmail') {
 			$link = rtrim(str_repeat('../', $depth) . $link, '/') . '/';
 		}
 		if ($isActive) $link = '#';
