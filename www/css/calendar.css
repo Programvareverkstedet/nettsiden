@@ -57,7 +57,7 @@ figure.calendar {
 
 .calendar ul li.active {
 	color: #222;
-	border-color: #456;
+	border-color: #679;
 	box-shadow: 0 0 3px #89f;
 }
 
@@ -71,12 +71,15 @@ figure.calendar {
 	height: 1.75em;
 	text-align: center;
 	line-height: 1.75em;
-	background: #89a;
 	background: #9ab;
 	color: white;
 	border-radius: 0.875em;
 	margin-bottom: 0.1em;
 	font-size: 0.8em;
+}
+
+.calendar ul li.active .day{
+	background: #248;
 }
 
 .calendar ul li section {
