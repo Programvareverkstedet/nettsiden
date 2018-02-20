@@ -26,6 +26,7 @@ $day = (isset($_GET['day']))
 <main>
 
 <?php
+use \DateTimeImmutable;
 $events = ($day==-1)
 	? $agenda->getNextOfEach(new \DateTimeImmutable)
 	: $agenda->getEventsBetween(
