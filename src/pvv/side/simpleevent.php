@@ -49,7 +49,7 @@ class SimpleEvent extends Event {
 	}
 
 	public function getDescription() {
-		return $this->descr;
+		return array_map(function ($item) {return "<p>".$item;}, $this->descr);
 	}
 
 	public function isDBEvent() {
