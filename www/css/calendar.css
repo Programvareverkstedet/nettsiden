@@ -67,14 +67,16 @@ figure.calendar {
 
 .calendar ul li .day{
 	display: inline-block;
-	width: 1.5em;
-	height: 1.5em;
+	width: 1.75em;
+	height: 1.75em;
 	text-align: center;
-	line-height: 1.5em;
-	background: #038;
+	line-height: 1.75em;
+	background: #89a;
+	background: #9ab;
 	color: white;
-	border-radius: 0.75em;
+	border-radius: 0.875em;
 	margin-bottom: 0.1em;
+	font-size: 0.8em;
 }
 
 .calendar ul li section {
