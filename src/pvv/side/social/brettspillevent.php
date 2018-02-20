@@ -60,4 +60,8 @@ class BrettspillEvent extends Event {
 			];
 	}
 
+	public function getColor() {
+		return "#000";
+	}
+
 }

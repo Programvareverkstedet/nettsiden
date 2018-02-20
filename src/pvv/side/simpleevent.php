@@ -56,4 +56,8 @@ class SimpleEvent extends Event {
 		return $this->isDBEvent;
 	}
 
+	public function getColor() {
+		return "#3b7";
+	}
+
 }

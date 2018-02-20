@@ -41,4 +41,8 @@ class AnimekveldEvent extends Event {
 			];
 	}
 
+	public function getColor() {
+		return "#35a";
+	}
+
 }
