@@ -69,13 +69,13 @@ $days_in_month = date('t', mktime(0, 0, 0, $month, 1, $year));
 		<?php } ?>
 		<?php if (sizeof($events)!=0) { ?>
 			<a href="../aktiviteter/?<?="year=$year&amp;month=$month&amp;day=$day"?>"><div>
-				<span class="noselect"><?= $day ?>.</span>
+				<span class="noselect day"><?= $day ?>.</span>
 				<?php foreach($events as $event) { ?>
-					<section><?=$event->getName()?></section>
+					<section style="background: <?=$event->getColor()?>"><?=$event->getName()?></section>
 				<?php } ?>
 			</div></a>
 		<?php } else { ?>
-			<span class="noselect"><?= $day ?>.</span>
+			<span class="noselect day"><?= $day ?>.</span>
 		<?php } ?>
 	<?php } ?>
 	

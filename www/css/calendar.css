@@ -35,7 +35,7 @@ figure.calendar {
 	min-height: 4.8em;
 	font-size: 0.8em;
 	color: #444;
-	
+	overflow: hidden;
 }
 
 .calendar ul li.header {
@@ -65,8 +65,26 @@ figure.calendar {
 	background-color: #fff;
 }
 
+.calendar ul li .day{
+	display: inline-block;
+	width: 1.5em;
+	height: 1.5em;
+	text-align: center;
+	line-height: 1.5em;
+	background: #038;
+	color: white;
+	border-radius: 0.75em;
+	margin-bottom: 0.1em;
+}
 
-.calendar ul li section::before {
-	content: "\26AB   ";
-	color: #038;
+.calendar ul li section {
+	line-height: 1.5em;
+	background: #038;
+	color: white;
+	border-radius: 0.75em;
+	text-align: center;
+	white-space: nowrap;
+}
+.calendar ul li section + section {
+	margin-top: 0.1em;
 }
