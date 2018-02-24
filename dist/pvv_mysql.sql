@@ -13,6 +13,7 @@ CREATE TABLE projects (
 `name` TEXT,
 `owner` TEXT,
 `owneruname` TEXT,
+`owneremail` TEXT,
 `description` TEXT,
 `active` BOOLEAN
 );

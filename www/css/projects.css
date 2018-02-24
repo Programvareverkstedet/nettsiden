@@ -51,6 +51,52 @@
 	margin-bottom: 2em;
 }
 
+.contentsplit {
+	display: grid;
+	grid-template-columns: 1.3fr 2.7fr;
+}
+
+.gridl {
+	padding: 0 1em 0 1em;
+	box-shadow: 0 2px 10px 0 rgba(0,0,0,0.2);
+}
+
+.gridr {
+	border-left: 0;
+}
+
+.projectowner {
+	padding: 0 .5em 0 .5em;
+	overflow: hidden;
+	border-left: 4px solid #35a;
+}
+
+.projectowner p {
+	margin: 0;
+}
+
+.projectowner p {
+	font-size: .8em;
+}
+
+.projectowner p:first-child {
+	font-size: 1em;
+	margin-bottom: .2em;
+}
+
+.owneruname, .owneremail {
+	display: inline-block;
+	color: #888;
+}
+
+.owneruname {
+	float: left;
+}
+
+.owneremail {
+	float: right;
+}
+
 @media screen and (max-width: 50rem) {
 	.projects {
 		display: inline-block;

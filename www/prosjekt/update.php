@@ -26,24 +26,27 @@ $title = $_POST['title'];
 $desc = $_POST['desc'];
 $owner = $attrs['cn'][0];
 $owneruname = $attrs['uid'][0];
+$owneremail = $attrs['mail'][0];
 
 $statement;
 if($id == 0){
-	$query = 'INSERT INTO projects (name, owner, owneruname, description, active) VALUES (:title, :owner, :owneruname, :desc, 1)';
+	$query = 'INSERT INTO projects (name, owner, owneruname, owneremail, description, active) VALUES (:title, :owner, :owneruname, :desc, 1)';
 	$statement = $pdo->prepare($query);
 
 	$statement->bindParam(':title', $title, PDO::PARAM_STR);
 	$statement->bindParam(':desc', $desc, PDO::PARAM_STR);
 	$statement->bindParam(':owner', $owner, PDO::PARAM_STR);
 	$statement->bindParam(':owneruname', $owneruname, PDO::PARAM_STR);
+	$statement->bindParam(':owneremail', $owneremail, PDO::PARAM_STR);
 }else{
-	$query = 'UPDATE projects SET name=:title, owner=:owner, owneruname=:owneruname, description=:desc WHERE id=:id';
+	$query = 'UPDATE projects SET name=:title, owner=:owner, owneruname=:owneruname, owneremail=:owneremail, description=:desc WHERE id=:id';
 	$statement = $pdo->prepare($query);
 
 	$statement->bindParam(':title', $title, PDO::PARAM_STR);
 	$statement->bindParam(':desc', $desc, PDO::PARAM_STR);
 	$statement->bindParam(':owner', $owner, PDO::PARAM_STR);
 	$statement->bindParam(':owneruname', $owneruname, PDO::PARAM_STR);
+	$statement->bindParam(':owneremail', $owneremail, PDO::PARAM_STR);
 	$statement->bindParam(':id', $id, PDO::PARAM_INT);
 }
 

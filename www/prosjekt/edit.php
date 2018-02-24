@@ -33,6 +33,7 @@ $project = new \pvv\side\Project(
 	'',
 	$attrs["cn"][0],
 	$attrs["uid"][0],
+	$attrs["email"][0]
 	1
 );
 if($new == 0){

@@ -23,6 +23,7 @@ class ProjectManager{
 				$dbProj['description'],
 				$dbProj['owner'],
 				$dbProj['owneruname'],
+				$dbProj['owneremail'],
 				$dbProj['active']
 			);
 			$projects[] = $project;
@@ -44,6 +45,7 @@ class ProjectManager{
 			$dbProj['description'],
 			$dbProj['owner'],
 			$dbProj['owneruname'],
+			$dbProj['owneremail'],
 			$dbProj['active']
 		);
 
@@ -64,6 +66,7 @@ class ProjectManager{
 				$dbProj['description'],
 				$dbProj['owner'],
 				$dbProj['owneruname'],
+				$dbproj['owneremail'],
 				$dbProj['active']
 			);
 			$projects[] = $project;

@@ -71,7 +71,7 @@ $projects = array_values(array_filter(
 					<div class="event">
 						<div class="event-info">
 							<h3 class="no-chin"><?= '<a href="edit.php?id=' . $project->getID() . '">' . $project->getName() . '</a>'; ?></h3>
-							<p><?= implode($project->getDescription()); ?></p>
+							<p><?= implode($project->getDescription(), "<br>"); ?></p>
 						</div>
 					</div>
 				</li>

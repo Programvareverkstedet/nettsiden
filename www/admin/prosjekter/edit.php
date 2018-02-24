@@ -42,6 +42,7 @@ $project = new \pvv\side\Project(
 	'',
 	'kåre knoll',
 	'pvvadmin',
+	'drift@pvv.ntnu.no',
 	0
 );
 if($new == 0){
@@ -85,6 +86,9 @@ if($new == 0){
 
 				<p class="subtitle">Prosjektleder (Navn)</p>
 				<?= '<input type="text" name="organisername" value="' . $project->getOwner(). '" class="boxinput">' ?>
+
+				<p class="subtitle">Prosjektleder E-post</p>
+				<?= '<input type="text" name="organiseremail" value="' . $project->getOwnerEmail(). '" class="boxinput">' ?><br>
 
 				<p class="subtitle">Aktiv</p>
 				<?= '<input type="checkbox" '. ($project->getActive() ? 'checked' : '') . ' name="active"/>' ?>
