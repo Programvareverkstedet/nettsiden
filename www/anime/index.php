@@ -1,11 +1,8 @@
-<!DOCTYPE html>
 <?php
-date_default_timezone_set('Europe/Oslo');
-setlocale(LC_ALL, 'no_NO');
-require __DIR__ . '/../../src/_autoload.php';
-require __DIR__ . '/../../sql_config.php';
+require_once dirname(dirname(__DIR__)) . implode(DIRECTORY_SEPARATOR, ['', 'inc', 'include.php']);
 use \pvv\side\Agenda;
 ?>
+<!DOCTYPE html>
 <html lang="no">
 <title>Sosialverkstedet</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -46,12 +43,7 @@ $nextEvent = $activity->getNextEventFrom(new DateTimeImmutable);
 
 </main>
 
-<nav><ul>
-	<li><a href="../">hjem</a></li>
-	<!--<li><a href="../prosjekt/">prosjekter</a></li>-->
-	<li><a href="../kalender/">kalender</a></li>
-	<li class="active"><a href="../aktiviteter/">aktiviteter</a></li>
-	<li><a href="../prosjekt/">prosjekter</a></li>
-	<li><a href="../kontakt/">kontakt</a></li>
-	<li><a href="../pvv/">wiki</a></li>
+<nav>
+	<?= navbar(1, 'aktiviteter'); ?>
+	<?= loginbar($sp, $pdo); ?>
 </nav>

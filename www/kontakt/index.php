@@ -1,11 +1,7 @@
-<!DOCTYPE html>
 <?php
-date_default_timezone_set('Europe/Oslo');
-setlocale(LC_ALL, 'no_NO');
-require __DIR__ . '/../../inc/navbar.php';
-require __DIR__ . '/../../src/_autoload.php';
-require __DIR__ . '/../../sql_config.php';
+require_once dirname(dirname(__DIR__)) . implode(DIRECTORY_SEPARATOR, ['', 'inc', 'include.php']);
 ?>
+<!DOCTYPE html>
 <html lang="no">
 
 <head>
@@ -14,7 +10,6 @@ require __DIR__ . '/../../sql_config.php';
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 	<link rel="stylesheet" href="../css/normalize.css">
 	<link rel="stylesheet" href="../css/style.css">
-	<link rel="stylesheet" href="../css/nav.css">
 	<link rel="stylesheet" href="../css/events.css">
 </head>
 
@@ -23,7 +18,6 @@ require __DIR__ . '/../../sql_config.php';
 		<?php echo navbar(1, 'kontakt'); ?>
 		<?php echo loginbar(); ?>
 	</nav>
-
 
 	<main>
 		<h2>Kommunikasjon</h2>

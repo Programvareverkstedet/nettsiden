@@ -49,11 +49,15 @@ class SimpleEvent extends Event {
 	}
 
 	public function getDescription() {
-		return $this->descr;
+		return array_map(function ($item) {return "<p>".$item;}, $this->descr);
 	}
 
 	public function isDBEvent() {
 		return $this->isDBEvent;
+	}
+
+	public function getColor() {
+		return "#3b7";
 	}
 
 }

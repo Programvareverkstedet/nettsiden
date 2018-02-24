@@ -1,60 +1,64 @@
 <?php
-function navbar($depth, $active = NULL, $sp = 'default-sp') {
-	require __DIR__ . '/../src/_autoload.php';
-	require_once __DIR__ . '/../vendor/simplesamlphp/simplesamlphp/lib/_autoload.php';
-	require __DIR__ . '/../sql_config.php';
-
-	$result = '<img class="logo" src="' . rtrim(str_repeat('../', $depth)) . "/css/logo-disk-white.png\"/>\n";
-	$result .= "\t\t<ul>\n";
+function navbar($depth, $active = NULL) {
+	$result = "\n\t<ul id=\"menu\">\n";
 	$menuItems = [
 		'Hjem' => '',
 		'Kalender' => 'kalender',
 		'Aktiviteter' => 'aktiviteter',
 		'Prosjekter' => 'prosjekt',
 		'Kontakt' => 'kontakt',
-		'Wiki' => 'pvv'
+		'Webmail' => 'https://webmail.pvv.ntnu.no/',
+		'Wiki' => 'pvv',
 	];
-
-	$as = new SimpleSAML_Auth_Simple($sp);
-	$attr = $as->getAttributes();
-	if($attr) {
-		$uname = $attr['uid'][0];
-
-		$pdo = new \PDO($dbDsn, $dbUser, $dbPass);
-		$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		$userManager = new \pvv\admin\UserManager($pdo);
-
-		$isAdmin = $userManager->isAdmin($uname);
-		$projectGroup = $userManager->hasGroup($uname, 'prosjekt');
-		$activityGroup = $userManager->hasGroup($uname, 'aktiviteter');
-
-		if($isAdmin | $projectGroup | $activityGroup) {
-			$menuItems['Admin'] = 'admin';
-		}
-	}
-
 	foreach($menuItems as $caption => $link) {
-		$result .= "\t\t\t<a href=\"" . rtrim(str_repeat('../', $depth) . $link, '/') . "/\"" . ($active === $link ? ' class="active"' : '') . ">"
-			. "<li>" . $caption . "</li></a>\n"
+		$isActive = $active === $link;
+		if ($caption !== 'Webmail') {
+			$link = rtrim(str_repeat('../', $depth) . $link, '/') . '/';
+		}
+		if ($isActive) $link = '#';
+		$result .= "\t\t<li" . ($isActive ? ' class="active"' : '') . '>'
+			. '<a href="' . $link . '">'
+			. $caption
+			. "</a></li>\n"
 			;
 	}
-	$result .= "\t\t\t" . '<a href="javascript:void(0);" style="font-size:15px;" id="navopen" onclick="navbar()">&#9776;</a>' . "\n";
-	return $result . "\t\t</ul>\n";
+	return $result . "\t</ul>\n";
 }
 
-function loginBar($sp = 'default-sp') {
-	require_once __DIR__ . '/../vendor/simplesamlphp/simplesamlphp/lib/_autoload.php';
-
+function loginBar($sp = null, $pdo = null) {
+	if (is_null($sp)) $sp = 'default-sp';
 	$result = "\n";
+	require_once(__DIR__ . '/../vendor/simplesamlphp/simplesamlphp/lib/_autoload.php');
 	$as = new SimpleSAML_Auth_Simple($sp);
+
+	$svg = '<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 64 64">
+	<circle cx="32" cy="27" r="14" stroke-width="0" />
+	<ellipse cx="32" cy="66" rx="24" ry="28" stroke-width="0" />
+</svg>
+';
 
 	$attr = $as->getAttributes();
 	if($attr) {
 		$uname = $attr['uid'][0];
-		$result .= "\t\t<p class=\"login\">Logget inn som: " . htmlspecialchars($uname) . "</p>\n";
+		$isAdmin = false;
+		if (isset($pdo)) {
+			$userManager = new \pvv\admin\UserManager($pdo);
+			$isAdmin = $userManager->isAdmin($uname);
+		}
+		$result .= "\n\t<ul id=\"usermenu\">\n";
+		$result .= "\n\t\t<li><a id=\"login\" href=\"#\">${svg}" . htmlspecialchars($uname) . "</a></li>\n";
+		if ($isAdmin) {
+			$result .= "\n\t\t<li><a href=\"/admin/\">Admin</a></li>\n";
+		}
+		$result .= "\n\t\t<li><a href=\"" . htmlspecialchars($as->getLogoutURL()) . "\">Logg ut</a></li>\n";
+		$result .= "\n\t</ul>\n";
+
+		$result .= "\t<a id=\"login\" href=\"#usermenu\" aria-hidden=\"true\">${svg}" . htmlspecialchars($uname) . "</a>\n";
 	} else {
-		$result .= "\t\t<a class=\"login\" href=\"" . htmlspecialchars($as->getLoginURL()) . "\">Logg inn</a>\n";
+		$result .= "\t<a id=\"login\" href=\"" . htmlspecialchars($as->getLoginURL()) . "\">${svg}Logg inn</a>\n";
 	}
+
+	$result .= "\n\t<a href=\"#menu\" id=\"menu_toggle\" aria-hidden=\"true\"><big>&#9776;&nbsp;</big>MENU</a>\n";
 
 	return $result;
 }

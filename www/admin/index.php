@@ -1,8 +1,5 @@
 <?php
-require __DIR__ . '/../../inc/navbar.php';
-require __DIR__ . '/../../src/_autoload.php';
-require_once __DIR__ . '/../../vendor/simplesamlphp/simplesamlphp/lib/_autoload.php';
-require __DIR__ . '/../../sql_config.php';
+require_once dirname(dirname(__DIR__)) . implode(DIRECTORY_SEPARATOR, ['', 'inc', 'include.php']);
 
 $pdo = new \PDO($dbDsn, $dbUser, $dbPass);
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -18,7 +15,8 @@ $projectGroup = $userManager->hasGroup($uname, 'prosjekt');
 $activityGroup = $userManager->hasGroup($uname, 'aktiviteter');
 
 if(!($isAdmin | $projectGroup | $activityGroup)){
-	echo 'Her har du ikke lov\'t\'å\'værra!!!';
+	header('Content-Type: text/plain', true, 403);
+	echo "Her har du ikke lov't'å'værra!!!\r\n";
 	exit();
 }
 ?>
@@ -27,7 +25,6 @@ if(!($isAdmin | $projectGroup | $activityGroup)){
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<link rel="stylesheet" href="../css/normalize.css">
 	<link rel="stylesheet" href="../css/style.css">
-	<link rel="stylesheet" href="../css/nav.css">
 	<link rel="stylesheet" href="../css/events.css">
 	<link rel="stylesheet" href="../css/admin.css">
 </head>
@@ -35,7 +32,7 @@ if(!($isAdmin | $projectGroup | $activityGroup)){
 <body>
 	<nav id="navbar">
 		<?php echo navbar(1, 'admin'); ?>
-		<?php echo loginbar(); ?>
+		<?php echo loginbar(null, $pdo); ?>
 	</nav>
 
 	<main>

@@ -43,4 +43,8 @@ class NerdepitsaEvent extends Event {
 			];
 	}
 
+	public function getColor() {
+		return "#c35";
+	}
+
 }

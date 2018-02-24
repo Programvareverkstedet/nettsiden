@@ -54,12 +54,12 @@ class DBActivity implements Activity {
 
 
 	public function getNextEventFrom(DateTimeImmutable $date) {
-		$query = 'SELECT name,start,stop,organiser,location,description FROM events WHERE start > :date ORDER BY start ASC LIMIT 1';
+		$query = 'SELECT id,name,start,stop,organiser,location,description FROM events WHERE start > :date ORDER BY start ASC LIMIT 1';
 		return $this->retrieve($date, $query);
 	}
 
 	public function getPreviousEventFrom(DateTimeImmutable $date) {
-		$query = 'SELECT name,start,stop,organiser,location,description FROM events WHERE start < :date ORDER BY start DESC LIMIT 1';
+		$query = 'SELECT id,name,start,stop,organiser,location,description FROM events WHERE start < :date ORDER BY start DESC LIMIT 1';
 		return $this->retrieve($date, $query);
 	}
 

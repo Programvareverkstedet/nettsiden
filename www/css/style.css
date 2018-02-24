@@ -1,3 +1,196 @@
+/* latin-ext */
+@font-face {
+	font-family: 'Raleway';
+	font-style: normal;
+	font-weight: 400;
+	src: local('Raleway'), local('Raleway-Regular'), url("/css/raleway-latin-ext.woff2") format('woff2');
+	unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+	font-family: 'Raleway';
+	font-style: normal;
+	font-weight: 400;
+	src: local('Raleway'), local('Raleway-Regular'), url() format('woff2');
+	src: local('Raleway'), local('Raleway-Regular'), url("/css/raleway-latin.woff2") format('woff2');
+	unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2212, U+2215;
+}
+h1, h2, h3, h4, h5, h6, li, a.btn, p.login{
+	font-family: Raleway, sans-serif;
+	font-style: normal;
+	font-variant: normal;	
+}
+
+nav, #menu {
+	padding: 0;
+}
+nav {
+	background: #024;
+	position: absolute;
+	width: 100%;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 3em;
+	display: table;
+	white-space: nowrap;
+}
+nav #menu, nav #login {
+	display: table-cell;
+}
+nav #login, nav #usermenu a {
+	padding: 0 .75em;
+	margin: 0;
+}
+nav #login {
+	text-align: right;
+}
+
+nav #menu {
+	margin: .1em auto 0 auto;
+	text-align: center;
+	margin: 0;
+	z-index: 3; /* Make appear under #login */
+	width: 100%; /* Claim as much of the CSS table as possible */
+} 
+nav li {
+	display: inline-block;
+	margin: auto .25em;
+}
+nav #menu_toggle {
+	margin: 0;
+	display: none;
+}
+nav li, nav #menu_toggle, nav #login {
+	line-height: 3em;
+	height: 3em;
+}
+nav a {
+	display: inline-block;
+	margin: auto;
+	color: white;
+	fill: white; /* SVG icon */
+	text-decoration: none;
+	margin: 0 .75em;
+}
+nav li.active, nav li:hover {
+	border-bottom: 2px solid white;
+}
+nav #usermenu {
+	display: none;
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin: 0;
+	background: #fff;
+	padding: 0;
+	z-index: 5; /* Make appear over #login */
+}
+nav #login {
+	z-index: 4; /* Make appear under #usermenu and over #menu */
+}
+
+nav #usermenu li:first-child, nav #usermenu li:first-child a {
+	line-height: 3em;
+	height: 3em;
+}
+nav #usermenu li, nav #usermenu li a {
+	line-height: 2em;
+	height: 2em;
+	color: #024;
+	fill: #024; /* SVG icon */
+	border: none;
+	display: block;
+	margin: 0;
+}
+nav #usermenu:target {
+	display: block;
+}
+/* Style #login when #usermenu is targeted */
+/* Requires #login to appear after #usermenu, directly under nav */
+nav #usermenu:target ~ #login {
+	color: #024;
+	fill: #024; /* SVG icon */
+	background: white;
+}
+nav #usermenu li:hover {
+	background: #eee;
+}
+nav #usermenu li:first-child:hover {
+	background: transparent;
+}
+
+@media(max-width: 800px){
+	nav #menu, nav #menu li.active, nav #menu_toggle, nav #login {
+		position: absolute;
+	}
+	nav #menu li.active {
+		top: -3em; /* -3em for absolute, 0 for fixed.. huh? */
+		left: 0;
+		background: transparent;
+	}
+
+	nav li.active, nav li:hover {
+		border: none;
+	}
+	nav #menu {
+		text-align: left;
+		top: 3em;
+		left: 0;
+		right: 0;
+		padding: 0;
+	}
+	nav #menu:target {
+		top: 0;
+		padding-top: 3em;
+	}
+	nav #menu li, nav #menu li a {
+		margin-left: 0;
+		display: block;
+	}
+	nav #menu li a {
+		padding-left: 1em;
+	}
+	nav #menu li {
+		display: none;
+		background: #024;
+	}
+	nav #menu li:hover {
+		background: #1a3957;
+	}
+	nav #menu li.active:hover {
+		background: transparent;
+	}
+	nav #menu:target li.active:hover {
+		background: rgba(255,255,255,.1);
+	}
+	nav #menu:target li, nav #menu li.active {
+		display: block;
+	}
+
+	nav #menu_toggle {
+		display: block;
+		top: 0;
+		left: 0;
+		right: 0;
+	}
+	nav #menu:target li.active {
+		right: 0;
+		top: 0;
+	}
+	nav #menu_toggle {
+		text-align: center;
+	}
+	nav #menu_toggle:hover, nav #login:hover {
+		background: rgba(255,255,255,.1);
+	}
+
+	nav #login {
+		right: 0;
+		top: 0;
+	}
+}
+
 body {
 	overflow-y: scroll;
 	overflow-x: hidden;
@@ -17,6 +210,9 @@ main {
 
 main h2 {
 	color: #002244;
+
+	z-index: 2; /* Make appear under #menu */
+	position: relative;
 }
 
 article {

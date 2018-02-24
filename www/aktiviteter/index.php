@@ -1,18 +1,5 @@
-<?php
-date_default_timezone_set('Europe/Oslo');
-setlocale(LC_ALL, 'no_NO');
-require_once __DIR__ . '/../../inc/navbar.php';
-require_once __DIR__ . '/../../src/_autoload.php';
-require_once __DIR__ . '/../../sql_config.php';
-
-$pdo = new \PDO($dbDsn, $dbUser, $dbPass);
-$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-use \pvv\side\Agenda;
-$agenda = new \pvv\side\Agenda([
-		new \pvv\side\social\NerdepitsaActivity,
-		new \pvv\side\social\AnimekveldActivity,
-		new \pvv\side\DBActivity($pdo),
-	]);
+<?php namespace pvv\side;
+require_once dirname(dirname(__DIR__)) . implode(DIRECTORY_SEPARATOR, ['', 'inc', 'include.php']);
 
 $year = (isset($_GET['year']))
 	? $_GET['year']
@@ -34,7 +21,6 @@ $day = (isset($_GET['day']))
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 	<link rel="stylesheet" href="../css/normalize.css">
 	<link rel="stylesheet" href="../css/style.css">
-	<link rel="stylesheet" href="../css/nav.css">
 	<link rel="stylesheet" href="../css/events.css">
 </head>
 
@@ -46,6 +32,7 @@ $day = (isset($_GET['day']))
 
 	<main>
 		<?php
+		use \DateTimeImmutable;
 		$events = ($day==-1)
 			? $agenda->getNextOfEach(new \DateTimeImmutable)
 			: $agenda->getEventsBetween(

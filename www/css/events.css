@@ -1,8 +1,8 @@
-h2 a {
+h2 a, h4 a {
 	color: black;
 	text-decoration: none;
 }
-h2 a:hover {
+h2 a:hover, h4 a:hover {
 	text-decoration: underline;
 }
 h2 em {
@@ -32,9 +32,19 @@ h2 img {
 article:first-child h2 img {
 	max-width: 10em;
 }
+h4 {
+	margin-top: 0;
+	margin-bottom: -0.6em;
+}
 
-.subtext {
+
+h2 + .subtext {
 	margin: -1.5em 0 1em 0;
+}
+p + .subtext {
+	margin: -0.5em 0 1em 0;
+}
+.subtext {
 	padding: 0;
 	list-style: none;
 	clear: left;
@@ -49,6 +59,38 @@ article:first-child h2 img {
 	color: black;
 	font-size: 1.2em;
 	font-weight: normal;
+}
+
+.events:before {
+	height: 1px;
+	width: 100%;
+	display: block;
+	content: " ";
+	background-image: -webkit-linear-gradient(left, transparent, rgba(0,0,0,.1), transparent);
+	background-image: -moz-linear-gradient(left, transparent, rgba(0,0,0,.1), transparent);
+	background-image: -o-linear-gradient(left, transparent, rgba(0,0,0,.1), transparent);
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+.events {
+	margin-top: -1.5em;
+	margin-left: 0.3em;
+	margin-bottom: 2em;
+	list-style: none;
+	padding: 0;
+}
+.events >li {
+	padding-left: 0.5em;
+	border-left: 4px solid #35a;
+	margin-top: 0.9em;
+}
+.events li p {
+	text-align: left;
+}
+
+.events .subtext {
+	margin-bottom: 0;
 }
 
 @media screen and (max-width: 50rem) {

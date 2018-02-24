@@ -22,7 +22,5 @@ CREATE TABLE "users" (
 "groups" INT DEFAULT 0
 );
 
-CREATE TABLE "motd" (
-"title" TEXT,
-"content" TEXT
-);
+INSERT INTO users (uname, groups)
+VALUES ("min_test_bruker", 1);

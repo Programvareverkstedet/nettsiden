@@ -1,18 +1,9 @@
 <?php
-date_default_timezone_set('Europe/Oslo');
-setlocale(LC_ALL, 'no_NO');
-require __DIR__ . '/../inc/navbar.php';
-require __DIR__ . '/../src/_autoload.php';
-require __DIR__ . '/../sql_config.php';
+require_once dirname(__DIR__) . implode(DIRECTORY_SEPARATOR, ['', 'inc', 'include.php']);
 
 $translation = ['i dag', 'i morgen', 'denne uka', 'neste uke', 'denne måneden', 'neste måned'];
 $pdo = new \PDO($dbDsn, $dbUser, $dbPass);
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-$agenda = new \pvv\side\Agenda([
-		new \pvv\side\social\NerdepitsaActivity,
-		new \pvv\side\social\AnimekveldActivity,
-		new \pvv\side\DBActivity($pdo),
-	]);
 
 $motdfetcher = new \pvv\side\MOTD($pdo);
 $motd = $motdfetcher->getMOTD();
@@ -26,26 +17,15 @@ $motd = $motdfetcher->getMOTD();
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 	<link rel="stylesheet" href="css/normalize.css">
 	<link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" href="css/nav.css">
 	<link rel="stylesheet" href="css/splash.css">
 	<link rel="stylesheet" href="css/landing.css">
-
-	<script>
-	function navbar() {
-		var x = document.getElementById("navbar");
-		if (x.className === "opennav") {
-			x.className = "";
-		} else {
-			x.className = "opennav";
-		}
-	}
-	</script>
+	<link rel="shortcut icon" href="favicon.ico">
 </head>
 
 <body>
 	<nav id="navbar" class="">
 		<?php echo navbar(0, ''); ?>
-		<?php echo loginbar(); ?>
+		<?php echo loginbar(null, $pdo); ?>
 	</nav>
 
 	<header>
@@ -74,7 +54,11 @@ $motd = $motdfetcher->getMOTD();
 					<ul>
 						<?php foreach($events as $event) { $counter2++ ?>
 							<li>
-							<a href="<?= htmlspecialchars($event->getURL()) ?>"><?= $event->getName(); ?></a>
+							<?php if ($event->getURL()) { ?>
+								<a href="<?= htmlspecialchars($event->getURL()) ?>"><?= $event->getName(); ?></a>
+							<?php } else { ?>
+								<strong><?= $event->getName(); ?></strong>
+							<?php } ?>
 							<?php /* <a class="icon subscribe">+</a> */ ?>
 							<?php if ($period !== \pvv\side\Agenda::TODAY) {
 								echo '<span class="time">' . $event->getStart()->format('H:i') . '</span>';

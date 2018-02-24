@@ -1,13 +1,7 @@
 <?php
-error_reporting(E_ALL);
-date_default_timezone_set('Europe/Oslo');
-require __DIR__ . '/../../inc/navbar.php';
-require __DIR__ . '/../../src/_autoload.php';
-require __DIR__ . '/../../sql_config.php';
+require_once dirname(dirname(__DIR__)) . implode(DIRECTORY_SEPARATOR, ['', 'inc', 'include.php']);
 
 $translation = ['i dag', 'i morgen', 'denne uka', 'neste uke', 'denne måneden', 'neste måned'];
-$pdo = new \PDO($dbDsn, $dbUser, $dbPass);
-$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $projectManager = new \pvv\side\ProjectManager($pdo);
 $projects = $projectManager->getAll();
 ?>
@@ -22,7 +16,7 @@ $projects = $projectManager->getAll();
 	<link rel="stylesheet" href="../css/style.css">
 	<link rel="stylesheet" href="../css/nav.css">
 	<link rel="stylesheet" href="../css/splash.css">
-	<link rel="stylesheet" href="../css/projects.css"
+	<link rel="stylesheet" href="../css/projects.css">
 </head>
 
 <body>
@@ -64,7 +58,6 @@ $projects = $projectManager->getAll();
 				</div>
 				<p class="project-organizer">Organisert av<br><?= $project->getOwner(); ?></p>
 			</div>
-
 			<?php } ?>
 		<?php
 			}
