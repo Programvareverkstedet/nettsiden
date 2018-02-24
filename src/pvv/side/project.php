@@ -7,7 +7,7 @@ class Project{
 	public function __construct($id, $name, $descr, $owner, $owneruname, $active){
 		$this->id = $id;
 		$this->name = $name;
-		$this->descr = $descr;
+		$this->descr = explode("\n", $descr);
 		$this->owner = $owner;
 		$this->owneruname = $owneruname;
 		$this->active = $active;

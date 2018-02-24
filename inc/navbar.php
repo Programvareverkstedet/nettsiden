@@ -40,11 +40,10 @@ function loginBar($sp = null, $pdo = null) {
 	$attr = $as->getAttributes();
 	if($attr) {
 		$uname = $attr['uid'][0];
+		$isAdmin = false;
 		if (isset($pdo)) {
 			$userManager = new \pvv\admin\UserManager($pdo);
 			$isAdmin = $userManager->isAdmin($uname);
-		} else {
-			$isAdmin = false;
 		}
 		$result .= "\n\t<ul id=\"usermenu\">\n";
 		$result .= "\n\t\t<li><a id=\"login\" href=\"#\">${svg}" . htmlspecialchars($uname) . "</a></li>\n";

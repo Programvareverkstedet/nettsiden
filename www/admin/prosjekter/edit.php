@@ -49,53 +49,55 @@ if($new == 0){
 }
 ?>
 
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link rel="stylesheet" href="../../css/normalize.css">
-<link rel="stylesheet" href="../../css/style.css">
-<link rel="stylesheet" href="../../css/events.css">
-<link rel="stylesheet" href="../../css/admin.css">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<link rel="stylesheet" href="../../css/normalize.css">
+	<link rel="stylesheet" href="../../css/style.css">
+	<link rel="stylesheet" href="../../css/nav.css">
+	<link rel="stylesheet" href="../../css/events.css">
+	<link rel="stylesheet" href="../../css/admin.css">
+</head>
 
-<header class="admin">Prosjekt&shy;administrasjon</header>
+<body>
+	<nav>
+		<?php echo navbar(3, 'admin'); ?>
+		<?php echo loginbar(null, $pdo); ?>
+	</nav>
 
-<main>
+	<main>
+		<h2>Prosjektadministrasjon</h2>
+		<hr class="ruler">
 
-<article>
-	<h2><?= ($new == 1 ? "Nytt prosjekt" : "Rediger prosjekt"); ?></h2>
+		<h2><?= ($new == 1 ? "Nytt prosjekt" : "Rediger prosjekt"); ?></h2>
 
-	<form action="update.php", method="post" class="gridsplit5050">
-		<div class="gridl">
-			<p class="subtitle">Tittel</p>
-			<?= '<input type="text" name="title" value="' . $project->getName() . '" class="boxinput">' ?><br>
+		<form action="update.php", method="post" class="gridsplit5050">
+			<div class="gridl">
+				<p class="subtitle">Tittel</p>
+				<?= '<input type="text" name="title" value="' . $project->getName() . '" class="boxinput">' ?><br>
 
-			<p class="subtitle">Beskrivelse</p>
-			<textarea name="desc" cols="40" rows="5" class="boxinput"><?= $project->getDescription(); ?></textarea>
-		</div>
+				<p class="subtitle">Beskrivelse</p>
+				<textarea name="desc" cols="40" rows="5" class="boxinput"><?= implode($project->getDescription(), "\n"); ?></textarea>
+			</div>
 
-		<div class="gridr noborder">
-			<p class="subtitle">Prosjekteier (Brukernavn)</p>
-			<?= '<input type="text" name="organiser" value="' . $project->getOwnerUName(). '" class="boxinput">' ?><br>
+			<div class="gridr noborder">
+				<p class="subtitle">Prosjektleder (Brukernavn)</p>
+				<?= '<input type="text" name="organiser" value="' . $project->getOwnerUName(). '" class="boxinput">' ?><br>
 
-			<p class="subtitle">Prosjekteier (Navn)</p>
-			<?= '<input type="text" name="organisername" value="' . $project->getOwner(). '" class="boxinput">' ?>
+				<p class="subtitle">Prosjektleder (Navn)</p>
+				<?= '<input type="text" name="organisername" value="' . $project->getOwner(). '" class="boxinput">' ?>
 
-			<p class="subtitle">Aktiv</p>
-			<?= '<input type="checkbox" '. ($project->getActive() ? 'checked' : '') . ' name="active"/>' ?>
-		</div>
+				<p class="subtitle">Aktiv</p>
+				<?= '<input type="checkbox" '. ($project->getActive() ? 'checked' : '') . ' name="active"/>' ?>
+			</div>
 
-		<?= '<input type="hidden" name="id" value="' . $project->getID() . '" />' ?>
+			<?= '<input type="hidden" name="id" value="' . $project->getID() . '" />' ?>
 
-		<div class="allgrids" style="margin-top: 2em;">
-			<hr class="ruler">
+			<div class="allgrids" style="margin-top: 2em;">
+				<hr class="ruler">
 
-			<input type="submit" class="btn" value="Lagre">
-		</div>
-	</form>
-	<p>
-</article>
-
-</main>
-
-<nav>
-	<?= navbar(2); ?>
-	<?= loginbar(); ?>
-</nav>
+				<input type="submit" class="btn" value="Lagre">
+			</div>
+		</form>
+		<p>
+	</main>
+</body>

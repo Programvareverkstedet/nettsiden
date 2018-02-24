@@ -45,62 +45,78 @@ if (isset($_SESSION['userdata'])) { // if logged in with feide
 
 ?>
 <!DOCTYPE html>
-<title>PVV registrering</title>
 
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link rel="stylesheet" href="../css/normalize.css">
-<link rel="stylesheet" href="../css/style.css">
+<head>
+	<title>PVV registrering</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<link rel="stylesheet" href="../css/normalize.css">
+	<link rel="stylesheet" href="../css/style.css">
+	<link rel="stylesheet" href="../css/nav.css">
+</head>
 
-<header>Registrerings&shy;verks&shy;stedet</header>
+<body>
+	<nav>
+		<?php echo navbar(1); ?>
+		<?php echo loginbar(null, $pdo); ?>
+	</nav>
 
-<main>
-
-<article>
-	<h2>Registrer deg som bruker</h2>
-	
-	<p>
-		PVV har for øyeblikket et manuelt system for å legge til nye brukere.
-		Det koster 50kr året for medlemskap. For mer informasjon, les <a href="/pvv/Medlem"> her</a>.
-	</p>
-	<p>
-		Vi foretrekker at du kommer inn på besøk på <a href="https://use.mazemap.com/?v=1&left=10.4032&right=10.4044&top=63.4178&bottom=63.4172&campusid=1&zlevel=2&sharepoitype=point&sharepoi=10.40355%2C63.41755%2C2&utm_medium=longurl">våre lokaler på stripa</a>
-		for å sette sette opp din PVV bruker. Hvis du vil, kan du også sende oss
-		en melding fra denne siden med ditt navn, epost og NTNU brukernavn.
-		For å aktivere din brukerkonto på PVV, må du møte opp på
-		lokalene våre slik at du kan få satt ditt passord.
-	</p>
-	
-	<?php if($attrs) { //logged in with pvv account?>
+	<main>
+		<h2>Registrer deg som bruker</h2>
+		
 		<p>
-			Du er nå logget in som <i><?= htmlspecialchars($attrs['uid'][0]) ?></i>,
-			og trenger klart ikke sende melding om å få ny PVV bruker.
+			PVV har for øyeblikket et manuelt system for å legge til nye brukere.
+			Vi foretrekker at du kommer inn på besøk på <a href="https://use.mazemap.com/?v=1&left=10.4032&right=10.4044&top=63.4178&bottom=63.4172&campusid=1&zlevel=2&sharepoitype=point&sharepoi=10.40355%2C63.41755%2C2&utm_medium=longurl">våre lokaler på stripa</a>
+			for å sette sette opp din PVV bruker. Hvis du vil, kan du også sende oss
+			en melding fra denne siden med ditt navn, epost og NTNU brukernavn.
+			For å aktivere din brukerkonto på PVV, må du møte opp på
+			lokalene våre slik at vi kan få satt et passord.
 		</p>
-	<?php } elseif (isset($_SESSION['userdata'])) { //logged in with feide ?>
-		<?php if (! isset($_GET['send_mail'])) { ?>
-			<h3>Meldingen som du nå sender:</h3>
+	
+		<?php if($attrs) { //logged in with pvv account?>
+			<p>
+				Du er nå logget in som <i><?= htmlspecialchars($attrs['uid'][0]) ?></i>,
+				og trenger klart ikke sende melding om å få ny PVV bruker.
+			</p>
+		<?php } elseif (isset($_SESSION['userdata'])) { //logged in with feide ?>
+			<?php if (! isset($_GET['send_mail'])) { ?>
+				<h3>Meldingen som du nå sender:</h3>
+				<code>
+					Til: <?=$mailTo?><br>
+					Fra: nettsiden<br>
+					Tittel: <?=$mailSubject?><br>
+					<br/>
+					<?= nl2br($mailBody) ?>
+				</code><br>
+				<br>
+				<a class="btn" href=".?send_mail#sent">Send!</a>
+			<?php } else { // not logged in?>
+				<p id="sent">
+					Meldingen har blitt sendt!
+				</p>
+			<?php }?>
+		<?php } else { // not logged in?>
+			<a class="btn" href=".?login">Hent navn og epost fra Feide</a>
+		<?php }?>
+		
+		<h3>Meldingen du kan sende:</h3>
+		
+		
+		<?php if($attrs) { //logged in with pvv account?>
+			<p>
+				Du er logget in som <i><?= htmlspecialchars($attrs['uid'][0]) ?></i>,
+				du trenger ikke sende melding om ny bruker fordi du helt klart har en.
+			</p>
+		<?php } elseif (isset($_SESSION['userdata'])) { //logged in with feide ?>
 			<code>
-				Til: <?=$mailTo?><br>
+				Til: drift@pvv.ntnu.no<br>
 				Fra: nettsiden<br>
-				Tittel: <?=$mailSubject?><br>
 				<br/>
 				<?= nl2br($mailBody) ?>
 			</code><br>
 			<br>
-			<a class="btn" href=".?send_mail#sent">Send!</a>
+			Todo: Legg til en "send mail" knapp
 		<?php } else { // not logged in?>
-			<p id="sent">
-				Meldingen har blitt sendt!
-			</p>
+			<a class="btn" href=".?login">æ kanj itj lææv uten dæ piær!</a>
 		<?php }?>
-	<?php } else { // not logged in?>
-		<a class="btn" href=".?login">Hent navn og epost fra Feide</a>
-	<?php }?>
-		
-</article>
-
-</main>
-
-<nav>
-	<?= navbar(1); ?>
-	<?= loginbar(); ?>
-</nav>
+	</main>
+</body>

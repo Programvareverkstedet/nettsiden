@@ -54,59 +54,61 @@ if($new == 0){
 }
 ?>
 
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link rel="stylesheet" href="../../css/normalize.css">
-<link rel="stylesheet" href="../../css/style.css">
-<link rel="stylesheet" href="../../css/events.css">
-<link rel="stylesheet" href="../../css/admin.css">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<link rel="stylesheet" href="../../css/normalize.css">
+	<link rel="stylesheet" href="../../css/style.css">
+	<link rel="stylesheet" href="../../css/nav.css">
+	<link rel="stylesheet" href="../../css/events.css">
+	<link rel="stylesheet" href="../../css/admin.css">
+</head>
 
-<header class="admin">Aktivitets&shy;administrasjon</header>
+<body>
+	<nav>
+		<?php echo navbar(3, 'admin'); ?>
+		<?php echo loginbar(null, $pdo); ?>
+	</nav>
 
-<main>
+	<main>
+		<h2>Aktivietsadministrasjon</h2>
+		<hr class="ruler">
 
-<article>
-	<h2><?= ($new == 1 ? "Ny hendelse" : "Rediger hendelse"); ?></h2>
+		<h2><?= ($new == 1 ? "Ny hendelse" : "Rediger hendelse"); ?></h2>
 
-	<form action="update.php", method="post" class="gridsplit5050">
-		<div class="gridl">
-			<p class="subtitle">Tittel</p>
-			<?= '<input type="text" name="title" value="' . $event->getName(). '" class="boxinput">' ?><br>
+		<form action="update.php", method="post" class="gridsplit5050">
+			<div class="gridl">
+				<p class="subtitle">Tittel</p>
+				<?= '<input type="text" name="title" value="' . $event->getName(). '" class="boxinput">' ?><br>
 
-			<p class="subtitle">Beskrivelse</p>
-			<textarea name="desc" cols="40" rows="5" class="boxinput"><?= implode($event->getDescription(), "\n"); ?></textarea>
-		</div>
+				<p class="subtitle">Beskrivelse</p>
+				<textarea name="desc" cols="40" rows="5" class="boxinput"><?= implode($event->getDescription(), "\n"); ?></textarea>
+			</div>
 
-		<div class="gridr noborder">
-			<p class="subtitle">Starttid (YYYY-MM-DD HH:MM:SS)</p>
-			<?= '<input name="start" type="text"  class="boxinput" value="' . $event->getStart()->format('Y-m-d H:00:00') . '"><br>' ?>
+			<div class="gridr noborder">
+				<p class="subtitle">Starttid (YYYY-MM-DD HH:MM:SS)</p>
+				<?= '<input name="start" type="text"  class="boxinput" value="' . $event->getStart()->format('Y-m-d H:00:00') . '"><br>' ?>
 
-			<p class="subtitle">Sluttid (YYYY-MM-DD HH:MM:SS)</p>
-			<?= '<input name="end" type="text"  class="boxinput" value="' . $event->getStop()->format('Y-m-d H:00:00') . '"><br>' ?>
+				<p class="subtitle">Sluttid (YYYY-MM-DD HH:MM:SS)</p>
+				<?= '<input name="end" type="text"  class="boxinput" value="' . $event->getStop()->format('Y-m-d H:00:00') . '"><br>' ?>
 
-			<p class="subtitle">Organisert av</p>
-			<?= '<input type="text" name="organiser" value="' . $event->getOrganiser(). '" class="boxinput">' ?><br>
+				<p class="subtitle">Arrangør</p>
+				<?= '<input type="text" name="organiser" value="' . $event->getOrganiser(). '" class="boxinput">' ?><br>
 
-			<p class="subtitle">Hvor?</p>
-			<?= '<input type="text" name="location" value="' . $event->getLocation(). '" class="boxinput">' ?><br>
-		</div>
+				<p class="subtitle">Sted</p>
+				<?= '<input type="text" name="location" value="' . $event->getLocation(). '" class="boxinput">' ?><br>
+			</div>
 
-		<?= '<input type="hidden" name="id" value="' . $event->getID() . '" />' ?>
+			<?= '<input type="hidden" name="id" value="' . $event->getID() . '" />' ?>
 
-		<div class="allgrids" style="margin-top: 2em;">
-			<hr class="ruler">
+			<div class="allgrids" style="margin-top: 2em;">
+				<hr class="ruler">
 
-			<input type="submit" class="btn" value="Lagre"></a>
-		</div>
-	</form>
+				<input type="submit" class="btn" value="Lagre"></a>
+			</div>
+		</form>
 
-	
+		
 
-	<p>
-</article>
-
-</main>
-
-<nav>
-	<?= navbar(2); ?>
-	<?= loginbar(); ?>
-</nav>
+		<p>
+	</main>
+</body>

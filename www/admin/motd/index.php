@@ -1,7 +1,7 @@
 <?php
 ini_set('display_errors', '1');
 date_default_timezone_set('Europe/Oslo');
-setlocale(LC_ALL, 'nb_NO');
+setlocale(LC_ALL, 'no_NO');
 error_reporting(E_ALL);
 require __DIR__ . '/../../../inc/navbar.php';
 require __DIR__ . '/../../../src/_autoload.php';
@@ -25,13 +25,15 @@ if(!$userManager->isAdmin($uname)){
 	exit();
 }
 
-$users = $userManager->getAllUserData();
+$motdfetcher = new \pvv\side\MOTD($pdo);
+$motd = $motdfetcher->getMOTD();
 ?>
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<link rel="stylesheet" href="../../css/normalize.css">
 	<link rel="stylesheet" href="../../css/style.css">
+	<link rel="stylesheet" href="../../css/nav.css">
 	<link rel="stylesheet" href="../../css/events.css">
 	<link rel="stylesheet" href="../../css/admin.css">
 </head>
@@ -43,50 +45,22 @@ $users = $userManager->getAllUserData();
 	</nav>
 
 	<main>
-		<h2>Brukeradministrasjon</h2>
+		<h2>Dagens melding</h2>
 		<hr class="ruler">
 
-		<form action="./update.php" method="post">
-		<table class="userlist">
-			<tr><th>Brukernavn</th><th>Brukergrupper</th></tr>
+		<form action="update.php", method="post">
+			<p class="subtitle no-chin">Tittel</p>
+			<p class="subnote">Ikke nødvendig</p>
+			<input type="text" name="title" value="<?= $motd['title'] ?>" class="boxinput" style="width:66%;"><br>
 
-			<?php
-			$users_value = '';
-			foreach($users as $i => $data){
-				$uname = $data['name'];
-				$groupFlag = $userManager->getUsergroups($uname);
+			<p class="subtitle no-chin">Innhold</p>
+			<textarea name="content" style="width:100%" rows="8" class="boxinput"><?= implode($motd["content"], "\n") ?></textarea>
 
-				if(!$users_value){
-					$users_value = $uname;
-				}else{
-					$users_value = $users_value . '_' . $uname;
-				}
-			?>
+			<div style="margin-top: 2em;">
+				<hr class="ruler">
 
-				<tr>
-					<td><?= $uname ?></td>
-					<?php
-					foreach($userManager->usergroups as $name => $group){
-						echo '<td><input type="checkbox" ' . (($groupFlag & $group) ? 'checked' : '') . ' name="' . $uname . '_' . $name . '" class="usergroupcheckbox">' . $name . '</td>';
-					}
-					?>
-				</tr>
-
-			<?php
-			}
-			echo '<input type="hidden" name="users" value="' . $users_value . '" />';
-			?>
-
-			<tr class="newuserrow">
-				<td class="newuserelement"><input type="text" name="newuser" class="newuserinput"></td>
-				<?php
-					foreach($userManager->usergroups as $name => $group){
-						echo '<td><input type="checkbox" name="newuser_' . $name . '" class="usergroupcheckbox">' . $name . '</td>';
-					}
-				?>
-			</tr>
-		</table>
-		<input type="submit" class="btn" value="Lagre">
+				<?= '<input type="submit" class="btn" value="Lagre endringer"></a>'; ?>
+			</div>
 		</form>
 	</main>
 </body>

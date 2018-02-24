@@ -190,107 +190,90 @@ nav #usermenu li:first-child:hover {
 		top: 0;
 	}
 }
-header {
-	margin-top: 3rem;
-	height: 16rem;
-	overflow: hidden;
-	text-align: right;
-	color: #fff;
-	font-family: monospace;
-	padding: 1rem;
-	font-size: 4em;
-	background: url('pvv-background.png') no-repeat 1% 50% #024;
-	background-size: contain;
+
+body {
+	overflow-y: scroll;
+	overflow-x: hidden;
 }
+
+* {
+	font-style: -apple-system, 'avenir next', avenir, roboto, noto, ubuntu, 'helvetica neue', helvetica, arial, sans-serif;
+}
+
 main {
-	max-width: 60rem;
-	margin: -7rem auto 0 auto;
-	padding: 0;
+	padding: 1em 15vw;
+	height: 100vh;
+	margin-top: 7vh;
+
+	background-color: #fff;
 }
-article {
-	padding: .1rem 1rem 1rem 1rem;
-	margin: 0 1rem 0 1rem;
-	background: white;
+
+main h2 {
+	color: #002244;
 
 	z-index: 2; /* Make appear under #menu */
 	position: relative;
 }
-article p {
-	text-align: justify;
-	hyphens: auto;
-}
-article:first-child {
-	border-radius: .5rem .5rem 0 0;
-}
-main:before {
-	content: " ";
-	display: block;
-	position: absolute;
-	top: 16rem;
-	left: 1rem;
-	right: 1rem;
-	margin: 0 auto;
-	height: 8em;
-	z-index: 1; /* Make appear under article */
-	max-width: 58rem;
-	box-shadow: 0 -.2rem .15rem rgba(0,0,0,.3);
-	border-radius: 0 0 .3em .3em;
-	background: white;
+
+article {
+	margin-bottom: 7vh;
 }
 
-.split {
-	display: table;
-	width: 100%;
-	table-layout: fixed;
-	border-spacing: 1em;
-}
-.split > * {
-	display: table-cell;
+.gridsplit {
+	padding-top: 1.3em;
+	display: grid;
+	grid-template-columns: 3fr 1fr;
 }
 
-.subtitle {
-	font-weight: bold;
+.gridsplit5050 {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
 }
 
-.ruler {
-	border: none;
-	border-bottom: 1px dotted rgba(0,0,0,.5);
+.gridsplitthirds {
+	display: grid;
+	grid-column-gap: 2em;
+	column-rule-style: dotted;
+	grid-template-columns: 1fr 1fr 1fr;
 }
 
-a.btn {
+.gridl {
+	height: 100%;
+	grid-column: 1;
+	grid-row: 1;
+}
+
+.gridr {
+	height: 100%;
+	padding: 0 1em;
+	margin-left: 1em;
+	border-left: 1px dotted rgba(0,0,0,0.5);
+	grid-column: 2;
+}
+
+.gridsplit h1:first-child,
+.gridsplit h2:first-child,
+.gridsplit h3:first-child,
+.gridsplit h4:first-child,
+.gridsplit h5:first-child,
+.gridsplit h6:first-child {
+	margin-top: 0;
+}
+
+.btn {
+	padding: .5em;
+	border-radius: 4px;
 	text-decoration: none;
-	border: 1px solid #048;
-	color: #048;
-	padding: .2em 1em;
-	border-radius: .2em;
-	white-space: nowrap;
-	display: inline-block;
-	margin-bottom: .25em;
-}
-a.btn:hover {
-	border-color: #084;
-	background: #eee;
-	color: #084;
-}
-a.btn:active {
-	border-color: #084;
-	background: #084;
-	color: white;
+	color: #fff;
+	background-color: #002244;
+
+	transition: background-color .2s ease;
 }
 
-.boxinput {
-	text-decoration: none;
-	border: 1px solid #048;
-	color: #048;
-	padding: .2em .4em;
-	border-radius: .2em;
-	display: inline-block;
-	margin-bottom: .25em;
-	resize: none;
-}
+.btn:hover {
+	background-color: #00407F;
 
-.noborder {
-	border: none !important;
+	transition: background-color .2s ease;
 }
 
 .subnote {
@@ -304,72 +287,7 @@ a.btn:active {
 	margin-bottom: 0;
 }
 
-.icon.subscribe {
-	color: white;
-	background: #082;
-	border-radius: 1em;
-	width: 1em;
-	line-height: 1em;
-	text-align: center;
-}
-
-@media screen and (max-width: 50rem) {
-	.split, .split > * {
-		display: block;
-	}
-	img.float-right {
-		display: none;
-	}
-	nav li {
-		margin: auto .5em;
-	}
-	header {
-		font-size: 2em;
-	}
-	main {
-		margin: -13rem auto 0 auto;
-	}
-	article {
-		margin: 0 .5rem 0 .5rem;
-	}
-	main:before {
-		left: .5rem;
-		right: .5rem;
-	}
-}
-@media screen and (max-width: 23rem) {
-	body {
-		font-size: 0.8em;
-	}
-	header {
-		margin-top: 2.4rem;
-	}
-	main:before {
-		top: 13rem;
-		height: 13em;
-	}
-}
-
-
-
-.collapsable {
-	display: none;
-}
-.collapsable:target {
-	display: block;
-}
-
-.noselect {
-	/* iOS Safari */
-	-webkit-touch-callout: none;
-	/* Safari */
-	-webkit-user-select: none;
-	/* Konqueror HTML */
-	-khtml-user-select: none;
-	/* Firefox */
-	-moz-user-select: none;
-	/* Internet Explorer/Edge */
-	-ms-user-select: none;
-	/* Non-prefixed version, currently supported by Chrome and Opera */
-	user-select: none;
+.ruler {
+	border: none;
+	border-bottom: 1px dotted rgba(0,0,0,.5);
 }

@@ -1,14 +1,12 @@
-header.admin {
-	margin-top: 3rem;
-	height: 16rem;
-	overflow: hidden;
-	text-align: right;
-	color: #fff;
-	font-family: monospace;
-	padding: 1rem;
-	font-size: 4em;
-	background: url('ja.png') no-repeat 1% 50% #024;
-	background-size: contain;
+.tools {
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.tools li {
+	margin: 1.5em 0;
 }
 
 .event-list {
@@ -56,39 +54,6 @@ header.admin {
 	text-decoration: none;
 }
 
-.gridsplit {
-	padding-top: 1.3em;
-	display: grid;
-	grid-template-columns: 3fr 1fr;
-}
-
-.gridsplit5050 {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-}
-
-.gridl {
-	height: 100%;
-	grid-column: 1;
-}
-
-.gridr {
-	height: 100%;
-	padding: 0 1em;
-	margin-left: 1em;
-	border-left: 1px dotted rgba(0,0,0,0.5);
-	grid-column: 2;
-}
-
-.gridsplit h1:first-child,
-.gridsplit h2:first-child,
-.gridsplit h3:first-child,
-.gridsplit h4:first-child,
-.gridsplit h5:first-child,
-.gridsplit h6:first-child {
-	margin-top: 0;
-}
-
 .allgrids {
 	grid-column: 1 / -1;
 }
@@ -99,27 +64,6 @@ header.admin {
 
 .float-left {
 	float: left;
-}
-
-.btn {
-	text-decoration: none;
-	border: 1px solid #048;
-	color: #048;
-	padding: .2em 1em;
-	border-radius: .2em;
-	white-space: nowrap;
-	display: inline-block;
-	margin-bottom: .25em;
-}
-.btn:hover {
-	border-color: #084;
-	background: #eee;
-	color: #084;
-}
-.btn:active {
-	border-color: #084;
-	background: #084;
-	color: white;
 }
 
 .userlist {
