@@ -13,6 +13,7 @@ CREATE TABLE "projects" (
 "name" TEXT,
 "owner" TEXT,
 "owneruname" TEXT,
+"owneremail" TEXT,
 "description" TEXT,
 "active" BOOLEAN
 );
@@ -20,6 +21,11 @@ CREATE TABLE "projects" (
 CREATE TABLE "users" (
 "uname" TEXT,
 "groups" INT DEFAULT 0
+);
+
+CREATE TABLE "motd" (
+"title" TEXT,
+"content" TEXT
 );
 
 INSERT INTO users (uname, groups)
