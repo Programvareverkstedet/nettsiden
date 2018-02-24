@@ -35,7 +35,7 @@ foreach($agenda->getNextDays() as $period => $events) {
 
 			<?php $description = $event->getDescription(); ?>
 			<?php if ($description_paragraphs) array_splice($description, $description_paragraphs); ?>
-			<p><?= implode($description, "</p>\n<p>") ?></p>
+			<p><?= implode($description, "<br>") ?></p>
 
 			<ul class="subtext">
 				<li>Tid: <strong><?= Agenda::getFormattedDate($event->getStart()) ?></strong>
