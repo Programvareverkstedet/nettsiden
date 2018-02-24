@@ -41,7 +41,7 @@ $motd = $motdfetcher->getMOTD();
 <body>
 	<nav>
 		<?php echo navbar(2, 'admin'); ?>
-		<?php echo loginbar(); ?>
+		<?php echo loginbar(null, $pdo); ?>
 	</nav>
 
 	<main>

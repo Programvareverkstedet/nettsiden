@@ -61,7 +61,7 @@ if($new == 0){
 <body>
 	<nav>
 		<?php echo navbar(3, 'admin'); ?>
-		<?php echo loginbar(); ?>
+		<?php echo loginbar(null, $pdo); ?>
 	</nav>
 
 	<main>

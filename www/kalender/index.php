@@ -30,7 +30,7 @@ $days_in_month = date('t', mktime(0, 0, 0, $month, 1, $year));
 <body>
 	<nav>
 		<?php echo navbar(1, 'kalender'); ?>
-		<?php echo loginbar(); ?>
+		<?php echo loginbar(null, $pdo); ?>
 	</nav>
 
 	<main>

@@ -16,7 +16,7 @@ require_once dirname(dirname(__DIR__)) . implode(DIRECTORY_SEPARATOR, ['', 'inc'
 <body>
 	<nav>
 		<?php echo navbar(1, 'kontakt'); ?>
-		<?php echo loginbar(); ?>
+		<?php echo loginbar(null, $pdo); ?>
 	</nav>
 
 	<main>

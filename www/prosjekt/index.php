@@ -22,7 +22,7 @@ $projects = $projectManager->getAll();
 <body>
 	<nav>
 		<?php echo navbar(1, 'prosjekt'); ?>
-		<?php echo loginbar(); ?>
+		<?php echo loginbar(null, $pdo); ?>
 	</nav>
 
 	<main>

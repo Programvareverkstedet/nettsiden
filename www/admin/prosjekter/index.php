@@ -59,7 +59,7 @@ $projects = array_values(array_filter(
 <body>
 	<nav>
 		<?php echo navbar(2, 'admin'); ?>
-		<?php echo loginbar(); ?>
+		<?php echo loginbar(null, $pdo); ?>
 	</nav>
 
 	<main>

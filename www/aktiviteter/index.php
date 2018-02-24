@@ -27,7 +27,7 @@ $day = (isset($_GET['day']))
 <body>
 	<nav>
 		<?php echo navbar(1, 'aktiviteter'); ?>
-		<?php echo loginbar(); ?>
+		<?php echo loginbar(null, $pdo); ?>
 	</nav>
 
 	<main>

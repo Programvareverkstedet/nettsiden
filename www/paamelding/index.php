@@ -57,7 +57,7 @@ if (isset($_SESSION['userdata'])) { // if logged in with feide
 <body>
 	<nav>
 		<?php echo navbar(1); ?>
-		<?php echo loginbar(); ?>
+		<?php echo loginbar(null, $pdo); ?>
 	</nav>
 
 	<main>
