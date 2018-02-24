@@ -65,35 +65,36 @@
 	border-left: 0;
 }
 
-.projectowner {
+.projectmember {
+	margin-bottom: 1em;
 	padding: 0 .5em 0 .5em;
 	overflow: hidden;
 	border-left: 4px solid #35a;
 }
 
-.projectowner p {
+.projectmember p {
 	margin: 0;
 }
 
-.projectowner p {
+.projectmember p {
 	font-size: .8em;
 }
 
-.projectowner p:first-child {
+.projectmember p:first-child {
 	font-size: 1em;
 	margin-bottom: .2em;
 }
 
-.owneruname, .owneremail {
+.memberuname, .memberemail {
 	display: inline-block;
 	color: #888;
 }
 
-.owneruname {
+.memberuname {
 	float: left;
 }
 
-.owneremail {
+.memberemail {
 	float: right;
 }
 

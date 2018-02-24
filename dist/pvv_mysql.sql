@@ -11,12 +11,19 @@ CREATE TABLE events (
 CREATE TABLE projects ( 
 `id` INTEGER PRIMARY KEY AUTO_INCREMENT,
 `name` TEXT,
+`description` TEXT,
 `owner` TEXT,
 `owneruname` TEXT,
 `owneremail` TEXT,
-`description` TEXT,
 `active` BOOLEAN
 );
+
+CREATE TABLE projectmembers (
+`projectid` INTEGER,
+`name` TEXT,
+`uname` TEXT,
+`role` TEXT
+)
 
 CREATE TABLE users (
 `uname` TEXT,

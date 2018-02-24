@@ -11,6 +11,8 @@ if(isset($_GET['id'])){
 
 $projectManager = new \pvv\side\ProjectManager($pdo);
 $project = $projectManager->getByID($projectID);
+
+$members = $projectManager->getProjectMembers($projectID);
 ?>
 
 <head>
@@ -36,15 +38,24 @@ $project = $projectManager->getByID($projectID);
 		<div class="gridl">
 			<div class="projectlead">
 				<h2>Prosjektledelse</h2>
-				<div class="projectowner">
+				<div class="projectmember">
 					<p>Prosjekteier</p>
-					<p class="ownername"><?= $project->getOwner() ?></p>
-					<p class="owneruname"><?= $project->getOwnerUName(); ?></p>
-					<p class="owneremail"><?= $project->getOwnerEmail(); ?></p>
+					<p class="membername"><?= $project->getOwner() ?></p>
+					<p class="memberuname"><?= $project->getOwnerUName(); ?></p>
+					<p class="memberemail"><?= $project->getOwnerEmail(); ?></p>
 				</div>
 			</div>
 
-			<h2>Medlemmer</h2>
+			<div class="projectmembers">
+				<h2>Medlemmer</h2>
+				<?php foreach($members as $i => $data){ ?>
+					<div class="projectmember">
+						<p><?= $data['role'] ?></p>
+						<p class="membername"><?= $data['name'] ?></p>
+						<p class="memberuname"><?= $data['uname'] ?></p>
+					</div>
+				<?php } ?>
+			</div>
 		</div>
 	</main>
 </body>

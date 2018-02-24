@@ -75,6 +75,7 @@ if($new == 0){
 			<textarea name="desc" style="width:100%" rows="8" class="boxinput"><?= implode($project->getDescription(), "\n"); ?></textarea>
 
 			<?= '<input type="hidden" name="id" value="' . $project->getID() . '" />' ?>
+			<input type="hidden" name="active" value="1"/>
 
 			<div style="margin-top: 2em;">
 				<hr class="ruler">

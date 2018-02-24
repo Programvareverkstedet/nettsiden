@@ -74,4 +74,18 @@ class ProjectManager{
 
 		return $projects;
 	}
+
+	public function getProjectMembers($id){
+		$query = 'SELECT * FROM projectmembers WHERE projectid=:id';
+		$statement = $this->pdo->prepare($query);
+		$statement->bindParam(':id', $id, PDO::PARAM_STR);
+		$statement->execute();
+
+		$members = [];
+		foreach($statement->fetchAll() as $dbUsr){
+			$members[] = ['name' => $dbUsr['name'], 'uname' => $dbUsr['uname'], 'role' => $dbUsr['role']];
+		}
+
+		return $members;
+	}
 }

@@ -16,11 +16,8 @@ $as = new SimpleSAML_Auth_Simple('default-sp');
 $as->requireAuth();
 $attrs = $as->getAttributes();
 
-$id = 0;
-if(isset($_POST['id'])){
-	$id = $_POST['id'];
-	$active = $_POST['active'];
-}
+$id = $_POST['id'];
+$active = $_POST['active'];
 
 $title = $_POST['title'];
 $desc = $_POST['desc'];
@@ -30,7 +27,7 @@ $owneremail = $attrs['mail'][0];
 
 $statement;
 if($id == 0){
-	$query = 'INSERT INTO projects (name, owner, owneruname, owneremail, description, active) VALUES (:title, :owner, :owneruname, :desc, 1)';
+	$query = 'INSERT INTO projects (name, owner, owneruname, owneremail, description, active) VALUES (:title, :owner, :owneruname, :owneremail, :desc, 1)';
 	$statement = $pdo->prepare($query);
 
 	$statement->bindParam(':title', $title, PDO::PARAM_STR);
