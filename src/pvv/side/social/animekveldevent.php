@@ -33,11 +33,11 @@ class AnimekveldEvent extends Event {
 
 	public function getDescription() {
 		return [
-			'<p>Er du glad i japansk tegnefilm eller er du bare nysgjerrige på hva anime er?' . "\n" .
+			'Er du glad i japansk tegnefilm eller er du bare nysgjerrige på hva anime er?' . "\n" .
 			'Bli med oss! Hver fredag finner vi de nyeste episodene for sesongen.' . "\n" .
 			'Vi viser denne senongens nye animeer.',
 
-			'<p>Alle kan være med på å anbefale eller veto serier.'
+			'Alle kan være med på å anbefale eller veto serier.'
 			];
 	}
 
