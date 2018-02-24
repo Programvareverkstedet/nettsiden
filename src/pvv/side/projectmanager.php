@@ -66,7 +66,7 @@ class ProjectManager{
 				$dbProj['description'],
 				$dbProj['owner'],
 				$dbProj['owneruname'],
-				$dbproj['owneremail'],
+				$dbProj['owneremail'],
 				$dbProj['active']
 			);
 			$projects[] = $project;
