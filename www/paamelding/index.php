@@ -97,26 +97,5 @@ if (isset($_SESSION['userdata'])) { // if logged in with feide
 		<?php } else { // not logged in?>
 			<a class="btn" href=".?login">Hent navn og epost fra Feide</a>
 		<?php }?>
-		
-		<h3>Meldingen du kan sende:</h3>
-		
-		
-		<?php if($attrs) { //logged in with pvv account?>
-			<p>
-				Du er logget in som <i><?= htmlspecialchars($attrs['uid'][0]) ?></i>,
-				du trenger ikke sende melding om ny bruker fordi du helt klart har en.
-			</p>
-		<?php } elseif (isset($_SESSION['userdata'])) { //logged in with feide ?>
-			<code>
-				Til: drift@pvv.ntnu.no<br>
-				Fra: nettsiden<br>
-				<br/>
-				<?= nl2br($mailBody) ?>
-			</code><br>
-			<br>
-			Todo: Legg til en "send mail" knapp
-		<?php } else { // not logged in?>
-			<a class="btn" href=".?login">æ kanj itj lææv uten dæ piær!</a>
-		<?php }?>
 	</main>
 </body>
