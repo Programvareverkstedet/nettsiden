@@ -33,16 +33,18 @@ if(isset($_POST['title'])){
 	$filterTitle = $_POST['title'];
 }
 
+/* Temporarily out of service :<
 $filterOrganiser = '';
 if(isset($_POST['organiser'])){
 	$filterOrganiser = $_POST['organiser'];
 }
+*/
 
 // filter
 $projects = array_values(array_filter(
 	$projects,
-	function($project) use ($filterTitle, $filterOrganiser){
-		return (preg_match('/.*'.$filterTitle.'.*/i', $project->getName()) and preg_match('/.*'.$filterOrganiser.'.*/i', $project->getOwner()));
+	function($project) use ($filterTitle){
+		return (preg_match('/.*'.$filterTitle.'.*/i', $project->getName()));
 	}
 ));
 ?>
@@ -82,13 +84,14 @@ $projects = array_values(array_filter(
 
 							$project = $projects[$i];
 							$projectID = $project->getID();
+							$owner = $projectManager->getProjectOwner($projectID);
 					?>
 
 						<li>
 							<div class="event admin">
 								<div class="event-info">
 									<h3 class="no-chin"><?= $project->getName() . " (ID: " . $projectID . ")"; ?></h3>
-									<p class="subnote"><?= 'Organisert av: ' . $project->getOwner(); ?></p>
+									<p class="subnote"><?= 'Organisert av: ' . $owner['name']; ?></p>
 									<p><?= implode($project->getDescription(), "<br>"); ?></p>
 								</div>
 
@@ -124,7 +127,7 @@ $projects = array_values(array_filter(
 					<p class="no-chin">Prosjektnavn</p>
 					<?= '<input type="text" name="title" class="boxinput" value="' . $filterTitle . '">' ?><br>
 					<p class="no-chin">Leders brukernavn</p>
-					<?= '<input type="text" name="organiser" class="boxinput" value="' . $filterOrganiser . '">' ?><br>
+					<?= '<input type="text" name="organiser" class="boxinput" value="">' ?><br>
 
 					<div style="margin-top: 2em;">
 						<input type="submit" class="btn" value="Filtrer"></input>

@@ -48,13 +48,24 @@ $project = new \pvv\side\Project(
 if($new == 0){
 	$project = $projectManager->getByID($projectID);
 }
+
+$members = $projectManager->getProjectMembers($projectID);
+$owner = [
+	'name' => '',
+	'uname' => '',
+	'mail' => '',
+];
+foreach($members as $i => $data){
+	if($data['owner']){
+		$owner = $data;
+	}
+}
 ?>
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<link rel="stylesheet" href="../../css/normalize.css">
 	<link rel="stylesheet" href="../../css/style.css">
-	<link rel="stylesheet" href="../../css/nav.css">
 	<link rel="stylesheet" href="../../css/events.css">
 	<link rel="stylesheet" href="../../css/admin.css">
 </head>
@@ -82,13 +93,13 @@ if($new == 0){
 
 			<div class="gridr noborder">
 				<p class="subtitle">Prosjektleder (Brukernavn)</p>
-				<?= '<input type="text" name="organiser" value="' . $project->getOwnerUName(). '" class="boxinput">' ?><br>
+				<?= '<input type="text" name="organiser" value="' . $owner['uname'] . '" class="boxinput">' ?><br>
 
 				<p class="subtitle">Prosjektleder (Navn)</p>
-				<?= '<input type="text" name="organisername" value="' . $project->getOwner(). '" class="boxinput">' ?>
+				<?= '<input type="text" name="organisername" value="' . $owner['name'] . '" class="boxinput">' ?>
 
 				<p class="subtitle">Prosjektleder E-post</p>
-				<?= '<input type="text" name="organiseremail" value="' . $project->getOwnerEmail(). '" class="boxinput">' ?><br>
+				<?= '<input type="text" name="organiseremail" value="' . $owner['mail'] . '" class="boxinput">' ?><br>
 
 				<p class="subtitle">Aktiv</p>
 				<?= '<input type="checkbox" '. ($project->getActive() ? 'checked' : '') . ' name="active"/>' ?>
@@ -96,6 +107,31 @@ if($new == 0){
 
 			<?= '<input type="hidden" name="id" value="' . $project->getID() . '" />' ?>
 
+			<?php if(!$new){ ?>
+				<div style="grid-column: span 2;">
+					<hr class="ruler">
+				</div>
+
+				<h2 style="grid-column: span 2">Prosjektmedlemmer</h2>
+
+				<table class="userlist" style="grid-column: span 2;">
+					<tr><th>Brukernavn</th><th>Navn</th><th>Rolle</th></tr>
+					<?php foreach($members as $i => $data) { ?>
+						<tr>
+							<td><?= $data['uname']; ?></td>
+							<td><?= $data['name']; ?></td>
+							<td><?= $data['role']; ?></td>
+						</tr>
+					<?php } ?>
+
+					<tr class="newuserrow">
+						<td class="newuserelement"><input type="text" name="newuser_uname"></td>
+						<td class="newuserelement"><input type="text" name="newuser_name"></td>
+						<td class="newuserelement"><input type="text" name="newuser_role"></td>
+					</tr>
+				</table>
+			<?php } ?>
+			
 			<div class="allgrids" style="margin-top: 2em;">
 				<hr class="ruler">
 

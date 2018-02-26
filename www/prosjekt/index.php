@@ -49,6 +49,7 @@ $projects = $projectManager->getAll();
 				};
 				foreach($randProjects as $i) {
 					$project = $projects[$i];
+					$owner = $projectManager->getProjectOwner($project->getID());
 			?>
 
 			<div class="project-card">
@@ -56,7 +57,7 @@ $projects = $projectManager->getAll();
 					<h4 class="project-title"><?= $project->getName(); ?></h4>
 					<p><?= $project->getDescription()[0]; ?></p>
 				</div>
-				<p class="project-organizer">Organisert av<br><?= $project->getOwner(); ?></p>
+				<p class="project-organizer">Organisert av<br><?= $owner['name']; ?></p>
 			</div>
 			<?php } ?>
 		<?php

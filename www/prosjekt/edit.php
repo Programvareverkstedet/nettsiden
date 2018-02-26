@@ -33,13 +33,14 @@ $project = new \pvv\side\Project(
 	'',
 	$attrs["cn"][0],
 	$attrs["uid"][0],
-	$attrs["email"][0],
+	$attrs["mail"][0],
 	1
 );
 if($new == 0){
 	$project = $projectManager->getByID($projectID);
+	$owner = $projectManager->getProjectOwner($projectID);
 
-	if($project->getOwnerUName() != $attrs["uid"][0]){
+	if($owner['uname'] != $attrs["uid"][0]){
 		header('HTTP/1.0 403 Forbidden');
 		echo "wrong user";
 		exit();

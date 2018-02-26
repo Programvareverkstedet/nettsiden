@@ -30,36 +30,49 @@ if(isset($_POST['id'])){
 
 $title = $_POST['title'];
 $desc = $_POST['desc'];
-$owner = $_POST['organisername'];
+$name = $_POST['organisername'];
 $uname = $_POST['organiser'];
-$email = $_POST['organiseremail'];
+$mail = $_POST['organiseremail'];
 $active = (isset($_POST['active']) ? $_POST['active'] : 0);
 
 $statement;
 if($id == 0){
-	$query = 'INSERT INTO projects (name, owner, owneruname, owneremail, description, active) VALUES (:title, :owner, :uname, :email, :desc, :active)';
+	$query = 'INSERT INTO projects (name, description, active) VALUES (:title, :desc, :active)';
 	$statement = $pdo->prepare($query);
 
 	$statement->bindParam(':title', $title, PDO::PARAM_STR);
 	$statement->bindParam(':desc', $desc, PDO::PARAM_STR);
-	$statement->bindParam(':owner', $owner, PDO::PARAM_STR);
-	$statement->bindParam(':uname', $uname, PDO::PARAM_STR);
-	$statement->bindParam(':email', $email, PDO::PARAM_STR);
 	$statement->bindParam(':active', $active, PDO::PARAM_INT);
+
+	$statement->execute();
+
+	$ownerQuery = 'INSERT INTO projectmembers (projectid, name, uname, mail, role, lead, owner) VALUES (last_insert_rowid(), :owner, :owneruname, :owneremail, \'Prosjektleder\', 1, 1)';
+	$statement = $pdo->prepare($ownerQuery);
+	$statement->bindParam(':owner', $name, PDO::PARAM_STR);
+	$statement->bindParam(':owneruname', $uname, PDO::PARAM_STR);
+	$statement->bindParam(':owneremail', $mail, PDO::PARAM_STR);
+
+	$statement->execute();
 }else{
-	$query = 'UPDATE projects SET name=:title, owner=:owner, owneruname=:uname, owneremail=:email, description=:desc, active=:active WHERE id=:id';
+	$query = 'UPDATE projects SET name=:title, description=:desc, active=:active WHERE id=:id';
 	$statement = $pdo->prepare($query);
 
 	$statement->bindParam(':title', $title, PDO::PARAM_STR);
 	$statement->bindParam(':desc', $desc, PDO::PARAM_STR);
-	$statement->bindParam(':owner', $owner, PDO::PARAM_STR);
-	$statement->bindParam(':uname', $uname, PDO::PARAM_STR);
-	$statement->bindParam(':email', $email, PDO::PARAM_STR);
 	$statement->bindParam(':active', $active, PDO::PARAM_INT);
 	$statement->bindParam(':id', $id, PDO::PARAM_INT);
-}
 
-$statement->execute();
+	$statement->execute();
+
+	$query = 'UPDATE projectmembers SET name=:name, uname=:uname, mail=:mail';
+	$statement = $pdo->prepare($query);
+
+	$statement->bindParam(':name', $name, PDO::PARAM_STR);
+	$statement->bindParam(':uname', $uname, PDO::PARAM_STR);
+	$statement->bindParam(':mail', $mail, PDO::PARAM_STR);
+
+	$statement->execute();
+}
 
 header('Location: .');
 ?>

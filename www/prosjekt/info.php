@@ -39,20 +39,27 @@ $members = $projectManager->getProjectMembers($projectID);
 			<div class="projectlead">
 				<h2>Prosjektledelse</h2>
 				<div class="projectmember">
-					<p>Prosjekteier</p>
-					<p class="membername"><?= $project->getOwner() ?></p>
-					<p class="memberuname"><?= $project->getOwnerUName(); ?></p>
-					<p class="memberemail"><?= $project->getOwnerEmail(); ?></p>
+					<?php foreach($members as $i => $data){ 
+							if($data['lead']){
+					?>
+							<p><?= $data['role'] ?></p>
+							<p class="membername"><?= $data['name']; ?></p>
+							<p class="memberuname"><?= $data['uname']; ?></p>
+							<p class="memberemail"><?= $data['mail']; ?></p>
+					<?php }
+						} ?>
 				</div>
 			</div>
 
 			<div class="projectmembers">
 				<h2>Medlemmer</h2>
-				<?php foreach($members as $i => $data){ ?>
+				<?php foreach($members as $i => $data){
+					if($data['lead']){ continue; }
+				?>
 					<div class="projectmember">
-						<p><?= $data['role'] ?></p>
-						<p class="membername"><?= $data['name'] ?></p>
-						<p class="memberuname"><?= $data['uname'] ?></p>
+						<p><?= $data['role'] ? $data['role'] : 'Deltaker' ?></p>
+						<p class="membername"><?= $data['name']; ?></p>
+						<p class="memberuname"><?= $data['uname']; ?></p>
 					</div>
 				<?php } ?>
 			</div>

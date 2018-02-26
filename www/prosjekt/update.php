@@ -21,33 +21,38 @@ $active = $_POST['active'];
 
 $title = $_POST['title'];
 $desc = $_POST['desc'];
-$owner = $attrs['cn'][0];
-$owneruname = $attrs['uid'][0];
-$owneremail = $attrs['mail'][0];
+$name = $attrs['cn'][0];
+$uname = $attrs['uid'][0];
+$mail = $attrs['mail'][0];
 
 $statement;
 if($id == 0){
-	$query = 'INSERT INTO projects (name, owner, owneruname, owneremail, description, active) VALUES (:title, :owner, :owneruname, :owneremail, :desc, 1)';
+	$query = 'INSERT INTO projects (name, description, active) VALUES (:title, :desc, 1)';
 	$statement = $pdo->prepare($query);
 
 	$statement->bindParam(':title', $title, PDO::PARAM_STR);
 	$statement->bindParam(':desc', $desc, PDO::PARAM_STR);
-	$statement->bindParam(':owner', $owner, PDO::PARAM_STR);
-	$statement->bindParam(':owneruname', $owneruname, PDO::PARAM_STR);
-	$statement->bindParam(':owneremail', $owneremail, PDO::PARAM_STR);
+
+	$statement->execute();
+
+	// there's a better way to do this. i just don't know it right now
+	$ownerQuery = 'INSERT INTO projectmembers (projectid, name, uname, mail, role, lead, owner) VALUES (last_insert_rowid(), :owner, :owneruname, :owneremail, \'Prosjektleder\', 1, 1)';
+	 $statement = $pdo->prepare($ownerQuery);
+	$statement->bindParam(':owner', $name, PDO::PARAM_STR);
+	$statement->bindParam(':owneruname', $uname, PDO::PARAM_STR);
+	$statement->bindParam(':owneremail', $mail, PDO::PARAM_STR);
+
+	$statement->execute();
 }else{
-	$query = 'UPDATE projects SET name=:title, owner=:owner, owneruname=:owneruname, owneremail=:owneremail, description=:desc WHERE id=:id';
+	$query = 'UPDATE projects SET name=:title, description=:desc WHERE id=:id';
 	$statement = $pdo->prepare($query);
 
 	$statement->bindParam(':title', $title, PDO::PARAM_STR);
 	$statement->bindParam(':desc', $desc, PDO::PARAM_STR);
-	$statement->bindParam(':owner', $owner, PDO::PARAM_STR);
-	$statement->bindParam(':owneruname', $owneruname, PDO::PARAM_STR);
-	$statement->bindParam(':owneremail', $owneremail, PDO::PARAM_STR);
 	$statement->bindParam(':id', $id, PDO::PARAM_INT);
-}
 
-$statement->execute();
+	$statement->execute();
+}
 
 header('Location: ./mine.php');
 ?>
