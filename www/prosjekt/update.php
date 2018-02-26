@@ -44,6 +44,15 @@ if($id == 0){
 
 	$statement->execute();
 }else{
+	$projectManager = new \pvv\side\ProjectManager($pdo);
+	$owner = $projectManager->getProjectOwner($id);
+
+	if($uname != $owner['uname']){
+		header('Content-Type: text/plain', true, 403);
+		echo "Not project owner for project with ID " . $id . "\r\n";
+		exit();
+	}
+
 	$query = 'UPDATE projects SET name=:title, description=:desc WHERE id=:id';
 	$statement = $pdo->prepare($query);
 
