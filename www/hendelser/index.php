@@ -15,11 +15,17 @@ $translation = ['I dag', 'I morgen', 'Denne uka', 'Neste uke', 'Denne måneden',
 </head>
 
 <body>
+	<nav>
+		<?= navbar(1, 'hendelser'); ?>
+		<?= loginbar($sp, $pdo); ?>
+	</nav>
 	<main>
-		<h2>Hendelser</h2>
-
+		<h2 style="pointer-events:none;">Hendelser</h2>
+		<div style="text-align: center; margin-top: -2.5em;">
+			<a style="padding-left: 2em; padding-right: 2em;" class="btn" style="" href="../kalender/">Kalender</a>
+		</div>
 		<?php
-		$description_paragraphs = 1; //description length
+		$description_paragraphs = 2; //description length
 		foreach($agenda->getNextDays() as $period => $events) {
 			if ($events) { ?>
 				<h2><?= $translation[$period] ?></h2>
@@ -36,7 +42,7 @@ $translation = ['I dag', 'I morgen', 'Denne uka', 'Neste uke', 'Denne måneden',
 
 					<?php $description = $event->getDescription(); ?>
 					<?php if ($description_paragraphs) array_splice($description, $description_paragraphs); ?>
-					<p><?= implode($description, "<br>") ?></p>
+					<p><?= implode("<br>", $description) ?></p>
 
 					<ul class="subtext">
 						<li>Tid: <strong><?= Agenda::getFormattedDate($event->getStart()) ?></strong></li>
@@ -48,10 +54,10 @@ $translation = ['I dag', 'I morgen', 'Denne uka', 'Neste uke', 'Denne måneden',
 				</ul>
 			<?php } ?>
 		<?php } ?>
+		
+		<div style="text-align: center; margin-bottom: 2em;">
+			<a style="padding-left: 2em; padding-right: 2em;" class="btn" style="" href="../kalender/">Kalender</a>
+		</div>
+		
 	</main>
 </body>
-
-<nav>
-	<?= navbar(1, 'hendelser'); ?>
-	<?= loginbar($sp, $pdo); ?>
-</nav>

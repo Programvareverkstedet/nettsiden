@@ -34,7 +34,7 @@ $days_in_month = date('t', mktime(0, 0, 0, $month, 1, $year));
 	</nav>
 
 	<main>
-		<h2 style="text-align:center;">Aktiviteter for <?=$months_translations[$month-1]?> <?=$year?></h2>
+		<h2 style="text-align:center;">PVV Kalender for <?=$months_translations[$month-1]?> <?=$year?></h2>
 	
 		<p><?php
 		$pmonth = $month-1;
