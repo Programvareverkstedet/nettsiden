@@ -3,18 +3,20 @@ function navbar($depth, $active = NULL) {
 	$result = "\n\t<ul id=\"menu\">\n";
 	$menuItems = [
 		'Hjem' => '',
-		'Kalender' => 'kalender',
-		'Aktiviteter' => 'aktiviteter',
+		'Hendelser' => 'hendelser',
+		//'Kalender' => 'kalender',
+		//'Aktiviteter' => 'aktiviteter',
 		'Prosjekter' => 'prosjekt',
 		'Kontakt' => 'kontakt',
-		'Webmail' => 'https://webmail.pvv.ntnu.no/',
+		'Webmail' => 'mail',
+		//'Webmail' => 'https://webmail.pvv.ntnu.no/',
 		'Wiki' => 'pvv',
 	];
 	foreach($menuItems as $caption => $link) {
 		$isActive = $active === $link;
-		if ($caption !== 'Webmail') {
+		//if ($caption !== 'Webmail') {
 			$link = rtrim(str_repeat('../', $depth) . $link, '/') . '/';
-		}
+		//}
 		if ($isActive) $link = '#';
 		$result .= "\t\t<li" . ($isActive ? ' class="active"' : '') . '>'
 			. '<a href="' . $link . '">'
