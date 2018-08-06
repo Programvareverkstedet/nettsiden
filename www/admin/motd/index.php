@@ -54,7 +54,7 @@ $motd = $motdfetcher->getMOTD();
 			<input type="text" name="title" value="<?= $motd['title'] ?>" class="boxinput" style="width:66%;"><br>
 
 			<p class="subtitle no-chin">Innhold</p>
-			<textarea name="content" style="width:100%" rows="8" class="boxinput"><?= implode($motd["content"], "\n") ?></textarea>
+			<textarea name="content" style="width:100%" rows="8" class="boxinput"><?= implode("\n", $motd["content"]) ?></textarea>
 
 			<div style="margin-top: 2em;">
 				<hr class="ruler">
@@ -64,3 +64,5 @@ $motd = $motdfetcher->getMOTD();
 		</form>
 	</main>
 </body>
+
+<?php print_r($motd); ?>

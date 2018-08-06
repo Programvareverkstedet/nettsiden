@@ -31,9 +31,12 @@ CREATE TABLE "users" (
 );
 
 CREATE TABLE "motd" (
+"id" INTEGER PRIMARY KEY AUTOINCREMENT,
 "title" TEXT,
 "content" TEXT
 );
+INSERT INTO motd (title, content)
+VALUES ("MOTD ./dev.sh", "du kan endre motd i admin panelet");
 
 INSERT INTO users (uname, groups)
 VALUES ("min_test_bruker", 1);

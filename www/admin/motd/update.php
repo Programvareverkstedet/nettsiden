@@ -25,13 +25,9 @@ if(!$userManager->isAdmin($uname)){
 	exit();
 }
 
-$query = 'UPDATE motd SET title=:title, content=:content';
-$statement = $pdo->prepare($query);
 
-$statement->bindParam(':title', $_POST['title'], PDO::PARAM_STR);
-$statement->bindParam(':content', $_POST['content'], PDO::PARAM_STR);
-
-$statement->execute();
+$motdfetcher = new \pvv\side\MOTD($pdo);
+$motdfetcher->setMOTD($_POST['title'], $_POST['content']);
 
 header('Location: .');
 ?>

@@ -31,6 +31,7 @@ CREATE TABLE users (
 );
 
 CREATE TABLE motd (
+`id` INTEGER PRIMARY KEY AUTO_INCREMENT,
 `title` TEXT,
 `content` TEXT
 );
