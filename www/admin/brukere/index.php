@@ -48,19 +48,18 @@ $users = $userManager->getAllUserData();
 
 		<form action="./update.php" method="post">
 		<table class="userlist">
-			<tr><th>Brukernavn</th><th>Brukergrupper</th></tr>
+			<tr>
+				<th>Brukernavn</th>
+				<th>Brukergrupper</th>
+			</tr>
 
 			<?php
-			$users_value = '';
+			$users_to_update = array();
 			foreach($users as $i => $data){
 				$uname = $data['name'];
 				$groupFlag = $userManager->getUsergroups($uname);
 
-				if(!$users_value){
-					$users_value = $uname;
-				}else{
-					$users_value = $users_value . '_' . $uname;
-				}
+				array_push($users_to_update, $uname);
 			?>
 
 				<tr>
@@ -74,7 +73,10 @@ $users = $userManager->getAllUserData();
 
 			<?php
 			}
-			echo '<input type="hidden" name="users" value="' . $users_value . '" />';
+			foreach($users_to_update as $uname) {
+				echo '<input type="hidden" name="user_to_update" value="' . $uname . '" />';
+			}
+			
 			?>
 
 			<tr class="newuserrow">

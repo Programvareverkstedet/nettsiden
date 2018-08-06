@@ -26,8 +26,13 @@ if(isset($_POST['newuser'])){
 	unset($_POST['newuser']);	
 }
 
-$updatingUsers = explode('_', $_POST['users']);
-unset($_POST['users']);
+//$updatingUsers = explode('_', $_POST['users']);
+$updatingUsers = array();
+foreach ($_POST as $key => $value) { if ($key === "user_to_update") {
+		array_push($updatingUsers, $value);
+	}
+}
+unset($_POST['user_to_update']);
 
 // 2d array of usernames and their corresponding group flags
 $userFlags = [];
@@ -37,22 +42,24 @@ if($newUser){
 
 foreach($_POST as $namegroup => $info){
 	$data = explode('_', $namegroup);
-	if($data[0] == 'newuser'){
+	$group = array_pop($data);
+	$uname = implode("_", $data);
+	if($uname == 'newuser'){
 		if(!$newUser){
 			continue;
 		}
 
-		$data[0] = $newUser;
+		$uname = $newUser;
 	}
 
-	if(!isset($userFlags[$data[0]])){
-		$userFlags[$data[0]] = 0;
+	if(!isset($userFlags[$uname])){
+		$userFlags[$uname] = 0;
 	}
 
-	$userFlags[$data[0]] = ($userFlags[$data[0]] | $userManager->usergroups[$data[1]]);
+	$userFlags[$uname] = ($userFlags[$uname] | $userManager->usergroups[$group]);
 }
 
-foreach($updatingUsers as $uname){
+foreach($updatingUsers as $uname) {
 	if(!array_key_exists($uname, $userFlags)){
 		$userFlags[$uname] = 0;
 	}
