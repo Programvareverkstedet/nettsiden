@@ -196,6 +196,7 @@ nav #usermenu li:first-child:hover {
 body {
 	overflow-y: scroll;
 	overflow-x: hidden;
+	min-height: 100vh;
 }
 
 * {
@@ -203,10 +204,8 @@ body {
 }
 
 main {
-	padding: 1em 15vw;
-	height: 100vh;
-	margin-top: 7vh;
-
+	box-sizing: border-box;
+	padding: 5em 15vw 2em 15vw;
 	background-color: #fff;
 }
 
