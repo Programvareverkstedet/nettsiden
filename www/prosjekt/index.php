@@ -90,13 +90,13 @@ $projects = $projectManager->getAll();
 					$owner = $projectManager->getProjectOwner($project->getID());
 			?>
 
-			<div class="project-card">
+			<a class="nostyle" href="info.php?id=<?= $project->getID() ?>"><div class="project-card">
 				<div class="card-content">
 					<h4 class="project-title"><?= $project->getName(); ?></h4>
 					<p><?= implode('<br>',array_slice($project->getDescription(), 0, 2)); ?></p>
 				</div>
 				<p class="project-organizer">Organisert av <?= $owner['name']; ?></p>
-			</div>
+			</div></a>
 			<?php } ?>
 			</div>
 			<center>
