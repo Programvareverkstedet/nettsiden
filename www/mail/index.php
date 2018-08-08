@@ -13,7 +13,7 @@ p {hyphens: auto;}
 <link rel="stylesheet" href="../css/style.css">
 <link rel="stylesheet" href="../css/mail.css">
 
-<header>Programvareverkstedet</header>
+<header>Programvare&shy;verk&shy;stedet</header>
 
 <main>
 
@@ -26,6 +26,6 @@ p {hyphens: auto;}
 </main>
 
 <nav>
-	<?= navbar(1); ?>
+	<?= navbar(1, "mail"); ?>
 	<?= loginbar($sp, $pdo); ?>
 </nav>
