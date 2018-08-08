@@ -24,9 +24,10 @@ h2 strong em {
 }
 h2 img {
 	float: right;
-	max-width: 5em;
+	max-width: 10em;
 	border: .2em solid white;
-	box-shadow: 0 2px 2px black;
+	border-radius: 0.2em;
+	box-shadow: 0 2px 2px gray;
 	margin-left: 1em;
 }
 article:first-child h2 img {
