@@ -20,7 +20,7 @@ class AnimekveldEvent extends Event {
 	}
 
 	public function getOrganiser() /* : User */ {
-		return "Liang Zhu";
+		return "Christoffer Viken";
 	}
 
 	public function getURL() /* : string */ {
@@ -33,9 +33,9 @@ class AnimekveldEvent extends Event {
 
 	public function getDescription() {
 		return [
-			'Er du glad i japansk tegnefilm eller er du bare nysgjerrige på hva anime er?',
-			'Bli med oss! Hver fredag finner vi de nyeste episodene for sesongen.',
-			'Vi viser denne senongens nye animeer.',
+			'Er du glad i japanske tegneserier eller er du bare nysgjerrige på hva anime er?',
+			'Bli med oss hver fredag, der vi finner frem de nyeste episodene for sesongen!',
+			'Vi viser denne sesongens nye animeer.',
 			'',
 			'Alle kan være med på å anbefale eller veto serier.'
 			];
