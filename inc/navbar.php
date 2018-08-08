@@ -17,7 +17,9 @@ function navbar($depth, $active = NULL) {
 		//if ($caption !== 'Webmail') {
 			$link = rtrim(str_repeat('../', $depth) . $link, '/') . '/';
 		//}
-		if ($isActive) $link = '#';
+		
+		//if ($isActive) $link = '#';
+		
 		$result .= "\t\t<li" . ($isActive ? ' class="active"' : '') . '>'
 			. '<a href="' . $link . '">'
 			. $caption
