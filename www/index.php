@@ -8,7 +8,6 @@ $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $motdfetcher = new \pvv\side\MOTD($pdo);
 $motd = $motdfetcher->getMOTD();
 ?>
-
 <!DOCTYPE html>
 <html lang="no">
 <head>

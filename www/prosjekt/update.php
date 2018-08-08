@@ -18,6 +18,7 @@ $attrs = $as->getAttributes();
 
 $id = $_POST['id'];
 $do_delete = isset($_POST['delete']);
+$do_join_or_leave = isset($_POST['join_or_leave']);
 
 $active = $_POST['active'];
 
@@ -36,18 +37,54 @@ if($id == 0){
 	$statement->bindParam(':desc', $desc, PDO::PARAM_STR);
 
 	$statement->execute();
+	$new_id = $pdo->lastInsertId();
 
-	// there's a better way to do this. i just don't know it right now
-	$ownerQuery = 'INSERT INTO projectmembers (projectid, name, uname, mail, role, lead, owner) VALUES (last_insert_rowid(), :owner, :owneruname, :owneremail, \'Prosjektleder\', 1, 1)';
-	 $statement = $pdo->prepare($ownerQuery);
+	$ownerQuery = "INSERT INTO projectmembers (projectid, name, uname, mail, role, lead, owner) VALUES (:id, :owner, :owneruname, :owneremail, 'Prosjektleder', 1, 1)";
+	$statement = $pdo->prepare($ownerQuery);
+	$statement->bindParam(':id', $new_id, PDO::PARAM_STR);
 	$statement->bindParam(':owner', $name, PDO::PARAM_STR);
 	$statement->bindParam(':owneruname', $uname, PDO::PARAM_STR);
 	$statement->bindParam(':owneremail', $mail, PDO::PARAM_STR);
 
 	$statement->execute();
-}else{
+}
+else {
 	$projectManager = new \pvv\side\ProjectManager($pdo);
 	$owner = $projectManager->getProjectOwner($id);
+	$members = $projectManager->getProjectMembers($id);
+
+	//if ($do_join_or_leave and $owner['uname'] != $uname) {
+	if ($do_join_or_leave) {
+		$is_member = False;
+		foreach($members as $member){
+			if ($member['uname'] == $uname and $member['owner']==0){
+				$is_member = True;
+				break;
+			}
+		}
+		if ($is_member){//leave
+			$query = "DELETE FROM projectmembers WHERE projectid=:id AND uname=:uname and lead=0 and owner=0;";
+			$statement = $pdo->prepare($query);
+			$statement->bindParam(':id', $id, PDO::PARAM_STR);
+			$statement->bindParam(':uname', $uname, PDO::PARAM_STR);
+
+			$statement->execute();
+			print("leave");
+		}
+		else{//join
+			$query = "INSERT INTO projectmembers (projectid, name, uname, mail, role, lead, owner) VALUES (:id, :name, :uname, :mail, 'Medlem', 0, 0)";
+			$statement = $pdo->prepare($query);
+			$statement->bindParam(':id', $id, PDO::PARAM_STR);
+			$statement->bindParam(':name', $name, PDO::PARAM_STR);
+			$statement->bindParam(':uname', $uname, PDO::PARAM_STR);
+			$statement->bindParam(':mail', $mail, PDO::PARAM_STR);
+
+			$statement->execute();
+			print("join");
+		}
+		header('Location: ./info.php?id=' . $id);
+		exit();
+	}
 
 	if($uname != $owner['uname']){
 		header('Content-Type: text/plain', true, 403);
