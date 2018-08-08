@@ -20,23 +20,16 @@ if(isset($_GET['page'])){
 	$page = $_GET['page'];
 }
 
-$filterTitle = '';
-if(isset($_POST['title'])){
-	$filterTitle = $_POST['title'];
+$filter = '';
+if(isset($_GET['filter'])){
+	$filter = $_GET['filter'];
 }
-
-/*
-$filterOrganiser = '';
-if(isset($_POST['organiser'])){
-	$filterOrganiser = $_POST['organiser'];
-}
-*/
 
 // filter
 $projects = array_values(array_filter(
 	$projects,
-	function($project) use ($filterTitle){
-		return (preg_match('/.*'.$filterTitle.'.*/i', $project->getName()));
+	function($project) use ($filter){
+		return (preg_match('/.*'.$filter.'.*/i', $project->getName()) or preg_match('/.*'.$filter.'.*/i', implode(" ", $project->getDescription())));
 	}
 ));
 ?>
@@ -62,7 +55,7 @@ $projects = array_values(array_filter(
 			<ul class="event-list">
 				<?php
 					$counter = 0;
-					$pageLimit = 4;
+					$pageLimit = 8;
 
 					for($i = ($pageLimit * ($page - 1)); $i < count($projects); $i++){
 						if($counter == $pageLimit){
@@ -76,8 +69,10 @@ $projects = array_values(array_filter(
 					<li>
 						<div class="event">
 							<div class="event-info">
-								<h3 class="no-chin"><?= '<a href="edit.php?id=' . $project->getID() . '">' . $project->getName() . '</a>'; ?></h3>
-								<p><?= implode($project->getDescription(), "<br>"); ?></p>
+								<a href="edit.php?id=<?= $project->getID() ?>">
+									<h3 class="no-chin"><?= $project->getName()?></h3>
+								</a>
+								<p style="text-decoration: none;"><?= implode("<br>", $project->getDescription()); ?></p>
 							</div>
 						</div>
 					</li>
@@ -90,11 +85,11 @@ $projects = array_values(array_filter(
 
 			<?php
 				if($page != 1){
-					echo '<a class="btn float-left" href="?page=' . ($page - 1) . '">Forrige side</a>';
+					echo '<a class="btn float-left" href="?page=' . ($page - 1) . '&filter=' . urlencode($filter) . '">Forrige side</a>';
 				}
 
 				if(($counter == $pageLimit) and (($pageLimit * $page) < count($projects))){
-					echo '<a class="btn float-right" href="?page=' . ($page + 1) . '">Neste side</a>';
+					echo '<a class="btn float-right" href="?page=' . ($page + 1) . '&filter=' . urlencode($filter) . '">Neste side</a>';
 				}
 			?>
 		</div>
@@ -103,9 +98,9 @@ $projects = array_values(array_filter(
 			<h2>Verktøy</h2>
 			<a class="btn" href="edit.php?new=1">Lag prosjekt</a>
 			<h2>Filter</h2>
-			<form action="." method="post">
+			<form action="mine.php" method="get">
 				<p class="no-chin">Navn</p>
-				<?= '<input type="text" name="title" class="boxinput" value="' . $filterTitle . '">' ?><br>
+				<?= '<input type="text" name="filter" class="boxinput" value="' . $filter . '">' ?><br>
 
 				<div style="margin-top: 2em;">
 					<input type="submit" class="btn" value="Filtrer"></input>
