@@ -47,7 +47,8 @@ if($new == 0){
 	}
 }
 ?>
-
+<!DOCTYPE html>
+<html lang="no">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<link rel="stylesheet" href="../css/normalize.css">
@@ -72,7 +73,7 @@ if($new == 0){
 
 			<p class="subtitle no-chin">Beskrivelse</p>
 			<p class="subnote no-chin">Hva går prosjektet ditt ut på?</p>
-			<p class="subnote">Den første linjen blir vist på prosjektkortet, prøv å holde den kort!</p>
+			<p class="subnote">De første to linjene blir vist på prosjektkortet, prøv å gjøre de til et fint sammendrag eller intro!</p>
 			<textarea name="desc" style="width:100%" rows="8" class="boxinput"><?= implode($project->getDescription(), "\n"); ?></textarea>
 
 			<?= '<input type="hidden" name="id" value="' . $project->getID() . '" />' ?>
@@ -80,8 +81,8 @@ if($new == 0){
 
 			<div style="margin-top: 2em;">
 				<hr class="ruler">
-
-				<?= '<input type="submit" class="btn" value="' . ($new ? 'Opprett prosjekt' : 'Lagre endringer') . '"></a>'; ?>
+				 <input type="submit" class="btn" value="<?= ($new ? 'Opprett prosjekt' : 'Lagre endringer') ?>"></input>
+				 <?php if (!$new){?><input type="submit" class="btn" name="delete" value="Slett"></input><?php } ?>
 			</div>
 		</form>
 	</main>

@@ -221,7 +221,6 @@ article {
 }
 
 .gridsplit {
-	padding-top: 1.3em;
 	display: grid;
 	grid-template-columns: 3fr 1fr;
 }
@@ -292,4 +291,8 @@ article {
 .ruler {
 	border: none;
 	border-bottom: 1px dotted rgba(0,0,0,.5);
+}
+
+textarea.boxinput {
+	resize: vertical;
 }

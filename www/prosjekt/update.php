@@ -6,7 +6,7 @@ require __DIR__ . '/../../sql_config.php';
 $pdo = new \PDO($dbDsn, $dbUser, $dbPass);
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-if(!isset($_POST['title']) or !isset($_POST['desc'])){
+if(!isset($_POST['title']) or !isset($_POST['desc']) or !isset($_POST['active'])){
 	header('Location: ' . $_SERVER['HTTP_REFERER']);
 	exit();
 }
@@ -17,6 +17,8 @@ $as->requireAuth();
 $attrs = $as->getAttributes();
 
 $id = $_POST['id'];
+$do_delete = isset($_POST['delete']);
+
 $active = $_POST['active'];
 
 $title = $_POST['title'];
@@ -49,18 +51,35 @@ if($id == 0){
 
 	if($uname != $owner['uname']){
 		header('Content-Type: text/plain', true, 403);
-		echo "Not project owner for project with ID " . $id . "\r\n";
+		echo "Illegal action, you're not the project owner for project with ID " . $id . "\r\n";
 		exit();
 	}
+	
+	if ($do_delete) {
+		// this should be done as a transaction...
+		$pdo->beginTransaction();
+	
+		$query = 'DELETE FROM projects WHERE id=:id';
+		$statement = $pdo->prepare($query);
+		$statement->bindParam(':id', $id, PDO::PARAM_INT);
+		$statement->execute();
+		
+		$query = 'DELETE FROM projectmembers WHERE projectid=:id';
+		$statement = $pdo->prepare($query);
+		$statement->bindParam(':id', $id, PDO::PARAM_INT);
+		$statement->execute();
+		
+		$pdo->commit();
+	}else{
+		$query = 'UPDATE projects SET name=:title, description=:desc WHERE id=:id';
+		$statement = $pdo->prepare($query);
 
-	$query = 'UPDATE projects SET name=:title, description=:desc WHERE id=:id';
-	$statement = $pdo->prepare($query);
-
-	$statement->bindParam(':title', $title, PDO::PARAM_STR);
-	$statement->bindParam(':desc', $desc, PDO::PARAM_STR);
-	$statement->bindParam(':id', $id, PDO::PARAM_INT);
-
-	$statement->execute();
+		$statement->bindParam(':title', $title, PDO::PARAM_STR);
+		$statement->bindParam(':desc', $desc, PDO::PARAM_STR);
+		$statement->bindParam(':id', $id, PDO::PARAM_INT);
+		
+		$statement->execute();
+	}
 }
 
 header('Location: ./mine.php');
