@@ -16,7 +16,8 @@
 
 .event {
 	display: grid;
-	grid-template-columns: 90% 10%;
+	grid-template-columns: auto 5em;
+	
 	margin-bottom: 2em;
 	padding-bottom: .5em;
 	border-bottom: 1px dotted rgba(0,0,0,0.5);
@@ -46,12 +47,16 @@
 
 .event-actions {
 	grid-column: 2;
-	text-align: center;
+	text-align: right;
+}
+.event-actions .btn {
+	margin: 0.3em 0;
 	display: inline-block;
 }
 
-.event-actions a {
-	text-decoration: none;
+.fullwidth_inputs input,
+.fullwidth_inputs textarea {
+	width: 100%;
 }
 
 .allgrids {

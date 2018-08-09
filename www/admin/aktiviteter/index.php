@@ -74,7 +74,7 @@ $events = array_values(array_filter(
 				<ul class="event-list">
 					<?php
 						$counter = 0;
-						$pageLimit = 4;
+						$pageLimit = 10;
 
 						for($i = ($pageLimit * ($page - 1)); $i < count($events) ;$i++){
 							if($counter == $pageLimit){
@@ -96,9 +96,8 @@ $events = array_values(array_filter(
 								</div>
 
 								<div class="event-actions">
-									<!-- emojis are for big boys -->
-									<?= '<a href="edit.php?id=' . $eventID . '">🖊</a>'; ?>
-									<?= '<a href="delete.php?id=' . $eventID . '" onclick="return confirm(\'Knallsikker? (ID: ' . $eventID . ')\');">🗑</a>'; ?>
+									<a class="btn" href="edit.php?id=<?= $eventID ?>">Rediger</a><br>
+									<a class="btn" href="delete.php?id=<?= $eventID ?>" onclick="return confirm('Knallsikker? (ID: <?= $eventID ?>)');">Slett</a>
 								</div>
 							</div>
 						</li>
