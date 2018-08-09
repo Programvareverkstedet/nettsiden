@@ -99,6 +99,10 @@ img.float-right {
 	margin-right: .5em;
 }
 
+main.contentsplit {
+	padding-top: 1em;
+}
+
 .contentsplit {
 	display: grid;
 	grid-template-columns: 2.5fr 1.5fr;

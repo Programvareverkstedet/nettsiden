@@ -75,7 +75,7 @@ $motd = $motdfetcher->getMOTD();
 					</ul>
 				<?php } ?>
 			</div>
-			<p><a class="btn" href="kalender/">Flere aktiviteter</a></p>
+			<p><a class="btn" href="hendelser/">Flere aktiviteter</a></p>
 		</div>
 
 		<div class="gridl">

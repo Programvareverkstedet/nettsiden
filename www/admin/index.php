@@ -52,7 +52,7 @@ if(!($isAdmin | $projectGroup | $activityGroup)){
 				}
 
 				if($isAdmin){
-					echo '<li><a class="btn" href="brukere/">Brukere</a></li>';
+					echo '<li><a class="btn" href="brukere/">Brukerrettigheter</a></li>';
 				}
 			?>
 		<ul>
