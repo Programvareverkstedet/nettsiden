@@ -11,7 +11,7 @@ class DBActivity implements Activity {
 	}
 
 	public function getAllEvents() {
-		$query = 'SELECT * FROM events ORDER BY id ASC';
+		$query = 'SELECT * FROM events ORDER BY id DESC';
 		$statement = $this->pdo->prepare($query);
 		$statement->execute();
 

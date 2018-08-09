@@ -35,6 +35,13 @@ $stop = $_POST['end'];
 $organiser = $_POST['organiser'];
 $location = $_POST['location'];
 
+$start_date = DateTimeImmutable::createFromFormat('Y-m-d H:i:s', $start);
+$stop_date  = DateTimeImmutable::createFromFormat('Y-m-d H:i:s', $stop);
+if ($start_date >= $stop_date) {
+	echo 'Invalid dates. End date must come after the start date!';
+	exit();
+}
+
 $statement;
 if($id == 0){
 	$query = 'INSERT INTO events (name, start, stop, organiser, location, description) VALUES (:title, :start, :stop, :organiser, :loc, :desc)';
