@@ -29,13 +29,13 @@ if(isset($_GET['page'])){
 }
 
 $filterTitle = '';
-if(isset($_POST['title'])){
-	$filterTitle = $_POST['title'];
+if(isset($_GET['title'])){
+	$filterTitle = $_GET['title'];
 }
 
 $filterOrganiser = '';
-if(isset($_POST['organiser'])){
-	$filterOrganiser = $_POST['organiser'];
+if(isset($_GET['organiser'])){
+	$filterOrganiser = $_GET['organiser'];
 }
 
 // filter
@@ -77,7 +77,7 @@ $events = array_values(array_filter(
 				<ul class="event-list">
 					<?php
 						$counter = 0;
-						$pageLimit = 10;
+						$pageLimit = 1;
 
 						for($i = ($pageLimit * ($page - 1)); $i < count($events) ;$i++){
 							if($counter == $pageLimit){
@@ -113,11 +113,11 @@ $events = array_values(array_filter(
 
 				<?php
 					if($page != 1){
-						echo '<a class="btn float-left" href="?page=' . ($page - 1) . '">Forrige side</a>';
+						echo '<a class="btn float-left" href="?page=' . ($page - 1) . '&title=' . urlencode($filterTitle) . '&organiser=' . urlencode($filterOrganiser) . '">Forrige side</a>';
 					}
 
 					if(($counter == $pageLimit) and (($pageLimit * $page) < count($events))){
-						echo '<a class="btn float-right" href="?page=' . ($page + 1) . '">Neste side</a>';
+						echo '<a class="btn float-right" href="?page=' . ($page + 1) . '&title=' . urlencode($filterTitle) . '&organiser=' . urlencode($filterOrganiser) .  '">Neste side</a>';
 					}
 				?>
 			</div>
@@ -126,7 +126,7 @@ $events = array_values(array_filter(
 				<h2>Verktøy</h2>
 				<a class="btn adminbtn" href="edit.php?new=1">Legg inn ny aktivitet</a>
 				<h2>Filter</h2>
-				<form action="." method="post">
+				<form action="." method="get">
 					<p class="no-chin">Navn</p>
 					<?= '<input type="text" name="title" class="boxinput" value="' . $filterTitle . '">' ?><br>
 					<p class="no-chin">Organisator</p>
