@@ -46,7 +46,8 @@ $events = array_values(array_filter(
 	}
 ));
 ?>
-
+<!DOCTYPE html>
+<html lang="no">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<link rel="stylesheet" href="../../css/normalize.css">
@@ -57,6 +58,8 @@ $events = array_values(array_filter(
 </head>
 
 <body>
+	<header>Aktivitets&shy;administrasjons&shy;verk&shy;stedet</header>
+	
 	<nav>
 		<?php echo navbar(2, 'admin'); ?>
 		<?php echo loginbar(null, $pdo); ?>

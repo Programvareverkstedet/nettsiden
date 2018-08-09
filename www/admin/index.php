@@ -20,7 +20,8 @@ if(!($isAdmin | $projectGroup | $activityGroup)){
 	exit();
 }
 ?>
-
+<!DOCTYPE html>
+<html lang="no">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<link rel="stylesheet" href="../css/normalize.css">
