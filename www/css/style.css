@@ -260,6 +260,10 @@ article {
 	margin-top: 0;
 }
 
+.noborder {
+	border: none;
+}
+
 .btn {
 	padding: .5em;
 	border-radius: 4px;

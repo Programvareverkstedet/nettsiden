@@ -18,7 +18,15 @@ if(!$userManager->hasGroup($uname, 'aktiviteter')){
 	exit();
 }
 
-if(!isset($_POST['title']) or !isset($_POST['desc']) or !isset($_POST['start']) or !isset($_POST['end']) or !isset($_POST['organiser']) or !isset($_POST['location'])){
+if((!isset($_POST['title']))
+or (!isset($_POST['desc']))
+or (!isset($_POST['organiser']))
+or (!isset($_POST['location']))
+or (!isset($_POST['start_mon']))
+or (!isset($_POST['start_day']))
+or (!isset($_POST['start_time']))
+or (!isset($_POST['lasts_hours']))
+or (!isset($_POST['lasts_minutes']))) {
 	header('Location: ' . $_SERVER['HTTP_REFERER']);
 	exit();
 }
@@ -30,13 +38,28 @@ if(isset($_POST['id'])){
 
 $title = $_POST['title'];
 $desc = $_POST['desc'];
-$start = $_POST['start'];
-$stop = $_POST['end'];
+//$start = $_POST['start'];
+//$stop = $_POST['end'];
 $organiser = $_POST['organiser'];
 $location = $_POST['location'];
 
+$date_part_start_mon     = $_POST['start_mon'];
+$date_part_start_day     = $_POST['start_day'];
+$date_part_start_time    = $_POST['start_time'];
+$date_part_lasts_hours   = $_POST['lasts_hours'];
+$date_part_lasts_minutes = $_POST['lasts_minutes'];
+
+$start = ($date_part_start_mon . "-" . $date_part_start_day . " " . $date_part_start_time);
+if (sizeof(explode(":", $date_part_start_time))==2) {
+	$start .= ":00";
+}
+print($start);
+
 $start_date = DateTimeImmutable::createFromFormat('Y-m-d H:i:s', $start);
-$stop_date  = DateTimeImmutable::createFromFormat('Y-m-d H:i:s', $stop);
+$stop_date = $start_date->add(new DateInterval('PT' . $date_part_lasts_hours . 'H' . $date_part_lasts_minutes . 'M'));
+$stop = $stop_date->format('Y-m-d H:i:s');
+print($stop);
+
 if ($start_date >= $stop_date) {
 	echo 'Invalid dates. End date must come after the start date!';
 	exit();

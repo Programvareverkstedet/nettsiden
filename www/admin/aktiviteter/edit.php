@@ -14,6 +14,7 @@ $as = new SimpleSAML_Auth_Simple('default-sp');
 $as->requireAuth();
 $attrs = $as->getAttributes();
 $uname = $attrs['uid'][0];
+$name = $attrs['cn'][0];
 
 if(!$userManager->hasGroup($uname, 'aktiviteter')){
 	echo 'Her har du ikke lov\'t\'å\'værra!!!';
@@ -36,24 +37,31 @@ if(isset($_GET['id'])){
 }
 
 $today = new DateTimeImmutable;
-$defaultStart = $today->format("Y-m-d H:00:00");
-$inOneHour = $today->add(new DateInterval('PT1H'));
-$defaultEnd = $inOneHour->format("Y-m-d H:00:00");
+$today = $today->setTime(18, 15);
+$defaultStart = $today->format("Y-m-d H:15:00");
+$inTwoHours = $today->add(new DateInterval('PT1H45M'));
+$defaultEnd = $inTwoHours->format("Y-m-d H:00:00");
 
-$event = new \pvv\side\SimpleEvent(
-	0,
-	'Kul Hendelse',
-	$today,
-	$inOneHour,
-	'PVV',
-	'Norge et sted',
-	'her skjer det noe altså'
-);
+$event;
 if($new == 0){
 	$event = $customActivity->getEventByID($eventID);
 }
-?>
+else {
+	$event = new \pvv\side\SimpleEvent(
+	   0,
+	   '',
+	   $today,
+	   $inTwoHours,
+	   '',
+	   '',
+	   ''
+   );
+}
 
+
+?>
+<!DOCTYPE html>
+<html lang="no" locale="no">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<link rel="stylesheet" href="../../css/normalize.css">
@@ -75,34 +83,50 @@ if($new == 0){
 
 		<h2><?= ($new == 1 ? "Ny hendelse" : "Rediger hendelse"); ?></h2>
 
-		<form action="update.php", method="post" class="gridsplit5050">
+		<form action="update.php", method="post" class="gridsplit fullwidth_inputs">
 			<div class="gridl">
 				<p class="subtitle">Tittel</p>
-				<?= '<input type="text" name="title" value="' . $event->getName(). '" class="boxinput">' ?><br>
+				<input type="text" name="title" value="<?= $event->getName() ?>" class="boxinput" required placeholder="En kul hendelse"><br>
+				
+				<div class="gridsplit5050">
+					<div class="gridl">
+						<p class="subtitle">Arrangør</p>
+						<input type="text" name="organiser" value="<?= $event->getOrganiser() ?>" class="boxinput" required placeholder="<?= $name ?>"><br>
+					</div>
+					<div class="gridr noborder">
+						<p class="subtitle">Sted</p>
+						<input type="text" name="location" value="<?= $event->getLocation() ?>" class="boxinput" required placeholder="Terminalrommet"><br>
+					</div>
+				</div>
 
 				<p class="subtitle">Beskrivelse</p>
-				<textarea name="desc" cols="40" rows="5" class="boxinput"><?= implode($event->getDescription(), "\n"); ?></textarea>
+				<textarea name="desc" rows="8" class="boxinput" placeholder="Beskrivese" required><?= implode($event->getDescription(), "\n"); ?></textarea>
+				
+				
 			</div>
 
-			<div class="gridr noborder">
-				<p class="subtitle">Starttid (YYYY-MM-DD HH:MM:SS)</p>
-				<?= '<input name="start" type="text"  class="boxinput" value="' . $event->getStart()->format('Y-m-d H:00:00') . '"><br>' ?>
-
-				<p class="subtitle">Sluttid (YYYY-MM-DD HH:MM:SS)</p>
-				<?= '<input name="end" type="text"  class="boxinput" value="' . $event->getStop()->format('Y-m-d H:00:00') . '"><br>' ?>
-
-				<p class="subtitle">Arrangør</p>
-				<?= '<input type="text" name="organiser" value="' . $event->getOrganiser(). '" class="boxinput">' ?><br>
-
-				<p class="subtitle">Sted</p>
-				<?= '<input type="text" name="location" value="' . $event->getLocation(). '" class="boxinput">' ?><br>
+			<div class="gridr" style="line-height: 1.3em;">
+				<h4>Starttid</h4><br>
+				<i>Måned:</i><br>
+				<input name="start_mon" type="month" class="boxinput" required value="<?= $event->getStart()->format('Y-m') ?>"><br>
+				<i>Dag:</i><br>
+				<input name="start_day" type="number" min="1" max="31" required class="boxinput" value="<?= $event->getStart()->format('d') ?>"><br>
+				<i>Klokkeslett:</i><br>
+				<input name="start_time" type="time" class="boxinput" required value="<?= $event->getStart()->format('H:i:s') ?>"><br>
+				<br>
+				<h4>Varighet</h4><br>
+				<?php $diff = $event->getStart()->diff($event->getStop()); ?>
+				<i>Timer:</i><br>
+				<input name="lasts_hours" type="number" min="0" class="boxinput" required value="<?= $diff->h ?>"><br>
+				<i>Minutter:</i><br>
+				<input name="lasts_minutes" type="number" min="0" max="59" class="boxinput" required value="<?= $diff->i ?>"><br>
+				
 			</div>
 
-			<?= '<input type="hidden" name="id" value="' . $event->getID() . '" />' ?>
+			<input type="hidden" name="id" value="<?= $event->getID() ?>" />
 
 			<div class="allgrids" style="margin-top: 2em;">
 				<hr class="ruler">
-
 				<input type="submit" class="btn" value="Lagre"></a>
 			</div>
 		</form>
