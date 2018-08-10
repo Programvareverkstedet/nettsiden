@@ -64,6 +64,13 @@ img.float-right {
 	list-style: none;
 }
 
+.calendar-events ul li :not(.date):not(.time) {
+	display: inline-block;
+	width: calc(100% - 7em);
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
 .calendar-events ul .date {
 	color: rgba(0,0,0,.5);
 	font-size: 0.8em;
@@ -105,7 +112,7 @@ main.contentsplit {
 
 .contentsplit {
 	display: grid;
-	grid-template-columns: 2.5fr 1.5fr;
+	grid-template-columns: 2.5fr 2fr;
 }
 
 .gridr {
