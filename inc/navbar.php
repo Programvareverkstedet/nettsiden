@@ -49,6 +49,8 @@ function loginBar($sp = null, $pdo = null) {
 			$userManager = new \pvv\admin\UserManager($pdo);
 			$isAdmin = $userManager->isAdmin($uname);
 		}
+		$result .= "\t<a id=\"login\" href=\"#usermenu\" aria-hidden=\"true\">${svg}" . htmlspecialchars($uname) . "</a>\n";
+
 		$result .= "\n\t<ul id=\"usermenu\">\n";
 		$result .= "\n\t\t<li><a id=\"login\" href=\"#\">${svg}" . htmlspecialchars($uname) . "</a></li>\n";
 		if ($isAdmin) {
@@ -56,8 +58,6 @@ function loginBar($sp = null, $pdo = null) {
 		}
 		$result .= "\n\t\t<li><a href=\"" . htmlspecialchars($as->getLogoutURL()) . "\">Logg ut</a></li>\n";
 		$result .= "\n\t</ul>\n";
-
-		$result .= "\t<a id=\"login\" href=\"#usermenu\" aria-hidden=\"true\">${svg}" . htmlspecialchars($uname) . "</a>\n";
 	} else {
 		$result .= "\t<a id=\"login\" href=\"" . htmlspecialchars($as->getLoginURL()) . "\">${svg}Logg inn</a>\n";
 	}
