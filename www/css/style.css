@@ -111,6 +111,9 @@ nav #usermenu {
 	background: #fff;
 	padding: 0;
 	z-index: 5; /* Make appear over #login */
+
+	border-radius: 0 0 0 0.1em;
+	box-shadow: 0 2px 2px gray;	
 }
 nav #login {
 	z-index: 4; /* Make appear under #usermenu and over #menu */
@@ -129,15 +132,10 @@ nav #usermenu li, nav #usermenu li a {
 	display: block;
 	margin: 0;
 }
-nav #usermenu:target {
+nav #usermenu:target,
+nav #usermenu:hover,
+nav #login:hover ~ #usermenu {
 	display: block;
-}
-/* Style #login when #usermenu is targeted */
-/* Requires #login to appear after #usermenu, directly under nav */
-nav #usermenu:target ~ #login {
-	color: #024;
-	fill: #024; /* SVG icon */
-	background: white;
 }
 nav #usermenu li:hover {
 	background: #eee;
