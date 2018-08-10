@@ -45,6 +45,10 @@ h1, h2, h3, h4, h5, h6, nav li, .calendar-events li, .btn, p.login, a#login{
 	font-variant: normal;	
 }
 
+.calendar-events li {
+	clear: right;
+}
+
 nav, #menu {
 	padding: 0;
 }
