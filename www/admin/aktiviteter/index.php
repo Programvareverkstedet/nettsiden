@@ -77,7 +77,7 @@ $events = array_values(array_filter(
 				<ul class="event-list">
 					<?php
 						$counter = 0;
-						$pageLimit = 1;
+						$pageLimit = 10;
 
 						for($i = ($pageLimit * ($page - 1)); $i < count($events) ;$i++){
 							if($counter == $pageLimit){
