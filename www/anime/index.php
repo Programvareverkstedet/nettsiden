@@ -22,7 +22,11 @@ $nextEvent = $activity->getNextEventFrom(new DateTimeImmutable);
 ?>
 
 <article>
-	<h2><img src="../sosiale/animekveld.jpg"><em><?= $nextEvent->getRelativeDate()?></em> Animekveld</h2>
+	<h2><em><?= $nextEvent->getRelativeDate()?></em> Animekveld
+		<?php if ($nextEvent->getImageURL()) { ?>
+		<img src="<?= $nextEvent->getImageURL() ?>">
+		<?php } ?>
+	</h2>
 	<ul class="subtext">
 		<li>Tid:
 		<strong>

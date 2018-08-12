@@ -219,7 +219,6 @@ nav #usermenu li:first-child:hover {
 body {
 	overflow-y: scroll;
 	overflow-x: hidden;
-	min-height: 100vh;
 }
 
 * {
@@ -240,7 +239,7 @@ main h2 {
 }
 
 article {
-	margin-bottom: 7vh;
+	overflow-y: hidden;
 }
 
 .gridsplit {

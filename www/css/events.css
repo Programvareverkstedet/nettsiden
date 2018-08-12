@@ -29,11 +29,14 @@ h2 img {
 	border-radius: 0.1em;
 	box-shadow: 0 2px 2px gray;
 	margin-left: 1em;
+	clear: right;
+	margin-bottom: 0.8em;
+	clear: left;
 }
 article:first-child h2 img {
-	max-width: 10em;
+	max-width: 12em;
 }
-h4 {
+	h4 {
 	margin-top: 0;
 	margin-bottom: -0.6em;
 }
@@ -96,13 +99,31 @@ p + .subtext {
 }
 
 @media screen and (max-width: 50rem) {
-	h2 img {
-		display: none;
+	article h2 {
+		text-align: center;
+		position: relative;
+		border-bottom-left-radius: 0.3em;
+		border-bottom-right-radius: 0.3em;
+		max-height: 30vh;
+		overflow-y: hidden;
 	}
-	.subtext {
-		margin-top: -1em;
-	}
-	.subtext li {
+	article h2 em {
 		display: block;
+		top:0;
+		left: 0;
+		position: absolute;
+		
+	}
+	article h2 img {
+		border: none;
+		box-shadow: none;
+		border-radius: 0.3em;
+		float: none;
+		margin: 0;
+		max-width: none !important;
+		width: 100%;
+	}
+	article .subtext {
+		margin-top: -1em !important;
 	}
 }

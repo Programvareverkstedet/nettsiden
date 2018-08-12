@@ -44,9 +44,6 @@ $day = (isset($_GET['day']))
 		?>
 		<article>
 			<h2>
-				<?php if ($event->getImageURL()) { ?>
-				<img src="<?= $event->getImageURL() ?>">
-				<?php } ?>
 				<?php if (\pvv\side\Agenda::isToday($event->getStart())) { ?><strong><?php } ?>
 				<em><?= $event->getRelativeDate() ?></em>
 				<?php if (\pvv\side\Agenda::isToday($event->getStart())) { ?></strong><?php } ?>
@@ -54,6 +51,9 @@ $day = (isset($_GET['day']))
 				<a href="<?= $event->getURL() ?>"><?= $event->getName() ?></a>
 				<?php } else { ?>
 				<?= $event->getName() ?>
+				<?php } ?>
+				<?php if ($event->getImageURL()) { ?>
+				<img src="<?= $event->getImageURL() ?>">
 				<?php } ?>
 			</h2>
 			<ul class="subtext">
