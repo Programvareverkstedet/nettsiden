@@ -27,7 +27,7 @@ $motd = $motdfetcher->getMOTD();
 		<?php echo loginbar(null, $pdo); ?>
 	</nav>
 
-	<header>
+	<header class="landing">
 		<img class="logo" src="css/logo-white.png"/>
 		<div class="info">
 			<h2>Velkommen til Programvare&shy;verkstedet</h2>
