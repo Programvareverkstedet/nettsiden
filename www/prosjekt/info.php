@@ -15,6 +15,10 @@ $attrs = $as->getAttributes();
 
 $projectManager = new \pvv\side\ProjectManager($pdo);
 $project = $projectManager->getByID($projectID);
+if (!$project) {
+	echo ":^)";
+	exit();
+}
 
 $members = $projectManager->getProjectMembers($projectID);
 $is_owner = False;

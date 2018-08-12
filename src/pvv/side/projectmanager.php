@@ -36,6 +36,9 @@ class ProjectManager{
 		$statement->execute();
 
 		$dbProj = $statement->fetch();
+		if (!$dbProj) {
+			return false;
+		}
 		$project = new Project(
 			$dbProj['id'],
 			$dbProj['name'],
