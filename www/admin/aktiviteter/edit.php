@@ -99,7 +99,7 @@ else {
 					</div>
 				</div>
 
-				<p class="subtitle">Beskrivelse</p>
+				<p class="subtitle">Beskrivelse (<i>markdown</i>)</p>
 				<textarea name="desc" rows="8" class="boxinput" placeholder="Beskrivese" required><?= implode($event->getDescription(), "\n"); ?></textarea>
 				
 				

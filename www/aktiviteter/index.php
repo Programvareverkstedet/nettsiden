@@ -42,7 +42,7 @@ $day = (isset($_GET['day']))
 		$limit = 0;
 		foreach($events as $event) {
 		?>
-		<div>
+		<article>
 			<h2>
 				<?php if ($event->getImageURL()) { ?>
 				<img src="<?= $event->getImageURL() ?>">
@@ -64,10 +64,12 @@ $day = (isset($_GET['day']))
 
 			<?php $description = $event->getDescription(); ?>
 			<?php if ($limit) array_splice($description, $limit); ?>
-			<?= implode($description, "<br>") ?>
-		</div>
+			<?php
+			$Parsedown = new \Parsedown();
+			echo $Parsedown->text(implode("\n", $description));
+			?>
+		</article>
 
-		<?php if (!$limit || $limit > 4) {$limit = 4;} else $limit = 2; ?>
 		<?php } ?>
 	</main>
 

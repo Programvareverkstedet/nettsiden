@@ -53,7 +53,7 @@ $motd = $motdfetcher->getMOTD();
 			<p class="subnote">Ikke nødvendig</p>
 			<input type="text" name="title" value="<?= $motd['title'] ?>" class="boxinput" style="width:66%;"><br>
 
-			<p class="subtitle no-chin">Innhold</p>
+			<p class="subtitle no-chin">Innhold (<i>markdown</i>)</p>
 			<textarea name="content" style="width:100%" rows="8" class="boxinput"><?= implode("\n", $motd["content"]) ?></textarea>
 
 			<div style="margin-top: 2em;">

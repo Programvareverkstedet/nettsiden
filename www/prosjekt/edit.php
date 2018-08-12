@@ -71,7 +71,7 @@ if($new == 0){
 			<p class="subnote">Gi prosjektet ditt et passende navn</p>
 			<input type="text" name="title" value="<?= $project->getName() ?>" class="boxinput" style="width:66%;"><br>
 
-			<p class="subtitle no-chin">Beskrivelse</p>
+			<p class="subtitle no-chin">Beskrivelse (<i style="opacity:0.5;">markdown</i>)</p>
 			<p class="subnote no-chin">Hva går prosjektet ditt ut på?</p>
 			<p class="subnote">De første to linjene blir vist på prosjektkortet, prøv å gjøre de til et fint sammendrag eller intro!</p>
 			<textarea name="desc" style="width:100%" rows="8" class="boxinput"><?= implode($project->getDescription(), "\n"); ?></textarea>

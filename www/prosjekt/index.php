@@ -93,7 +93,10 @@ $projects = $projectManager->getAll();
 			<a class="nostyle" href="info.php?id=<?= $project->getID() ?>"><div class="project-card">
 				<div class="card-content">
 					<h4 class="project-title"><?= $project->getName(); ?></h4>
-					<p><?= implode('<br>',array_slice($project->getDescription(), 0, 2)); ?></p>
+					<?php
+					$Parsedown = new \Parsedown();
+					echo $Parsedown->text(implode("\n", array_slice($project->getDescription(), 0, 2)));
+					?>
 				</div>
 				<p class="project-organizer">Organisert av <?= $owner['name']; ?></p>
 			</div></a>

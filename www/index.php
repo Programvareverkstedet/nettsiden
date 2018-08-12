@@ -89,8 +89,9 @@ $motd = $motdfetcher->getMOTD();
 					echo $title;
 				}
 				echo "</h2>";
-
-				echo "<p>" . implode($motd["content"], "<br>") . "</p>";
+				
+				$Parsedown = new Parsedown();
+				echo $Parsedown->text(implode("\n", $motd["content"]));
 			?>
 		</div>
 	</main>

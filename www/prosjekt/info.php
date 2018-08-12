@@ -56,7 +56,10 @@ if ($attrs){
 	<main class="contentsplit">
 		<div class="gridr">
 			<h2><?= $project->getName(); ?></h2>
-			<p><?= implode($project->getDescription(), "<br>"); ?></p>
+			<?php
+			$Parsedown = new \Parsedown();
+			echo $Parsedown->text(implode("\n", $project->getDescription()));
+			?>
 		</div>
 
 		<div class="gridl">

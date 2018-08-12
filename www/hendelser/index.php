@@ -42,7 +42,11 @@ $translation = ['I dag', 'I morgen', 'Denne uka', 'Neste uke', 'Denne måneden',
 
 					<?php $description = $event->getDescription(); ?>
 					<?php if ($description_paragraphs) array_splice($description, $description_paragraphs); ?>
-					<p><?= implode("<br>", $description) ?></p>
+					
+					<?php
+					$Parsedown = new \Parsedown();
+					echo $Parsedown->text(implode("\n", $description));
+					?>
 
 					<ul class="subtext">
 						<li>Tid: <strong><?= Agenda::getFormattedDate($event->getStart()) ?></strong></li>

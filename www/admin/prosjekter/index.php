@@ -92,7 +92,10 @@ $projects = array_values(array_filter(
 								<div class="event-info">
 									<h3 class="no-chin"><?= $project->getName() . " (ID: " . $projectID . ")"; ?></h3>
 									<p class="subnote"><?= 'Organisert av: ' . $owner['name']; ?></p>
-									<p><?= implode($project->getDescription(), "<br>"); ?></p>
+									<?php
+									$Parsedown = new \Parsedown();
+									echo $Parsedown->text(implode("\n", $project->getDescription()));
+									?>
 								</div>
 
 								<div class="event-actions">

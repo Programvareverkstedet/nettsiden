@@ -95,7 +95,10 @@ $events = array_values(array_filter(
 									<p class="subnote">
 										<?= $event->getStart()->format("(Y-m-d H:i:s)") . " - " . $event->getStop()->format("(Y-m-d H:i:s)"); ?>
 									</p>
-									<p><?= implode($event->getDescription(), "<br>"); ?></p>
+									<?php
+									$Parsedown = new \Parsedown();
+									echo $Parsedown->text(implode("\n", $event->getDescription()));
+									?>
 								</div>
 
 								<div class="event-actions">

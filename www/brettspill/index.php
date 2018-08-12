@@ -46,7 +46,10 @@ $nextEvent = $activity->getNextEventFrom(new DateTimeImmutable);
 		</strong>
 	</ul>
 
-	<?= implode($nextEvent->getDescription(), "<p>\n</p>")?> 
+	<?php
+	$Parsedown = new \Parsedown();
+	echo $Parsedown->text(implode("\n", $nextEvent->getDescription()));
+	?>
 </article>
 
 </main>
