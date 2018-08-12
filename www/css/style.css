@@ -217,6 +217,10 @@ nav #usermenu li:first-child:hover {
 		right: 0;
 		top: 0;
 	}
+	main {
+		margin-left: 1em !important;
+		margin-right: 1em !important;
+	}
 }
 
 body {
@@ -230,7 +234,7 @@ body {
 
 main {
 	box-sizing: border-box;
-	padding: 5em 15vw 2em 15vw;
+	margin: 5em 15vw 2em 15vw;
 	background-color: #fff;
 }
 
