@@ -1,9 +1,24 @@
+.pagination_bar {
+	display: grid;
+	grid-template-columns: 8em auto 8em;
+	grid-template-areas: "left . right";
+	text-align: center;
+}
+.pagination_bar >*:nth-child(1) {
+	grid-area: left;
+}
+.pagination_bar >*:nth-child(2) {
+	grid-area: right;
+}
+
 figure.calendar {
 	margin: 0;
 	padding:0;
+	overflow-x: auto;
 }
 
 .calendar ul {
+	min-width: 43em;
 	list-style-type: none;
 	padding-left:0;
 
@@ -88,7 +103,10 @@ figure.calendar {
 	color: white;
 	border-radius: 0.75em;
 	text-align: center;
+	padding: 0 0.2em;
 	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 .calendar ul li section + section {
 	margin-top: 0.1em;

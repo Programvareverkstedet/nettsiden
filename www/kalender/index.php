@@ -36,7 +36,7 @@ $days_in_month = date('t', mktime(0, 0, 0, $month, 1, $year));
 	<main>
 		<h2 style="text-align:center;">PVV Kalender for <?=$months_translations[$month-1]?> <?=$year?></h2>
 	
-		<p><?php
+		<div class="pagination_bar"><?php
 		$pmonth = $month-1;
 		$nmonth = $month+1;
 		$pyear=$year;
@@ -45,9 +45,8 @@ $days_in_month = date('t', mktime(0, 0, 0, $month, 1, $year));
 		if ($nmonth==13) {$nmonth=1; $nyear++;}
 		?>
 		<a class="btn noselect" href="../kalender?year=<?=$pyear?>&amp;month=<?=$pmonth?>">Forrige måned</a>
-		<a class="btn noselect" style="float:right;" href="../kalender?year=<?=$nyear?>&amp;month=<?=$nmonth?>">Neste måned</a>
-		</p>
-	
+		<a class="btn noselect" href="../kalender?year=<?=$nyear?>&amp;month=<?=$nmonth?>">Neste måned</a>
+		</div>
 	
 		<figure class="calendar">
 			<ul>
