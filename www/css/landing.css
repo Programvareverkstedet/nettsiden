@@ -30,7 +30,7 @@ main {
 
 .essentials {
 	width: 100%;
-	margin: 1.8em 0;
+	margin: 1em 0;
 	padding: 0;
 	list-style: none;
 	display: flex;
@@ -47,8 +47,8 @@ main {
 	height: 100%;
 }
 
-.essentials .join {
-	padding: 1em;
+.essentials .focus {
+	padding: 0.8em;
 	font-size: 1.2em;
 }
 
