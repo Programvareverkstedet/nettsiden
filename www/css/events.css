@@ -97,6 +97,9 @@ p + .subtext {
 .events .subtext {
 	margin-bottom: 0;
 }
+.events li h4 +.subtext {
+	margin-top: 1em;
+}
 
 @media screen and (max-width: 50rem) {
 	article h2 {
