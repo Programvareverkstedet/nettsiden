@@ -64,5 +64,3 @@ $motd = $motdfetcher->getMOTD();
 		</form>
 	</main>
 </body>
-
-<?php print_r($motd); ?>
