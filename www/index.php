@@ -82,13 +82,13 @@ $motd = $motdfetcher->getMOTD();
 			<?php
 				$title = $motd["title"];
 
-				echo "<h2>";
+				echo "<h1>";
 				if($title == ""){
 					echo "Dagens melding";
 				}else{
 					echo $title;
 				}
-				echo "</h2>";
+				echo "</h1>";
 				
 				$Parsedown = new Parsedown();
 				echo $Parsedown->text(implode("\n", $motd["content"]));
