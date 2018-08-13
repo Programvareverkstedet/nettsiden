@@ -51,8 +51,8 @@ class Agenda {
 	public function getNextDays() {
 		$result = [[], [], [], [], [], []];
 		$events = $this->getEventsBetween(
-				(new DateTimeImmutable)->sub(new DateInterval('PT1H')), 
-				(new DateTimeImmutable)->add(new DateInterval('P1M'))
+				(new DateTimeImmutable)->setTime(0, 0),
+				(new DateTimeImmutable)->setTime(23, 59)->add(new DateInterval('P1M'))
 			);
 		foreach ($events as $event) {
 			$index = self::NEXT_MONTH;
