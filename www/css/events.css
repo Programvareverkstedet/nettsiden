@@ -129,7 +129,7 @@ p + .subtext {
 		max-width: none;
 		width: 100%;
 	}
-	.subtext {
+	article >.subtext {
 		margin-top: -1em !important;
 	}
 }
