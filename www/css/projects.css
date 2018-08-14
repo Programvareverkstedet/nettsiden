@@ -156,3 +156,17 @@ a.nostyle {
 
 	}
 }
+
+/* edit */
+form .wide {
+	min-width: 66%;
+}
+form .tall {
+	min-height: calc(100vh - 28em);
+}
+@media screen and (max-width: 50rem) {
+	form .wide {
+		width: calc(100% - 2em);
+		margin: 0 1em;
+	}
+}

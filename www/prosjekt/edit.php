@@ -55,7 +55,7 @@ if($new == 0){
 <link rel="stylesheet" href="../css/normalize.css">
 <link rel="stylesheet" href="../css/style.css">
 <link rel="stylesheet" href="../css/nav.css">
-<link rel="stylesheet" href="../css/splash.css">
+<link rel="stylesheet" href="../css/projects.css">
 <title>Prosjektverkstedet</title>
 
 <header>Prosjekt&shy;verk&shy;stedet</header>
@@ -73,17 +73,17 @@ if($new == 0){
 		<form action="update.php", method="post">
 			<p class="subtitle no-chin">Prosjektnavn</p>
 			<p class="subnote">Gi prosjektet ditt et passende navn</p>
-			<input type="text" name="title" value="<?= $project->getName() ?>" class="boxinput" style="width:66%;"><br>
+			<input class="wide" type="text" name="title" value="<?= $project->getName() ?>" class="boxinput"><br>
 
 			<p class="subtitle no-chin">Beskrivelse (<i style="opacity:0.5;">markdown</i>)</p>
 			<p class="subnote no-chin">Hva går prosjektet ditt ut på?</p>
 			<p class="subnote">De første to linjene blir vist på prosjektkortet, prøv å gjøre de til et fint sammendrag eller intro!</p>
-			<textarea name="desc" style="width:100%" rows="8" class="boxinput"><?= implode($project->getDescription(), "\n"); ?></textarea>
+			<textarea class="tall" name="desc" style="width:100%" rows="8" class="boxinput"><?= implode($project->getDescription(), "\n"); ?></textarea>
 
 			<?= '<input type="hidden" name="id" value="' . $project->getID() . '" />' ?>
 			<input type="hidden" name="active" value="1"/>
 
-			<div style="margin-top: 2em;">
+			<div style="margin-top: 0.2em;">
 				<hr class="ruler">
 				 <input type="submit" class="btn" value="<?= ($new ? 'Opprett prosjekt' : 'Lagre endringer') ?>"></input>
 				 <?php if (!$new){?><input type="submit" class="btn" name="delete" value="Slett"></input><?php } ?>
