@@ -33,10 +33,7 @@ h2 img {
 	margin-bottom: 0.8em;
 	clear: left;
 }
-article:first-child h2 img {
-	max-width: 12em;
-}
-	h4 {
+h4 {
 	margin-top: 0;
 	margin-bottom: -0.6em;
 }
@@ -102,8 +99,13 @@ p + .subtext {
 	margin-top: 1em;
 }
 
+@media screen and (min-width: 50rem) {
+	article:first-child h2 img {
+		max-width: 12em;
+	}
+}
 @media screen and (max-width: 50rem) {
-	article h2 {
+	h2 {
 		text-align: center;
 		position: relative;
 		border-bottom-left-radius: 0.3em;
@@ -111,23 +113,23 @@ p + .subtext {
 		max-height: 30vh;
 		overflow-y: hidden;
 	}
-	article h2 em {
+	h2 em {
 		display: block;
 		top:0;
 		left: 0;
 		position: absolute;
 		
 	}
-	article h2 img {
+	h2 img {
 		border: none;
 		box-shadow: none;
 		border-radius: 0.3em;
 		float: none;
 		margin: 0;
-		max-width: none !important;
+		max-width: none;
 		width: 100%;
 	}
-	article .subtext {
+	.subtext {
 		margin-top: -1em !important;
 	}
 }

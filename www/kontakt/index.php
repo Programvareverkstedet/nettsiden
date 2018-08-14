@@ -21,7 +21,7 @@ require_once dirname(dirname(__DIR__)) . implode(DIRECTORY_SEPARATOR, ['', 'inc'
 	</nav>
 
 	<main>
-		<h2>Kommunikasjon<img src="kontakt.jpg"></img></h2>
+		<h2>Kommunikasjon<br><img style="width: 8em" src="kontakt.jpg"></img></h2>
 		<p>
 		Det er ulike måter å kommunisere med PVV-medlemmer på.
 		</p>
