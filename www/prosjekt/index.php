@@ -15,6 +15,7 @@ $projects = $projectManager->getAll();
 <link rel="stylesheet" href="../css/nav.css">
 <link rel="stylesheet" href="../css/splash.css">
 <link rel="stylesheet" href="../css/projects.css">
+<meta name="theme-color" content="#024" />
 <title>Prosjektverkstedet</title>
 
 <header>Prosjekt&shy;verk&shy;stedet</header>

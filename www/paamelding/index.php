@@ -52,6 +52,7 @@ if (isset($_SESSION['userdata'])) { // if logged in with feide
 <link rel="stylesheet" href="../css/normalize.css">
 <link rel="stylesheet" href="../css/style.css">
 <link rel="stylesheet" href="../css/nav.css">
+<meta name="theme-color" content="#024" />
 <title>Registreringsverkstedet</title>
 
 <header>Registrerings&shy;verk&shy;stedet</header>

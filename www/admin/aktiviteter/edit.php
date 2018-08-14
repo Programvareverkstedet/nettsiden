@@ -70,6 +70,7 @@ else {
 <link rel="stylesheet" href="../../css/nav.css">
 <link rel="stylesheet" href="../../css/events.css">
 <link rel="stylesheet" href="../../css/admin.css">
+<meta name="theme-color" content="#024" />
 <title>Adminverkstedet</title>
 
 <header>Admin&shy;verk&shy;stedet</header>

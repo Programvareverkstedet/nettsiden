@@ -23,6 +23,7 @@ $days_in_month = date('t', mktime(0, 0, 0, $month, 1, $year));
 <link rel="stylesheet" href="../css/style.css">
 <link rel="stylesheet" href="../css/events.css">
 <link rel="stylesheet" href="../css/calendar.css">
+<meta name="theme-color" content="#024" />
 <title>Kalenderverkstedet</title>
 
 <header>Kalender&shy;verk&shy;stedet</header>

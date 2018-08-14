@@ -9,6 +9,7 @@ require_once dirname(dirname(__DIR__)) . implode(DIRECTORY_SEPARATOR, ['', 'inc'
 <link rel="stylesheet" href="../css/normalize.css">
 <link rel="stylesheet" href="../css/style.css">
 <link rel="stylesheet" href="../css/events.css">
+<meta name="theme-color" content="#024" />
 <title>Kommunikasjonsverkstedet</title>
 
 <header>Kommunikasjons&shy;verk&shy;stedet</header>

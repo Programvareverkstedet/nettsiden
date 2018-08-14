@@ -17,6 +17,7 @@ $motd = $motdfetcher->getMOTD();
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/splash.css">
 <link rel="stylesheet" href="css/landing.css">
+<meta name="theme-color" content="#024" />
 <title>Programvareverkstedet</title>
 
 <header>Programvare&shy;verk&shy;stedet</header>

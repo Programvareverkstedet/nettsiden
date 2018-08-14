@@ -29,6 +29,7 @@ if(!($isAdmin | $projectGroup | $activityGroup)){
 <link rel="stylesheet" href="../css/style.css">
 <link rel="stylesheet" href="../css/events.css">
 <link rel="stylesheet" href="../css/admin.css">
+<meta name="theme-color" content="#024" />
 <title>Administrasjonsverkstedet</title>
 
 <header>Administrasjons&shy;verk&shy;stedet</header>

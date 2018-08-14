@@ -58,6 +58,7 @@ $projects = array_values(array_filter(
 <link rel="stylesheet" href="../../css/nav.css">
 <link rel="stylesheet" href="../../css/events.css">
 <link rel="stylesheet" href="../../css/admin.css">
+<meta name="theme-color" content="#024" />
 <title>Prosjektadministrasjonsverkstedet</title>
 
 <header>Prosjekt&shy;administrasjons&shy;verk&shy;stedet</header>

@@ -11,6 +11,7 @@ $translation = ['I dag', 'I morgen', 'Denne uka', 'Neste uke', 'Denne måneden',
 <link rel="stylesheet" href="../css/normalize.css">
 <link rel="stylesheet" href="../css/style.css">
 <link rel="stylesheet" href="../css/events.css">
+<meta name="theme-color" content="#024" />
 <title>Hendelsesverkstedet</title>
 
 <header>Hendelses&shy;verk&shy;stedet</header>

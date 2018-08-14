@@ -36,6 +36,7 @@ $users = $userManager->getAllUserData();
 <link rel="stylesheet" href="../../css/style.css">
 <link rel="stylesheet" href="../../css/events.css">
 <link rel="stylesheet" href="../../css/admin.css">
+<meta name="theme-color" content="#024" />
 <title>Brukeradministrasjonsverkstedet</title>
 
 <header>Bruker&shy;administrasjons&shy;verk&shy;stedet</header>

@@ -12,6 +12,7 @@ p {hyphens: auto;}
 <link rel="stylesheet" href="../css/normalize.css">
 <link rel="stylesheet" href="../css/style.css">
 <link rel="stylesheet" href="../css/mail.css">
+<meta name="theme-color" content="#024" />
 <title>Mailverkstedet</title>
 
 <header>Mail&shy;verk&shy;stedet</header>

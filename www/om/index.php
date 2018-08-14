@@ -12,6 +12,7 @@ p {hyphens: auto;}
 <link rel="stylesheet" href="../css/normalize.css">
 <link rel="stylesheet" href="../css/style.css">
 <link rel="stylesheet" href="../css/events.css">
+<meta name="theme-color" content="#024" />
 <title>Programvareverkstedet</title>
 
 <header>Programvare&shy;verk&shy;stedet</header>
