@@ -44,7 +44,6 @@ if ($attrs){
 <link rel="shortcut icon" href="favicon.ico">
 <link rel="stylesheet" href="../../css/normalize.css">
 <link rel="stylesheet" href="../../css/style.css">
-<link rel="stylesheet" href="../../css/events.css">
 <link rel="stylesheet" href="../../css/projects.css">
 <title>Prosjektverkstedet</title>
 
@@ -67,14 +66,16 @@ if ($attrs){
 		</div>
 
 		<div class="gridl">
+			<div class="projectmember-container">
+
 			<div class="projectlead">
 				<h2>Prosjektledelsen</h2>
 				<div class="projectmember">
-					<?php foreach($members as $i => $data){ 
+					<?php foreach($members as $i => $data){
 							if($data['lead']){
 					?>
-							<p><?= $data['role'] ?></p>
-							<p class="membername"><?= $data['name']; ?></p>
+							<p><?= $data['name']; ?></p>
+							<p class="memberrole"><?= $data['role'] ?></p>
 							<p class="memberuname"><?= $data['uname']; ?></p>
 							<p class="memberemail"><?= $data['mail']; ?></p>
 					<?php }
@@ -88,19 +89,20 @@ if ($attrs){
 					if($data['lead']){ continue; }
 				?>
 					<div class="projectmember" style="border-color: #6a0;">
-						<p><?= $data['role'] ? $data['role'] : 'Deltaker' ?></p>
-						<p class="membername"><?= $data['name']; ?></p>
+						<p><?= $data['name']; ?></p>
+						<p class="memberrole"><?= $data['role'] ? $data['role'] : 'Deltaker' ?></p>
 						<p class="memberuname"><?= $data['uname']; ?></p>
 						<p class="memberemail"><?= $data['mail']; ?></p>
 					</div>
 				<?php } ?>
-				<p><form action="update.php", method="post">
-					<input type="hidden" name="title" value="derp"/>
-					<input type="hidden" name="desc" value="derp"/>
-					<input type="hidden" name="active" value="derp"/>
-					<input type="hidden" name="id" value="<?= $projectID ?>"/>
-					<input type="submit" class="btn" name="join_or_leave" value="<?= ($is_member ? 'Forlat' : 'Bli med!') ?>"></input>
-				</form></p>
+			</div>
+			<form action="update.php", method="post"><p>
+				<input type="hidden" name="title" value="derp"/>
+				<input type="hidden" name="desc" value="derp"/>
+				<input type="hidden" name="active" value="derp"/>
+				<input type="hidden" name="id" value="<?= $projectID ?>"/>
+				<input type="submit" class="btn" name="join_or_leave" value="<?= ($is_member ? 'Forlat' : 'Bli med!') ?>"></input>
+			</p></form>
 			</div>
 		</div>
 	</main>
