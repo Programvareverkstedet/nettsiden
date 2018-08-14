@@ -27,14 +27,18 @@ if(!$userManager->isAdmin($uname)){
 
 $users = $userManager->getAllUserData();
 ?>
+<!DOCTYPE html>
+<html lang="no">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<link rel="shortcut icon" href="favicon.ico">
+<link rel="stylesheet" href="../../css/normalize.css">
+<link rel="stylesheet" href="../../css/style.css">
+<link rel="stylesheet" href="../../css/events.css">
+<link rel="stylesheet" href="../../css/admin.css">
+<title>Brukeradministrasjonsverkstedet</title>
 
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<link rel="stylesheet" href="../../css/normalize.css">
-	<link rel="stylesheet" href="../../css/style.css">
-	<link rel="stylesheet" href="../../css/events.css">
-	<link rel="stylesheet" href="../../css/admin.css">
-</head>
+<header>Bruker&shy;administrasjons&shy;verk&shy;stedet</header>
 
 <body>
 	<nav>

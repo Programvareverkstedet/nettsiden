@@ -16,16 +16,17 @@ $days_in_month = date('t', mktime(0, 0, 0, $month, 1, $year));
 
 ?><!DOCTYPE html>
 <html lang="no">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<link rel="shortcut icon" href="favicon.ico">
+<link rel="stylesheet" href="../css/normalize.css">
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/events.css">
+<link rel="stylesheet" href="../css/calendar.css">
+<title>Kalenderverkstedet</title>
 
-<head>
-	<title>Kalenderverkstedet</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-	<link rel="stylesheet" href="../css/normalize.css">
-	<link rel="stylesheet" href="../css/style.css">
-	<link rel="stylesheet" href="../css/events.css">
-	<link rel="stylesheet" href="../css/calendar.css">
-</head>
+<header>Kalender&shy;verk&shy;stedet</header>
+
 
 <body>
 	<nav>

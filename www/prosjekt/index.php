@@ -7,16 +7,18 @@ $projects = $projectManager->getAll();
 ?>
 <!DOCTYPE html>
 <html lang="no">
-<head>
-	<title>Prosjektverkstedet</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-	<link rel="stylesheet" href="../css/normalize.css">
-	<link rel="stylesheet" href="../css/style.css">
-	<link rel="stylesheet" href="../css/nav.css">
-	<link rel="stylesheet" href="../css/splash.css">
-	<link rel="stylesheet" href="../css/projects.css">
-</head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<link rel="shortcut icon" href="favicon.ico">
+<link rel="stylesheet" href="../css/normalize.css">
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/nav.css">
+<link rel="stylesheet" href="../css/splash.css">
+<link rel="stylesheet" href="../css/projects.css">
+<title>Prosjektverkstedet</title>
+
+<header>Prosjekt&shy;verk&shy;stedet</header>
+
 
 <body>
 	<nav>
