@@ -23,7 +23,7 @@ $translation = ['I dag', 'I morgen', 'Denne uka', 'Neste uke', 'Denne måneden',
 		<?= loginbar($sp, $pdo); ?>
 	</nav>
 	<main>
-		<h2 style="pointer-events:none;">Hendelser</h2>
+		<h2 style="pointer-events:none; text-align: left;">Hendelser</h2>
 		<div style="text-align: center; margin-top: -2.5em;">
 			<a style="padding-left: 2em; padding-right: 2em;" class="btn" style="" href="../kalender/">Kalender</a>
 		</div>
@@ -31,7 +31,7 @@ $translation = ['I dag', 'I morgen', 'Denne uka', 'Neste uke', 'Denne måneden',
 		$description_paragraphs = 2; //description length
 		foreach($agenda->getNextDays() as $period => $events) {
 			if ($events) { ?>
-				<h2><?= $translation[$period] ?></h2>
+				<h2 style="text-align: left;"><?= $translation[$period] ?></h2>
 				<ul class="events">
 				<?php foreach($events as $event) {?>
 				<li style="border-color: <?= $event->getColor() ?>">
