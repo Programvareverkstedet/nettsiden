@@ -11,6 +11,10 @@ ul#webmail li {
 	display: table-cell;
 	text-align: center;
 }
+ul#webmail li .mailname {
+	font-size: 1.2em;
+}
+
 @media all and (min-width: 980px) {
 	ul#webmail {
 		max-width: 1280px;
