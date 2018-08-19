@@ -21,6 +21,13 @@ if (!$project) {
 }
 
 $members = $projectManager->getProjectMembers($projectID);
+$normal_members = $members;
+foreach($normal_members as $i => $data){
+	if($data['lead']){
+		unset($normal_members[$i]);
+	}
+}
+
 $is_owner = False;
 $is_member = False;
 if ($attrs){
@@ -84,26 +91,37 @@ if ($attrs){
 				</div>
 			</div>
 
-			<div class="projectmembers">
-				<h2>Medlemmer</h2>
-				<?php foreach($members as $i => $data){
-					if($data['lead']){ continue; }
-				?>
-					<div class="projectmember" style="border-color: #6a0;">
-						<p><?= $data['name']; ?></p>
-						<p class="memberrole"><?= $data['role'] ? $data['role'] : 'Deltaker' ?></p>
-						<p class="memberuname"><?= $data['uname']; ?></p>
-						<p class="memberemail"><?= $data['mail']; ?></p>
-					</div>
-				<?php } ?>
-			</div>
-			<form action="update.php", method="post"><p>
-				<input type="hidden" name="title" value="derp"/>
-				<input type="hidden" name="desc" value="derp"/>
-				<input type="hidden" name="active" value="derp"/>
-				<input type="hidden" name="id" value="<?= $projectID ?>"/>
-				<input type="submit" class="btn" name="join_or_leave" value="<?= ($is_member ? 'Forlat' : 'Bli med!') ?>"></input>
-			</p></form>
+			<?php
+				if(sizeof($normal_members) > 0){
+			?>
+				<div class="projectmembers">
+					<h2>Medlemmer</h2>
+					<?php foreach($normal_members as $i => $data){
+					?>
+						<div class="projectmember" style="border-color: #6a0;">
+							<p><?= $data['name']; ?></p>
+							<p class="memberrole"><?= $data['role'] ? $data['role'] : 'Deltaker' ?></p>
+							<p class="memberuname"><?= $data['uname']; ?></p>
+							<p class="memberemail"><?= $data['mail']; ?></p>
+						</div>
+					<?php } ?>
+				</div>
+			<?php
+				}
+
+				if(!$is_owner){
+			?>
+
+				<form action="update.php", method="post"><p>
+					<input type="hidden" name="title" value="derp"/>
+					<input type="hidden" name="desc" value="derp"/>
+					<input type="hidden" name="active" value="derp"/>
+					<input type="hidden" name="id" value="<?= $projectID ?>"/>
+					<input type="submit" class="btn" name="join_or_leave" value="<?= ($is_member ? 'Forlat' : 'Bli med!') ?>"></input>
+				</p></form>
+			<?php
+				}
+			?>
 			</div>
 		</div>
 	</main>
