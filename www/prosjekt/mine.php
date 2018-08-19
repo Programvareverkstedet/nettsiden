@@ -70,6 +70,11 @@ $projects = array_values(array_filter(
 
 						$project = $projects[$i];
 						$projectID = $project->getID();
+
+						$owner = $projectManager->getProjectOwner($projectID);
+						if($owner['uname'] != $attrs['uid'][0]){
+							continue;
+						}
 				?>
 
 					<li>
