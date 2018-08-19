@@ -41,7 +41,7 @@ class SimpleEvent extends Event {
 	}
 
 	public function getURL() {
-		return '';
+		return ('/hendelser/info.php?id=' . $this->id);
 	}
 
 	public function getImageURL() {

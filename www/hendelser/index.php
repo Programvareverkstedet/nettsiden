@@ -16,7 +16,6 @@ $translation = ['I dag', 'I morgen', 'Denne uka', 'Neste uke', 'Denne måneden',
 
 <header>Hendelses&shy;verk&shy;stedet</header>
 
-
 <body>
 	<nav>
 		<?= navbar(1, 'hendelser'); ?>
