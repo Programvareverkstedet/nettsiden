@@ -84,13 +84,14 @@ a.nostyle {
 		grid-template-areas: "right"
 		                     "left";
 	}
+}
+@media screen and (min-width: 33rem) and (max-width: 50rem) {
 	.projectmember-container {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 		grid-template-rows: auto auto;
 		grid-template-areas: "organizers members"
 		                     "join join";
-
 	}
 }
 
