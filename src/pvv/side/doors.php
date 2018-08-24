@@ -28,7 +28,7 @@ class Doors{
 	}
 
 	public function getByName($name){
-		$query = 'SELECT * FROM doors WHERE name=:name';
+		$query = 'SELECT name, open, description FROM doors WHERE name=:name';
 		$statement = $this->pdo->prepare($query);
 		$statement->bindParam(':name', $name, PDO::PARAM_STR);
 		$statement->execute();
