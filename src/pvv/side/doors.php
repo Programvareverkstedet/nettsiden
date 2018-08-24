@@ -45,7 +45,7 @@ class Doors{
 		];
 	}
 	
-	public function setDoorState($name, bool $open) {
+	public function setDoorState($name, $open) {
 		$query = 'UPDATE doors SET open=:open WHERE name=:name';
 		$statement = $this->pdo->prepare($query);
 		$statement->bindParam(':name', $name, PDO::PARAM_STR);

@@ -38,7 +38,7 @@ CREATE TABLE "motd" (
 INSERT INTO motd (title, content)
 VALUES ("MOTD ./dev.sh", "du kan endre motd i admin panelet");
 
-CREATE TABLE doors (
+CREATE TABLE "doors" (
 "name" TEXT PRIMARY KEY,
 "open" BOOLEAN,
 "description" TEXT
