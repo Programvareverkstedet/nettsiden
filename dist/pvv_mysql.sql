@@ -43,7 +43,7 @@ VALUES ("MOTD ./dev.sh", "du kan endre motd i admin panelet");
 CREATE TABLE doors (
 `name` VARCHAR(20) PRIMARY KEY,
 `open` BOOLEAN,
-`description` BOOLEAN,
+`description` TEXT
 );
 INSERT INTO doors(name, open, description) VALUES
 ("koserommet", FALSE, "Døra inn til koserommet på stripa"),
