@@ -50,7 +50,7 @@ $date_part_lasts_hours   = $_POST['lasts_hours'];
 $date_part_lasts_minutes = $_POST['lasts_minutes'];
 
 if (strlen($date_part_start_day) < 2) {
-	$date_part_start_day = "0"
+	$date_part_start_day = "0";
 }
 
 $start = ($date_part_start_mon . "-" . $date_part_start_day . " " . $date_part_start_time);
