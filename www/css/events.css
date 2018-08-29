@@ -90,6 +90,7 @@ p + .subtext {
 .events li p {
 	text-align: left;
 	line-height: 1.5em;
+	word-wrap: break-word;
 }
 
 .events .subtext {

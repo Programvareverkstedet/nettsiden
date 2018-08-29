@@ -25,6 +25,8 @@
 
 .event-info {
 	grid-column: 1;
+	overflow-x: hidden; /*force text wrap*/
+	word-wrap: break-word;
 }
 
 .event-info h3 {

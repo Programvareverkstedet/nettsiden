@@ -256,6 +256,9 @@ main h1 {
 article {
 	overflow-y: hidden;
 }
+article p {
+	word-wrap: break-word;
+}
 
 .gridsplit {
 	display: grid;
