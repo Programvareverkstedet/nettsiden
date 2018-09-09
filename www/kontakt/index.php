@@ -24,7 +24,10 @@ require_once dirname(dirname(__DIR__)) . implode(DIRECTORY_SEPARATOR, ['', 'inc'
 	<main>
 		<h2>Kommunikasjon<br><img style="width: 8em" src="kontakt.jpg"></img></h2>
 		<p>
-		Det er ulike måter å kommunisere med PVV-medlemmer på.
+		Det er flere ulike måter å kommunisere med PVV og deres medlemmer på.
+		</p>
+		<p>
+		Kontaktinformasjonen til Styret og Drift funner du på vår <a href="../pvv/Kontaktinformasjon">Wiki</a>
 		</p>
 		<p>
 		Vi har en IRC-kanal på <a href="http://webchat.ircnet.net/">IRCnet</a> kalt #pvv.
