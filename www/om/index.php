@@ -39,7 +39,10 @@ p {hyphens: auto;}
 
 	<p>PVV har også ei relativt innholdsrik boksamling til disposisjon for medlemmene, samt ei bokhylle full av blad og tegneserier. (For tiden abonnerer vi på Lunch tegneserie). Vi har i tillegg et romslig bokbudsjett, så dersom du har forslag til bøker/blad vi burde kjøpe inn er det bare å sende en mail til styret (<code lang="">pvv@pvv.ntnu.no</code>). Ta en titt på hva som står i bokhyllen.
 
-	<p>PVV har også en del brettspill du kan prøve. 
+	<p>PVV har også en del brettspill du kan prøve.
+
+	<p><a href="../pvv/Dokumentasjon">Her</a> er en oversikt over hva du kan gjøre når du har fått PVV bruker.
+
 </article>
 
 <article>
@@ -54,7 +57,7 @@ p {hyphens: auto;}
 	<p>Kontingentinnbetalinger blir registrert i medlemsdatabasen, og det er lurt å sjekke at betalingen din dukker opp her (merk at det kan ta litt tid fra du betaler til kasserer får beskjed om det, og deretter litt tid før kasserer fører betalingen inn i regnskap og medlemsdatabase).
 
 	<p>
-		<a class="btn" href="../paamelding/">Registrer deg som bruker</a>
+		Se: <a class="btn" href="../paamelding/">Påmelding</a>
 	</p>
 </article>
 

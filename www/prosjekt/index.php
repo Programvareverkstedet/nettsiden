@@ -28,7 +28,7 @@ $projects = $projectManager->getAll();
 	</nav>
 
 	<main>
-		<h2>Projekter</h2>
+		<h2>Prosjekter</h2>
 		<p>
 			PVV er et kult miljø der du kan bli med på mye rart.
 			På denne siden har vi en liten oversikt over forskjellige prosjekter og organer i PVV.

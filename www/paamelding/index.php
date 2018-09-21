@@ -87,12 +87,12 @@ if (isset($_SESSION['userdata'])) { // if logged in with feide
 		
 		<p>
 			PVV har for øyeblikket et manuelt system for å legge til nye brukere.
-			Se lenkene over.
+			Se lenkene over for mer informasjon.
 			Vi foretrekker at du kommer inn på besøk på <a href="https://use.mazemap.com/?v=1&left=10.4032&right=10.4044&top=63.4178&bottom=63.4172&campusid=1&zlevel=2&sharepoitype=point&sharepoi=10.40355%2C63.41755%2C2&utm_medium=longurl">våre lokaler på stripa</a>
 			for å sette sette opp din PVV bruker. Hvis du vil, kan du også sende oss
-			en melding fra denne siden med ditt navn, epost og NTNU brukernavn.
-			For å aktivere din brukerkonto på PVV, må du møte opp på
-			lokalene våre slik at vi kan få satt et passord.
+			en melding fra denne nettsiden med ditt navn, epost og NTNU brukernavn.
+			For å aktivere din brukerkonto på PVV, må du alikevell møte opp på
+			lokalene våre slik at vi kan få satt ditt passord.
 		</p>
 	
 		<?php if($attrs) { //logged in with pvv account?>
