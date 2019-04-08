@@ -11,12 +11,13 @@ function navbar($depth, $active = NULL) {
 		'Webmail' => 'mail',
 		//'Webmail' => 'https://webmail.pvv.ntnu.no/',
 		'Wiki' => 'pvv',
+		'Git' => 'https://git.pvv.ntnu.no/',
 	];
 	foreach($menuItems as $caption => $link) {
 		$isActive = $active === $link;
-		//if ($caption !== 'Webmail') {
+		if (substr( $link, 0, 4 ) != "http") {
 			$link = rtrim(str_repeat('../', $depth) . $link, '/') . '/';
-		//}
+		}
 		
 		//if ($isActive) $link = '#';
 		
