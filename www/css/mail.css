@@ -50,6 +50,12 @@ ul#webmail li div a {
 	text-decoration: none;
 	color: black;
 }
+ul#webmail li#afterlogic div {
+	background: white url('afterlogic.png') no-repeat;
+	background: white url('afterlogic.svg') no-repeat;
+	background-size: auto 8em;
+	background-position: 50% 60%;
+}
 ul#webmail li#squirrelmail div {
 	background: white url('squirrelmail.png') no-repeat;
 	background-size: auto 10em;

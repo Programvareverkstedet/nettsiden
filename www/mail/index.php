@@ -21,6 +21,7 @@ p {hyphens: auto;}
 <main>
 
 <ul id="webmail">
+	<li id="afterlogic"><div><a href="https://webmail.pvv.ntnu.no/afterlogic_lite/"><span class="mailname" style="user-select: none">&nbsp;</span></a>
 	<li id="rainloop"><div><a href="https://webmail.pvv.ntnu.no/rainloop/"><span class="mailname">RainLoop</span></a>
 	<li id="squirrelmail"><div><a href="https://webmail.pvv.ntnu.no/squirrelmail/"><span class="mailname">SquirrelMail</span></a>
 	<li id="roundcube"><div><a href="https://webmail.pvv.ntnu.no/roundcube/"><span class="mailname">Roundcube</span></a>
