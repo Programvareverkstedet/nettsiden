@@ -38,7 +38,7 @@ $motd = $motdfetcher->getMOTD();
 			<ul class="essentials">
 				<a class="btn" href="om/"><li>Om PVV</li></a>
 				<a class="btn focus" href="paamelding/"><li>Bli medlem!</li></a>
-				<a class="btn" href="https://use.mazemap.com/?v=1&amp;left=10.4032&amp;right=10.4044&amp;top=63.4178&amp;bottom=63.4172&amp;campusid=1&amp;zlevel=2&amp;sharepoitype=point&amp;sharepoi=10.40355%2C63.41755%2C2&amp;utm_medium=longurl"><li>Veibeskrivelse</li></a>
+				<a class="btn" href="https://bit.ly/2QRjVSD&amp;left=10.4032&amp;right=10.4044&amp;top=63.4178&amp;bottom=63.4172&amp;campusid=1&amp;zlevel=2&amp;sharepoitype=point&amp;sharepoi=10.40355%2C63.41755%2C2&amp;utm_medium=longurl"><li>Veibeskrivelse</li></a>
 			</ul>
 		</div>
 	</header>
