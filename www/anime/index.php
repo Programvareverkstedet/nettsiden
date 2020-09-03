@@ -12,7 +12,7 @@ use \pvv\side\Agenda;
 <link rel="stylesheet" href="../css/nav.css">
 <link rel="stylesheet" href="../css/events.css">
 <meta name="theme-color" content="#024" />
-<title>Sosialverkstedet</title>
+<title>Animeverkstedet</title>
 
 <header>Sosial&shy;verk&shy;stedet</header>
 

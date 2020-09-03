@@ -31,11 +31,11 @@ p {hyphens: auto;}
 
 	<p>Alle medlemmer av PVV får brukerkonto på PVV sine maskiner, epostadresse (<code lang="">brukernavn@pvv.ntnu.no</code> og <code lang="">brukernavn@pvv.org</code>) og 757 MB diskplass, som blant annet kan brukes til hjemmesider. Dersom du går tom for diskplass er det mulig å kjøpe utvidet diskkvote. For å aktivere brukerkonto på PVV, må man møte opp på lokalene slik at man får satt passord.
 
-	<p>I tillegg får man tilgang til PVVs to oppholdsrom, rom 226 og 229 i Sentralbygg 2 (se kart over andre etasje i SBII). På rom 229 er det seks arbeidsstasjoner som kjører Linux, macOS, FreeBSD, samt bordplass, nettverksuttak og egen Wifi AP for laptoper. På rom 226 er det sofakrok med TV og diverse spillkonsoller.
+	<p>I tillegg får man tilgang til PVVs oppholdsrom, rom 247, 248, 249 og 251 i Oppredning/Gruvedrift (se kart over andre etasje i Oppredning/Gruvedrift). På rom 249 er det seks arbeidsstasjoner som kjører Linux, macOS, FreeBSD, samt bordplass, nettverksuttak og egen Wifi AP for laptoper. På rom 248 er det sofakrok med TV og diverse spillkonsoller og skjønnliteratur. Videre fungerer rom 251 som arbeidsrom og ellers har vi også en kjøkkenkrok.
 
 	<p>Dersom du ønsker å lære Unix er det god anledning til det på PVV. Vi har et sterkt faglig miljø, med mange svært kunnskapsrike personer, som stort sett ikke har noe imot å hjelpe nybegynnere. Man kan få større privilegier her enn på stud-maskinene, for eksempel gjennom å bli med i PVV-drift.
 
-	<p>PVV har gratis kaffe for medlemmer. Vi organiserer kurs og andre arrangementer. De aller fleste arrangementene er gratis.
+	<p>PVV har gratis kaffe og te for medlemmer. Vi organiserer kurs og andre arrangementer. De aller fleste arrangementene er gratis.
 
 	<p>PVV har også ei relativt innholdsrik boksamling til disposisjon for medlemmene, samt ei bokhylle full av blad og tegneserier. (For tiden abonnerer vi på Lunch tegneserie). Vi har i tillegg et romslig bokbudsjett, så dersom du har forslag til bøker/blad vi burde kjøpe inn er det bare å sende en mail til styret (<code lang="">pvv@pvv.ntnu.no</code>). Ta en titt på hva som står i bokhyllen.
 

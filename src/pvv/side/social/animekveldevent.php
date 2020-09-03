@@ -33,11 +33,12 @@ class AnimekveldEvent extends Event {
 
 	public function getDescription() {
 		return [
-			'Er du glad i japanske tegneserier eller er du bare nysgjerrige på hva anime er?',
+			'Er du glad i japanske tegneserier eller bare nysgjerrig på hva anime er?',
 			'Bli med oss hver fredag, der vi finner frem de nyeste episodene for sesongen!',
-			'Vi viser denne sesongens nye animeer.',
 			'',
-			'Alle kan være med på å anbefale eller veto serier.'
+			'Alle kan være med på å anbefale eller veto serier.',
+			'',
+			'I disse tider blir visningene i all hovedsak holdt online på vår <a href="https://discord.gg/cx4aXU7">Discord server</a>'
 			];
 	}
 
