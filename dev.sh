@@ -8,6 +8,11 @@ test ! -e dataporten_config.php && cp -v dist/dataporten_config.php dataporten_c
 
 test -e composer.phar || curl -O https://getcomposer.org/composer.phar
 
+if test ! -f lib/OAuth2-Client/OAuth2Client.php ; then
+	echo Missing git submodules. Installing...
+	(set -x; git submodule update --init --recursive) || exit $?
+fi
+
 if test ! -d vendor; then
 	php composer.phar install || exit $?
 	cp -v dist/authsources_example.php vendor/simplesamlphp/simplesamlphp/config/authsources.php

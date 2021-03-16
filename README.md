@@ -22,7 +22,7 @@ On Windows, you have to perform a `composer install` manually beforehand. Make s
 
 ### Dependency management
 
-`dev.sh` will download the `composer` package manager to the php archive file `composer.phar` and run it.
+`dev.sh` will ensure the git submodules have been pulled, then download the `composer` package manager to the php archive file `composer.phar` and run it.
 Composer will check for the php extension `pdo_sqlite` which must be enabled on your system. This usually includes installing a php-sqlite3 package and enabling it in /etc/php/php.ini:
 
     [PHP]
