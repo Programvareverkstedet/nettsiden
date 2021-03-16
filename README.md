@@ -28,6 +28,7 @@ Composer will check for the php extension `pdo_sqlite` which must be enabled on 
     [PHP]
     extension=pdo_sqlite
     extension=sqlite3
+	extension=ext-curl
 
 Composer is used as such:
 
