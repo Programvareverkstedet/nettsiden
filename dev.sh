@@ -22,4 +22,4 @@ if test ! -d vendor; then
 	ln -s ../vendor/simplesamlphp/simplesamlphp/www/ www/simplesaml
 fi
 
-php -S [::1]:1080 -d error_reporting=E_ALL -d display_errors=1 -t www/
+php -S ${DOCKER_HOST:-[::1]}:${DOCKER_PORT:-1080} -d error_reporting=E_ALL -d display_errors=1 -t www/

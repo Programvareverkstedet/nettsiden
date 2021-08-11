@@ -23,7 +23,7 @@ On Windows, you have to perform a `composer install` manually beforehand. Make s
 ### Dependency management
 
 `dev.sh` will ensure the git submodules have been pulled, then download the `composer` package manager to the php archive file `composer.phar` and run it.
-Composer will check for the php extension `pdo_sqlite` which must be enabled on your system. This usually includes installing a php-sqlite3 package and enabling it in /etc/php/php.ini:
+Composer will check for the php extension `pdo_sqlite` which must be enabled on your system. This usually includes installing a php-sqlite3 package and enabling it in `/etc/php/php.ini`:
 
     [PHP]
     extension=pdo_sqlite
@@ -34,5 +34,17 @@ Composer is used as such:
 
     php composer.phar update
     php composer.phar install
+
+### Docker
+
+We provide a simple docker-compose setup for local development.
+First ensure that docker is running:
+
+	sudo systemctl start docker
+
+then
+
+	DOCKER_USER=$(id -u):$(id -g) docker-compose up
+
 
 ## Hosting
