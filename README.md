@@ -47,4 +47,21 @@ then
 	DOCKER_USER=$(id -u):$(id -g) docker-compose up
 
 
+### Admin account
+
+Login goes through `idp.pvv.ntnu.no` via SAML, so you have to use your PVV account.
+(This only works if you use the hostname `localhost`)
+To make your account into an admin accout, run:
+
+    sqlite3 pvv.sqlite 'INSERT INTO users (uname, groups) VALUES ("your_username", 1);'
+
+If using docker, when running:
+
+    DOCKER_USER=$(id -u):$(id -g) docker-compose exec nettside sqlite3 pvv.sqlite 'INSERT INTO users (uname, groups) VALUES ("your_username", 1);'
+
+If not already running:
+
+    DOCKER_USER=$(id -u):$(id -g) docker-compose run nettside sqlite3 pvv.sqlite 'INSERT INTO users (uname, groups) VALUES ("your_username", 1);'
+
+
 ## Hosting
