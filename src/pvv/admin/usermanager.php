@@ -96,7 +96,9 @@ class UserManager{
 		$statement->bindParam(':uname', $uname, PDO::PARAM_STR);
 		$statement->execute();
 
-		return $statement->fetch()[0];
+		$row = $statement->fetch();
+		if ($row == false) return 0;
+		return $row[0];
 	}
 
 	public function getUsergroupNames($uname){
