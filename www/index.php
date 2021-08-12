@@ -31,7 +31,30 @@ $motd = $motdfetcher->getMOTD();
 
 	<header class="landing">
 		<!-- <img class="logo" src="css/logo-white.png"/> -->
-		<iframe width="560" height="315" src="https://www.youtube.com/embed/l-iEkaQNQdk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen ></iframe>
+        <!-- HACK INCOMING! -->
+		<style>
+    		.iframe-container {
+    		  position: relative;
+    		  overflow: hidden;
+    		  width: 100%;
+    		  padding-top: 56.25%; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+    		}
+    		
+    		/* Then style the iframe to fit in the container div with full height and width */
+    		.responsive-iframe {
+    		  position: absolute;
+    		  top: 0;
+    		  left: 0;
+    		  bottom: 0;
+    		  right: 0;
+    		  width: 100%;
+    		  height: 100%;
+    		}
+		</style>
+		<div class="iframe-container" style="max-width: 100em;">
+    		<iframe class="responsive-iframe" src="https://www.youtube.com/embed/l-iEkaQNQdk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen ></iframe>
+		</div>
+		
 		<div class="info">
 			<h2>Velkommen til Programvare&shy;verkstedet</h2>
 			<p>Programvareverkstedet (PVV) er en studentorganisasjon ved NTNU som vil skape et miljø for datainteresserte personer tilknyttet universitetet.</p>
