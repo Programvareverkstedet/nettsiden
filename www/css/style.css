@@ -49,6 +49,11 @@ header {
 	display:none;
 }
 
+iframe {
+	display: block;
+	margin: auto;
+}
+
 nav, #menu {
 	padding: 0;
 }

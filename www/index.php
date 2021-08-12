@@ -30,7 +30,8 @@ $motd = $motdfetcher->getMOTD();
 	</nav>
 
 	<header class="landing">
-		<img class="logo" src="css/logo-white.png"/>
+		<!-- <img class="logo" src="css/logo-white.png"/> -->
+		<iframe width="560" height="315" src="https://www.youtube.com/embed/l-iEkaQNQdk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen ></iframe>
 		<div class="info">
 			<h2>Velkommen til Programvare&shy;verkstedet</h2>
 			<p>Programvareverkstedet (PVV) er en studentorganisasjon ved NTNU som vil skape et miljø for datainteresserte personer tilknyttet universitetet.</p>
