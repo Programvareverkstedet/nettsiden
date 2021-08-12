@@ -14,7 +14,7 @@ $motd = $motdfetcher->getMOTD();
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <link rel="shortcut icon" href="favicon.ico">
 <link rel="stylesheet" href="css/normalize.css">
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/style.css?ver=2">
 <link rel="stylesheet" href="css/splash.css">
 <link rel="stylesheet" href="css/landing.css">
 <meta name="theme-color" content="#024" />
