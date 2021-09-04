@@ -346,3 +346,12 @@ article p {
 textarea.boxinput {
 	resize: vertical;
 }
+
+#doorIndicator {
+    border-radius: 5px;
+    padding: 8px 8px;
+    margin: 4px 4px;
+}
+#doorIndicator > p { display: inline; }
+.doorIndicator_OPEN { border: 2px solid green; }
+.doorIndicator_CLOSED { border: 2px dotted red; }

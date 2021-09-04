@@ -7,6 +7,12 @@ $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 $motdfetcher = new \pvv\side\MOTD($pdo);
 $motd = $motdfetcher->getMOTD();
+
+$door = new \pvv\side\Door($pdo);
+$doorEntry = (object)($door->getCurrent());
+$isDoorOpen = $doorEntry->open;
+if (date("Y-m-d") == date("Y-m-d", $doorEntry->time)) { $doorTime = date("H:i", $doorEntry->time);
+} else { $doorTime = date("H:i d/m", $doorEntry->time);}
 ?>
 <!DOCTYPE html>
 <html lang="no">
@@ -63,6 +69,10 @@ $motd = $motdfetcher->getMOTD();
 				<a class="btn" href="om/"><li>Om PVV</li></a>
 				<a class="btn focus" href="paamelding/"><li>Bli medlem!</li></a>
 				<a class="btn" href="https://use.mazemap.com/#config=ntnu&v=1&zlevel=2&center=10.406281,63.417093&zoom=19.5&campuses=ntnu&campusid=1&sharepoitype=poi&sharepoi=38159&utm_medium=longurl">Veibeskrivelse</li></a>
+				<div id="doorIndicator" class="<?php echo($isDoorOpen ? "doorIndicator_OPEN" : "doorIndicator_CLOSED"); ?>">
+					<p class="doorStateText">Døren er <b><?php echo($isDoorOpen ? "" : "ikke") ?> åpen</b>.</p>
+					<p class="doorStateTime">(Oppdatert <?php echo($doorTime) ?>)</p>
+				</div>
 			</ul>
 		</div>
 	</header>
