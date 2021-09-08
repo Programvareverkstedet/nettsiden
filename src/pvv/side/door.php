@@ -18,8 +18,8 @@ class Door{
 		$doorEvents = [];
 		foreach($statement->fetchAll() as $row){
 			$doorEvents[] = [
-				'time'        => $row['time'],
-				'open'        => $row['open']
+				'time'        => (int)$row['time'],
+				'open'        => (bool)$row['open']
 			];
 		}
 
