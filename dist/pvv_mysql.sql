@@ -40,11 +40,8 @@ INSERT INTO motd (title, content)
 VALUES ("MOTD ./dev.sh", "du kan endre motd i admin panelet");
 */
 
-CREATE TABLE doors (
-`name` VARCHAR(20) PRIMARY KEY,
-`open` BOOLEAN,
-`description` TEXT
+CREATE TABLE door (
+`time` INTEGER PRIMARY KEY,
+`open` BOOLEAN
 );
-INSERT INTO doors(name, open, description) VALUES
-("koserommet", FALSE, "Døra inn til koserommet på stripa"),
-("terminalrommet", FALSE, "Døra inn til terminalrommet på stripa");
+INSERT INTO door(time, open) VALUES (0, FALSE);

@@ -1,49 +1,73 @@
 <?php
+
 require_once dirname(dirname(__DIR__)) . implode(DIRECTORY_SEPARATOR, ['', 'inc', 'include.php']);
-$doors = new \pvv\side\Doors($pdo);
 
-$out = null;
 header('Content-Type: application/json');
-if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    if (isset($_GET["name"])) {
-        $out = $doors->getByName($_GET["name"]);
-        if (!$out) {
-            echo '{"error": true, "reason": "not found"}';
-            http_response_code(404);
-            exit();
+$door = new \pvv\side\Door($pdo);
+
+if($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_SERVER["HTTP_AUTHORIZATION"])) {
+        list($type, $data) = explode(" ", $_SERVER["HTTP_AUTHORIZATION"], 2);
+        if (strcasecmp($type, "Bearer") == 0) {
+            if (hash_equals($data, $doorSensorSecret)) {
+                handleSetState();
+            } else {
+                echo '{"status": "error", "message": "Invalid authentication key"}';
+                die();
+            }
+        } else {
+            echo '{"status": "error", "message": "Invalid authentication method"}';
+            die();
         }
+    } else {
+        echo '{"status": "error", "message": "Missing authentication"}';
+        die();
     }
-    else {
-        $out = $doors->getAll();
-    }
-}
-elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST["name"]) and isset($_POST["open"]) ) {
-        $out = $doors->setDoorState($_POST["name"], (strtolower($_POST["open"])==="true")?1:0);
-        
-        $out = $doors->getByName($_POST["name"]);
-        if (!$out) {
-            echo '{"error": true, "reason": "not found"}';
-            http_response_code(404);
-            exit();
+} elseif ($_SERVER['REQUEST_METHOD'] === 'GET') {
+
+    if (isset($_GET["period"])) {
+        $period = (string)htmlspecialchars($_GET["period"]);
+        if ($period == "day") {
+            $startTime = time() - (60*60*24);
+        } else if ($period == "week") {
+            $startTime = time() - (60*60*24*7);
+        } else {
+            echo '{"status": "error", "message": "Invalid period"}';
+            die();
         }
-    }
-    else {
-        echo '{"error": true, "reason": "missing either \"name\" or \"open\" argument"}';
-        http_response_code(404);
-        exit();
+
+        $lines = $door->getEntriesAfter($startTime);
+        echo json_encode([
+            'status'        => "OK",
+            'entries'       => $lines
+        ]);
+    } else {
+        //Only last entry
+        $line = (object)$door->getCurrent();
+        echo json_encode([
+            'status'        => "OK",
+            'time'          => $line->time,
+            'open'          => $line->open
+        ]);
     }
 }
 
-function utf8ize($d) {
-    if (is_array($d)) {
-        foreach ($d as $k => $v) {
-            $d[$k] = utf8ize($v);
-        }
-    } else if (is_string ($d)) {
-        return utf8_encode($d);
-    }
-    return $d;
-}
 
-echo json_encode(utf8ize($out));
+function handleSetState() {
+    global $door;
+
+    $jsonobj = file_get_contents('php://input');
+    $event = json_decode($jsonobj);
+
+    if ((!isset($event->time)) || (!is_numeric($event->time))) {
+        echo '{"status": "error", "message": "Invalid timestamp"}';
+        die();
+    }
+    if ((!isset($event->isDoorOpen)) || (!is_bool($event->isDoorOpen))) {
+        echo '{"status": "error", "message": "Invalid door state"}';
+        die();
+    }
+
+    $door->createEvent((int)($event->time), (bool)($event->isDoorOpen));
+    echo '{"status": "OK"}';
+} 

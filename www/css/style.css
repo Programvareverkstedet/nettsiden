@@ -153,6 +153,16 @@ nav #usermenu li:first-child:hover {
 	background: transparent;
 }
 
+#doorIndicator {
+    border-radius: 5px;
+    padding: 8px 8px;
+    margin: 4px 4px;
+}
+#doorIndicator > p > abbr[title] { text-decoration: none; border-bottom: none; cursor: inherit; }
+.doorIndicator_OPEN { border: 2px solid green; }
+.doorIndicator_CLOSED { border: 2px dotted red; }
+.doorStateMobileOnly { display: none; }
+
 @media(max-width: 800px){
 	nav #menu, nav #menu li.active, nav #menu_toggle, nav #login {
 		position: absolute;
@@ -225,6 +235,9 @@ nav #usermenu li:first-child:hover {
 	main {
 		margin-left: 1em !important;
 		margin-right: 1em !important;
+	}
+	.doorStateMobileOnly {
+		display: inline;
 	}
 }
 
@@ -346,3 +359,4 @@ article p {
 textarea.boxinput {
 	resize: vertical;
 }
+
