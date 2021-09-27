@@ -31,7 +31,7 @@ if (isset($_GET['code'])) {
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <link rel="shortcut icon" href="favicon.ico">
 <link rel="stylesheet" href="../css/normalize.css">
-<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/style.css?ver=2">
 <link rel="stylesheet" href="../css/nav.css">
 <meta name="theme-color" content="#024" />
 <title>Registreringsverkstedet</title>
@@ -74,7 +74,7 @@ if (isset($_GET['code'])) {
 			For å aktivere din brukerkonto på PVV, må du alikevell møte opp på
 			lokalene våre slik at vi kan få satt ditt passord.
 		</p>
-		<iframe width="600" height="420" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://use.mazemap.com/embed.html#v=1&zlevel=2&center=10.406194,63.417143&zoom=18&campusid=1&sharepoitype=poi&sharepoi=38159&utm_medium=iframe" style="border: 1px solid grey" allow="geolocation"></iframe><br/>
+		<iframe id="mazeMapper" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://use.mazemap.com/embed.html#v=1&zlevel=2&center=10.406194,63.417143&zoom=18&campusid=1&sharepoitype=poi&sharepoi=38159&utm_medium=iframe" style="border: 1px solid grey" allow="geolocation"></iframe><br/>
 	
 		<?php if($attrs) { //logged in with pvv account?>
 			<p>

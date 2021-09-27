@@ -163,6 +163,11 @@ nav #usermenu li:first-child:hover {
 .doorIndicator_CLOSED { border: 2px dotted red; }
 .doorStateMobileOnly { display: none; }
 
+#mazeMapper {
+	width: 90%;
+	height: 60vh;
+}
+
 @media(max-width: 800px){
 	nav #menu, nav #menu li.active, nav #menu_toggle, nav #login {
 		position: absolute;
@@ -238,6 +243,9 @@ nav #usermenu li:first-child:hover {
 	}
 	.doorStateMobileOnly {
 		display: inline;
+	}
+	#mazeMapper {
+		width: 100%;
 	}
 }
 
