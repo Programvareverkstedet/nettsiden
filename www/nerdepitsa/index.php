@@ -11,6 +11,20 @@ use \pvv\side\Agenda;
 <link rel="stylesheet" href="../css/style.css">
 <link rel="stylesheet" href="../css/nav.css">
 <link rel="stylesheet" href="../css/events.css">
+<style>
+#outDatedBanner {
+	width: 100%;
+	height: 100px;
+	background-color: lightgray;
+	margin: auto auto;
+	border: 1px solid salmon;
+	border-radius: 20px;
+}
+#outDatedBanner > p {
+	margin: auto auto;
+	text-align: center;
+}
+</style>
 <meta name="theme-color" content="#024" />
 <title>Sosialverkstedet</title>
 
@@ -18,7 +32,7 @@ use \pvv\side\Agenda;
 
 
 <main>
-
+<div id="outDatedBanner"><p><br>Denne siden er trolig utdatert! Hvis du er interessert, ta kontakt i discord-kanalen. <br> This page is probably outdated! If you're interested, check in with someone in our discord-channel. </p></div>
 <?php
 $activity = new \pvv\side\social\NerdepitsaActivity;
 $nextEvent = $activity->getNextEventFrom(new DateTimeImmutable);
