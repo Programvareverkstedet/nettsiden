@@ -1,0 +1,24 @@
+#imageSlideshow {
+    position: relative;
+    width: 70vw;
+    height: calc(70vw / (16/9));
+    margin: auto auto;
+    border-radius: 20px;
+    overflow: hidden;
+}
+.slideshowimg {
+    width: 100%;
+    margin: auto auto;
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    border-radius: 20px;
+    transition: visibility 0.8s, opacity 0.8s ease-out;
+}
+.slideshowactive {
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 0.8s, opacity 0.8s ease-out;
+}
