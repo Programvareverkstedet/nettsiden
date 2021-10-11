@@ -27,6 +27,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (isset($_GET["period"])) {
         $period = (string)htmlspecialchars($_GET["period"]);
+        
         if ($period == "day") {
             $startTime = time() - (60*60*24);
         } else if ($period == "week") {
@@ -37,6 +38,11 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         $lines = $door->getEntriesAfter($startTime);
+        if (isset($_GET["period"]) && (bool)htmlspecialchars($_GET["edgeonly"])) {
+            //Ignore repeats
+            $lines = getChanges($lines);
+        }
+        
         echo json_encode([
             'status'        => "OK",
             'entries'       => $lines
@@ -71,3 +77,17 @@ function handleSetState() {
     $door->createEvent((int)($event->time), (bool)($event->isDoorOpen));
     echo '{"status": "OK"}';
 } 
+
+function getChanges($items) {
+    $prevState = 2;
+    $res = [];
+
+    foreach($items as $item) {
+        if ($item["open"] !== $prevState) {
+            array_push($res, $item);
+            $prevState = $item["open"];
+        }
+    }
+
+    return $res;
+}
