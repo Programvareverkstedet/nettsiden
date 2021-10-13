@@ -159,6 +159,10 @@ nav #usermenu li:first-child:hover {
     margin: 4px 4px;
 	color: white;
 }
+#doorIndicator:hover {
+	background-color: #224466;
+	cursor: pointer;
+}
 .doorIndicator_OPEN { border: 2px solid green; }
 .doorIndicator_CLOSED { border: 2px dotted red; }
 
