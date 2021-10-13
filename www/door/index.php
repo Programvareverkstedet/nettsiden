@@ -38,7 +38,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         $lines = $door->getEntriesAfter($startTime);
-        if (isset($_GET["period"]) && (bool)htmlspecialchars($_GET["edgeonly"])) {
+        if (isset($_GET["edgeonly"]) && (bool)htmlspecialchars($_GET["edgeonly"])) {
             //Ignore repeats
             $lines = getChanges($lines);
         }

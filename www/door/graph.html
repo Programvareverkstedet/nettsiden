@@ -5,20 +5,38 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inngangsverkstedet</title>
+    <style>
+        body { 
+            text-align: center;
+            width: 80vw;
+            margin: auto auto;
+        }
+        #graphDiv {
+            display: flex;
+            flex-direction: column;
+        }
+
+    </style>
 </head>
 <body>
-    <!-- Felixalb 2021 -->
     <h2>En kort analyse av nerders døgnrytme i deres naturlige habitat, PVV</h2>
-    <h3 id="infoText"></h3>
-    <canvas id="doorGraph1"></canvas>
-    <script src="./p5.min.js"></script>
+    <div id="graphDiv">
+        <h4>Siste 24 timer</h4>
+        <canvas id="doorGraphDay"></canvas>
+        <h4>Siste 7 dager</h4>
+        <canvas id="doorGraphWeek"></canvas>
+    </div>
+    
+    <script src="chart.min.js"></script>
+    <script src="moment.js"></script>
+    <script src="chartjs-adapter-moment.js"></script>
     <script>
     
-    const infoEl = document.getElementById("infoText");
-    const graphEl1 = document.getElementById("doorGraph1");
+    const graphElDay = document.getElementById("doorGraphDay");
+    const graphElWeek = document.getElementById("doorGraphWeek");
 
     const XHR = new XMLHttpRequest();
-    const url="/door/?period=day&edgeonly=true";
+    const url="/door/?period=week";
     XHR.open("GET", url);
     XHR.send();
 
@@ -26,76 +44,102 @@
     XHR.onreadystatechange = ()=>{
         if (XHR.readyState == 4 && XHR.status == 200) {
             console.log("Response 200 from API")
-            response = JSON.parse(XHR.responseText);
+            response = JSON.parse(XHR.responseText); //Should be try-catched?
             if (response.status != "OK") {
-                infoEl.innerHTML = "Error when connecting to API.";
+                console.log("Error when connecting to API.");
                 return
             } else {
-                let datapoints = response.entries;
-                console.log("Success, " + datapoints.length + " datapoints received.");
-                // displayLineDiagram(graphEl1, datapoints);
-                displayBar(datapoints);
+                const allDatapoints = response.entries;
+                console.log("Success, " + allDatapoints.length + " datapoints received.");
+
+                const dayDatapoints = getLastDay(allDatapoints);
+
+                displayLineDiagram(graphElDay, dayDatapoints, "hour");
+                displayLineDiagram(graphElWeek, allDatapoints, "day");
             }
         }
     }
 
-    // function getDateString(time) {
-    //     let dateObj = new Date(time*1e3);
-    //     return dateObj.toLocaleString();
-    // }
+    function getLastDay(data) {
+        let date = new Date();
+        let curTime = date.getTime();
+        let targetTime = parseInt(curTime/1e3) - (60*60*24);
 
-    // function displayLineDiagram(canv, data) {
-    //     let ctx = canv.getContext("2d");
-    //     let chart = new Chart(ctx, {
-    //         type: 'line',
-    //         data: {
-    //             labels: data.map(entry=> getDateString(entry.time)),
-    //             // labels: data.map(entry=> 1e3 * entry.time),
-    //             datasets: [{
-    //                 data: data.map(entry => entry.open)
-    //             }],
-    //         }
-    //     });
-    // }
-
-    function setup() {
-        createCanvas(800, 200);
-        noLoop();
-        background(50);
+        let i;
+        for (i = 0; i < data.length; i++) {
+            if (data[i].time < targetTime) {
+                break;
+            }
+        }
+        return data.slice(0, i);
     }
-    function draw() {}
-    function displayBar(data) {
-        const fullLength = 60*60*24;
-        // const dateObj = new Date();
-        const curTime = Math.floor(Date.now() / 1000)
-        let borderPositions = [0];
-        
-        //Convert timestamps to a position on the graph
-        for(let i = data.length-1; i > 0; i--) {
-            const ts = data[i]["time"];
-            const pixelPos = width - (((curTime - ts) / fullLength) * width);
-            borderPositions.push(pixelPos);
-        }
 
-        console.log(borderPositions);
+    function displayLineDiagram(canv, data, timeunit) {
+        let ctx = canv.getContext("2d");
+        let dotColor = data.map(entry => entry.open ? "rgb(10, 150, 10)" : "rgb(200, 100, 100)");
 
-        let sectionColors = ["gray"];
-        //Define list of colors, gray=?, green=open, red=closed
-        for(let i = 0; i < data.length; i++) {
-            sectionColors.push((data[i]["open"]) ? "green" : "red");
-        }
-        console.log(sectionColors);
-        for(let i = 0; i < borderPositions.length-1; i++) {
-            fill(sectionColors[i]);
-            rect(borderPositions[i], 0, borderPositions[i+1], height);
-            console.log(`${sectionColors[i]} from ${borderPositions[i]}px to ${borderPositions[i+1]}px`)
-        }
+        let chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: data.map(entry=> 1e3 * entry.time),
+                datasets: [{
+                    data: data.map(entry => entry.open),
+                    stepped: "before",
+                    borderColor: dotColor,
+                    backgroundColor: dotColor
+                }],
+            },
+            options: {
+                scales: {
+                    xAxis: {
+                        type: "time",
+                        time: {
+                            unit: timeunit
+                        },
+                    },
+                    yAxis: {
+                        suggestedMin: -0.1,
+                        suggestedMax: 1.1,
+                        grid: {display: false},
+                        ticks: {
+                            callback: function(label, index, labels) {
+                                if (label == 0) {
+                                    return "Stengt";
+                                } else if (label == 1) {
+                                    return "Åpent";
+                                } else {
+                                    return "";
+                                }
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(tooltipItem) {
+                                const value = tooltipItem.formattedValue;
+                                if (value == 0) {
+                                    return "Stengt";
+                                } else if (value == 1) {
+                                    return "Åpent";
+                                } else {
+                                    return "";
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        });
     }
 
     
 
     </script>
-    
-    <!-- <script src="./chart.min.js"></script> -->
+
 </body>
 </html>

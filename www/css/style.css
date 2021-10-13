@@ -157,11 +157,10 @@ nav #usermenu li:first-child:hover {
     border-radius: 5px;
     padding: 8px 8px;
     margin: 4px 4px;
+	color: white;
 }
-#doorIndicator > p > abbr[title] { text-decoration: none; border-bottom: none; cursor: inherit; }
 .doorIndicator_OPEN { border: 2px solid green; }
 .doorIndicator_CLOSED { border: 2px dotted red; }
-.doorStateMobileOnly { display: none; }
 
 #mazeMapper {
 	width: 90%;

@@ -10,9 +10,13 @@ $motd = $motdfetcher->getMOTD();
 
 $door = new \pvv\side\Door($pdo);
 $doorEntry = (object)($door->getCurrent());
-$isDoorOpen = $doorEntry->open;
-if (date("Y-m-d") == date("Y-m-d", $doorEntry->time)) { $doorTime = date("H:i", $doorEntry->time);
-} else { $doorTime = date("H:i d/m", $doorEntry->time);}
+if ($doorEntry->time < (time() - 60*30)) {
+	$doorStateText = "Ingen data fra dørsensor";
+} else {
+	if ($doorEntry->open) { $doorStateText = "Døren er <b>åpen</b>";
+	} else { $doorStateText = "Døren er <b>ikke åpen</b>"; }
+}
+$doorTime = date("H:i", $doorEntry->time);
 ?>
 <!DOCTYPE html>
 <html lang="no">
@@ -36,96 +40,9 @@ if (date("Y-m-d") == date("Y-m-d", $doorEntry->time)) { $doorTime = date("H:i", 
 	</nav>
 
 	<header class="landing">
-		<!-- Statisk bilde: 
-			<img class="logo" src="css/logo-white.png"/> 
-		-->
-		<!-- Youtube-iframe: 
-			<style>
-				.iframe-container {
-				position: relative;
-				overflow: hidden;
-				width: 100%;
-				padding-top: 56.25%; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
-				}
-				
-				/* Then style the iframe to fit in the container div with full height and width */
-				.responsive-iframe {
-				position: absolute;
-				top: 0;
-				left: 0;
-				bottom: 0;
-				right: 0;
-				width: 100%;
-				height: 100%;
-				}
-			</style> 
-			<div class="iframe-container" style="max-width: 100em;">
-				<iframe class="responsive-iframe" src="https://www.youtube.com/embed/l-iEkaQNQdk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen ></iframe>
-			</div> 
-		-->
 		<div id="imageSlideshow">
-			<?php
-
-			$path = "/galleri/bilder/slideshow/";
-			$splashImg = "/PNG/PVV-logo-big-bluebg.png";
-
-			//Find all files/dirs in folder and discard . and .. directories
-			$filenames = aRrAy_SlIcE(sCaNdIr(__DIR__ . $path), 2);
-
-			function getFullPath($fname) { return ($GLOBALS["path"] . $fname );	}
-
-			//Sort filenames alphabetically and prepend the path prefix to each item.
-			asort($filenames);
-			$slideshowimagefilenames = aRrAy_MaP("getFullPath", $filenames);
-
-			//Prepend the cover photo
-			ArRaY_uNsHiFt($slideshowimagefilenames, $splashImg);
-
-			eChO('<img class="slideshowimg slideshowactive" id="slideshowImage1" src="' . $slideshowimagefilenames[0] . '">');
-			ecHo('<img class="slideshowimg" id="slideshowImage2" src="' . $slideshowimagefilenames[1] . '">');
-
-			//Store list of file names in a globel JS variable 
-			EchO("<script> const slideshowFnames =" . jSoN_eNcOdE($slideshowimagefilenames) . "; </script>"); 
-			?>
-
-			<script>
-			const SLIDESHOWDELAYMS = 3500; //Minimum 3 * fade time (3*800=2400ms)
-
-			let slideshowIndex = 1;
-			let slideshowInterval;
-	
-			const ssi1 = document.getElementById("slideshowImage1");
-			const ssi2 = document.getElementById("slideshowImage2");
-
-			function stepSlideshow(imgs) {
-				//Change visible picture, ssi2 active, fades with css
-				ssi1.classList.remove("slideshowactive");
-				ssi2.classList.add("slideshowactive");
-
-				setTimeout(()=>{
-					//Change to ssi1 active, no visible change
-					ssi1.src = ssi2.src;
-					ssi1.classList.add("slideshowactive");
-					
-					// Hide ssi2 after ssi1 has appeared, no visible change
-					setTimeout(()=>{
-						ssi2.classList.remove("slideshowactive");
-					}, 800);
-
-					//Prepare for next cycle, no visible change
-					setTimeout(()=>{
-						slideshowIndex = (slideshowIndex + 1) % imgs.length;	
-						ssi2.src = imgs[slideshowIndex];
-					}, 1600);			
-				}, 800);
-			}
-			//Initialize slideshow, start interval
-			if (slideshowFnames.length > 1) {
-				slideshowInterval = setInterval(()=>{
-					stepSlideshow(slideshowFnames);
-				}, SLIDESHOWDELAYMS);
-			}
-		</script>
+			<?php  include("galleri/slideshow.php"); ?>
+			<script src="galleri/slideshow.js"></script>
 		</div>
 		
 		<div class="info">
@@ -136,9 +53,9 @@ if (date("Y-m-d") == date("Y-m-d", $doorEntry->time)) { $doorTime = date("H:i", 
 				<a class="btn" href="om/"><li>Om PVV</li></a>
 				<a class="btn focus" href="paamelding/"><li>Bli medlem!</li></a>
 				<a class="btn" href="https://use.mazemap.com/#config=ntnu&v=1&zlevel=2&center=10.406281,63.417093&zoom=19.5&campuses=ntnu&campusid=1&sharepoitype=poi&sharepoi=38159&utm_medium=longurl">Veibeskrivelse</li></a>
-				<div id="doorIndicator" class="<?php echo($isDoorOpen ? "doorIndicator_OPEN" : "doorIndicator_CLOSED"); ?>">
-					<p class="doorStateText"><abbr title="Oppdatert <?php echo($doorTime) ?>">Døren er <b><?php echo($isDoorOpen ? "" : "ikke") ?> åpen</b>.</abbr></p>
-					<p class="doorStateTime doorStateMobileOnly">(Oppdatert <?php echo($doorTime) ?>)</p>
+				<div id="doorIndicator" class="<?php echo($doorEntry->open ? "doorIndicator_OPEN" : "doorIndicator_CLOSED"); ?>" onclick="location.href='/door/graph.html'">
+					<p class="doorStateText"><?php echo($doorStateText) ?></p>
+					<p class="doorStateTime">(Oppdatert <?php echo($doorTime) ?>)</p>
 				</div>
 			</ul>
 		</div>
