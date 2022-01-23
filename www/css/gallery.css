@@ -1,0 +1,35 @@
+body, main {
+    width: 100%;
+    margin: 0;
+}
+.gallery-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    width: 95%;
+    margin: 15px auto;
+}
+figure {
+    overflow: hidden;
+}
+.card-image {
+    margin: auto 0;
+    object-fit: scale-down;
+    object-position: 0 50%;
+    object-position: center;
+    object-fit: cover;
+    max-height: 45vh;
+}
+
+@media only screen and (min-width:320px)  {
+    .gallery-container {grid-template-columns: 1fr !important; }
+}
+@media only screen and (min-width: 641px) {
+    .gallery-container { grid-template-columns: repeat(2, 1fr) !important;}
+}
+@media only screen and (min-width: 961px) {
+    .gallery-container { grid-template-columns: repeat(3, 1fr) !important;}
+}
+@media only screen and (min-width: 1281px) {
+    .gallery-container { grid-template-columns: repeat(4, 1fr) !important;}
+}

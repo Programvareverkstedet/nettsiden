@@ -1,0 +1,4 @@
+bilder/slideshow/*.*
+!/bilder/slideshow/.gitkeep
+bilder/pvv-photos
+usernames.txt

@@ -5,6 +5,3 @@
 /vendor/
 /www/simplesaml
 composer.phar
-/www/galleri/bilder/slideshow/*.*
-!/www/galleri/bilder/slideshow/.gitkeep
-/www/galleri/bilder/pvv-photos/*.*
