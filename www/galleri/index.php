@@ -9,9 +9,9 @@ $userManager = new \pvv\admin\UserManager($pdo);
 $as = new SimpleSAML_Auth_Simple('default-sp');
 $as->requireAuth();
 $attrs = $as->getAttributes();
-$uname = $attrs['uid'][0];
+$loginname = $attrs['uid'][0];
 
-if(!$uname){
+if(!$loginname) {
 	header('Content-Type: text/plain', true, 403);
 	echo "Du må være logget inn for å se bildegalleriet.\r\n";
 	exit();
@@ -19,9 +19,10 @@ if(!$uname){
 
 
 $unamefile = __DIR__ . '/usernames.txt';
-$unamepairs = file($unamefile);
-
 $relativePath = "/bilder/pvv-photos/";
+$allowedExtensions = ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'svg', 'webp'];
+
+$unamepairs = file($unamefile);
 $fullPath = getcwd() . $relativePath;
 
 function getDirContents($dir, &$results = array()) {
@@ -29,13 +30,17 @@ function getDirContents($dir, &$results = array()) {
     foreach ($files as $key => $value) {
         $path = realpath($dir . DIRECTORY_SEPARATOR . $value);
         if (!is_dir($path)) {
-            //$results[] = str_replace($GLOBALS["fullPath"], "", $path); // Works, but breaks if the image path contains the path to the gallery on the server
-            //Remove the full path to the gallery from the image path. Keep username and path to image.
+            //Remove the full path on disk, keep username and relative path to image. ( $results[] = str_replace($GLOBALS["fullPath"], "", $path); is insecure.)
             $pos = strpos($path, $GLOBALS["fullPath"]);
             if ($pos !== false) {
                 $cleanPath = substr_replace($path, "", $pos, strlen($GLOBALS["fullPath"]));
             }
-            $results[] = $cleanPath;
+
+            //Check if the file is an image
+            $ext = pathinfo($path, PATHINFO_EXTENSION);
+            if (in_array($ext, $GLOBALS["allowedExtensions"])) {
+                $results[] = $cleanPath;
+            }
         } else if ($value != "." && $value != "..") {
             //recursively scan directories
             getDirContents($path, $results);
@@ -46,10 +51,10 @@ function getDirContents($dir, &$results = array()) {
 $images = getDirContents($fullPath);
 
 $imageTemplate = '
-<div class="card is-flex is-flex-direction-column is-justify-content-space-between gallery-img-card">
+<div class="card is-flex is-flex-direction-column is-justify-content-space-between gallery-img-card" data-user="%user" data-date="%timestamp" data-fname="%name">
     <div class="card-image">
         <figure class="image">
-            <img src="%path" alt="%name" class="card-image">
+            <img src="%path" alt="%name" class="card-image modal-target">
         </figure>
     </div>
     <div class="card-content">
@@ -79,16 +84,14 @@ $imageTemplate = '
     <link rel="shortcut icon" href="favicon.ico">
     <link rel="stylesheet" href="../css/normalize.css">
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/events.css">
     <link rel="stylesheet" href="../css/gallery.css">
     <link rel="stylesheet" href="../css/bulma.min.css">
     <meta name="theme-color" content="#024" />
     <title>Fotoverkstedet</title>
 </head>
 <body>
-    <header>Fotoverkstedet</header>
     <nav id="navbar" class="">
-		<?php echo navbar(0, ''); ?>
+        <?php echo navbar(1, 'galleri'); ?>
 		<?php echo loginbar(null, $pdo); ?>
 	</nav>
     <main class="card gallery-container">
@@ -107,15 +110,22 @@ $imageTemplate = '
             }
 
             $vars = [
-                "%user" =>  $imguser,
-                "%time" =>  $modTime,
-                "%name" =>  $displaypath,
-                "%path" =>  "/galleri/" . $relativePath .$value,
-                "%realname" =>  $realname
+                "%user"         =>  $imguser,
+                "%time"         =>  $modTime,
+                "%timestamp"    =>  filemtime($fullPath . $value),
+                "%name"         =>  $displaypath,
+                "%path"         =>  "/galleri/" . $relativePath .$value,
+                "%realname"     =>  $realname
             ];
             echo strtr($imageTemplate, $vars);
         }
         ?>
     </main>
+    <div id="modal" class="modal">
+        <span id="modal-close" class="modal-close">&times;</span>
+        <img id="modal-content" class="modal-content">
+        <div id="modal-caption" class="modal-caption"></div>
+    </div>
+    <script type="text/javascript" src="../js/galleri.js"></script>
 </body>
 </html>

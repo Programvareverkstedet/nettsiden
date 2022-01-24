@@ -42,7 +42,7 @@ $doorTime = date("H:i", $doorEntry->time);
 	<header class="landing">
 		<div id="imageSlideshow">
 			<?php  include("galleri/slideshow.php"); ?>
-			<script src="galleri/slideshow.js"></script>
+			<script src="js/slideshow.js"></script>
 		</div>
 		
 		<div class="info">
