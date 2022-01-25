@@ -13,7 +13,9 @@ Put it in a folder your webserver can find.
 
 Make sure you have `sqlite3`, `php` and `pdo-sqlite` installed.
 These can be obtained from your package manager.
-Then make sure PHP has the `curl`, `pdo-sqlite` and `sqlite3` extensions enabled, see `/etc/php/php.ini`.
+Then make sure PHP has the `curl`, `pdo-sqlite`, `ext-dom` and `sqlite3` extensions enabled, see `/etc/php/php.ini`.
+
+To install all mentioned requirements on debian: `apt install composer sqlite3 php8.1-sqlite3 simplesamlphp php-xml`, followed by `composer update`.
 
 	./dev.sh
 
