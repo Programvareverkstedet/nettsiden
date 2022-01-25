@@ -115,7 +115,7 @@ $imageTemplate = '
                 "%timestamp"    =>  filemtime($fullPath . $value),
                 "%name"         =>  htmlspecialchars($displaypath),
                 "%path"         =>  "/galleri/" . $relativePath .$value,
-                "%realname"     =>  $htmlspecialchars(realname)
+                "%realname"     =>  htmlspecialchars($realname)
             ];
             echo strtr($imageTemplate, $vars);
         }
