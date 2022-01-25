@@ -4,6 +4,7 @@ body, main {
 }
 main {
     background-color: #ddd;
+    margin-top: 4em;
 }
 .gallery-container {
     display: grid;
