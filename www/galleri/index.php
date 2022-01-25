@@ -5,20 +5,20 @@ require_once dirname(dirname(__DIR__)) . implode(DIRECTORY_SEPARATOR, ['', 'inc'
 $pdo = new \PDO($dbDsn, $dbUser, $dbPass);
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-#$userManager = new \pvv\admin\UserManager($pdo);
-#
-#$as = new SimpleSAML_Auth_Simple('default-sp');
-#$as->requireAuth();
-#$attrs = $as->getAttributes();
-#$loginname = $attrs['uid'][0];
-#
-#if(!$loginname) {
-#	header('Content-Type: text/plain', true, 403);
-#	echo "Du må være logget inn for å se bildegalleriet.\r\n";
-#	exit();
-#}
-#
-#
+$userManager = new \pvv\admin\UserManager($pdo);
+
+$as = new SimpleSAML_Auth_Simple('default-sp');
+$as->requireAuth();
+$attrs = $as->getAttributes();
+$loginname = $attrs['uid'][0];
+
+if(!$loginname) {
+	header('Content-Type: text/plain', true, 403);
+	echo "Du må være logget inn for å se bildegalleriet.\r\n";
+	exit();
+}
+
+
 $unamefile = __DIR__ . '/usernames.txt';
 $relativePath = "/bilder/pvv-photos/";
 $allowedExtensions = ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'svg', 'webp'];
