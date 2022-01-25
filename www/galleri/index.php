@@ -1,23 +1,24 @@
 <?php
+error_reporting(0);
 require_once dirname(dirname(__DIR__)) . implode(DIRECTORY_SEPARATOR, ['', 'inc', 'include.php']);
 
 $pdo = new \PDO($dbDsn, $dbUser, $dbPass);
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-$userManager = new \pvv\admin\UserManager($pdo);
-
-$as = new SimpleSAML_Auth_Simple('default-sp');
-$as->requireAuth();
-$attrs = $as->getAttributes();
-$loginname = $attrs['uid'][0];
-
-if(!$loginname) {
-	header('Content-Type: text/plain', true, 403);
-	echo "Du må være logget inn for å se bildegalleriet.\r\n";
-	exit();
-}
-
-
+#$userManager = new \pvv\admin\UserManager($pdo);
+#
+#$as = new SimpleSAML_Auth_Simple('default-sp');
+#$as->requireAuth();
+#$attrs = $as->getAttributes();
+#$loginname = $attrs['uid'][0];
+#
+#if(!$loginname) {
+#	header('Content-Type: text/plain', true, 403);
+#	echo "Du må være logget inn for å se bildegalleriet.\r\n";
+#	exit();
+#}
+#
+#
 $unamefile = __DIR__ . '/usernames.txt';
 $relativePath = "/bilder/pvv-photos/";
 $allowedExtensions = ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'svg', 'webp'];
@@ -51,28 +52,20 @@ function getDirContents($dir, &$results = array()) {
 $images = getDirContents($fullPath);
 
 $imageTemplate = '
-<div class="card is-flex is-flex-direction-column is-justify-content-space-between gallery-img-card" data-user="%user" data-date="%timestamp" data-fname="%name">
-    <div class="card-image">
-        <figure class="image">
-            <img src="%path" alt="%name" class="card-image modal-target">
-        </figure>
+<div class="card">
+    <div class="card-image-div">
+        <img src="%path" alt="%name" class="card-image modal-target">
     </div>
-    <div class="card-content">
-        <div class="media">
-            <div class="media-content">
-                <p class="title is-4">%realname</p>
-                <p class="subtitle is-6">%user</p>
-            </div>
-        </div>
-        <div class="content">
-            %name
-            <br>
-            <time datetime="%time">%time</time>
-            </div>
-        </div>
+    <div class="card-body">
+        <p class="card-title">%realname</p>
+        <p class="card-subtitle">%user</p>
+    </div>
+    <div class="card-footer">
+        <p class="card-footer-item">%name</p>
+        <p class="card-footer-item">%time</p>
     </div>
 </div>
-';
+'
 
 
 ?>
@@ -94,7 +87,7 @@ $imageTemplate = '
         <?php echo navbar(1, 'galleri'); ?>
 		<?php echo loginbar(null, $pdo); ?>
 	</nav>
-    <main class="card gallery-container">
+    <main class="gallery-container">
         <?php
         foreach ($images as $key => $value) {
             $modTime = date("d.m.Y H:i", filemtime($fullPath . $value));
@@ -122,7 +115,7 @@ $imageTemplate = '
         ?>
     </main>
     <div id="modal" class="modal">
-        <span id="modal-close" class="modal-close">&times;</span>
+        <span id="modal-close" class="modal-close">&#10006;</span>
         <img id="modal-content" class="modal-content">
         <div id="modal-caption" class="modal-caption"></div>
     </div>

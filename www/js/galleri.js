@@ -1,11 +1,6 @@
 // #region Modal
 var modal = document.getElementById('modal');
 
-var modalClose = document.getElementById('modal-close');
-modalClose.addEventListener('click', function() { 
-    modal.style.display = "none";
-});
-
 // global handler
 document.addEventListener('click', function (e) { 
     if (e.target.className.indexOf('modal-target') !== -1) {
@@ -15,6 +10,8 @@ document.addEventListener('click', function (e) {
         modal.style.display = "block";
         modalImg.src = img.src;
         captionText.innerHTML = img.alt;
+    } else if (modal.style.display != "none") {
+        modal.style.display = "none";
     }
 });
 // #endregion
