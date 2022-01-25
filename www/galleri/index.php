@@ -110,12 +110,12 @@ $imageTemplate = '
             }
 
             $vars = [
-                "%user"         =>  $imguser,
+                "%user"         =>  htmlspecialchars($imguser),
                 "%time"         =>  $modTime,
                 "%timestamp"    =>  filemtime($fullPath . $value),
-                "%name"         =>  $displaypath,
+                "%name"         =>  htmlspecialchars($displaypath),
                 "%path"         =>  "/galleri/" . $relativePath .$value,
-                "%realname"     =>  $realname
+                "%realname"     =>  $htmlspecialchars(realname)
             ];
             echo strtr($imageTemplate, $vars);
         }

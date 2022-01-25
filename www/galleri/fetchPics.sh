@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 outfolder="bilder/pvv-photos"
-folders=$(find /home/pvv -maxdepth 3 -name 'pvv-photos' 2>/dev/null)
+folders=$(ssh pvv@microbel.pvv.ntnu.no -i /home/pvv/c/pvv/.ssh/photofetcher 'find /home/pvv -maxdepth 3 -name "pvv-photos" 2>/dev/null')
 unamefile="usernames.txt"
 > $unamefile # Empty the file
 

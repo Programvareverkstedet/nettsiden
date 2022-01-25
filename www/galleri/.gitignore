@@ -1,4 +1,3 @@
-bilder/slideshow/*.*
-!/bilder/slideshow/.gitkeep
-bilder/pvv-photos
+bilder/slideshow/*
+bilder/pvv-photos/
 usernames.txt
