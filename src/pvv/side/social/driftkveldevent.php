@@ -24,7 +24,7 @@ class DriftkveldEvent extends Event {
 	}
 
 	public function getURL() /* : string */ {
-		return '/drift/';
+		return '/driftkveld/';
 	}
 
 	public function getImageURL() {
@@ -37,7 +37,7 @@ class DriftkveldEvent extends Event {
 			'Vil du være kul kis TM?',
             'Kom på driftkveld!',
             '',
-            'Vi møtes en gang i uka for å ta unna driftarbeid og drikke kaffe.',
+            'Vi møtes annenhver uke for å ta unna driftarbeid og drikke kaffe.',
             'Alle PVVere er velkommene, enten de er erfarne driftere eller helt utenforstående!'
 			];
 	}

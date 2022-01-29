@@ -14,7 +14,7 @@ use \pvv\side\Agenda;
 <meta name="theme-color" content="#024" />
 <title>Drifterverkstedet</title>
 
-<header>Sosial&shy;verk&shy;stedet</header>
+<header>Drift&shy;verk&shy;stedet</header>
 
 
 <main>

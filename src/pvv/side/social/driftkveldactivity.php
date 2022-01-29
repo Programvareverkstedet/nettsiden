@@ -11,8 +11,10 @@ class DriftkveldActivity implements Activity {
 		if ($date->format('H') > 18 || $date->format('H') == 17 && $date->format('i') > 30)
 			return $this->nextDate($date->add(new DateInterval('P1D'))->setTime(18, 15, 0));
 		$date = $date->setTime(18, 15, 0);
-		if ($date->format('N') != 2)
+		if ($date->format('N') != 6)
 			return $this->nextDate($date->add(new DateInterval('P1D')));
+		if ($date->format('W') % 2)
+			return $this->nextDate($date->add(new DateInterval('P7D')));
 		return $date;
 	}
 
@@ -20,8 +22,10 @@ class DriftkveldActivity implements Activity {
 		if ($date->format('H') < 17 || $date->format('H') == 18 && $date->format('i') < 30)
 			return $this->prevDate($date->sub(new DateInterval('P1D'))->setTime(18, 15, 0));
 		$date = $date->setTime(18, 15, 0);
-		if ($date->format('N') != 2)
+		if ($date->format('N') != 6)
 			return $this->prevDate($date->sub(new DateInterval('P1D')));
+		if ($date->format('W') % 2)
+			return $this->prevDate($date->sub(new DateInterval('P7D')));
 		return $date;
 	}
 
