@@ -38,7 +38,7 @@ function getDirContents($dir, &$results = array()) {
             }
 
             //Check if the file is an image
-            $ext = pathinfo($path, PATHINFO_EXTENSION);
+            $ext = strtolower(pathinfo($path, PATHINFO_EXTENSION));
             if (in_array($ext, $GLOBALS["allowedExtensions"])) {
                 $results[] = $cleanPath;
             }
