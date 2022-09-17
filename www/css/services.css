@@ -1,0 +1,74 @@
+main {
+  margin-top: 2em !important;
+}
+
+.categoryContainer {
+  border: 4px solid #002244;
+  border-radius: 5px;
+
+  box-shadow : 0 0 20px #002244;
+
+  margin-bottom: 20px;
+}
+
+.categoryLabel {
+  background-color: #002244;
+  color: white;
+
+  padding-left: 10px;
+
+  font-family: monospace;
+  font-size: 24px;
+}
+
+.service {
+  border: 2px solid #002244;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px;
+
+  display: flex;
+  flex-direction: row;
+}
+
+.serviceContent {
+  flex-grow: 1;
+}
+
+/* .serviceTitle, .serviceDescription { */
+/*   display: inline; */
+/* } */
+
+.serviceTitle {
+  margin: 0.2em !important;
+}
+
+.serviceDescription {
+  margin-top: 0px !important;
+}
+
+.serviceDescription::before {
+  content: " - ";
+  font-size: 18px;
+  display: inline;
+}
+
+.serviceLink {
+  width: 100%;
+  padding-bottom: 5px;
+}
+.serviceLink > a {
+  width: 100%;
+  height: 2em;
+  border-radius: 5px;
+  border: 2px solid #002244;
+  padding: 10px;
+}
+
+.serviceImage {
+  flex-shrink: 1;
+  width: 100px;
+  height: 100px;
+
+  margin: auto auto;
+}

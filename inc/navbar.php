@@ -9,10 +9,10 @@ function navbar($depth, $active = NULL) {
 		'Prosjekter' => 'prosjekt',
 		'Kontakt' => 'kontakt',
 		'Webmail' => 'mail',
-		//'Webmail' => 'https://webmail.pvv.ntnu.no/',
 		'Galleri' => 'galleri',
 		'Wiki' => 'pvv',
 		'Git' => 'https://git.pvv.ntnu.no/',
+                'Tjenester' => 'tjenester',
 	];
 	foreach($menuItems as $caption => $link) {
 		$isActive = $active === $link;
