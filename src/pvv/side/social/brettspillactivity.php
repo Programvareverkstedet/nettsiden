@@ -8,20 +8,24 @@ use \DateInterval;
 class BrettspillActivity implements Activity {
 
 	public function nextDate(DateTimeImmutable $date) {
-		if ($date->format('H') > 20 || $date->format('H') == 19 && $date->format('i') > 30)
-			return $this->nextDate($date->add(new DateInterval('P1D'))->setTime(19, 30, 0));
-		$date = $date->setTime(19, 30, 0);
-		if ($date->format('N') != 4)
+		if ($date->format('H') > 17 || $date->format('H') == 16 && $date->format('i') > 15)
+			return $this->nextDate($date->add(new DateInterval('P1D'))->setTime(16, 15, 0));
+		$date = $date->setTime(16, 15, 0);
+		if ($date->format('N') != 6)
 			return $this->nextDate($date->add(new DateInterval('P1D')));
+		if ($date->format('W') % 4 - 3)
+			return $this->nextDate($date->add(new DateInterval('P7D')));
 		return $date;
 	}
 
 	public function prevDate(DateTimeImmutable $date) {
-		if ($date->format('H') < 19 || $date->format('H') == 20 && $date->format('i') < 30)
-			return $this->prevDate($date->sub(new DateInterval('P1D'))->setTime(19, 30, 0));
-		$date = $date->setTime(19, 30, 0);
-		if ($date->format('N') != 4)
+		if ($date->format('H') < 16 || $date->format('H') == 17 && $date->format('i') < 15)
+			return $this->prevDate($date->sub(new DateInterval('P1D'))->setTime(16, 15, 0));
+		$date = $date->setTime(16, 15, 0);
+		if ($date->format('N') != 6)
 			return $this->prevDate($date->sub(new DateInterval('P1D')));
+		if ($date->format('W') % 4 - 3)
+					return $this->nextDate($date->add(new DateInterval('P7D')));
 		return $date;
 	}
 

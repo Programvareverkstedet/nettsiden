@@ -16,11 +16,11 @@ class BrettspillEvent extends Event {
 	}
 
 	public function getLocation() /* : Location */ {
-		return "Koserommet";
+		return "Programvareverkstedet";
 	}
 
 	public function getOrganiser() /* : User */ {
-		return "Robert Maikher";
+		return "Programvareverkstedet";
 	}
 
 	public function getURL() /* : string */ {
@@ -33,8 +33,8 @@ class BrettspillEvent extends Event {
 
 	public function getDescription() {
 		return [
-			'Er du en hardcore brettspillentusiast eller en nybegynner som har så vidt spilt ludo?'.
-			'Da er vår brettspillkveld noe for deg!' .
+			'Er du en hardcore brettspillentusiast eller en nybegynner som har så vidt spilt ludo? '.
+			'Da er vår brettspillkveld noe for deg! ' .
 			'Vi tar ut et par spill fra vårt samling of spiller så mye vi orker. Kom innom!',
 			'',
 			'## Vår samling',
