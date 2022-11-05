@@ -40,30 +40,10 @@ $doorTime = date("H:i", $doorEntry->time);
 	</nav>
 
 	<header class="landing">
-               <!-- HACK INCOMING! -->
-		<style>
-    		.iframe-container {
-    		  position: relative;
-    		  overflow: hidden;
-                  max-width: 100%;
-    		  max-height: 100%;
-                  aspect-ratio: 16/9;
-                  margin: 0 auto;
-    		}
-
-    		.responsive-iframe {
-    		  position: absolute;
-    		  top: 0;
-    		  left: 0;
-    		  bottom: 0;
-    		  right: 0;
-    		  width: 100%;
-                  aspect-ratio: 16/9;
-    		}
-		</style>
-		<div class="iframe-container" style="max-width: 100em;">
-    		<iframe class="responsive-iframe" src="https://www.youtube.com/embed/Uy6HAvMdeuA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen ></iframe>
-                </div>
+	<div id="imageSlideshow">
+			<?php  include("galleri/slideshow.php"); ?>
+			<script src="js/slideshow.js"></script>
+		</div>
 		<div class="info">
 			<h2>Velkommen til Programvare&shy;verkstedet</h2>
 			<p>Programvareverkstedet (PVV) er en studentorganisasjon ved NTNU som vil skape et miljø for datainteresserte personer tilknyttet universitetet.</p>
