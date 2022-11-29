@@ -65,6 +65,8 @@ require_once dirname(dirname(__DIR__)) . implode(DIRECTORY_SEPARATOR, ['', 'inc'
                   <p class="serviceDescription">Åpen kommunikasjonsprotokoll som støtter ende-til-ende-kryptering og utallige kule funksjoner. Vårt space er bridget sammen med Discord, så du får alle de samme meldingene. <b>#pvv:pvv.ntnu.no</b></p>
                   <div class="serviceLink">
                     <a href="https://chat.pvv.ntnu.no" target="_blank">Gå til chat.pvv.ntnu.no(medlem)</a>
+                  </div>
+                  <div class="serviceLink">
                     <a href="https://matrix.to/#/#pvv:pvv.ntnu.no" target="_blank">Gå til #pvv:pvv.ntnu.no(offentlig)</a>
                   </div>
                 </div>
@@ -86,6 +88,8 @@ require_once dirname(dirname(__DIR__)) . implode(DIRECTORY_SEPARATOR, ['', 'inc'
                   <p class="serviceDescription">Som PVV-medlem får du din egen @pvv.ntnu.no-adresse, som kan brukes med alle vanlige epostprotokoller.</p>
                   <div class="serviceLink">
                     <a href="https://www.pvv.ntnu.no/mail/" target="_blank">Gå til Webmail</a>
+                  </div>
+                  <div class="serviceLink">
                     <a href="https://www.pvv.ntnu.no/pvv/Drift/Mail/IMAP_POP3/" target="_blank">IMAP/POP/SMTP-innstillinger</a>
                   </div>
                 </div>
@@ -106,13 +110,31 @@ require_once dirname(dirname(__DIR__)) . implode(DIRECTORY_SEPARATOR, ['', 'inc'
 
 
           <div class="categoryContainer">
-            <div class="categoryLabel">Virtualisering</div>
+            <div class="categoryLabel">Hosting</div>
             <div class="categoryContent">
 
               <div class="service">
                 <div class="serviceContent">
+                  <h2 class="serviceTitle">Brukernettsider</h2>
+                  <p class="serviceDescription">Alle brukere får automatisk en egen side for html og php. Denne er offentlig på pvv.ntnu.no/~brukernavn.</p>
+                  <div class="serviceLink"><a href="https://www.pvv.ntnu.no/pvv/Hjemmesider" target="_blank">Gå til dokumentasjon på wiki</a></div>
+                </div>
+                <img class="serviceImage" src="img/php.png" alt="En elephpant">
+              </div>
+
+              <div class="service">
+                <div class="serviceContent">
+                  <h2 class="serviceTitle">PVV-siden</h2>
+                  <p class="serviceDescription">Du befinner deg nå på PVV sin offisielle hjemmeside. Den er skrevet i PHP og kjører på en egen server.</p>
+                  <div class="serviceLink"><a href="https://github.com/Programvareverkstedet/nettsiden" target="_blank">Se koden på github</a></div>
+                </div>
+                <img class="serviceImage" src="../pvv-logo.png" alt="PVV-logo">
+              </div>
+
+              <div class="service">
+                <div class="serviceContent">
                   <h2 class="serviceTitle">Proxmox @joshua</h2>
-                  <p class="serviceDescription">Joshua er en av våre VM-tjenere, her kan du kjøre enten fulle VM-er eller konteinere.</p>
+                  <p class="serviceDescription">Joshua er en av våre VM-tjenere, her kan du kjøre enten fulle VM-er eller konteinere. Bare Drift har tilgang på disse tjenerne.</p>
                   <div class="serviceLink"><a href="https://joshua.pvv.ntnu.no:8006" target="_blank">Gå til joshua.pvv.ntnu.no</a></div>
                 </div>
                 <img class="serviceImage" src="img/proxmox.png" alt="Proxmox-logo">
@@ -121,7 +143,7 @@ require_once dirname(dirname(__DIR__)) . implode(DIRECTORY_SEPARATOR, ['', 'inc'
               <div class="service">
                 <div class="serviceContent">
                   <h2 class="serviceTitle">Proxmox @andresbu</h2>
-                  <p class="serviceDescription">Andresbu er en kraftigere VM-tjener, men har fortsatt en del rusk i maskineriet. Brukes på eget ansvar.</p>
+                  <p class="serviceDescription">Andresbu er en kraftigere VM-tjener, men har fortsatt en del rusk i maskineriet.</p>
                   <div class="serviceLink"><a href="https://andresbu.pvv.ntnu.no:8006" target="_blank">Gå til andresbu.pvv.ntnu.no</a></div>
                 </div>
                 <img class="serviceImage" src="img/proxmox.png" alt="Proxmox-logo">
@@ -135,7 +157,6 @@ require_once dirname(dirname(__DIR__)) . implode(DIRECTORY_SEPARATOR, ['', 'inc'
                 </div>
                 <img class="serviceImage" src="img/esxi.png" alt="ESXI-logo">
               </div>
-
             </div>
           </div>
 
@@ -152,6 +173,14 @@ require_once dirname(dirname(__DIR__)) . implode(DIRECTORY_SEPARATOR, ['', 'inc'
                 <img class="serviceImage" src="img/minecraft.png" alt="Minecraft-logo">
               </div>
 
+              <div class="service">
+                <div class="serviceContent">
+                  <h2 class="serviceTitle">MiniFlux RSS reader</h2>
+                  <p class="serviceDescription">Trenger du en cross-platform RSS/Atom-leser for å følge med på omverdenen som det er 1990? </p>
+                  <div class="serviceLink"><a href="https://feeds.pvv.ntnu.no" target="_blank">Gå til MiniFlux</a></div>
+                </div>
+                <img class="serviceImage" src="img/rss.png" alt="RSS-Ikon">
+              </div>
               <!-- Bokhylle /brzeczyszczykiewicz ? -->              
 
             </div>
