@@ -1,5 +1,4 @@
 main {
-  margin-top: 2em !important;
   display: grid;
 
   width: 80vw;
@@ -7,6 +6,8 @@ main {
   grid-gap: 1em;
 
   margin: auto auto;
+
+  margin-top: 4em;
 }
 
 .categoryContainer {
