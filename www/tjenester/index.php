@@ -181,6 +181,22 @@ require_once dirname(dirname(__DIR__)) . implode(DIRECTORY_SEPARATOR, ['', 'inc'
                 </div>
                 <img class="serviceImage" src="img/rss.png" alt="RSS-Ikon">
               </div>
+
+              <div class="service">
+                <div class="serviceContent">
+                  <h2 class="serviceTitle">Bildegalleri</h2>
+                  <p class="serviceDescription">PVV har et felles bildegalleri, der alle kan legge relevante bilder, som automatisk blir inkludert på nettsiden.</p>
+                  <div class="serviceLink">
+                    <a href="https://www.pvv.ntnu.no/galleri/" target="_blank">Se galleriet</a>
+                  </div>
+                  <div class="serviceLink">
+                    <a href="https://www.pvv.ntnu.no/pvv/Bildedeling" target="_blank">Opplasting</a>
+                  </div>
+                </div>
+                <img class="serviceImage" src="img/gallery.png" alt="RSS-Ikon">
+              </div>
+            
+
               <!-- Bokhylle /brzeczyszczykiewicz ? -->              
 
             </div>
