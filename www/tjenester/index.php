@@ -5,10 +5,10 @@ require_once dirname(dirname(__DIR__)) . implode(DIRECTORY_SEPARATOR, ['', 'inc'
 <html lang="no">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<link rel="shortcut icon" href="favicon.ico">
-<link rel="stylesheet" href="../css/normalize.css">
-<link rel="stylesheet" href="../css/style.css">
-<link rel="stylesheet" href="../css/services.css">
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="stylesheet" href="/css/normalize.css">
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/services.css">
 <meta name="theme-color" content="#024" />
 <title>Tjenesteverkstedet</title>
 
@@ -20,6 +20,8 @@ require_once dirname(dirname(__DIR__)) . implode(DIRECTORY_SEPARATOR, ['', 'inc'
                 <?= loginbar($sp, $pdo); ?>
         </nav>
         <main>
+
+        <div class="serviceWrapper">
 
           <div class="categoryContainer">
             <div class="categoryLabel">Versjonskontroll og utvikling</div>
@@ -195,12 +197,12 @@ require_once dirname(dirname(__DIR__)) . implode(DIRECTORY_SEPARATOR, ['', 'inc'
                 </div>
                 <img class="serviceImage" src="img/gallery.png" alt="RSS-Ikon">
               </div>
-            
 
               <!-- Bokhylle /brzeczyszczykiewicz ? -->              
 
             </div>
           </div>
+        </div>
       </main>
 </body>
 

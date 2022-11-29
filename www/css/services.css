@@ -1,12 +1,16 @@
 main {
-  display: grid;
+  margin: 0px !important;
+  padding: 0px !important;
+  width: 100vw;
+}
 
-  width: 80vw;
+.serviceWrapper {
+  width: 80%;
+  display: grid;
   grid-template-columns:  1fr 1fr;
   grid-gap: 1em;
 
   margin: auto auto;
-
   margin-top: 4em;
 }
 
@@ -79,9 +83,8 @@ main {
 }
 
 @media (max-width: 800px) {
-  main {
+  .serviceWrapper {
     grid-template-columns: 1fr;
-    margin: auto !important;
   }
   .categoryContainer {
     width: 100%;
