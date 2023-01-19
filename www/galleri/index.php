@@ -111,6 +111,11 @@ $imageTemplate = '
             ];
             echo strtr($imageTemplate, $vars);
         }
+
+        if (count($images) == 0) {
+          echo "<h3 class='no-images'>Det er dessverre ingen bilder å vise.</h3>";
+        }
+
         ?>
     </main>
     <div id="modal" class="modal">

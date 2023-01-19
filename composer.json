@@ -5,5 +5,10 @@
 	},
 	"require-dev": {
 		"ext-pdo_sqlite": "*"
+	},
+	"config": {
+		"allow-plugins": {
+			"simplesamlphp/composer-module-installer": true
+		}
 	}
 }
