@@ -32,7 +32,7 @@ class UserManager{
 	}
 
 	public function addGroup($uname, $group){
-		$userFlags = $this->getUsergroups();
+		$userFlags = $this->getUsergroups($uname);
 
 		if($userFlags){
 			$newFlags = ($group | $userFlags);
@@ -41,7 +41,7 @@ class UserManager{
 	}
 
 	public function removeGroup($uname, $group){
-		$userFlags = $this->getUsergroups();
+		$userFlags = $this->getUsergroups($uname);
 
 		if($userFlags){
 			$newFlags = ($userFlags & (~ $group));
