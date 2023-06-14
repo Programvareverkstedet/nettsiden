@@ -1,0 +1,18 @@
+# This file set up by fredj according to proposed Standard of Robot
+# Exclusion at http://web.nexor.co.uk/mak/doc/robots/norobots.html
+#
+# Currently: allow all robots. 
+# (An empty 'Disallow' line, looking like this:)
+# User-agent: *              # Means: All robots.
+# Disallow:                  # Means: Disallow nothing.              
+
+User-agent: *
+Disallow: /usage
+Disallow: /news_archive
+Disallow: /cgi
+Disallow: /finger
+Disallow: /cgi-bin
+Disallow: /~pallo/usage/
+Disallow: /~pallo/historic/
+Disallow: /~meldahl/
+Disallow: /w/index.php?
