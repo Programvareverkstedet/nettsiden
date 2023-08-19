@@ -9,7 +9,7 @@ require_once dirname(dirname(__DIR__)) . implode(DIRECTORY_SEPARATOR, ['', 'inc'
 <link rel="stylesheet" href="../css/normalize.css">
 <link rel="stylesheet" href="../css/style.css">
 <link rel="stylesheet" href="../css/events.css">
-<meta name="theme-color" content="#024" />
+<meta name="theme-color" content="#024" >
 <title>Kommunikasjonsverkstedet</title>
 
 <header>Kommunikasjons&shy;verk&shy;stedet</header>
@@ -22,22 +22,26 @@ require_once dirname(dirname(__DIR__)) . implode(DIRECTORY_SEPARATOR, ['', 'inc'
 	</nav>
 
 	<main>
-		<h2>Kommunikasjon<br><img style="width: 8em" src="kontakt.jpg"></img></h2>
+		<h2>Kontaktinformasjon<h2>
+		<img style="width: 8em" src="kontakt.jpg"></img>
+		<p>
+			Vi kan kontaktes på følgende epost adresser:
+			<ul>
+				<li><a href="mailto:pvv@pvv.ntnu.no">pvv@pvv.ntnu.no</a> for hendvendelser til styret</li>
+				<li><a href="mailto:drift@pvv.ntnu.no">styret@pvv.ntnu.no</a> for hendvendelser anngående våre datasystemer</li>
+			</ul>
+		</p>
+		<p> Det er også mulig å ta kontakt med oss ved å møte opp <a href="https://bit.ly/31P6yr5">på våre lokaler i oppredning/gruvedrift</a>.
 
-		<p> Det er flere ulike måter å kommunisere med PVV og deres medlemmer på.
+		<h2>Kommunikasjonskanaler</h2>
 
-		<p> Du kan registrere deg på våre <a href="http://list.pvv.org/mailman/listinfo/aktive">Aktive epostlister</a> for å få informasjon om de kommende aktivitetene våre.
+		<p> Vi har en <a href="http://list.pvv.org/mailman/listinfo/aktive">epostliste for aktive medlemmer</a>. All offisiell informasjon blir sendt på denne listen, og alle arrengementer blir også annonsert her.
 
-		<p> Kontaktinformasjonen til Styret og Drift funner du på vår <a href="../pvv/Kontaktinformasjon">Wiki</a>
-
+		<p> Vi har en <a href="https://matrix.to/#/#pvv:pvv.ntnu.no">Matrix server</a> for chat, memes, og all annen intern kommunikasjon. Den er bridget med IRC-kanalen og Discord serveren vår. Hvis du er medlem kan du bruke vår <a href="https://chat.pvv.ntnu.no">self-hosted web client</a>.
+		
 		<p> Vi har en IRC-kanal på <a href="http://webchat.ircnet.net/">IRCnet</a> kalt #pvv.
 
-		<p> Vi har også en Discord-kanal. Denne kanalen er satt opp slik at man i Discord-kanalen ser hva som skrives i IRC-kanalen, og vice versa. For å bli med i Discord-kanalen, <a href="https://discord.gg/8VTBr6Q">klikk her</a>.
-		<!--
-			<i>(Denne broen for øyeblikket ute av drift)</i>
-		-->
-
-		<p> Det er også mulig å ta i bruk analog kontakt ved å møte opp <a href="https://bit.ly/31P6yr5">på våre lokaler i oppredning/gruvedrift</a>.
+		<p> Vi har en <a href="https://discord.gg/8VTBr6Q">Discord server</a> for de som foretrekker Discord over Matrix.
 
 	</main>
 </body>
