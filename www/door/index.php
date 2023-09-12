@@ -74,7 +74,7 @@ function handleSetState() {
         die();
     }
 
-    $door->createEvent((int)($event->time), (bool)($event->isDoorOpen));
+    $door->createEvent((int)($event->time), $event->isDoorOpen ? 1 : 0);
     echo '{"status": "OK"}';
 } 
 
