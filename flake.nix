@@ -14,6 +14,10 @@
     ];
     forAllSystems = f: nixpkgs.lib.genAttrs systems (system: f system);
   in {
+    packages = forAllSystems (system: rec {
+        pkgs = import nixpkgs { inherit system; };
+	default = pkgs.callPackage ./package.nix { php = pkgs.php82; };
+    });
     devShells = forAllSystems (system: rec {
       pkgs = import nixpkgs { inherit system; };
       default = pkgs.mkShellNoCC {
