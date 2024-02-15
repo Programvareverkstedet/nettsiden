@@ -1,7 +1,9 @@
 {
 	"require": {
-		"simplesamlphp/simplesamlphp": "~1",
-		"erusev/parsedown": "^1.7"
+		"simplesamlphp/simplesamlphp": "1.19.8",
+		"erusev/parsedown": "^1.7",
+		"gettext/gettext": "4.8.7",
+		"simplesamlphp/saml2": "4.5"
 	},
 	"require-dev": {
 		"ext-pdo_sqlite": "*"
