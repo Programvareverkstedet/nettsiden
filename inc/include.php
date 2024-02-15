@@ -5,9 +5,6 @@
 require_once __DIR__ . DIRECTORY_SEPARATOR . 'agenda.php';
 require_once __DIR__ . DIRECTORY_SEPARATOR . 'navbar.php';
 
-require_once dirname(__DIR__) . implode(DIRECTORY_SEPARATOR, ['', 'lib', 'OAuth2-Client', 'OAuth2Client.php']);
-require_once dirname(__DIR__) . implode(DIRECTORY_SEPARATOR, ['', 'dataporten_config.php']);
-
 require_once dirname(__DIR__) . implode(DIRECTORY_SEPARATOR, ['', 'sql_config.php']);
 
 require_once dirname(__DIR__) . implode(DIRECTORY_SEPARATOR, ['', 'src', '_autoload.php']);
