@@ -5,7 +5,7 @@
 require_once __DIR__ . DIRECTORY_SEPARATOR . 'agenda.php';
 require_once __DIR__ . DIRECTORY_SEPARATOR . 'navbar.php';
 
-require_once dirname(__DIR__) . implode(DIRECTORY_SEPARATOR, ['', 'sql_config.php']);
+require_once dirname(__DIR__) . implode(DIRECTORY_SEPARATOR, ['', 'config.php']);
 
 require_once dirname(__DIR__) . implode(DIRECTORY_SEPARATOR, ['', 'src', '_autoload.php']);
 require_once dirname(__DIR__) . implode(DIRECTORY_SEPARATOR, ['', 'vendor', 'simplesamlphp', 'simplesamlphp', 'lib', '_autoload.php']);
