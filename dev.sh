@@ -4,14 +4,7 @@ which sqlite3 > /dev/null 2>&1 || (echo ERROR: sqlite not found; false) || exit 
 test ! -e pvv.sqlite && sqlite3 pvv.sqlite < dist/pvv.sql
 test ! -e sql_config.php && cp -v dist/sql_config_example.php sql_config.php
 
-test ! -e dataporten_config.php && cp -v dist/dataporten_config.php dataporten_config.php
-
 test -e composer.phar || curl -O https://getcomposer.org/composer.phar
-
-if test ! -f lib/OAuth2-Client/OAuth2Client.php ; then
-	echo Missing git submodules. Installing...
-	(set -x; git submodule update --init --recursive) || exit $?
-fi
 
 if test ! -d vendor; then
 	php composer.phar install || exit $?

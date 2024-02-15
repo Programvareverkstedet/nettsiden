@@ -1,5 +1,4 @@
 /sql_config.php
-/dataporten_config.php
 *.sqlite
 /test.sql
 /vendor/

@@ -5,25 +5,6 @@ session_start();
 
 $attrs = $as->getAttributes();
 
-$oauth2 = new Kasperrt\Oauth2($dataportenConfig);
-
-if (isset($_GET['logout'])) {
-	session_destroy();
-	header('Location: ' . $dataportenConfig["redirect_uri"]);
-	die();
-}
-if (isset($_GET['login'])) {
-	$oauth2 -> redirect();
-	die();
-}
-if (isset($_GET['code'])) {
-	$token = $oauth2 -> get_access_token(htmlspecialchars($_GET['state']), htmlspecialchars($_GET['code']));
-	$_SESSION['userdata'] = $oauth2 -> get_identity($token, 'https://auth.dataporten.no/userinfo');
-	
-	header('Location: ' . $dataportenConfig["redirect_uri"]);
-	die();
-}
-
 ?>
 <!DOCTYPE html>
 <html lang="no">
