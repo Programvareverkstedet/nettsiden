@@ -1,4 +1,4 @@
-/sql_config.php
+/config.php
 *.sqlite
 /test.sql
 /vendor/

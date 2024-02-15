@@ -1,6 +1,6 @@
 <?php
 require __DIR__ . '/../../../src/_autoload.php';
-require __DIR__ . '/../../../sql_config.php';
+require __DIR__ . '/../../../config.php';
 $pdo = new \PDO($dbDsn, $dbUser, $dbPass);
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $userManager = new \pvv\admin\UserManager($pdo);
