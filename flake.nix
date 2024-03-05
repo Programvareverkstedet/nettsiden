@@ -14,6 +14,18 @@
     ];
     forAllSystems = f: nixpkgs.lib.genAttrs systems (system: f system);
   in {
+    packages = forAllSystems (system: let
+      pkgs = nixpkgs.legacyPackages.${system};
+      php = pkgs.php83;
+    in {
+      default = self.packages.${system}.pvv-nettsiden;
+      pvv-nettsiden = php.buildComposerProject (finalAttrs: {
+        src = ./.;
+        pname = "pvv-nettsiden";
+        version = "0.0.1";
+        vendorHash = "sha256-DSn0ifj7Hjjia1SF/1wfziD/IdsiOES8XNDVz3F/cTI=";
+      });
+    });
     devShells = forAllSystems (system: rec {
       pkgs = import nixpkgs { inherit system; };
       default = pkgs.mkShellNoCC {
@@ -50,9 +62,11 @@
         '';
 
         # TODO:
-        # - Integrate with docker config
         # - Make "trusted.url.domains" dynamic based on the current host:port
-        # - Do not download composer.phar with curl
+        # - Do not download composer.phar with curl(!)
+        # - Relicense the project to GPL or something
+        # - Move gallery/slideshow images to an external directory (configurable)
+        # - Write a module for the project
 
       };
     });
