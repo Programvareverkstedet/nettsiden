@@ -2,7 +2,7 @@
 error_reporting(0);
 require_once dirname(dirname(__DIR__)) . implode(DIRECTORY_SEPARATOR, ['', 'inc', 'include.php']);
 
-$pdo = new \PDO($dbDsn, $dbUser, $dbPass);
+$pdo = new \PDO($DB_DSN, $DB_USER, $DB_PASS);
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 $userManager = new \pvv\admin\UserManager($pdo);

@@ -3,7 +3,7 @@ date_default_timezone_set('Europe/Oslo');
 setlocale(LC_ALL, 'nb_NO');
 require __DIR__ . '/../../src/_autoload.php';
 require __DIR__ . '/../../config.php';
-$pdo = new \PDO($dbDsn, $dbUser, $dbPass);
+$pdo = new \PDO($DB_DSN, $DB_USER, $DB_PASS);
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 if(!isset($_POST['title']) or !isset($_POST['desc']) or !isset($_POST['active'])){
