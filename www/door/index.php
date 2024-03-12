@@ -9,7 +9,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_SERVER["HTTP_AUTHORIZATION"])) {
         list($type, $data) = explode(" ", $_SERVER["HTTP_AUTHORIZATION"], 2);
         if (strcasecmp($type, "Bearer") == 0) {
-            if (hash_equals($data, $doorSensorSecret)) {
+            if (hash_equals($data, $DOOR_SECRET)) {
                 handleSetState();
             } else {
                 echo '{"status": "error", "message": "Invalid authentication key"}';

@@ -10,7 +10,7 @@ $as = new SimpleSAML_Auth_Simple('default-sp');
 $as->requireAuth();
 $attrs = $as->getAttributes();
 
-$pdo = new \PDO($dbDsn, $dbUser, $dbPass);
+$pdo = new \PDO($DB_DSN, $DB_USER, $DB_PASS);
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $projectManager = new \pvv\side\ProjectManager($pdo);
 

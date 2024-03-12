@@ -13,7 +13,7 @@ require_once dirname(__DIR__) . implode(DIRECTORY_SEPARATOR, ['', 'vendor', 'sim
 date_default_timezone_set('Europe/Oslo');
 setlocale(LC_ALL, 'nb_NO');
 
-$pdo = new \PDO($dbDsn, $dbUser, $dbPass);
+$pdo = new \PDO($DB_DSN, $DB_USER, $DB_PASS);
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $userManager = new \pvv\admin\UserManager($pdo);
 
