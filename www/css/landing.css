@@ -88,16 +88,6 @@ img.float-right {
 }
 
 .calendar-events a,
-#ticker a {
-    text-decoration: none;
-    font-weight: bold;
-    color: black;
-}
-
-.calendar-events a:hover,
-#ticker a:hover {
-    text-decoration: underline;
-}
 
 .calendar-events ul .time {
     color: rgba(0, 0, 0, 0.5);
