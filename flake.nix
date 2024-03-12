@@ -65,7 +65,6 @@
         # - Make "trusted.url.domains" dynamic based on the current host:port
         # - Do not download composer.phar with curl(!)
         # - Relicense the project to GPL or something
-        # - Move gallery/slideshow images to an external directory (configurable)
         # - Write a module for the project
 
       };

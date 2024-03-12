@@ -18,23 +18,24 @@ if(!$loginname) {
 	exit();
 }
 
+# Sourced from config.php through include.php
+$galleryDir = $GALLERY_DIRECTORY;
+$serverPath = $GALLERY_SERVER_PATH;
 
-$unamefile = __DIR__ . '/usernames.txt';
-$relativePath = "/bilder/pvv-photos/";
 $allowedExtensions = ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'svg', 'webp'];
+$unamefile = $galleryDir . "/usernames.txt";
 
 $unamepairs = file($unamefile);
-$fullPath = getcwd() . $relativePath;
 
 function getDirContents($dir, &$results = array()) {
     $files = scandir($dir);
     foreach ($files as $key => $value) {
         $path = realpath($dir . DIRECTORY_SEPARATOR . $value);
         if (!is_dir($path)) {
-            //Remove the full path on disk, keep username and relative path to image. ( $results[] = str_replace($GLOBALS["fullPath"], "", $path); is insecure.)
-            $pos = strpos($path, $GLOBALS["fullPath"]);
+            //Remove the full path on disk, keep username and relative path to image.
+            $pos = strpos($path, $GLOBALS["galleryDir"]);
             if ($pos !== false) {
-                $cleanPath = substr_replace($path, "", $pos, strlen($GLOBALS["fullPath"]));
+                $cleanPath = substr_replace($path, "", $pos, strlen($GLOBALS["galleryDir"]));
             }
 
             //Check if the file is an image
@@ -49,7 +50,7 @@ function getDirContents($dir, &$results = array()) {
     }
     return $results;
 }
-$images = getDirContents($fullPath);
+$images = getDirContents($galleryDir);
 
 $imageTemplate = '
 <div class="card">
@@ -89,7 +90,7 @@ $imageTemplate = '
     <main class="gallery-container">
         <?php
         foreach ($images as $key => $value) {
-            $modTime = date("d.m.Y H:i", filemtime($fullPath . $value));
+            $modTime = date("d.m.Y H:i", filemtime($galleryDir . $value));
             $imguser = explode("/", $value)[0];
             $displaypath = substr($value, strpos($value, "/")+1);
             $realname = "Ukjent";
@@ -104,9 +105,9 @@ $imageTemplate = '
             $vars = [
                 "%user"         =>  htmlspecialchars($imguser),
                 "%time"         =>  $modTime,
-                "%timestamp"    =>  filemtime($fullPath . $value),
+                "%timestamp"    =>  filemtime($galleryDir . $value),
                 "%name"         =>  htmlspecialchars($displaypath),
-                "%path"         =>  "/galleri/" . $relativePath .$value,
+                "%path"         =>  $serverPath . $value,
                 "%realname"     =>  htmlspecialchars($realname)
             ];
             echo strtr($imageTemplate, $vars);
