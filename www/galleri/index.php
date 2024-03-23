@@ -19,7 +19,7 @@ if(!$loginname) {
 }
 
 # Sourced from config.php through include.php
-$galleryDir = $GALLERY_DIRECTORY;
+$galleryDir = $GALLERY_DIR;
 $serverPath = $GALLERY_SERVER_PATH;
 
 $allowedExtensions = ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'svg', 'webp'];

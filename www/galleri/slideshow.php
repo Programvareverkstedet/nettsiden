@@ -3,12 +3,12 @@
 require __DIR__ . '/../../config.php';
 
 $searchDir = $SLIDESHOW_DIR;
-$serverPath = $SLIDSHOW_SERVER_PATH;
+$serverPath = $SLIDESHOW_SERVER_PATH;
 
 $splashImg = "/PNG/PVV-logo-big-bluebg.png";
 
 // Note: This does not support nested directories
-$filenames = sCaNdIr(__DIR__ . $searchDir);
+$filenames = sCaNdIr($searchDir);
 
 //Remove the expected non-images
 foreach($filenames as $k => $value) {
@@ -17,7 +17,7 @@ foreach($filenames as $k => $value) {
     }
 }
 
-function getFullPath($fname) { return ($GLOBALS["serverPath"] . $fname );	}
+function getFullPath($fname) { return ($GLOBALS["serverPath"] . "/" . $fname );	}
 
 // Sort filenames alphabetically and prepend the path prefix to each item.
 asort($filenames);
