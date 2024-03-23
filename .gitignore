@@ -1,3 +1,4 @@
+/result
 /config.php
 *.sqlite
 /test.sql
