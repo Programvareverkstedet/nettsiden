@@ -2,27 +2,27 @@
 
 with lib;
 
-{ }: {
+{ }: let
+  valueToString = val:
+    if val == null then
+      "null"
+    else if isString val then
+       builtins.toJSON val
+    else if isBool val then
+      boolToString val
+    else if isInt val || isFloat val then
+      toString val
+    else if isList val then
+      "array(${concatMapStringsSep ", " valueToString val})"
+    else if isAttrs val && val ? value && (val._type or "") == "raw" then
+      val.value
+    else if isAttrs val then
+      throw "Found unexpected attrs, that were not created by mkRaw. Have you put attrs in an array?\n${val}"
+    else throw "unsupported :')";
+in {
   inherit (pkgs.formats.json { }) type;
 
   generate = name: value: let
-    valueToString = val:
-      if val == null then
-        "null"
-      else if isString val then
-         builtins.toJSON val
-      else if isBool val then
-        boolToString val
-      else if isInt val || isFloat val then
-        toString val
-      else if isList val then
-        "array(${concatMapStringsSep ", " valueToString val})"
-      else if isAttrs val && val ? value && (val._type or "") == "raw" then
-        val.value
-      else if isAttrs val then
-        throw "Found unexpected attrs, that were not created by mkRaw. Have you put attrs in an array?\n${val}"
-      else throw "unsupported :')";
-
     flattenStructuredSettings = attrs: let
       partitionAttrs = pred: attrs: lib.pipe attrs [
         attrsToList
@@ -50,6 +50,8 @@ with lib;
   in pkgs.writeText name content;
 
   lib = {
+    inherit valueToString;
+
     mkRaw = value: {
       inherit value;
       _type = "raw";

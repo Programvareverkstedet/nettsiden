@@ -40,6 +40,11 @@ in
           (attrs: !(attrs ? "type"))
           (_: option: option // { type = types.either option.type format.lib.types.raw; })
         {
+          DOOR_SECRET = mkOption {
+            type = types.str;
+            description = mdDoc "Secret for the door sensor API";
+          };
+
           GALLERY = {
             DIR = mkOption {
               type = types.path;
@@ -89,13 +94,50 @@ in
               description = mdDoc "Database password. Recommends: null, set in extraConfig";
             };
           };
+
+          SAML = {
+            COOKIE_SALT = mkOption {
+              type = types.str;
+              description = mdDoc "Salt for the SAML cookies";
+            };
+
+            COOKIE_SECURE = mkOption {
+              type = types.bool;
+              default = true;
+              description = mdDoc "Whether to set the secure flag on the SAML cookies";
+            };
+
+            ADMIN_PASSWORD = mkOption {
+              type = types.str;
+              description = mdDoc "Password for the admin user";
+            };
+
+            TRUSTED_DOMAINS = mkOption {
+              type = types.listOf types.str;
+              default = [ cfg.domainName ];
+              description = mdDoc "List of trusted domains for the SAML service";
+            };
+          };
         };
       };
     };
   };
 
 
-  config = mkIf cfg.enable {
+  config = mkIf cfg.enable (let
+    # NOTE: This should absolutely not be necessary, but for some reason this file refuses to import
+    #       the toplevel configuration file.
+    # NOTE: Nvm, don't this this was the problem after all?
+    finalPackage = cfg.package.overrideAttrs (_: _: {
+      postInstall = cfg.package.postInstall + ''
+        substituteInPlace $simplesamlphp/config/config.php \
+          --replace '$SAML_COOKIE_SECURE' '${format.lib.valueToString cfg.settings.SAML.COOKIE_SECURE}' \
+          --replace '$SAML_COOKIE_SALT' '${format.lib.valueToString cfg.settings.SAML.COOKIE_SALT}' \
+          --replace '$SAML_ADMIN_PASSWORD' '${format.lib.valueToString cfg.settings.SAML.ADMIN_PASSWORD}' \
+          --replace '$SAML_TRUSTED_DOMAINS' '${format.lib.valueToString cfg.settings.SAML.TRUSTED_DOMAINS}'
+      '';
+    });
+  in {
     users.users = mkIf (cfg.user == "pvv-nettsiden") {
       "pvv-nettsiden" = {
         description = "PVV Website Service User";
@@ -120,22 +162,28 @@ in
         enableACME = mkDefault true;
         locations = {
           "/" = {
-            root = "${cfg.package}/share/php/pvv-nettsiden/www/";
+            root = "${finalPackage}/share/php/pvv-nettsiden/www/";
             index = "index.php";
           };
 
           "~ \\.php$".extraConfig = ''
             include ${pkgs.nginx}/conf/fastcgi_params;
-            fastcgi_param SCRIPT_FILENAME ${cfg.package}/share/php/pvv-nettsiden/www$fastcgi_script_name;
+            fastcgi_param SCRIPT_FILENAME ${finalPackage}/share/php/pvv-nettsiden/www$fastcgi_script_name;
             fastcgi_pass unix:${config.services.phpfpm.pools."pvv-nettsiden".socket};
           '';
 
           ${cfg.settings.GALLERY.SERVER_PATH} = {
             root = cfg.settings.GALLERY.DIR;
+            extraConfig = ''
+              rewrite ^${cfg.settings.GALLERY.SERVER_PATH}/(.*)$ /$1 break;
+            '';
           };
 
           ${cfg.settings.SLIDESHOW.SERVER_PATH} = {
             root = cfg.settings.SLIDESHOW.DIR;
+            extraConfig = ''
+              rewrite ^${cfg.settings.SLIDESHOW.SERVER_PATH}/(.*)$ /$1 break;
+            '';
           };
         };
       };
@@ -157,5 +205,5 @@ in
         "pm.max_requests" = mkDefault 500;
       };
     };
-  };
+  });
 }

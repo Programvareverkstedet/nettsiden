@@ -1,7 +1,14 @@
 <?php
 
-require dirname(dirname(dirname(dirname(__DIR__)))) . '/config.php';
-echo $SAML_COOKIE_SECURE;
+# require_once(dirname(dirname(dirname(dirname(__DIR__)))) . DIRECTORY_SEPARATOR . 'config.php');
+
+/*
+$config_dir = dirname(__DIR__);
+while (!file_exists($config_dir . DIRECTORY_SEPARATOR . 'config.php')) {
+	$config_dir = dirname($config_dir);
+}
+include $config_dir . DIRECTORY_SEPARATOR . 'config.php';
+*/
 
 /**
  * The configuration of SimpleSAMLphp

@@ -6,9 +6,9 @@ php.buildComposerProject {
   version = "0.0.1";
   vendorHash = "sha256-DSn0ifj7Hjjia1SF/1wfziD/IdsiOES8XNDVz3F/cTI=";
 
-  postInstall = ''
-    simplesamlphp="$out/share/php/pvv-nettsiden/vendor/simplesamlphp/simplesamlphp"
+  simplesamlphp = "${placeholder "out"}/share/php/pvv-nettsiden/vendor/simplesamlphp/simplesamlphp";
 
+  postInstall = ''
     mkdir -p $simplesamlphp/config
     mkdir -p $simplesamlphp/metadata
 
