@@ -130,7 +130,7 @@ in
     # NOTE: Nvm, don't this this was the problem after all?
     finalPackage = cfg.package.overrideAttrs (_: _: {
       postInstall = cfg.package.postInstall + ''
-        substituteInPlace $simplesamlphp/config/config.php \
+        substituteInPlace $out/${cfg.package.passthru.simplesamlphpPath}/config/config.php \
           --replace '$SAML_COOKIE_SECURE' '${format.lib.valueToString cfg.settings.SAML.COOKIE_SECURE}' \
           --replace '$SAML_COOKIE_SALT' '${format.lib.valueToString cfg.settings.SAML.COOKIE_SALT}' \
           --replace '$SAML_ADMIN_PASSWORD' '${format.lib.valueToString cfg.settings.SAML.ADMIN_PASSWORD}' \
@@ -171,6 +171,25 @@ in
             fastcgi_param SCRIPT_FILENAME ${finalPackage}/share/php/pvv-nettsiden/www$fastcgi_script_name;
             fastcgi_pass unix:${config.services.phpfpm.pools."pvv-nettsiden".socket};
           '';
+
+          # based on https://simplesamlphp.org/docs/stable/simplesamlphp-install.html#configuring-nginx
+          "^~ /simplesaml/" = {
+	    alias = "${finalPackage}/${finalPackage.passthru.simplesamlphpPath}/www/";
+            index = "index.php";
+
+	    extraConfig = ''
+	      location ~ ^/simplesaml/(?<phpfile>.+?\.php)(?<pathinfo>/.*)?$ {
+                include ${pkgs.nginx}/conf/fastcgi_params;
+                fastcgi_pass unix:${config.services.phpfpm.pools."pvv-nettsiden".socket}; 
+                fastcgi_param SCRIPT_FILENAME ${finalPackage}/${finalPackage.passthru.simplesamlphpPath}/www/$phpfile;
+
+                # Must be prepended with the baseurlpath
+                fastcgi_param SCRIPT_NAME /simplesaml/$phpfile;
+
+                fastcgi_param PATH_INFO $pathinfo if_not_empty;
+	      }
+	    '';
+	  };
 
           ${cfg.settings.GALLERY.SERVER_PATH} = {
             root = cfg.settings.GALLERY.DIR;

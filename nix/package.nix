@@ -1,23 +1,18 @@
 { php }:
 
-php.buildComposerProject {
+php.buildComposerProject rec {
   src = ./..;
   pname = "pvv-nettsiden";
   version = "0.0.1";
   vendorHash = "sha256-DSn0ifj7Hjjia1SF/1wfziD/IdsiOES8XNDVz3F/cTI=";
 
-  simplesamlphp = "${placeholder "out"}/share/php/pvv-nettsiden/vendor/simplesamlphp/simplesamlphp";
+  passthru.simplesamlphpPath = "share/php/pvv-nettsiden/vendor/simplesamlphp/simplesamlphp";
 
   postInstall = ''
-    mkdir -p $simplesamlphp/config
-    mkdir -p $simplesamlphp/metadata
+    install -Dm444 dist/simplesamlphp-config.php      $out/${passthru.simplesamlphpPath}/config/config.php
+    install -Dm444 dist/simplesamlphp-authsources.php $out/${passthru.simplesamlphpPath}/config/authsources.php
+    install -Dm444 dist/simplesamlphp-idp.php         $out/${passthru.simplesamlphpPath}/metadata/saml20-idp-remote.php
 
-    cp dist/simplesamlphp-config.php      $simplesamlphp/config/config.php
-    cp dist/simplesamlphp-authsources.php $simplesamlphp/config/authsources.php
-    cp dist/simplesamlphp-idp.php         $simplesamlphp/metadata/saml20-idp-remote.php
-
-    cp dist/config.source-env.php $out/share/php/pvv-nettsiden/config.php
-
-    ln -s $simplesamlphp/www $out/share/php/pvv-nettsiden/www/simplesaml
+    install -Dm444 dist/config.source-env.php $out/share/php/pvv-nettsiden/config.php
   '';
 }
