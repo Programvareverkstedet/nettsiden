@@ -43,7 +43,7 @@ function getDirContents($dir, &$results = array()) {
             if (in_array($ext, $GLOBALS["allowedExtensions"])) {
                 $results[] = $cleanPath;
             }
-        } else if ($value != "." && $value != "..") {
+        } else if ($value != "." && $value != ".." && $value != ".thumbnails") {
             //recursively scan directories
             getDirContents($path, $results);
         }
@@ -55,7 +55,7 @@ $images = getDirContents($galleryDir);
 $imageTemplate = '
 <div class="card">
     <div class="card-image-div">
-        <img src="%path" alt="%name" class="card-image modal-target">
+        <img src="%thumbnail" data-fullsrc="%path" alt="%name" class="card-image modal-target">
     </div>
     <div class="card-body">
         <p class="card-title">%realname</p>
@@ -108,6 +108,7 @@ $imageTemplate = '
                 "%timestamp"    =>  filemtime($galleryDir . $value),
                 "%name"         =>  htmlspecialchars($displaypath),
                 "%path"         =>  $serverPath . $value,
+		"%thumbnail"    =>  $serverPath . "/.thumbnails" . $value . ".png",
                 "%realname"     =>  htmlspecialchars($realname)
             ];
             echo strtr($imageTemplate, $vars);

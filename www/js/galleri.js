@@ -1,22 +1,17 @@
-// #region Modal
-var modal = document.getElementById('modal');
+const modal = document.getElementById('modal');
+const modalImg = document.getElementById("modal-content");
+const captionText = document.getElementById("modal-caption");
 
-// global handler
 document.addEventListener('click', function (e) { 
     if (e.target.className.indexOf('modal-target') !== -1) {
-        var img = e.target;
-        var modalImg = document.getElementById("modal-content");
-        var captionText = document.getElementById("modal-caption");
+        // Open modal
+        const img = e.target;
         modal.style.display = "block";
-        modalImg.src = img.src;
+        modalImg.src = img.dataset.fullsrc;
         captionText.innerHTML = img.alt;
     } else if (modal.style.display != "none") {
+        // Close modal
         modal.style.display = "none";
+        modalImg.src = "";
     }
 });
-// #endregion
-
-// #region sorting
-
-
-// #endregion
