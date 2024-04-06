@@ -91,8 +91,8 @@ $imageTemplate = '
         <?php
         foreach ($images as $key => $value) {
             $modTime = date("d.m.Y H:i", filemtime($galleryDir . $value));
-            $imguser = explode("/", $value)[0];
-            $displaypath = substr($value, strpos($value, "/")+1);
+            $imguser = explode("/", $value)[1];
+            $displaypath = implode("/", array_slice(explode("/", $value), 2));
             $realname = "Ukjent";
             foreach ($unamepairs as $unamepair) {
                 $unamepair = explode(":", $unamepair);
