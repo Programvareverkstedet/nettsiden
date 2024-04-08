@@ -35,7 +35,7 @@ function loginBar($sp = null, $pdo = null) {
 	if (is_null($sp)) $sp = 'default-sp';
 	$result = "\n";
 	require_once(__DIR__ . '/../vendor/simplesamlphp/simplesamlphp/lib/_autoload.php');
-	$as = new SimpleSAML_Auth_Simple($sp);
+	$as = new \SimpleSAML\Auth\Simple($sp);
 
 	$svg = '<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 64 64">
 	<circle cx="32" cy="27" r="14" stroke-width="0" />

@@ -18,7 +18,7 @@ $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $userManager = new \pvv\admin\UserManager($pdo);
 
 $sp = 'default-sp';
-$as = new SimpleSAML_Auth_Simple($sp);
+$as = new \SimpleSAML\Auth\Simple($sp);
 
 use \pvv\side\Agenda;
 $agenda = new \pvv\side\Agenda([
