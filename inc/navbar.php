@@ -10,7 +10,7 @@ function navbar($depth, $active = NULL) {
 		'Kontakt' => 'kontakt',
 		'Webmail' => 'mail',
 		'Galleri' => 'galleri',
-		'Wiki' => 'pvv',
+		'Wiki' => 'https://wiki.pvv.ntnu.no/',
 		'Git' => 'https://git.pvv.ntnu.no/',
                 'Tjenester' => 'tjenester',
 	];
