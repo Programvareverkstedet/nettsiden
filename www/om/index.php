@@ -66,7 +66,7 @@ p {hyphens: auto;}
 
 	<p>PVV har også en del brettspill du kan prøve.
 
-	<p><a href="../pvv/Dokumentasjon">Her</a> er en oversikt over hva du kan gjøre når du har fått PVV bruker.
+	<p><a href="https://wiki.pvv.ntnu.no/wiki/Dokumentasjon">Her</a> er en oversikt over hva du kan gjøre når du har fått PVV bruker.
 
 </article>
 

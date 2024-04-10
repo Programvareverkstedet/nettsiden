@@ -31,7 +31,7 @@ $attrs = $as->getAttributes();
 		
 		<p>
 			Første steg for å bli medlem i PVV er å betale
-			<a href="../pvv/Medlemskontingent">medlemskontingent</a> på 50kr per år.
+			<a href="https://wiki.pvv.ntnu.no/wiki/Medlemskontingent">medlemskontingent</a> på 50kr per år.
 			Disse pengene brukes for å drifte PVV. Se lenken for kontonummeret.
 		</p>
 		<p>
@@ -42,7 +42,7 @@ $attrs = $as->getAttributes();
 			å man møte opp på lokalene slik at man får satt passord.
 		</p>
 		<p>
-			Mer informasjon om medlemskap finner du <a href="../pvv/Medlem">her</a>.
+			Mer informasjon om medlemskap finner du <a href="https://wiki.pvv.ntnu.no/wiki/Medlem">her</a>.
 		</p>
 		
 		<h2>Registrer deg som bruker</h2>
@@ -51,7 +51,7 @@ $attrs = $as->getAttributes();
 			PVV har for øyeblikket et manuelt system for å legge til nye brukere.
 			Se lenkene over for mer informasjon.
 			Vi foretrekker at du kommer inn på besøk på <a href="https://link.mazemap.com/aKDz8eu8">våre lokaler i Oppredning/Gruvedrift, rom 247</a>
-			for å sette sette opp din PVV bruker. Hvis du ikke har mulighet til det, kan du <a href="../pvv/Kontaktinformasjon">finne oss her</a> og sende en epost.
+			for å sette sette opp din PVV bruker. Hvis du ikke har mulighet til det, kan du <a href="https://wiki.pvv.ntnu.no/wiki/Kontaktinformasjon">finne oss her</a> og sende en epost.
 			For å aktivere din brukerkonto på PVV, må du alikevell møte opp på
 			lokalene våre slik at vi kan få satt ditt passord.
 		</p>

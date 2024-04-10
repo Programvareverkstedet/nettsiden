@@ -92,7 +92,7 @@ require_once dirname(dirname(__DIR__)) . implode(DIRECTORY_SEPARATOR, ['', 'inc'
                     <a href="https://www.pvv.ntnu.no/mail/" target="_blank">Gå til Webmail</a>
                   </div>
                   <div class="serviceLink">
-                    <a href="https://www.pvv.ntnu.no/pvv/Drift/Mail/IMAP_POP3/" target="_blank">IMAP/POP/SMTP-innstillinger</a>
+                    <a href="https://wiki.pvv.ntnu.no/wiki/Drift/Mail/IMAP_POP3" target="_blank">IMAP/POP/SMTP-innstillinger</a>
                   </div>
                 </div>
                 <img class="serviceImage" src="img/email.png" alt="Epost-ikon">
@@ -119,7 +119,7 @@ require_once dirname(dirname(__DIR__)) . implode(DIRECTORY_SEPARATOR, ['', 'inc'
                 <div class="serviceContent">
                   <h2 class="serviceTitle">Brukernettsider</h2>
                   <p class="serviceDescription">Alle brukere får automatisk en egen side for html og php. Denne er offentlig på pvv.ntnu.no/~brukernavn.</p>
-                  <div class="serviceLink"><a href="https://www.pvv.ntnu.no/pvv/Hjemmesider" target="_blank">Gå til dokumentasjon på wiki</a></div>
+                  <div class="serviceLink"><a href="https://wiki.pvv.ntnu.no/wiki/Hjemmesider" target="_blank">Gå til dokumentasjon på wiki</a></div>
                 </div>
                 <img class="serviceImage" src="img/php.png" alt="En elephpant">
               </div>
@@ -192,7 +192,7 @@ require_once dirname(dirname(__DIR__)) . implode(DIRECTORY_SEPARATOR, ['', 'inc'
                     <a href="https://www.pvv.ntnu.no/galleri/" target="_blank">Se galleriet</a>
                   </div>
                   <div class="serviceLink">
-                    <a href="https://www.pvv.ntnu.no/pvv/Bildedeling" target="_blank">Opplasting</a>
+                    <a href="https://wiki.pvv.ntnu.no/wiki/Bildedeling" target="_blank">Opplasting</a>
                   </div>
                 </div>
                 <img class="serviceImage" src="img/gallery.png" alt="RSS-Ikon">
