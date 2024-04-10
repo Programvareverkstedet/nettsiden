@@ -36,7 +36,7 @@ CREATE TABLE "motd" (
 "content" TEXT
 );
 INSERT INTO motd (title, content)
-VALUES ("MOTD ./dev.sh", "du kan endre motd i admin panelet");
+VALUES ('MOTD ./dev.sh', 'du kan endre motd i admin panelet');
 
 CREATE TABLE "door" (
 "time" INTEGER PRIMARY KEY,
@@ -47,4 +47,4 @@ VALUES (0, FALSE);
 
 
 INSERT INTO users (uname, groups)
-VALUES ("min_test_bruker", 1);
+VALUES ('min_test_bruker', 1);

@@ -2,12 +2,12 @@
 error_reporting(0);
 require_once dirname(dirname(__DIR__)) . implode(DIRECTORY_SEPARATOR, ['', 'inc', 'include.php']);
 
-$pdo = new \PDO($dbDsn, $dbUser, $dbPass);
+$pdo = new \PDO($DB_DSN, $DB_USER, $DB_PASS);
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 $userManager = new \pvv\admin\UserManager($pdo);
 
-$as = new SimpleSAML_Auth_Simple('default-sp');
+$as = new \SimpleSAML\Auth\Simple('default-sp');
 $as->requireAuth();
 $attrs = $as->getAttributes();
 $loginname = $attrs['uid'][0];
@@ -18,23 +18,24 @@ if(!$loginname) {
 	exit();
 }
 
+# Sourced from config.php through include.php
+$galleryDir = $GALLERY_DIR;
+$serverPath = $GALLERY_SERVER_PATH;
 
-$unamefile = __DIR__ . '/usernames.txt';
-$relativePath = "/bilder/pvv-photos/";
 $allowedExtensions = ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'svg', 'webp'];
+$unamefile = $galleryDir . "/usernames.txt";
 
 $unamepairs = file($unamefile);
-$fullPath = getcwd() . $relativePath;
 
 function getDirContents($dir, &$results = array()) {
     $files = scandir($dir);
     foreach ($files as $key => $value) {
         $path = realpath($dir . DIRECTORY_SEPARATOR . $value);
         if (!is_dir($path)) {
-            //Remove the full path on disk, keep username and relative path to image. ( $results[] = str_replace($GLOBALS["fullPath"], "", $path); is insecure.)
-            $pos = strpos($path, $GLOBALS["fullPath"]);
+            //Remove the full path on disk, keep username and relative path to image.
+            $pos = strpos($path, $GLOBALS["galleryDir"]);
             if ($pos !== false) {
-                $cleanPath = substr_replace($path, "", $pos, strlen($GLOBALS["fullPath"]));
+                $cleanPath = substr_replace($path, "", $pos, strlen($GLOBALS["galleryDir"]));
             }
 
             //Check if the file is an image
@@ -42,19 +43,19 @@ function getDirContents($dir, &$results = array()) {
             if (in_array($ext, $GLOBALS["allowedExtensions"])) {
                 $results[] = $cleanPath;
             }
-        } else if ($value != "." && $value != "..") {
+        } else if ($value != "." && $value != ".." && $value != ".thumbnails") {
             //recursively scan directories
             getDirContents($path, $results);
         }
     }
     return $results;
 }
-$images = getDirContents($fullPath);
+$images = getDirContents($galleryDir);
 
 $imageTemplate = '
 <div class="card">
     <div class="card-image-div">
-        <img src="%path" alt="%name" class="card-image modal-target">
+        <img src="%thumbnail" data-fullsrc="%path" alt="%name" class="card-image modal-target">
     </div>
     <div class="card-body">
         <p class="card-title">%realname</p>
@@ -89,9 +90,9 @@ $imageTemplate = '
     <main class="gallery-container">
         <?php
         foreach ($images as $key => $value) {
-            $modTime = date("d.m.Y H:i", filemtime($fullPath . $value));
-            $imguser = explode("/", $value)[0];
-            $displaypath = substr($value, strpos($value, "/")+1);
+            $modTime = date("d.m.Y H:i", filemtime($galleryDir . $value));
+            $imguser = explode("/", $value)[1];
+            $displaypath = implode("/", array_slice(explode("/", $value), 2));
             $realname = "Ukjent";
             foreach ($unamepairs as $unamepair) {
                 $unamepair = explode(":", $unamepair);
@@ -104,9 +105,10 @@ $imageTemplate = '
             $vars = [
                 "%user"         =>  htmlspecialchars($imguser),
                 "%time"         =>  $modTime,
-                "%timestamp"    =>  filemtime($fullPath . $value),
+                "%timestamp"    =>  filemtime($galleryDir . $value),
                 "%name"         =>  htmlspecialchars($displaypath),
-                "%path"         =>  "/galleri/" . $relativePath .$value,
+                "%path"         =>  $serverPath . $value,
+		"%thumbnail"    =>  $serverPath . "/.thumbnails" . $value . ".png",
                 "%realname"     =>  htmlspecialchars($realname)
             ];
             echo strtr($imageTemplate, $vars);

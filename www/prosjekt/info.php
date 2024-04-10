@@ -10,7 +10,7 @@ if(isset($_GET['id'])){
 }
 
 require_once(__DIR__ . '/../../vendor/simplesamlphp/simplesamlphp/lib/_autoload.php');
-$as = new SimpleSAML_Auth_Simple('default-sp');
+$as = new \SimpleSAML\Auth\Simple('default-sp');
 $attrs = $as->getAttributes();
 
 $projectManager = new \pvv\side\ProjectManager($pdo);

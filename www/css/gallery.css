@@ -51,11 +51,9 @@ main {
     font-size: 1.5em;
 }
 
-/* #region modal */
-
 .modal-target:hover {opacity: 0.7;}
 
-/* The Modal (background) */
+/* Modal Background */
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
@@ -70,14 +68,12 @@ main {
     background-color: rgba(0,0,0,0.8); /* Black w/ opacity */
 }
 
-/* Modal Content (image) */
 .modal-content {
     margin: auto;
     display: block;
     object-fit: scale-down;
     overflow: visible;
     
-    /* yolo, it all goes down from here */
     min-width: 60vw;
     max-width: 90vw !important;
     min-height: 60vh;
@@ -88,7 +84,6 @@ main {
     opacity: 1 !important;
 }
 
-/* Caption of Modal Image */
 .modal-caption {
     margin: auto;
     display: block;
@@ -133,9 +128,7 @@ main {
     text-decoration: none;
     cursor: pointer;
 }
-/* #endregion modal */
 
-/* #region screen-size media-rules */
 @media only screen and (min-width:320px)  {
     .gallery-container { grid-template-columns: repeat(1, minmax(0, 1fr)) !important; }
     main { padding: 1em; }
@@ -150,4 +143,3 @@ main {
 @media only screen and (min-width: 1281px) {
     .gallery-container { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; }
 }
-/* #endregion */

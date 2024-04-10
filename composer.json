@@ -1,14 +1,15 @@
 {
-	"require": {
-		"simplesamlphp/simplesamlphp": "~1",
-		"erusev/parsedown": "^1.7"
-	},
-	"require-dev": {
-		"ext-pdo_sqlite": "*"
-	},
-	"config": {
-		"allow-plugins": {
-			"simplesamlphp/composer-module-installer": true
-		}
-	}
+    "name": "programvareverkstedet/nettsiden",
+    "description": "Programvareverkstedets nettside",
+    "license": "proprietary",
+
+    "config": {
+        "allow-plugins": {
+            "simplesamlphp/composer-module-installer": true
+        }
+    },
+    "require": {
+        "simplesamlphp/simplesamlphp": "^2.2",
+        "erusev/parsedown": "^1.7"
+    }
 }
