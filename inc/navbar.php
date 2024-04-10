@@ -8,9 +8,9 @@ function navbar($depth, $active = NULL) {
 		//'Aktiviteter' => 'aktiviteter',
 		'Prosjekter' => 'prosjekt',
 		'Kontakt' => 'kontakt',
-		'Webmail' => 'mail',
+		'Webmail' => 'https://webmail2.pvv.ntnu.no/roundcube/',
 		'Galleri' => 'galleri',
-		'Wiki' => 'pvv',
+		'Wiki' => 'https://wiki.pvv.ntnu.no/',
 		'Git' => 'https://git.pvv.ntnu.no/',
                 'Tjenester' => 'tjenester',
 	];
