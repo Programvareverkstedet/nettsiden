@@ -217,14 +217,14 @@ in
             '';
           };
 
-          ${cfg.settings.GALLERY.SERVER_PATH} = {
+          "^~ ${cfg.settings.GALLERY.SERVER_PATH}" = {
             root = cfg.settings.GALLERY.DIR;
             extraConfig = ''
               rewrite ^${cfg.settings.GALLERY.SERVER_PATH}/(.*)$ /$1 break;
             '';
           };
 
-          ${cfg.settings.SLIDESHOW.SERVER_PATH} = {
+          "^~ ${cfg.settings.SLIDESHOW.SERVER_PATH}" = {
             root = cfg.settings.SLIDESHOW.DIR;
             extraConfig = ''
               rewrite ^${cfg.settings.SLIDESHOW.SERVER_PATH}/(.*)$ /$1 break;
