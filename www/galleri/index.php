@@ -52,6 +52,14 @@ function getDirContents($dir, &$results = array()) {
 }
 $images = getDirContents($galleryDir);
 
+function cmpModifyTime($a, $b) {
+	$mtime_a = filemtime($galleryDir . $a);
+	$mtime_b = filemtime($galleryDir . $b);
+	return ($mtime_a > $mtime_b) ? -1 : 1;
+}
+
+usort($images, "cmpModifyTime");
+
 $imageTemplate = '
 <div class="card">
     <div class="card-image-div">
@@ -105,7 +113,6 @@ $imageTemplate = '
             $vars = [
                 "%user"         =>  htmlspecialchars($imguser),
                 "%time"         =>  $modTime,
-                "%timestamp"    =>  filemtime($galleryDir . $value),
                 "%name"         =>  htmlspecialchars($displaypath),
                 "%path"         =>  $serverPath . $value,
 		"%thumbnail"    =>  $serverPath . "/.thumbnails" . $value . ".png",

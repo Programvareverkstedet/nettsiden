@@ -21,7 +21,7 @@ function stepSlideshow(imgs) {
         //Change source to next picture after it is faded out
         slideshowIndex = (slideshowIndex + 1) % imgs.length; 
         ssi2.src = slideshowFnames[slideshowIndex];
-    }, 800);  
+    }, 1000);
 }
 
 //Initialize slideshow, start interval
