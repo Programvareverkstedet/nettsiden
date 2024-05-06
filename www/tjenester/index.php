@@ -38,11 +38,11 @@ require_once dirname(dirname(__DIR__)) . implode(DIRECTORY_SEPARATOR, ['', 'inc'
 
               <div class="service">
                 <div class="serviceContent">
-                  <h2 class="serviceTitle">Gogs</h2>
+                  <h2 class="serviceTitle">Gitea</h2>
                   <p class="serviceDescription">Vår interne git-tjener, åpen for alle medlemmer</p>
                   <div class="serviceLink"><a href="https://git.pvv.ntnu.no" target="_blank">Gå til git.pvv.ntnu.no</a></div>
                 </div>
-                <img class="serviceImage" src="img/gogs.png" alt="Gogs-logo">
+                <img class="serviceImage" src="img/gitea.png" alt="Gitea-logo">
               </div>
 
               <div class="service">
