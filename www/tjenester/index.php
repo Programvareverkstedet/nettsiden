@@ -29,30 +29,21 @@ require_once dirname(dirname(__DIR__)) . implode(DIRECTORY_SEPARATOR, ['', 'inc'
 
               <div class="service">
                 <div class="serviceContent">
+                  <h2 class="serviceTitle">Gitea</h2>
+                  <p class="serviceDescription">Vår interne git-tjener, åpen for alle medlemmer</p>
+                  <div class="serviceLink"><a href="https://git.pvv.ntnu.no" target="_blank">Gå til git.pvv.ntnu.no</a></div>
+                </div>
+                <img class="serviceImage" src="img/gitea.png" alt="Gitea-logo">
+              </div>
+
+	      <div class="service">
+                <div class="serviceContent">
                   <h2 class="serviceTitle">GitHub</h2>
                   <p class="serviceDescription">Våre offentlige kodebrønner, åpent for verden!</p>
                   <div class="serviceLink"><a href="https://github.com/Programvareverkstedet/" target="_blank">Gå til GitHub</a></div>
                 </div>
                 <img class="serviceImage" src="img/github.png" alt="GitHub-logo">
-              </div>
-
-              <div class="service">
-                <div class="serviceContent">
-                  <h2 class="serviceTitle">Gogs</h2>
-                  <p class="serviceDescription">Vår interne git-tjener, åpen for alle medlemmer</p>
-                  <div class="serviceLink"><a href="https://git.pvv.ntnu.no" target="_blank">Gå til git.pvv.ntnu.no</a></div>
-                </div>
-                <img class="serviceImage" src="img/gogs.png" alt="Gogs-logo">
-              </div>
-
-              <div class="service">
-                <div class="serviceContent">
-                  <h2 class="serviceTitle">Dev og Trac</h2>
-                  <p class="serviceDescription">Trac er vårt gamle prosjektsystem. Her kan du lage og dele prosjekter om du er for hipster for github.</p>
-                  <div class="serviceLink"><a href="https://dev.pvv.ntnu.no/projects/pvv-dev/" target="_blank">Gå til dev.pvv.ntnu.no</a></div>
-                </div>
-                <img class="serviceImage" src="img/trac.png" alt="Trac-logo">
-              </div>
+	      </div>
 
             </div>
           </div>
