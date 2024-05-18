@@ -198,6 +198,10 @@ in
             fastcgi_pass unix:${config.services.phpfpm.pools."pvv-nettsiden".socket};
           '';
 
+          "= /spaceapi.php".extraConfig = ''
+            add_header Content-Type application/json;
+          '';
+
           # based on https://simplesamlphp.org/docs/stable/simplesamlphp-install.html#configuring-nginx
           "^~ /simplesaml/" = {
             alias = "${finalPackage}/${finalPackage.passthru.simplesamlphpPath}/public/";
