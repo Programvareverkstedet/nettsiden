@@ -196,10 +196,9 @@ in
             include ${pkgs.nginx}/conf/fastcgi_params;
             fastcgi_param SCRIPT_FILENAME ${finalPackage}/share/php/pvv-nettsiden/www$fastcgi_script_name;
             fastcgi_pass unix:${config.services.phpfpm.pools."pvv-nettsiden".socket};
-          '';
-
-          "= /spaceapi.php".extraConfig = ''
-            add_header Content-Type application/json;
+            location = /spaceapi.php {
+              add_header Content-Type application/json;
+            }
           '';
 
           # based on https://simplesamlphp.org/docs/stable/simplesamlphp-install.html#configuring-nginx
