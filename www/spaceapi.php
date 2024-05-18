@@ -2,6 +2,9 @@
 
 require_once dirname(__DIR__) . implode(DIRECTORY_SEPARATOR, ['', 'inc', 'include.php']);
 
+header('Content-Type: application/json');
+header('Access-Control-Allow-Origin: *');
+
 $pdo = new \PDO($DB_DSN, $DB_USER, $DB_PASS);
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
@@ -39,7 +42,7 @@ $doorEntry = (object)($door->getCurrent());
   "feeds": {
     "wiki": {
       "type": "atom",
-      "url": "https://www.pvv.ntnu.no/w/api.php?hidebots=1&urlversion=1&action=feedrecentchanges&feedformat=atom"
+      "url": "https://wiki.pvv.ntnu.no/w/api.php?hidebots=1&urlversion=1&action=feedrecentchanges&feedformat=atom"
     },
     "calendar": {
       "type": "html",
