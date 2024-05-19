@@ -23,8 +23,8 @@ $doorEntry = (object)($door->getCurrent());
     "ext_mazemap": "https://link.mazemap.com/2n2HWa7H",
     "address": "Sem Sælands vei 1, 7034 Trondheim, Norway",
     "timezone": "Europe/Oslo",
-    "lon": 10.242,
-    "lat": 63.250
+    "lon": 10.4063852,
+    "lat": 63.4170226
   },
   "contact": {
     "irc": "irc://irc.pvv.ntnu.no/pvv",
