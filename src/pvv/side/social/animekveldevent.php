@@ -38,7 +38,6 @@ class AnimekveldEvent extends Event {
 			'',
 			'Alle kan være med på å anbefale eller veto serier.',
 			'',
-			'I disse tider blir visningene i all hovedsak holdt online på vår <a href="https://discord.gg/cx4aXU7">Discord server</a>'
 			];
 	}
 
