@@ -93,7 +93,7 @@ foreach($members as $i => $data){
 				<?= '<input type="text" name="title" value="' . $project->getName() . '" class="boxinput">' ?><br>
 
 				<p class="subtitle">Beskrivelse (<i>markdown</i>)</p>
-				<textarea name="desc" cols="40" rows="5" class="boxinput"><?= implode($project->getDescription(), "\n"); ?></textarea>
+				<textarea name="desc" cols="40" rows="5" class="boxinput"><?= implode("\n", $project->getDescription()); ?></textarea>
 			</div>
 
 			<div class="gridr noborder">
