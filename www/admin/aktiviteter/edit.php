@@ -105,7 +105,7 @@ else {
 				</div>
 
 				<p class="subtitle">Beskrivelse (<i>markdown</i>)</p>
-				<textarea name="desc" rows="8" class="boxinput" placeholder="Beskrivese" required><?= implode($event->getDescription(), "\n"); ?></textarea>
+				<textarea name="desc" rows="8" class="boxinput" placeholder="Beskrivelse" required><?= implode("\n", $event->getDescription()); ?></textarea>
 				
 				
 			</div>
