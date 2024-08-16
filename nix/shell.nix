@@ -20,6 +20,10 @@ pkgs.mkShellNoCC {
     test -e config.php || cp -v dist/config.local.php config.php
 
 
+    if [ ! -d www/galleri/bilder/slideshow ] ; then
+      mkdir -p www/galleri/bilder/slideshow
+    fi
+
     if [ ! -d vendor ] ; then
       composer install || exit $?
 
