@@ -77,18 +77,17 @@ $doorTime = date("H:i", $doorEntry->time);
 							<?php } else { ?>
 								<strong><?= $event->getName(); ?></strong>
 							<?php } ?>
-							<?php /* <a class="icon subscribe">+</a> */ ?>
-							<?php if ($period !== \pvv\side\Agenda::TODAY) {
-								echo '<span class="time">' . $event->getStart()->format('H:i') . '</span>';
-								if (\pvv\side\Agenda::isThisWeek($event->getStart()) || $event->getStart()->sub(new DateInterval('P3D'))->getTimestamp() < time()) {
-									echo '<span class="date">' . strftime('%a', $event->getStart()->getTimestamp()) . '</span>';
-								} else {
-									echo '<span class="date">' . strftime('%e. %b', $event->getStart()->getTimestamp()) . '</span>';
-								}
-							} else {
-								echo '<span class="time">' . $event->getStart()->format('H:i') . '</span>';
-							}
-							?>
+                            <?php if ($period !== \pvv\side\Agenda::TODAY) {
+                                echo '<span class="time">' . $event->getStart()->format('H:i') . ' </span>';
+                                if (\pvv\side\Agenda::isThisWeek($event->getStart()) || $event->getStart()->sub(new DateInterval('P3D'))->getTimestamp() < time()) {
+                                    echo '<span class="time">' . $event->getStart()->format('D') . '</span>';
+                                } else {
+                                    echo '<span class="time">' . $event->getStart()->format('j. F') . '</span>';
+                                }
+                            } else {
+                                echo '<span class="time">' . $event->getStart()->format('H:i') . '</span>';
+                            }
+                            ?>
 						</li>
 						<?php } ?>
 					</ul>
@@ -108,7 +107,7 @@ $doorTime = date("H:i", $doorEntry->time);
 					echo $title;
 				}
 				echo "</h1>";
-				
+
 				$Parsedown = new Parsedown();
 				echo $Parsedown->text(implode("\n", $motd["content"]));
 			?>
