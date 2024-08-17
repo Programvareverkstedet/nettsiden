@@ -77,17 +77,20 @@ $doorTime = date("H:i", $doorEntry->time);
 							<?php } else { ?>
 								<strong><?= $event->getName(); ?></strong>
 							<?php } ?>
+
+                            <span class="datetime">
                             <?php if ($period !== \pvv\side\Agenda::TODAY) {
-                                echo '<span class="time">' . $event->getStart()->format('H:i') . ' </span>';
+                                echo $event->getStart()->format('H:i') . " " ;
                                 if (\pvv\side\Agenda::isThisWeek($event->getStart()) || $event->getStart()->sub(new DateInterval('P3D'))->getTimestamp() < time()) {
-                                    echo '<span class="time">' . $event->getStart()->format('D') . '</span>';
+                                    echo $event->getStart()->format('D');
                                 } else {
-                                    echo '<span class="time">' . $event->getStart()->format('j. F') . '</span>';
+                                    echo $event->getStart()->format('j. F');
                                 }
                             } else {
-                                echo '<span class="time">' . $event->getStart()->format('H:i') . '</span>';
+                                echo $event->getStart()->format('H:i');
                             }
                             ?>
+                            </span>
 						</li>
 						<?php } ?>
 					</ul>

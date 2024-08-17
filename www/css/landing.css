@@ -65,43 +65,23 @@ img.float-right {
     list-style: none;
 }
 
-.calendar-events ul li :not(.date):not(.time) {
-    display: inline-block;
-    width: calc(100% - 7em);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.calendar-events ul .date {
-    color: rgba(0, 0, 0, 0.5);
-    font-size: 0.8em;
-    margin-top: 0.2em;
-}
-
-.calendar-events > li > p {
-    border-bottom: 0.1em dotted rgba(0, 0, 0, 0.2);
-}
-
 .calendar-events ul {
     list-style: none;
     padding: 0;
 }
 
 .calendar-events a {
-  color: rgba(0,0,0, 0.85);
+    color: rgba(0,0,0, 0.85);
 }
 
-.calendar-events ul .time {
+.calendar-events ul .datetime {
     color: rgba(0, 0, 0, 0.5);
     float: right;
     margin-left: 0.2em;
 }
 
-.calendar-events ul .icon,
-.calendar-events ul .date {
-    float: right;
-    margin-right: 0.5em;
+.calendar-events ul li {
+    margin-bottom: 0.4em;
 }
 
 main.contentsplit {
