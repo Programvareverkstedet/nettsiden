@@ -6,6 +6,8 @@ use \DateInterval;
 
 class Agenda {
 
+  private $activities;
+
 	const TODAY = 0;
 	const TOMORROW = 1;
 	const THIS_WEEK = 2;
@@ -18,7 +20,7 @@ class Agenda {
 	}
 
     public static function getFormattedDate($date) {
-       return trim(strftime('%A %e. %b %H.%M', $date->getTimeStamp()));
+       return $date->format("l j. M H.i");
     }
 
 	public function getEventsBetween(DateTimeImmutable $from, DateTimeImmutable $to) {

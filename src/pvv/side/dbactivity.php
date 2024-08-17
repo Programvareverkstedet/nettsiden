@@ -5,6 +5,7 @@ use \DateTimeImmutable;
 use \PDO;
 
 class DBActivity implements Activity {
+  private $pdo;
 
 	public function __construct(PDO $pdo) {
 		$this->pdo = $pdo;

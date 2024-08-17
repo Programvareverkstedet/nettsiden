@@ -72,6 +72,7 @@ img.float-right {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
 .calendar-events ul .date {
     color: rgba(0, 0, 0, 0.5);
     font-size: 0.8em;
@@ -87,11 +88,14 @@ img.float-right {
     padding: 0;
 }
 
-.calendar-events a,
+.calendar-events a {
+  color: rgba(0,0,0, 0.85);
+}
 
 .calendar-events ul .time {
     color: rgba(0, 0, 0, 0.5);
     float: right;
+    margin-left: 0.2em;
 }
 
 .calendar-events ul .icon,

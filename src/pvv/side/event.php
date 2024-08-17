@@ -24,7 +24,7 @@ abstract class Event {
 			return 'i morgen';
 		}
 		if (Agenda::isThisWeek($this->getStart()) || $this->getStart()->sub(new DateInterval('P4D'))->getTimestamp() < time()) {
-			return strftime('%A', $this->getStart()->getTimestamp());
+			return $this->getStart()->format("l");
 		}
 		if (Agenda::isNextWeek($this->getStart())) {
 			return 'neste uke';
@@ -32,7 +32,7 @@ abstract class Event {
 		if (Agenda::isThisMonth($this->getStart())) {
 			return 'denne måneden';
 		}
-		return trim(strftime('%e. %B', $this->getStart()->getTimestamp()));
+		return $this->getStart()->format("j. F");
 	}
 
 	public abstract function getStop(); /* : DateTimeImmutable */

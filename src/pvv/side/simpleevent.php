@@ -5,7 +5,7 @@ class SimpleEvent extends Event {
 
 	private $id, $name, $descr, $start, $end, $org, $loc;
 
-	public function __construct($id, $name,\DateTimeImmutable $start,\DateTimeImmutable $end,$org, $loc, $descr, $isDBEvent = false){
+	public function __construct($id, $name,\DateTimeImmutable $start,\DateTimeImmutable $end,$org, $loc, $descr, $_isDBEvent = false){
 		$this->id = $id;
 		$this->name = $name;
 		$this->start = $start;
@@ -13,7 +13,6 @@ class SimpleEvent extends Event {
 		$this->org = $org;
 		$this->loc = $loc;
 		$this->descr = explode("\n", $descr);
-		$this->isDBEvent = $isDBEvent;
 	}
 
 	public function getID(){
@@ -50,10 +49,6 @@ class SimpleEvent extends Event {
 
 	public function getDescription() {
 		return $this->descr;
-	}
-
-	public function isDBEvent() {
-		return $this->isDBEvent;
 	}
 
 	public function getColor() {
