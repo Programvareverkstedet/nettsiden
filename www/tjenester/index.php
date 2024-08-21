@@ -110,7 +110,7 @@ require_once dirname(dirname(__DIR__)) . implode(DIRECTORY_SEPARATOR, ['', 'inc'
                 <div class="serviceContent">
                   <h2 class="serviceTitle">Brukernettsider</h2>
                   <p class="serviceDescription">Alle brukere får automatisk en egen side for html og php. Denne er offentlig på pvv.ntnu.no/~brukernavn.</p>
-                  <div class="serviceLink"><a href="https://wiki.pvv.ntnu.no/wiki/Hjemmesider" target="_blank">Gå til dokumentasjon på wiki</a></div>
+                  <div class="serviceLink"><a href="https://wiki.pvv.ntnu.no/wiki/Tjenester/Hjemmesider" target="_blank">Gå til dokumentasjon på wiki</a></div>
                 </div>
                 <img class="serviceImage" src="img/php.png" alt="En elephpant">
               </div>
