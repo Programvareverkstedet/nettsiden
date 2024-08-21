@@ -1,0 +1,66 @@
+ul#webmail {
+  margin-top: 0;
+  margin-left: auto;
+  margin-right: auto;
+  table-layout: fixed;
+  display: table;
+  width: 100%;
+  padding: 0;
+}
+ul#webmail li {
+  display: table-cell;
+  text-align: center;
+}
+ul#webmail li .mailname {
+  font-size: 1.2em;
+}
+
+@media all and (min-width: 980px) {
+  ul#webmail {
+    max-width: 1280px;
+  }
+  ul#webmail li {
+    display: table-cell;
+    text-align: center;
+  }
+}
+@media all and (max-width: 980px) {
+  ul#webmail {
+    max-width: 650px;
+  }
+  ul#webmail li {
+    display: table-row;
+    text-align: center;
+  }
+}
+ul#webmail li div {
+  position: relative;
+  background: white;
+  margin: 1em 1em;
+  box-shadow: rgba(0,0,0,.3) 0 .1em .17em;
+  border-radius: .5rem;
+  cursor: pointer;
+}
+ul#webmail li:hover div {
+  box-shadow: rgba(0,0,0,.5) 0 .15em .2em;
+}
+ul#webmail li div a {
+  padding-top: 10em;
+  display: block;
+  text-decoration: none;
+  color: black;
+}
+ul#webmail li#roundcube div {
+  background: white url('/webmail/roundcube.png') no-repeat;
+  background-size: auto 10em;
+  background-position: 50% 0;
+}
+ul#webmail li#snappymail div {
+  background: white url('/webmail/snappymail.png') no-repeat;
+  background-size: auto 10em;
+  background-position: 50% 0;
+}
+
+div#lokalmail {
+  font-size: 1.1em;
+}
