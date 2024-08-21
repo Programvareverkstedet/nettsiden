@@ -33,9 +33,5 @@
     devShells = forAllSystems (system: pkgs: {
       default = pkgs.callPackage ./nix/shell.nix { inherit pkgs; };
     });
-
-    # TODO:
-    # - Relicense the project to GPL or something
-    # - Write a module for the project
   };
 }
