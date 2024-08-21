@@ -119,7 +119,7 @@ require_once dirname(dirname(__DIR__)) . implode(DIRECTORY_SEPARATOR, ['', 'inc'
                 <div class="serviceContent">
                   <h2 class="serviceTitle">PVV-siden</h2>
                   <p class="serviceDescription">Du befinner deg nå på PVV sin offisielle hjemmeside. Den er skrevet i PHP og kjører på en egen server.</p>
-                  <div class="serviceLink"><a href="https://github.com/Programvareverkstedet/nettsiden" target="_blank">Se koden på github</a></div>
+                  <div class="serviceLink"><a href="https://git.pvv.ntnu.no/Projects/nettsiden" target="_blank">Se koden på gitea</a></div>
                 </div>
                 <img class="serviceImage" src="../pvv-logo.png" alt="PVV-logo">
               </div>
