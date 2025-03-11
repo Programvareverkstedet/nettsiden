@@ -5,11 +5,12 @@
 
     "config": {
         "allow-plugins": {
-            "simplesamlphp/composer-module-installer": true
+            "simplesamlphp/composer-module-installer": true,
+            "simplesamlphp/composer-xmlprovider-installer": true
         }
     },
     "require": {
-        "simplesamlphp/simplesamlphp": "^2.2",
-        "erusev/parsedown": "^1.7"
+        "simplesamlphp/simplesamlphp": "^2.2.1",
+        "erusev/parsedown": "^1.7.4"
     }
 }
