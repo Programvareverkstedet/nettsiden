@@ -1,134 +1,138 @@
 <?php
+
+declare(strict_types=1);
+
 namespace pvv\admin;
 
-use \PDO;
+class UserManager {
+  private $pdo;
 
-class UserManager{
-	private $pdo;
+  public $usergroups = [
+    'admin' => 1,
+    'prosjekt' => 2,
+    'aktiviteter' => 4,
+  ];
 
-	public $usergroups = [
-		'admin' => 1,
-		'prosjekt' => 2,
-		'aktiviteter' => 4
-	];
+  public function __construct($pdo) {
+    $this->pdo = $pdo;
+  }
 
-	public function __construct($pdo){
-		$this->pdo = $pdo;
-	}
+  public function setupUser($uname, $groups = 0): void {
+    $query = 'INSERT INTO users (uname, groups) VALUES (:uname, :groups)';
+    $statement = $this->pdo->prepare($query);
+    $statement->bindParam(':uname', $uname, \PDO::PARAM_STR);
+    $statement->bindParam(':groups', $groups, \PDO::PARAM_INT);
+    $statement->execute();
+  }
 
-	public function setupUser($uname, $groups=0){
-		$query = 'INSERT INTO users (uname, groups) VALUES (:uname, :groups)';
-		$statement = $this->pdo->prepare($query);
-		$statement->bindParam(':uname', $uname, PDO::PARAM_STR);
-		$statement->bindParam(':groups', $groups, PDO::PARAM_INT);
-		$statement->execute();
-	}
+  public function updateFlags($uname, $flags): void {
+    $query = 'UPDATE users set groups=:groups WHERE uname=:uname';
+    $statement = $this->pdo->prepare($query);
+    $statement->bindParam(':groups', $flags, \PDO::PARAM_INT);
+    $statement->bindParam(':uname', $uname, \PDO::PARAM_STR);
+  }
 
-	public function updateFlags($uname, $flags){
-		$query = 'UPDATE users set groups=:groups WHERE uname=:uname';
-		$statement = $this->pdo->prepare($query);
-		$statement->bindParam(':groups', $flags, PDO::PARAM_INT);
-		$statement->bindParam(':uname', $uname, PDO::PARAM_STR);
-	}
+  public function addGroup($uname, $group): void {
+    $userFlags = $this->getUsergroups($uname);
 
-	public function addGroup($uname, $group){
-		$userFlags = $this->getUsergroups($uname);
+    if ($userFlags) {
+      $newFlags = ($group | $userFlags);
+      $this->updateFlags($uname, $newFlags);
+    }
+  }
 
-		if($userFlags){
-			$newFlags = ($group | $userFlags);
-			$this->updateFlags($uname, $newFlags);
-		}
-	}
+  public function removeGroup($uname, $group): void {
+    $userFlags = $this->getUsergroups($uname);
 
-	public function removeGroup($uname, $group){
-		$userFlags = $this->getUsergroups($uname);
+    if ($userFlags) {
+      $newFlags = ($userFlags & (~ $group));
+      $this->updateFlags($uname, $newFlags);
+    }
+  }
 
-		if($userFlags){
-			$newFlags = ($userFlags & (~ $group));
-			$this->updateFlags($uname, $newFlags);
-		}
-	}
+  public function setGroups($uname, $groups): void {
+    $query = 'SELECT * FROM users WHERE uname=:uname LIMIT 1';
+    $statement = $this->pdo->prepare($query);
+    $statement->bindParam(':uname', $uname, \PDO::PARAM_STR);
+    $statement->execute();
+    $row = $statement->fetch();
 
-	public function setGroups($uname, $groups){
-		$query = 'SELECT * FROM users WHERE uname=:uname LIMIT 1';
-		$statement = $this->pdo->prepare($query);
-		$statement->bindParam(':uname', $uname, PDO::PARAM_STR);
-		$statement->execute();
-		$row = $statement->fetch();
+    if ($row) {
+      $query = 'UPDATE users set groups=:groups WHERE uname=:uname';
+      $statement = $this->pdo->prepare($query);
+      $statement->bindParam(':groups', $groups, \PDO::PARAM_INT);
+      $statement->bindParam(':uname', $uname, \PDO::PARAM_STR);
+      $statement->execute();
+    } else {
+      $this->setupUser($uname, $groups);
+    }
+  }
 
-		if($row){
-			$query = 'UPDATE users set groups=:groups WHERE uname=:uname';
-			$statement = $this->pdo->prepare($query);
-			$statement->bindParam(':groups', $groups, PDO::PARAM_INT);
-			$statement->bindParam(':uname', $uname, PDO::PARAM_STR);
-			$statement->execute();
-		}else{
-			$this->setupUser($uname, $groups);
-		}
-	}
+  public function hasGroup($uname, $groupName) {
+    $userFlags = $this->getUsergroups($uname);
 
-	public function hasGroup($uname, $groupName){
-		$userFlags = $this->getUsergroups($uname);
+    return $userFlags & $this->usergroups[$groupName];
+  }
 
-		return ($userFlags & $this->usergroups[$groupName]);
-	}
+  // for convenience
+  public function isAdmin($uname) {
+    return $this->hasGroup($uname, 'admin');
+  }
 
-	// for convenience
-	public function isAdmin($uname){
-		return $this->hasGroup($uname, 'admin');
-	}
+  public function getFlagfromNames($names) {
+    $resultFlag = 0;
 
-	public function getFlagfromNames($names){
-		$resultFlag = 0;
+    foreach ($this->usergroups as $name => $flag) {
+      if (\in_array($name, $names, true)) {
+        $resultFlag = ($resultFlag | $flag);
+      }
+    }
 
-		foreach($this->usergroups as $name => $flag){
-			if(in_array($name, $names)){
-				$resultFlag = ($resultFlag | $flag);
-			}
-		}
+    return $resultFlag;
+  }
 
-		return $resultFlag;
-	}
+  public function getUsergroups($uname) {
+    $query = 'SELECT groups FROM users WHERE uname=:uname LIMIT 1';
+    $statement = $this->pdo->prepare($query);
+    $statement->bindParam(':uname', $uname, \PDO::PARAM_STR);
+    $statement->execute();
 
-	public function getUsergroups($uname){
-		$query = 'SELECT groups FROM users WHERE uname=:uname LIMIT 1';
-		$statement = $this->pdo->prepare($query);
-		$statement->bindParam(':uname', $uname, PDO::PARAM_STR);
-		$statement->execute();
+    $row = $statement->fetch();
+    if ($row == false) {
+      return 0;
+    }
 
-		$row = $statement->fetch();
-		if ($row == false) return 0;
-		return $row[0];
-	}
+    return $row[0];
+  }
 
-	public function getUsergroupNames($uname){
-		$usersGroups = [];
+  public function getUsergroupNames($uname) {
+    $usersGroups = [];
 
-		$userFlags = $this->getUsergroups($uname);
+    $userFlags = $this->getUsergroups($uname);
 
-		foreach($this->usergroups as $name => $flag){
-			if($userFlags & $flag){
-				$usersGroups[] = $name;
-			}
-		}
+    foreach ($this->usergroups as $name => $flag) {
+      if ($userFlags & $flag) {
+        $usersGroups[] = $name;
+      }
+    }
 
-		return $usersGroups;
-	}
+    return $usersGroups;
+  }
 
-	public function getAllUserData(){
-		$query = 'SELECT uname FROM users ORDER BY uname ASC';
-		$statement = $this->pdo->prepare($query);
-		$statement->execute();
+  public function getAllUserData() {
+    $query = 'SELECT uname FROM users ORDER BY uname ASC';
+    $statement = $this->pdo->prepare($query);
+    $statement->execute();
 
-		$users = [];
-		foreach($statement->fetchAll() as $userData){
-			$uname = $userData['uname'];
-			$users[] = [
-				'name' => $uname,
-				'groups' => $this->getUsergroupNames($uname)
-			];
-		}
+    $users = [];
+    foreach ($statement->fetchAll() as $userData) {
+      $uname = $userData['uname'];
+      $users[] = [
+        'name' => $uname,
+        'groups' => $this->getUsergroupNames($uname),
+      ];
+    }
 
-		return $users;
-	}
+    return $users;
+  }
 }

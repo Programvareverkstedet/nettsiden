@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /*
  * Copyright (c) 2014-2015, Jørn Åne de Jong <@jornane>
  *
@@ -14,7 +16,7 @@
  * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
-/**
+/*
  * Register SPL autoloading for classes and interfaces.  Put this file in your
  * namespace root and make sure it gets included from your PHP entry-point.
  *
@@ -34,6 +36,6 @@
  * @link http://php.net/manual/en/function.spl-autoload.php
  * @license http://choosealicense.com/licenses/isc/ ISC license
  */
-spl_autoload_extensions( '.php' );
-spl_autoload_register( 'spl_autoload' );
-set_include_path( realpath( __DIR__ ) . PATH_SEPARATOR . get_include_path() );
+spl_autoload_extensions('.php');
+spl_autoload_register('spl_autoload');
+set_include_path(realpath(__DIR__) . \PATH_SEPARATOR . get_include_path());

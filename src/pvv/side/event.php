@@ -1,53 +1,55 @@
-<?php //declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
+
 namespace pvv\side;
 
-use \DateTimeImmutable;
-use \DateInterval;
+use DateTimeImmutable;
 
 abstract class Event {
+  private $start;
 
-	private $start;
+  public function __construct(\DateTimeImmutable $start) {
+    $this->start = $start;
+  }
 
-	public function __construct(DateTimeImmutable $start) {
-		$this->start = $start;
-	}
+  public function getStart() {
+    return $this->start;
+  }
 
-	public function getStart() {
-		return $this->start;
-	}
+  public function getRelativeDate() {
+    if (Agenda::isToday($this->getStart())) {
+      return 'i dag';
+    }
+    if (Agenda::isTomorrow($this->getStart())) {
+      return 'i morgen';
+    }
+    if (Agenda::isThisWeek($this->getStart()) || $this->getStart()->sub(new \DateInterval('P4D'))->getTimestamp() < time()) {
+      return $this->getStart()->format('l');
+    }
+    if (Agenda::isNextWeek($this->getStart())) {
+      return 'neste uke';
+    }
+    if (Agenda::isThisMonth($this->getStart())) {
+      return 'denne måneden';
+    }
 
-	public function getRelativeDate() {
-		if (Agenda::isToday($this->getStart())) {
-			return 'i dag';
-		}
-		if (Agenda::isTomorrow($this->getStart())) {
-			return 'i morgen';
-		}
-		if (Agenda::isThisWeek($this->getStart()) || $this->getStart()->sub(new DateInterval('P4D'))->getTimestamp() < time()) {
-			return $this->getStart()->format("l");
-		}
-		if (Agenda::isNextWeek($this->getStart())) {
-			return 'neste uke';
-		}
-		if (Agenda::isThisMonth($this->getStart())) {
-			return 'denne måneden';
-		}
-		return $this->getStart()->format("j. F");
-	}
+    return $this->getStart()->format('j. F');
+  }
 
-	public abstract function getStop(); /* : DateTimeImmutable */
+  abstract public function getStop(); /* : DateTimeImmutable */
 
-	public abstract function getName();
+  abstract public function getName();
 
-	public abstract function getLocation();
+  abstract public function getLocation();
 
-	public abstract function getOrganiser();
+  abstract public function getOrganiser();
 
-	public abstract function getURL(); /* : string */
+  abstract public function getURL(); /* : string */
 
-	public abstract function getImageURL(); /* : string */
+  abstract public function getImageURL(); /* : string */
 
-	public abstract function getDescription(); /* : string */
+  abstract public function getDescription(); /* : string */
 
-	public abstract function getColor(); /* : string */
+  abstract public function getColor(); /* : string */
 }
