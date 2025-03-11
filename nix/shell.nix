@@ -1,13 +1,13 @@
 { pkgs }:
 let
-  phpEnv = pkgs.php82.buildEnv {
+  phpEnv = pkgs.php84.buildEnv {
     extensions = { enabled, all }: enabled ++ (with all; [ iconv mbstring pdo_mysql pdo_sqlite ]);
   };
 in
 pkgs.mkShellNoCC {
   buildInputs = with pkgs; [
     phpEnv
-    php82Packages.composer
+    php84Packages.composer
 
     sqlite
     git

@@ -18,7 +18,7 @@
   in {
     packages = forAllSystems (system: pkgs: {
       default = self.packages.${system}.pvv-nettsiden;
-      pvv-nettsiden = pkgs.callPackage ./nix/package.nix { php = pkgs.php82; };
+      pvv-nettsiden = pkgs.callPackage ./nix/package.nix { php = pkgs.php84; };
     });
 
     overlays.default = final: prev: {
