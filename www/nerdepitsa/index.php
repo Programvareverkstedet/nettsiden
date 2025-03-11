@@ -1,6 +1,7 @@
 <?php
-require_once dirname(dirname(__DIR__)) . implode(DIRECTORY_SEPARATOR, ['', 'inc', 'include.php']);
-use \pvv\side\Agenda;
+require_once dirname(__DIR__, 2) . implode(\DIRECTORY_SEPARATOR, ['', 'inc', 'include.php']);
+use pvv\side\Agenda;
+
 ?>
 <!DOCTYPE html>
 <html lang="no">
@@ -34,40 +35,40 @@ use \pvv\side\Agenda;
 <main>
 <div id="outDatedBanner"><p><br>Denne siden er trolig utdatert! Hvis du er interessert, ta kontakt i discord-kanalen. <br> This page is probably outdated! If you're interested, check in with someone in our discord-channel. </p></div>
 <?php
-$activity = new \pvv\side\social\NerdepitsaActivity;
-$nextEvent = $activity->getNextEventFrom(new DateTimeImmutable);
+$activity = new pvv\side\social\NerdepitsaActivity();
+$nextEvent = $activity->getNextEventFrom(new DateTimeImmutable());
 ?>
 
 <article>
-	<h2><em><?= $nextEvent->getRelativeDate()?></em> Nerdepitsa
+	<h2><em><?php echo $nextEvent->getRelativeDate(); ?></em> Nerdepitsa
 		<?php if ($nextEvent->getImageURL()) { ?>
-		<img src="<?= $nextEvent->getImageURL() ?>">
+		<img src="<?php echo $nextEvent->getImageURL(); ?>">
 		<?php } ?>
 	</h2>
 	<ul class="subtext">
 		<li>Tid:
 		<strong>
-			<?= Agenda::getFormattedDate($nextEvent->getStart());?>
+			<?php echo Agenda::getFormattedDate($nextEvent->getStart()); ?>
 		</strong>
 		<li>Sted:
 		<strong>
-			<?= $nextEvent->getLocation();?>
+			<?php echo $nextEvent->getLocation(); ?>
 		</strong>
 		<li>Arrangør:
 		<strong>
-			<?= $nextEvent->getOrganiser();?>
+			<?php echo $nextEvent->getOrganiser(); ?>
 		</strong>
 	</ul>
 
 	<?php
-	$Parsedown = new Parsedown();
-	echo $Parsedown->text(implode("\n", $nextEvent->getDescription()));
-	?>
+    $Parsedown = new Parsedown();
+    echo $Parsedown->text(implode("\n", $nextEvent->getDescription()));
+  ?>
 </article>
 
 </main>
 
 <nav>
-	<?= navbar(1, 'aktiviteter'); ?>
-	<?= loginbar($sp, $pdo); ?>
+	<?php echo navbar(1, 'aktiviteter'); ?>
+	<?php echo loginbar($sp, $pdo); ?>
 </nav>

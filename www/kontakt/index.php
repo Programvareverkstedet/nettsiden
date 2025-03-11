@@ -1,5 +1,5 @@
 <?php
-require_once dirname(dirname(__DIR__)) . implode(DIRECTORY_SEPARATOR, ['', 'inc', 'include.php']);
+require_once dirname(__DIR__, 2) . implode(\DIRECTORY_SEPARATOR, ['', 'inc', 'include.php']);
 ?>
 <!DOCTYPE html>
 <html lang="no">
@@ -44,7 +44,7 @@ require_once dirname(dirname(__DIR__)) . implode(DIRECTORY_SEPARATOR, ['', 'inc'
 		<p>Vi har en <a href="http://list.pvv.org/mailman/listinfo/aktive">e-postliste for aktive medlemmer</a>. All offisiell informasjon blir sendt på denne listen, og alle arrengementer blir også annonsert her.</p>
 
 		<p>Vi har et <a target="_blank" href="https://matrix.to/#/#pvv:pvv.ntnu.no">Matrix Space™</a> for chat, memes, og all annen kommunikasjon. Den er bridget med IRC-kanalen og Discord-serveren vår. Hvis du er medlem kan du bruke vår egen instans av <a href="https://chat.pvv.ntnu.no">Element web</a>.</p>
-		
+
 		<p>Vi har en IRC-kanal på <a href="http://webchat.ircnet.net/">IRCnet</a> kalt #pvv.</p>
 
 		<p>Vi har en <a target="_blank" href="https://discord.gg/8VTBr6Q">Discord-server</a> for de som foretrekker Discord over Matrix. </p>

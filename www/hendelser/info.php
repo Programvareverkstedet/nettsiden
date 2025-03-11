@@ -1,20 +1,20 @@
 <?php
-require_once dirname(dirname(__DIR__)) . implode(DIRECTORY_SEPARATOR, ['', 'inc', 'include.php']);
-use \pvv\side\Agenda;
+require_once dirname(__DIR__, 2) . implode(\DIRECTORY_SEPARATOR, ['', 'inc', 'include.php']);
+use pvv\side\Agenda;
 
 $eventID = 0;
-if(isset($_GET['id'])){
-	$eventID = $_GET['id'];
-}else{
-	echo 'No event ID provided';
-	exit();
+if (isset($_GET['id'])) {
+  $eventID = $_GET['id'];
+} else {
+  echo 'No event ID provided';
+  exit;
 }
 
-$dbActivity = new \pvv\side\DBActivity($pdo);
+$dbActivity = new pvv\side\DBActivity($pdo);
 $event = $dbActivity->getEventByID($eventID);
-if(!$event){
-	echo 'Failed to retrieve event info';
-	exit();
+if (!$event) {
+  echo 'Failed to retrieve event info';
+  exit;
 }
 ?>
 <!DOCTYPE html>
@@ -34,23 +34,23 @@ if(!$event){
 	<main>
 		<article>
 			<h2>
-				<?php if (\pvv\side\Agenda::isToday($event->getStart())) { ?><strong><?php } ?>
-				<em><?= $event->getRelativeDate() ?></em>
-				<?php if (\pvv\side\Agenda::isToday($event->getStart())) { ?></strong><?php } ?>
-				
-				<?= $event->getName() ?>
+				<?php if (Agenda::isToday($event->getStart())) { ?><strong><?php } ?>
+				<em><?php echo $event->getRelativeDate(); ?></em>
+				<?php if (Agenda::isToday($event->getStart())) { ?></strong><?php } ?>
+
+				<?php echo $event->getName(); ?>
 			</h2>
 			<ul class="subtext">
-				<li>Tid: <strong><?= Agenda::getFormattedDate($event->getStart()) ?></strong></li>
-				<li>Sted: <strong><?= $event->getLocation() ?></strong></li>
-				<li>Arrangør: <strong><?= $event->getOrganiser() ?></strong></li>
+				<li>Tid: <strong><?php echo Agenda::getFormattedDate($event->getStart()); ?></strong></li>
+				<li>Sted: <strong><?php echo $event->getLocation(); ?></strong></li>
+				<li>Arrangør: <strong><?php echo $event->getOrganiser(); ?></strong></li>
 			</ul>
 
 			<?php $description = $event->getDescription(); ?>
 			<?php
-			$Parsedown = new \Parsedown();
-			echo $Parsedown->text(implode("\n", $description));
-			?>
+        $Parsedown = new Parsedown();
+        echo $Parsedown->text(implode("\n", $description));
+      ?>
 		</article>
 	</main>
 

@@ -1,15 +1,15 @@
 <?php
 
-require_once dirname(__DIR__) . implode(DIRECTORY_SEPARATOR, ['', 'inc', 'include.php']);
+require_once dirname(__DIR__) . implode(\DIRECTORY_SEPARATOR, ['', 'inc', 'include.php']);
 
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 
-$pdo = new \PDO($DB_DSN, $DB_USER, $DB_PASS);
+$pdo = new PDO($DB_DSN, $DB_USER, $DB_PASS);
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-$door = new \pvv\side\Door($pdo);
-$doorEntry = (object)($door->getCurrent());
+$door = new pvv\side\Door($pdo);
+$doorEntry = (object) $door->getCurrent();
 
 ?>
 {
@@ -35,9 +35,9 @@ $doorEntry = (object)($door->getCurrent());
   },
   "issue_report_channels": ["email"],
   "state": {
-    "open": <?php echo($doorEntry->open ? "true" : "false"); ?>,
-    "lastchange": <?php echo($doorEntry->time ? $doorEntry->time : 0); ?>,
-    "message": "<?php echo($doorEntry->open ? "open for public, members are present" : "closed"); ?>"
+    "open": <?php echo $doorEntry->open ? 'true' : 'false'; ?>,
+    "lastchange": <?php echo $doorEntry->time ? $doorEntry->time : 0; ?>,
+    "message": "<?php echo $doorEntry->open ? 'open for public, members are present' : 'closed'; ?>"
   },
   "feeds": {
     "wiki": {

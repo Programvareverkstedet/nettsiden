@@ -1,31 +1,31 @@
 <?php
 ini_set('display_errors', '1');
 date_default_timezone_set('Europe/Oslo');
-setlocale(LC_ALL, 'no_NO');
-error_reporting(E_ALL);
+setlocale(\LC_ALL, 'no_NO');
+error_reporting(\E_ALL);
 require __DIR__ . '/../../../inc/navbar.php';
 require __DIR__ . '/../../../src/_autoload.php';
 require __DIR__ . '/../../../config.php';
-require_once(__DIR__ . '/../../../vendor/simplesamlphp/simplesamlphp/lib/_autoload.php');
-$as = new \SimpleSAML\Auth\Simple('default-sp');
+require_once __DIR__ . '/../../../vendor/simplesamlphp/simplesamlphp/lib/_autoload.php';
+$as = new SimpleSAML\Auth\Simple('default-sp');
 $attrs = $as->getAttributes();
 
-$pdo = new \PDO($DB_DSN, $DB_USER, $DB_PASS);
+$pdo = new PDO($DB_DSN, $DB_USER, $DB_PASS);
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-$userManager = new \pvv\admin\UserManager($pdo);
+$userManager = new pvv\admin\UserManager($pdo);
 
-require_once(__DIR__ . '/../../../vendor/simplesamlphp/simplesamlphp/lib/_autoload.php');
-$as = new \SimpleSAML\Auth\Simple('default-sp');
+require_once __DIR__ . '/../../../vendor/simplesamlphp/simplesamlphp/lib/_autoload.php';
+$as = new SimpleSAML\Auth\Simple('default-sp');
 $as->requireAuth();
 $attrs = $as->getAttributes();
 $uname = $attrs['uid'][0];
 
-if(!$userManager->isAdmin($uname)){
-	echo 'Her har du ikke lov\'t\'å\'værra!!!';
-	exit();
+if (!$userManager->isAdmin($uname)) {
+  echo 'Her har du ikke lov\'t\'å\'værra!!!';
+  exit;
 }
 
-$motdfetcher = new \pvv\side\MOTD($pdo);
+$motdfetcher = new pvv\side\MOTD($pdo);
 $motd = $motdfetcher->getMOTD();
 ?>
 <!DOCTYPE html>
@@ -56,15 +56,15 @@ $motd = $motdfetcher->getMOTD();
 		<form action="update.php", method="post">
 			<p class="subtitle no-chin">Tittel</p>
 			<p class="subnote">Ikke nødvendig</p>
-			<input type="text" name="title" value="<?= $motd['title'] ?>" class="boxinput" style="width:66%;"><br>
+			<input type="text" name="title" value="<?php echo $motd['title']; ?>" class="boxinput" style="width:66%;"><br>
 
 			<p class="subtitle no-chin">Innhold (<i>markdown</i>)</p>
-			<textarea name="content" style="width:100%" rows="8" class="boxinput"><?= implode("\n", $motd["content"]) ?></textarea>
+			<textarea name="content" style="width:100%" rows="8" class="boxinput"><?php echo implode("\n", $motd['content']); ?></textarea>
 
 			<div style="margin-top: 2em;">
 				<hr class="ruler">
 
-				<?= '<input type="submit" class="btn" value="Lagre endringer"></a>'; ?>
+				<?php echo '<input type="submit" class="btn" value="Lagre endringer"></a>'; ?>
 			</div>
 		</form>
 	</main>

@@ -1,17 +1,19 @@
 <?php
-require_once dirname(dirname(__DIR__)) . implode(DIRECTORY_SEPARATOR, ['', 'inc', 'include.php']);
+require_once dirname(__DIR__, 2) . implode(\DIRECTORY_SEPARATOR, ['', 'inc', 'include.php']);
 
 $year = (isset($_GET['year']))
-	? $_GET['year']
-	: date("Y");
+    ? $_GET['year']
+    : date('Y');
 $month = (isset($_GET['month']))
-	? $_GET['month']
-	: date("m");
-$days_before_the_first = (new DateTime($year."-".$month."-01"))->format("w") - 1;
-if ($days_before_the_first==-1) {$days_before_the_first = 6;}
-$day_of_month = ($month == date("m"))
-	? date("j")
-	: -1;
+    ? $_GET['month']
+    : date('m');
+$days_before_the_first = (new DateTime($year . '-' . $month . '-01'))->format('w') - 1;
+if ($days_before_the_first == -1) {
+  $days_before_the_first = 6;
+}
+$day_of_month = ($month == date('m'))
+    ? date('j')
+    : -1;
 $days_in_month = date('t', mktime(0, 0, 0, $month, 1, $year));
 
 ?><!DOCTYPE html>
@@ -36,20 +38,27 @@ $days_in_month = date('t', mktime(0, 0, 0, $month, 1, $year));
 	</nav>
 
 	<main>
-		<h2 style="text-align:center;">PVV Kalender for <?=$months_translations[$month-1]?> <?=$year?></h2>
-	
-		<div class="pagination_bar"><?php
-		$pmonth = $month-1;
-		$nmonth = $month+1;
-		$pyear=$year;
-		$nyear=$year;
-		if ($pmonth==0) {$pmonth=12; $pyear--;}
-		if ($nmonth==13) {$nmonth=1; $nyear++;}
-		?>
-		<a class="btn noselect" href="../kalender?year=<?=$pyear?>&amp;month=<?=$pmonth?>">Forrige måned</a>
-		<a class="btn noselect" href="../kalender?year=<?=$nyear?>&amp;month=<?=$nmonth?>">Neste måned</a>
+		<h2 style="text-align:center;">PVV Kalender for <?php echo $months_translations[$month - 1]; ?> <?php echo $year; ?></h2>
+
+		<div class="pagination_bar">
+      <?php
+        $pmonth = $month - 1;
+        $nmonth = $month + 1;
+        $pyear = $year;
+        $nyear = $year;
+        if ($pmonth == 0) {
+          $pmonth = 12;
+          --$pyear;
+        }
+        if ($nmonth == 13) {
+          $nmonth = 1;
+          ++$nyear;
+        }
+      ?>
+		<a class="btn noselect" href="../kalender?year=<?php echo $pyear; ?>&amp;month=<?php echo $pmonth; ?>">Forrige måned</a>
+		<a class="btn noselect" href="../kalender?year=<?php echo $nyear; ?>&amp;month=<?php echo $nmonth; ?>">Neste måned</a>
 		</div>
-	
+
 		<figure class="calendar">
 			<ul>
 				<li class="header noselect">mandag
@@ -59,32 +68,32 @@ $days_in_month = date('t', mktime(0, 0, 0, $month, 1, $year));
 				<li class="header noselect">fredag
 				<li class="header noselect">lørdag
 				<li class="header noselect">søndag
-	
+
 				<?php if ($days_before_the_first != 0) { ?>
-				<li class="outOfMonth" style="grid-column: 1/<?=$days_before_the_first+1?>;">
+				<li class="outOfMonth" style="grid-column: 1/<?php echo $days_before_the_first + 1; ?>;">
 				<?php } ?>
-	
-				<?php for ($day=1; $day <= $days_in_month; $day++) { ?>
+
+				<?php for ($day = 1; $day <= $days_in_month; ++$day) { ?>
 					<?php $events = $agenda->getEventsBetween(
-						new DateTimeImmutable("$year-$month-$day 00:00:00"),
-						new DateTimeImmutable("$year-$month-$day 23:59:59")); ?>
-					<?php if ($day==$day_of_month) { ?>
+            new DateTimeImmutable("{$year}-{$month}-{$day} 00:00:00"),
+            new DateTimeImmutable("{$year}-{$month}-{$day} 23:59:59")
+					); ?>
+					<?php if ($day == $day_of_month) { ?>
 						<li class="active">
 					<?php } else { ?>
 						<li>
 					<?php } ?>
-					<?php if (sizeof($events)!=0) { ?>
-						<a href="../aktiviteter/?<?="year=$year&amp;month=$month&amp;day=$day"?>"><div>
-							<span class="noselect day"><?= $day ?>.</span>
-							<?php foreach($events as $event) { ?>
-								<section style="background: <?=$event->getColor()?>"><?=$event->getName()?></section>
+					<?php if (count($events) != 0) { ?>
+						<a href="../aktiviteter/?<?php echo "year={$year}&amp;month={$month}&amp;day={$day}"; ?>"><div>
+							<span class="noselect day"><?php echo $day; ?>.</span>
+							<?php foreach ($events as $event) { ?>
+								<section style="background: <?php echo $event->getColor(); ?>"><?php echo $event->getName(); ?></section>
 							<?php } ?>
 						</div></a>
 					<?php } else { ?>
-						<span class="noselect day"><?= $day ?>.</span>
+						<span class="noselect day"><?php echo $day; ?>.</span>
 					<?php } ?>
 				<?php } ?>
-	
 			</ul>
 		</figure>
 	</main>

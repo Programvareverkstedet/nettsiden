@@ -1,47 +1,46 @@
 <?php
-require_once dirname(dirname(__DIR__)) . implode(DIRECTORY_SEPARATOR, ['', 'inc', 'include.php']);
+require_once dirname(__DIR__, 2) . implode(\DIRECTORY_SEPARATOR, ['', 'inc', 'include.php']);
 
 $projectID = 0;
-if(isset($_GET['id'])){
-	$projectID = $_GET['id'];
-}else{
-	echo 'No project ID provided';
-	exit();
+if (isset($_GET['id'])) {
+  $projectID = $_GET['id'];
+} else {
+  echo 'No project ID provided';
+  exit;
 }
 
-require_once(__DIR__ . '/../../vendor/simplesamlphp/simplesamlphp/lib/_autoload.php');
-$as = new \SimpleSAML\Auth\Simple('default-sp');
+require_once __DIR__ . '/../../vendor/simplesamlphp/simplesamlphp/lib/_autoload.php';
+$as = new SimpleSAML\Auth\Simple('default-sp');
 $attrs = $as->getAttributes();
 
-$projectManager = new \pvv\side\ProjectManager($pdo);
+$projectManager = new pvv\side\ProjectManager($pdo);
 $project = $projectManager->getByID($projectID);
 if (!$project) {
-	echo ":^)";
-	exit();
+  echo ':^)';
+  exit;
 }
 
 $members = $projectManager->getProjectMembers($projectID);
 $normal_members = $members;
-foreach($normal_members as $i => $data){
-	if($data['lead']){
-		unset($normal_members[$i]);
-	}
+foreach ($normal_members as $i => $data) {
+  if ($data['lead']) {
+    unset($normal_members[$i]);
+  }
 }
 
-$is_owner = False;
-$is_member = False;
-if ($attrs){
-	$uname = $attrs['uid'][0];
-	foreach($members as $member){
-		if ($member['uname'] == $uname){
-			if ($member['owner']==1){
-				$is_owner = True;
-			}
-			else if ($member['owner']==0){
-				$is_member = True;
-			}
-		}
-	}
+$is_owner = false;
+$is_member = false;
+if ($attrs) {
+  $uname = $attrs['uid'][0];
+  foreach ($members as $member) {
+    if ($member['uname'] == $uname) {
+      if ($member['owner'] == 1) {
+        $is_owner = true;
+      } elseif ($member['owner'] == 0) {
+        $is_member = true;
+      }
+    }
+  }
 }
 ?>
 <!DOCTYPE html>
@@ -66,11 +65,11 @@ if ($attrs){
 
 	<main class="contentsplit">
 		<div class="gridr">
-			<h2><?= $project->getName(); ?></h2>
+			<h2><?php echo $project->getName(); ?></h2>
 			<?php
-			$Parsedown = new \Parsedown();
-			echo $Parsedown->text(implode("\n", $project->getDescription()));
-			?>
+        $Parsedown = new Parsedown();
+        echo $Parsedown->text(implode("\n", $project->getDescription()));
+      ?>
 		</div>
 
 		<div class="gridl">
@@ -79,49 +78,49 @@ if ($attrs){
 			<div class="projectlead">
 				<h2>Prosjektledelsen</h2>
 				<div class="projectmember">
-					<?php foreach($members as $i => $data){
-							if($data['lead']){
-					?>
-							<p><?= $data['name']; ?></p>
-							<p class="memberrole"><?= $data['role'] ?></p>
-							<p class="memberuname"><?= $data['uname']; ?></p>
-							<p class="memberemail"><?= $data['mail']; ?></p>
+					<?php foreach ($members as $i => $data) {
+            if ($data['lead']) {
+          ?>
+							<p><?php echo $data['name']; ?></p>
+							<p class="memberrole"><?php echo $data['role']; ?></p>
+							<p class="memberuname"><?php echo $data['uname']; ?></p>
+							<p class="memberemail"><?php echo $data['mail']; ?></p>
 					<?php }
-						} ?>
+            } ?>
 				</div>
 			</div>
 
 			<?php
-				if(sizeof($normal_members) > 0){
-			?>
+        if (count($normal_members) > 0) {
+      ?>
 				<div class="projectmembers">
 					<h2>Medlemmer</h2>
-					<?php foreach($normal_members as $i => $data){
-					?>
+					<?php foreach ($normal_members as $i => $data) {
+          ?>
 						<div class="projectmember" style="border-color: #6a0;">
-							<p><?= $data['name']; ?></p>
-							<p class="memberrole"><?= $data['role'] ? $data['role'] : 'Deltaker' ?></p>
-							<p class="memberuname"><?= $data['uname']; ?></p>
-							<p class="memberemail"><?= $data['mail']; ?></p>
+							<p><?php echo $data['name']; ?></p>
+							<p class="memberrole"><?php echo $data['role'] ?: 'Deltaker'; ?></p>
+							<p class="memberuname"><?php echo $data['uname']; ?></p>
+							<p class="memberemail"><?php echo $data['mail']; ?></p>
 						</div>
 					<?php } ?>
 				</div>
 			<?php
-				}
+        }
 
-				if(!$is_owner){
-			?>
+        if (!$is_owner) {
+      ?>
 
 				<form action="update.php", method="post"><p>
 					<input type="hidden" name="title" value="derp"/>
 					<input type="hidden" name="desc" value="derp"/>
 					<input type="hidden" name="active" value="derp"/>
-					<input type="hidden" name="id" value="<?= $projectID ?>"/>
-					<input type="submit" class="btn" name="join_or_leave" value="<?= ($is_member ? 'Forlat' : 'Bli med!') ?>"></input>
+					<input type="hidden" name="id" value="<?php echo $projectID; ?>"/>
+					<input type="submit" class="btn" name="join_or_leave" value="<?php echo $is_member ? 'Forlat' : 'Bli med!'; ?>"></input>
 				</p></form>
 			<?php
-				}
-			?>
+        }
+      ?>
 			</div>
 		</div>
 	</main>

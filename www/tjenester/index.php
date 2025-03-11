@@ -1,5 +1,8 @@
-<?php namespace pvv\side;
-require_once dirname(dirname(__DIR__)) . implode(DIRECTORY_SEPARATOR, ['', 'inc', 'include.php']);
+<?php
+
+namespace pvv\side;
+
+require_once \dirname(__DIR__, 2) . implode(\DIRECTORY_SEPARATOR, ['', 'inc', 'include.php']);
 ?>
 <!DOCTYPE html>
 <html lang="no">
@@ -16,8 +19,8 @@ require_once dirname(dirname(__DIR__)) . implode(DIRECTORY_SEPARATOR, ['', 'inc'
 
 <body>
         <nav>
-                <?= navbar(1, 'tjenester'); ?>
-                <?= loginbar($sp, $pdo); ?>
+                <?php echo navbar(1, 'tjenester'); ?>
+                <?php echo loginbar($sp, $pdo); ?>
         </nav>
         <main>
 
@@ -189,7 +192,7 @@ require_once dirname(dirname(__DIR__)) . implode(DIRECTORY_SEPARATOR, ['', 'inc'
                 <img class="serviceImage" src="img/gallery.png" alt="RSS-Ikon">
               </div>
 
-              <!-- Bokhylle /brzeczyszczykiewicz ? -->              
+              <!-- Bokhylle /brzeczyszczykiewicz ? -->
 
             </div>
           </div>

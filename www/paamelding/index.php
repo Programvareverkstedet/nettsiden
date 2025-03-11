@@ -1,5 +1,5 @@
 <?php
-require_once dirname(dirname(__DIR__)) . implode(DIRECTORY_SEPARATOR, ['', 'inc', 'include.php']);
+require_once dirname(__DIR__, 2) . implode(\DIRECTORY_SEPARATOR, ['', 'inc', 'include.php']);
 
 session_start();
 
@@ -28,7 +28,7 @@ $attrs = $as->getAttributes();
 
 	<main>
 		<h2>Å bli medlem på PVV</h2>
-		
+
 		<p>
 			Første steg for å bli medlem i PVV er å betale
 			<a href="https://wiki.pvv.ntnu.no/wiki/Medlemskontingent">medlemskontingent</a> på 50kr per år.
@@ -44,9 +44,9 @@ $attrs = $as->getAttributes();
 		<p>
 			Mer informasjon om medlemskap finner du <a href="https://wiki.pvv.ntnu.no/wiki/Medlem">her</a>.
 		</p>
-		
+
 		<h2>Registrer deg som bruker</h2>
-		
+
 		<p>
 			PVV har for øyeblikket et manuelt system for å legge til nye brukere.
 			Se lenkene over for mer informasjon.
@@ -56,10 +56,10 @@ $attrs = $as->getAttributes();
 			lokalene våre slik at vi kan få satt ditt passord.
 		</p>
 		<iframe id="mazeMapper" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://use.mazemap.com/embed.html#v=1&zlevel=2&center=10.406194,63.417143&zoom=18&campusid=1&sharepoitype=poi&sharepoi=38159&utm_medium=iframe" style="border: 1px solid grey" allow="geolocation"></iframe><br/>
-	
-		<?php if($attrs) { //logged in with pvv account?>
+
+		<?php if ($attrs) { // logged in with pvv account?>
 			<p>
-				Du er nå logget in som <i><?= htmlspecialchars($attrs['uid'][0]) ?></i>,
+				Du er nå logget in som <i><?php echo htmlspecialchars($attrs['uid'][0]); ?></i>,
 				og trenger klart ikke sende melding om å få ny PVV bruker.
 			</p>
 		<?php } ?>

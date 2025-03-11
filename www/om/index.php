@@ -1,5 +1,5 @@
-<?php 
-require_once dirname(dirname(__DIR__)) . implode(DIRECTORY_SEPARATOR, ['', 'inc', 'include.php']);
+<?php
+require_once dirname(__DIR__, 2) . implode(\DIRECTORY_SEPARATOR, ['', 'inc', 'include.php']);
 ?>
 <!DOCTYPE html>
 <html lang="no">
@@ -34,7 +34,7 @@ p {hyphens: auto;}
 		width: 100%;
 		padding-top: 56.25%; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
 		}
-		
+
 		/* Then style the iframe to fit in the container div with full height and width */
 		.responsive-iframe {
 		position: absolute;
@@ -45,10 +45,10 @@ p {hyphens: auto;}
 		width: 100%;
 		height: 100%;
 		}
-	</style> 
+	</style>
 	<div class="iframe-container" style="max-width: 100em;">
 		<iframe class="responsive-iframe" src="https://www.youtube.com/embed/Uy6HAvMdeuA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen ></iframe>
-	</div> 
+	</div>
 </article>
 
 <article>
@@ -89,6 +89,6 @@ p {hyphens: auto;}
 </main>
 
 <nav>
-	<?= navbar(1); ?>
-	<?= loginbar($sp, $pdo); ?>
+	<?php echo navbar(1); ?>
+	<?php echo loginbar($sp, $pdo); ?>
 </nav>

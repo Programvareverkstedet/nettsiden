@@ -1,5 +1,8 @@
-<?php namespace pvv\side;
-require_once dirname(dirname(__DIR__)) . implode(DIRECTORY_SEPARATOR, ['', 'inc', 'include.php']);
+<?php
+
+namespace pvv\side;
+
+require_once \dirname(__DIR__, 2) . implode(\DIRECTORY_SEPARATOR, ['', 'inc', 'include.php']);
 
 $translation = ['I dag', 'I morgen', 'Denne uka', 'Neste uke', 'Denne måneden', 'Neste måned'];
 ?>
@@ -18,8 +21,8 @@ $translation = ['I dag', 'I morgen', 'Denne uka', 'Neste uke', 'Denne måneden',
 
 <body>
 	<nav>
-		<?= navbar(1, 'hendelser'); ?>
-		<?= loginbar($sp, $pdo); ?>
+		<?php echo navbar(1, 'hendelser'); ?>
+		<?php echo loginbar($sp, $pdo); ?>
 	</nav>
 	<main>
 		<h1 style="pointer-events:none; text-align: left;">Hendelser</h1>
@@ -27,43 +30,45 @@ $translation = ['I dag', 'I morgen', 'Denne uka', 'Neste uke', 'Denne måneden',
 			<a style="padding-left: 2em; padding-right: 2em;" class="btn" style="" href="../kalender/">Kalender</a>
 		</center>
 		<?php
-		$description_paragraphs = 2; //description length
-		foreach($agenda->getNextDays() as $period => $events) {
-			if ($events) { ?>
-				<h2 style="text-align: left;"><?= $translation[$period] ?></h2>
+      $description_paragraphs = 2; // description length
+      foreach ($agenda->getNextDays() as $period => $events) {
+        if ($events) { ?>
+				<h2 style="text-align: left;"><?php echo $translation[$period]; ?></h2>
 				<ul class="events">
-				<?php foreach($events as $event) {?>
-				<li style="border-color: <?= $event->getColor() ?>">
+				<?php foreach ($events as $event) {?>
+				<li style="border-color: <?php echo $event->getColor(); ?>">
 					<h4><strong>
 						<?php if ($event->getURL()) { ?>
-							<a href="<?= $event->getURL() ?>"><?= $event->getName() ?></a>
+							<a href="<?php echo $event->getURL(); ?>"><?php echo $event->getName(); ?></a>
 						<?php } else { ?>
-							<?= $event->getName() ?>
+							<?php echo $event->getName(); ?>
 						<?php } ?>
 					</strong></h4>
 
 					<?php $description = $event->getDescription(); ?>
-					<?php if ($description_paragraphs) array_splice($description, $description_paragraphs); ?>
-					
+					<?php if ($description_paragraphs) {
+            array_splice($description, $description_paragraphs);
+					} ?>
+
 					<?php
-					$Parsedown = new \Parsedown();
-					echo $Parsedown->text(implode("\n", $description));
-					?>
+            $Parsedown = new \Parsedown();
+            echo $Parsedown->text(implode("\n", $description));
+          ?>
 
 					<ul class="subtext">
-						<li>Tid: <strong><?= Agenda::getFormattedDate($event->getStart()) ?></strong></li>
-						<li>Sted: <strong><?= $event->getLocation() ?></strong></li>
-						<li>Arrangør: <strong><?= $event->getOrganiser() ?></strong></li>
+						<li>Tid: <strong><?php echo Agenda::getFormattedDate($event->getStart()); ?></strong></li>
+						<li>Sted: <strong><?php echo $event->getLocation(); ?></strong></li>
+						<li>Arrangør: <strong><?php echo $event->getOrganiser(); ?></strong></li>
 					</ul>
 				</li>
 				<?php } ?>
 				</ul>
 			<?php } ?>
 		<?php } ?>
-		
+
 		<div style="text-align: center; margin-bottom: 2em;">
 			<a style="padding-left: 2em; padding-right: 2em;" class="btn" style="" href="../kalender/">Kalender</a>
 		</div>
-		
+
 	</main>
 </body>

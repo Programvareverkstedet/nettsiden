@@ -1,8 +1,8 @@
 <?php
-require_once dirname(dirname(__DIR__)) . implode(DIRECTORY_SEPARATOR, ['', 'inc', 'include.php']);
+require_once dirname(__DIR__, 2) . implode(\DIRECTORY_SEPARATOR, ['', 'inc', 'include.php']);
 
 $translation = ['i dag', 'i morgen', 'denne uka', 'neste uke', 'denne måneden', 'neste måned'];
-$projectManager = new \pvv\side\ProjectManager($pdo);
+$projectManager = new pvv\side\ProjectManager($pdo);
 $projects = $projectManager->getAll();
 ?>
 <!DOCTYPE html>
@@ -43,7 +43,7 @@ $projects = $projectManager->getAll();
 					<p>
 						Styret har ansvaret for den daglige driften av PVV, og har myndighet som gitt i PVVs lover.
 						Lederen for PVV velges om høsten og sitter i et år. Resten av styret velges for et halvår om
-						gangen, selv om praksis er at bare mindre justeringer gjøres i vårsemesteret. 
+						gangen, selv om praksis er at bare mindre justeringer gjøres i vårsemesteret.
 					</p>
 					<p class="project-organizer">Organisert av Styreleder</p>
 				</div>
@@ -52,7 +52,7 @@ $projects = $projectManager->getAll();
 				<div class="card-content">
 					<h4 class="project-title">Drift</h4>
 					<p>
-						Drift har ansvaret for å drive maskinene på PVV. 
+						Drift har ansvaret for å drive maskinene på PVV.
 						Driftsgruppen har ingen strenge krav til aktivitet eller erfaring for å bli medlem,
 						så selv om du er ny i virket går det fint an å bare observere og absorbere i begynnelsen.
 						Vi vil gjøre vårt beste for å gi god hjelp og service til våre brukere.
@@ -60,13 +60,13 @@ $projects = $projectManager->getAll();
 					<p class="project-organizer">Organisert av Driftskordinator</p>
 				</div>
 			</div></a>
-			<?php /*Her kan vi legge til PR og TriKom hvis det er ønskelig*/ ?>
+			<?php /* Her kan vi legge til PR og TriKom hvis det er ønskelig */ ?>
 		</div>
-		
+
 		<h2>Medlems-prosjekter</h2>
 		<?php
-			if(count($projects) == 0){
-		?>
+      if (count($projects) == 0) {
+    ?>
 			<p>PVV har for øyeblikket ingen aktive prosjekter. Tenker du at noe bør gjøres? Har du en kul ide for noe PVV kan samarbeide om? Sett opp et prosjekt!</p>
 			<br>
 			<center>
@@ -75,8 +75,8 @@ $projects = $projectManager->getAll();
 			</center>
 			<br>
 		<?php
-			}else{
-		?>
+      } else {
+    ?>
 			<p>
 				Lyst til å gjøre noe kult? Her er et utvalg av de prosjektene som PVVere har holder på med. Mangler det noe, eller brenner du for noe annet?<br>
 				Sett opp et eget prosjekt da vel!
@@ -84,24 +84,24 @@ $projects = $projectManager->getAll();
 			<div class="projects-container">
 
 			<?php
-				$randProjects = array_rand($projects, min(6, count($projects)));
-				if (!is_array($randProjects)) {
-					$randProjects = [$randProjects];
-				};
-				foreach($randProjects as $i) {
-					$project = $projects[$i];
-					$owner = $projectManager->getProjectOwner($project->getID());
-			?>
+        $randProjects = array_rand($projects, min(6, count($projects)));
+        if (!is_array($randProjects)) {
+          $randProjects = [$randProjects];
+        }
+        foreach ($randProjects as $i) {
+          $project = $projects[$i];
+          $owner = $projectManager->getProjectOwner($project->getID());
+      ?>
 
-			<a class="nostyle" href="info.php?id=<?= $project->getID() ?>"><div class="project-card">
+			<a class="nostyle" href="info.php?id=<?php echo $project->getID(); ?>"><div class="project-card">
 				<div class="card-content">
-					<h4 class="project-title"><?= $project->getName(); ?></h4>
+					<h4 class="project-title"><?php echo $project->getName(); ?></h4>
 					<?php
-					$Parsedown = new \Parsedown();
-					echo $Parsedown->text(implode("\n", array_slice($project->getDescription(), 0, 2)));
-					?>
+            $Parsedown = new Parsedown();
+            echo $Parsedown->text(implode("\n", array_slice($project->getDescription(), 0, 2)));
+          ?>
 				</div>
-				<p class="project-organizer">Organisert av <?= $owner['name']; ?></p>
+				<p class="project-organizer">Organisert av <?php echo $owner['name']; ?></p>
 			</div></a>
 			<?php } ?>
 			</div>
@@ -110,7 +110,7 @@ $projects = $projectManager->getAll();
 				<a class="btn" href="mine.php">Mine prosjekter</a>
 			</center>
 		<?php
-			}
-		?>
+      }
+    ?>
 	</main>
 </body>

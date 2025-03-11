@@ -1,51 +1,49 @@
 <?php
 date_default_timezone_set('Europe/Oslo');
-setlocale(LC_ALL, 'nb_NO');
+setlocale(\LC_ALL, 'nb_NO');
 require __DIR__ . '/../../../inc/navbar.php';
 require __DIR__ . '/../../../src/_autoload.php';
 require __DIR__ . '/../../../config.php';
 
-$pdo = new \PDO($DB_DSN, $DB_USER, $DB_PASS);
+$pdo = new PDO($DB_DSN, $DB_USER, $DB_PASS);
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-$userManager = new \pvv\admin\UserManager($pdo);
+$userManager = new pvv\admin\UserManager($pdo);
 
-require_once(__DIR__ . '/../../../vendor/simplesamlphp/simplesamlphp/lib/_autoload.php');
-$as = new \SimpleSAML\Auth\Simple('default-sp');
+require_once __DIR__ . '/../../../vendor/simplesamlphp/simplesamlphp/lib/_autoload.php';
+$as = new SimpleSAML\Auth\Simple('default-sp');
 $as->requireAuth();
 $attrs = $as->getAttributes();
 $uname = $attrs['uid'][0];
 
-if(!$userManager->hasGroup($uname, 'prosjekt')){
-	echo 'Her har du ikke lov\'t\'å\'værra!!!';
-	exit();
+if (!$userManager->hasGroup($uname, 'prosjekt')) {
+  echo 'Her har du ikke lov\'t\'å\'værra!!!';
+  exit;
 }
 
-$projectManager = new \pvv\side\ProjectManager($pdo);
+$projectManager = new pvv\side\ProjectManager($pdo);
 $projects = $projectManager->getAll();
 
 $page = 1;
-if(isset($_GET['page'])){
-	$page = $_GET['page'];
+if (isset($_GET['page'])) {
+  $page = $_GET['page'];
 }
 
 $filterTitle = '';
-if(isset($_POST['title'])){
-	$filterTitle = $_POST['title'];
+if (isset($_POST['title'])) {
+  $filterTitle = $_POST['title'];
 }
 
 /* Temporarily out of service :<
 $filterOrganiser = '';
 if(isset($_POST['organiser'])){
-	$filterOrganiser = $_POST['organiser'];
+    $filterOrganiser = $_POST['organiser'];
 }
 */
 
 // filter
 $projects = array_values(array_filter(
-	$projects,
-	function($project) use ($filterTitle){
-		return (preg_match('/.*'.$filterTitle.'.*/i', $project->getName()));
-	}
+  $projects,
+  static fn($project) => preg_match('/.*' . $filterTitle . '.*/i', $project->getName())
 ));
 ?>
 <!DOCTYPE html>
@@ -79,52 +77,52 @@ $projects = array_values(array_filter(
 
 				<ul class="event-list">
 					<?php
-						$counter = 0;
-						$pageLimit = 4;
+            $counter = 0;
+            $pageLimit = 4;
 
-						for($i = ($pageLimit * ($page - 1)); $i < count($projects); $i++){
-							if($counter == $pageLimit){
-								break;
-							}
+            for ($i = ($pageLimit * ($page - 1)); $i < count($projects); ++$i) {
+              if ($counter == $pageLimit) {
+                break;
+              }
 
-							$project = $projects[$i];
-							$projectID = $project->getID();
-							$owner = $projectManager->getProjectOwner($projectID);
-					?>
+              $project = $projects[$i];
+              $projectID = $project->getID();
+              $owner = $projectManager->getProjectOwner($projectID);
+          ?>
 
 						<li>
 							<div class="event admin">
 								<div class="event-info">
-									<h3 class="no-chin"><?= $project->getName() . " (ID: " . $projectID . ")"; ?></h3>
-									<p class="subnote"><?= 'Organisert av: ' . $owner['name']; ?></p>
+									<h3 class="no-chin"><?php echo $project->getName() . ' (ID: ' . $projectID . ')'; ?></h3>
+									<p class="subnote"><?php echo 'Organisert av: ' . $owner['name']; ?></p>
 									<?php
-									$Parsedown = new \Parsedown();
-									echo $Parsedown->text(implode("\n", $project->getDescription()));
-									?>
+                    $Parsedown = new Parsedown();
+                    echo $Parsedown->text(implode("\n", $project->getDescription()));
+                  ?>
 								</div>
 
 								<div class="event-actions">
-									<?= '<a href="edit.php?id=' . $projectID . '">🖊</a>'; ?>
-									<?= '<a href="delete.php?id=' . $projectID . '" onclick="return confirm(\'Knallsikker? (ID: ' . $projectID . ')\');">🗑</a>'; ?>
+									<?php echo '<a href="edit.php?id=' . $projectID . '">🖊</a>'; ?>
+									<?php echo '<a href="delete.php?id=' . $projectID . '" onclick="return confirm(\'Knallsikker? (ID: ' . $projectID . ')\');">🗑</a>'; ?>
 								</div>
 							</div>
 						</li>
 
 					<?php
-							$counter++;
-						}
-					?>
+              ++$counter;
+            }
+          ?>
 				</ul>
 
 				<?php
-					if($page != 1){
-						echo '<a class="btn float-left" href="?page=' . ($page - 1) . '">Forrige side</a>';
-					}
+          if ($page != 1) {
+            echo '<a class="btn float-left" href="?page=' . ($page - 1) . '">Forrige side</a>';
+          }
 
-					if(($counter == $pageLimit) and (($pageLimit * $page) < count($projects))){
-						echo '<a class="btn float-right" href="?page=' . ($page + 1) . '">Neste side</a>';
-					}
-				?>
+          if (($counter == $pageLimit) && (($pageLimit * $page) < count($projects))) {
+            echo '<a class="btn float-right" href="?page=' . ($page + 1) . '">Neste side</a>';
+          }
+        ?>
 			</div>
 
 			<div class="gridr">
@@ -133,9 +131,9 @@ $projects = array_values(array_filter(
 				<h2>Filter</h2>
 				<form action="." method="post">
 					<p class="no-chin">Prosjektnavn</p>
-					<?= '<input type="text" name="title" class="boxinput" value="' . $filterTitle . '">' ?><br>
+					<?php echo '<input type="text" name="title" class="boxinput" value="' . $filterTitle . '">'; ?><br>
 					<p class="no-chin">Leders brukernavn</p>
-					<?= '<input type="text" name="organiser" class="boxinput" value="">' ?><br>
+					<?php echo '<input type="text" name="organiser" class="boxinput" value="">'; ?><br>
 
 					<div style="margin-top: 2em;">
 						<input type="submit" class="btn" value="Filtrer"></input>

@@ -1,36 +1,34 @@
 <?php
 date_default_timezone_set('Europe/Oslo');
-setlocale(LC_ALL, 'nb_NO');
+setlocale(\LC_ALL, 'nb_NO');
 require __DIR__ . '/../../inc/navbar.php';
 require __DIR__ . '/../../src/_autoload.php';
 require __DIR__ . '/../../config.php';
 
-require_once(__DIR__ . '/../../vendor/simplesamlphp/simplesamlphp/lib/_autoload.php');
-$as = new \SimpleSAML\Auth\Simple('default-sp');
+require_once __DIR__ . '/../../vendor/simplesamlphp/simplesamlphp/lib/_autoload.php';
+$as = new SimpleSAML\Auth\Simple('default-sp');
 $as->requireAuth();
 $attrs = $as->getAttributes();
 
-$pdo = new \PDO($DB_DSN, $DB_USER, $DB_PASS);
+$pdo = new PDO($DB_DSN, $DB_USER, $DB_PASS);
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-$projectManager = new \pvv\side\ProjectManager($pdo);
+$projectManager = new pvv\side\ProjectManager($pdo);
 $projects = $projectManager->getByOwner($attrs['uid'][0]);
 
 $page = 1;
-if(isset($_GET['page'])){
-	$page = $_GET['page'];
+if (isset($_GET['page'])) {
+  $page = $_GET['page'];
 }
 
 $filter = '';
-if(isset($_GET['filter'])){
-	$filter = $_GET['filter'];
+if (isset($_GET['filter'])) {
+  $filter = $_GET['filter'];
 }
 
 // filter
 $projects = array_values(array_filter(
-	$projects,
-	function($project) use ($filter){
-		return (preg_match('/.*'.$filter.'.*/i', $project->getName()) or preg_match('/.*'.$filter.'.*/i', implode(" ", $project->getDescription())));
-	}
+  $projects,
+  static fn($project) => (preg_match('/.*' . $filter . '.*/i', $project->getName()) || preg_match('/.*' . $filter . '.*/i', implode(' ', $project->getDescription())))
 ));
 ?>
 <!DOCTYPE html>
@@ -50,8 +48,8 @@ $projects = array_values(array_filter(
 
 <body>
 	<nav>
-		<?= navbar(1, 'prosjekt'); ?>
-		<?= loginbar(); ?>
+		<?php echo navbar(1, 'prosjekt'); ?>
+		<?php echo loginbar(); ?>
 	</nav>
 
 	<main class="gridsplit">
@@ -60,49 +58,49 @@ $projects = array_values(array_filter(
 
 			<ul class="event-list">
 				<?php
-					$counter = 0;
-					$pageLimit = 8;
+          $counter = 0;
+          $pageLimit = 8;
 
-					for($i = ($pageLimit * ($page - 1)); $i < count($projects); $i++){
-						if($counter == $pageLimit){
-							break;
-						}
+          for ($i = ($pageLimit * ($page - 1)); $i < count($projects); ++$i) {
+            if ($counter == $pageLimit) {
+              break;
+            }
 
-						$project = $projects[$i];
-						$projectID = $project->getID();
+            $project = $projects[$i];
+            $projectID = $project->getID();
 
-						$owner = $projectManager->getProjectOwner($projectID);
-						if($owner['uname'] != $attrs['uid'][0]){
-							continue;
-						}
-				?>
+            $owner = $projectManager->getProjectOwner($projectID);
+            if ($owner['uname'] != $attrs['uid'][0]) {
+              continue;
+            }
+        ?>
 
 					<li>
 						<div class="event">
 							<div class="event-info">
-								<a href="edit.php?id=<?= $project->getID() ?>">
-									<h3 class="no-chin"><?= $project->getName()?></h3>
+								<a href="edit.php?id=<?php echo $project->getID(); ?>">
+									<h3 class="no-chin"><?php echo $project->getName(); ?></h3>
 								</a>
-								<p style="text-decoration: none;"><?= implode("<br>", array_slice($project->getDescription(), 0, 4)); ?></p>
+								<p style="text-decoration: none;"><?php echo implode('<br>', array_slice($project->getDescription(), 0, 4)); ?></p>
 							</div>
 						</div>
 					</li>
 
 				<?php
-						$counter++;
-					}
-				?>
+            ++$counter;
+          }
+        ?>
 			</ul>
 
 			<?php
-				if($page != 1){
-					echo '<a class="btn float-left" href="?page=' . ($page - 1) . '&filter=' . urlencode($filter) . '">Forrige side</a>';
-				}
+        if ($page != 1) {
+          echo '<a class="btn float-left" href="?page=' . ($page - 1) . '&filter=' . urlencode($filter) . '">Forrige side</a>';
+        }
 
-				if(($counter == $pageLimit) and (($pageLimit * $page) < count($projects))){
-					echo '<a class="btn float-right" href="?page=' . ($page + 1) . '&filter=' . urlencode($filter) . '">Neste side</a>';
-				}
-			?>
+        if (($counter == $pageLimit) && (($pageLimit * $page) < count($projects))) {
+          echo '<a class="btn float-right" href="?page=' . ($page + 1) . '&filter=' . urlencode($filter) . '">Neste side</a>';
+        }
+      ?>
 		</div>
 
 		<div class="gridr">
@@ -111,7 +109,7 @@ $projects = array_values(array_filter(
 			<h2>Filter</h2>
 			<form action="mine.php" method="get">
 				<p class="no-chin">Navn</p>
-				<?= '<input type="text" name="filter" class="boxinput" value="' . $filter . '">' ?><br>
+				<?php echo '<input type="text" name="filter" class="boxinput" value="' . $filter . '">'; ?><br>
 
 				<div style="margin-top: 2em;">
 					<input type="submit" class="btn" value="Filtrer"></input>

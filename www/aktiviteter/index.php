@@ -1,15 +1,18 @@
-<?php namespace pvv\side;
-require_once dirname(dirname(__DIR__)) . implode(DIRECTORY_SEPARATOR, ['', 'inc', 'include.php']);
+<?php
+
+namespace pvv\side;
+
+require_once \dirname(__DIR__, 2) . implode(\DIRECTORY_SEPARATOR, ['', 'inc', 'include.php']);
 
 $year = (isset($_GET['year']))
-	? $_GET['year']
-	: date("Y");
+    ? $_GET['year']
+    : date('Y');
 $month = (isset($_GET['month']))
-	? $_GET['month']
-	: date("m");
+    ? $_GET['month']
+    : date('m');
 $day = (isset($_GET['day']))
-	? $_GET['day']
-	: -1;
+    ? $_GET['day']
+    : -1;
 
 ?>
 <!DOCTYPE html>
@@ -34,42 +37,46 @@ $day = (isset($_GET['day']))
 
 	<main>
 		<?php
-		use \DateTimeImmutable;
-		$events = ($day==-1)
-			? $agenda->getNextOfEach(new \DateTimeImmutable)
-			: $agenda->getEventsBetween(
-				new DateTimeImmutable("$year-$month-$day 00:00:00"),
-				new DateTimeImmutable("$year-$month-$day 23:59:59"));
+      use DateTimeImmutable;
 
-		$limit = 0;
-		foreach($events as $event) {
-		?>
+      $events = ($day == -1)
+          ? $agenda->getNextOfEach(new DateTimeImmutable())
+          : $agenda->getEventsBetween(
+            new DateTimeImmutable("{$year}-{$month}-{$day} 00:00:00"),
+            new DateTimeImmutable("{$year}-{$month}-{$day} 23:59:59")
+          );
+
+      $limit = 0;
+      foreach ($events as $event) {
+    ?>
 		<article>
 			<h2>
-				<?php if (\pvv\side\Agenda::isToday($event->getStart())) { ?><strong><?php } ?>
-				<em><?= $event->getRelativeDate() ?></em>
-				<?php if (\pvv\side\Agenda::isToday($event->getStart())) { ?></strong><?php } ?>
+				<?php if (Agenda::isToday($event->getStart())) { ?><strong><?php } ?>
+				<em><?php echo $event->getRelativeDate(); ?></em>
+				<?php if (Agenda::isToday($event->getStart())) { ?></strong><?php } ?>
 				<?php if ($event->getURL()) { ?>
-				<a href="<?= $event->getURL() ?>"><?= $event->getName() ?></a>
+				<a href="<?php echo $event->getURL(); ?>"><?php echo $event->getName(); ?></a>
 				<?php } else { ?>
-				<?= $event->getName() ?>
+				<?php echo $event->getName(); ?>
 				<?php } ?>
 				<?php if ($event->getImageURL()) { ?>
-				<img src="<?= $event->getImageURL() ?>">
+				<img src="<?php echo $event->getImageURL(); ?>">
 				<?php } ?>
 			</h2>
 			<ul class="subtext">
-				<li>Tid: <strong><?= Agenda::getFormattedDate($event->getStart()) ?></strong></li>
-				<li>Sted: <strong><?= $event->getLocation() ?></strong></li>
-				<li>Arrangør: <strong><?= $event->getOrganiser() ?></strong></li>
+				<li>Tid: <strong><?php echo Agenda::getFormattedDate($event->getStart()); ?></strong></li>
+				<li>Sted: <strong><?php echo $event->getLocation(); ?></strong></li>
+				<li>Arrangør: <strong><?php echo $event->getOrganiser(); ?></strong></li>
 			</ul>
 
 			<?php $description = $event->getDescription(); ?>
-			<?php if ($limit) array_splice($description, $limit); ?>
+			<?php if ($limit) {
+			  array_splice($description, $limit);
+			} ?>
 			<?php
-			$Parsedown = new \Parsedown();
-			echo $Parsedown->text(implode("\n", $description));
-			?>
+        $Parsedown = new \Parsedown();
+        echo $Parsedown->text(implode("\n", $description));
+      ?>
 		</article>
 
 		<?php } ?>

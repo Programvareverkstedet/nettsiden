@@ -1,50 +1,50 @@
 <?php
 date_default_timezone_set('Europe/Oslo');
-setlocale(LC_ALL, 'nb_NO');
+setlocale(\LC_ALL, 'nb_NO');
 require __DIR__ . '/../../inc/navbar.php';
 require __DIR__ . '/../../src/_autoload.php';
 require __DIR__ . '/../../config.php';
 
 require_once __DIR__ . '/../../vendor/simplesamlphp/simplesamlphp/lib/_autoload.php';
-$as = new \SimpleSAML\Auth\Simple('default-sp');
+$as = new SimpleSAML\Auth\Simple('default-sp');
 $as->requireAuth();
 $attrs = $as->getAttributes();
 
-$pdo = new \PDO($DB_DSN, $DB_USER, $DB_PASS);
+$pdo = new PDO($DB_DSN, $DB_USER, $DB_PASS);
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-$projectManager = new \pvv\side\ProjectManager($pdo);
+$projectManager = new pvv\side\ProjectManager($pdo);
 
 $new = 0;
-if(isset($_GET['new'])){
-	$new = $_GET['new'];
+if (isset($_GET['new'])) {
+  $new = $_GET['new'];
 }
 
 $projectID = 0;
-if(isset($_GET['id'])){
-	$projectID = $_GET['id'];
-}else if($new == 0){
-	echo "\nID not set";
-	exit();
+if (isset($_GET['id'])) {
+  $projectID = $_GET['id'];
+} elseif ($new == 0) {
+  echo "\nID not set";
+  exit;
 }
 
-$project = new \pvv\side\Project(
-	0,
-	'Nytt Prosjekt',
-	'',
-	$attrs["cn"][0],
-	$attrs["uid"][0],
-	$attrs["mail"][0],
-	1
+$project = new pvv\side\Project(
+  0,
+  'Nytt Prosjekt',
+  '',
+  $attrs['cn'][0],
+  $attrs['uid'][0],
+  $attrs['mail'][0],
+  1
 );
-if($new == 0){
-	$project = $projectManager->getByID($projectID);
-	$owner = $projectManager->getProjectOwner($projectID);
+if ($new == 0) {
+  $project = $projectManager->getByID($projectID);
+  $owner = $projectManager->getProjectOwner($projectID);
 
-	if($owner['uname'] != $attrs["uid"][0]){
-		header('HTTP/1.0 403 Forbidden');
-		echo "wrong user";
-		exit();
-	}
+  if ($owner['uname'] != $attrs['uid'][0]) {
+    header('HTTP/1.0 403 Forbidden');
+    echo 'wrong user';
+    exit;
+  }
 }
 ?>
 <!DOCTYPE html>
@@ -74,20 +74,20 @@ if($new == 0){
 		<form action="update.php", method="post">
 			<p class="subtitle no-chin">Prosjektnavn</p>
 			<p class="subnote">Gi prosjektet ditt et passende navn</p>
-			<input class="wide" type="text" name="title" value="<?= $project->getName() ?>" class="boxinput"><br>
+			<input class="wide" type="text" name="title" value="<?php echo $project->getName(); ?>" class="boxinput"><br>
 
 			<p class="subtitle no-chin">Beskrivelse (<i style="opacity:0.5;">markdown</i>)</p>
 			<p class="subnote no-chin">Hva går prosjektet ditt ut på?</p>
 			<p class="subnote">De første to linjene blir vist på prosjektkortet, prøv å gjøre de til et fint sammendrag eller intro!</p>
-			<textarea class="tall" name="desc" style="width:100%" rows="8" class="boxinput"><?= implode("\n", $project->getDescription()); ?></textarea>
+			<textarea class="tall" name="desc" style="width:100%" rows="8" class="boxinput"><?php echo implode("\n", $project->getDescription()); ?></textarea>
 
-			<?= '<input type="hidden" name="id" value="' . $project->getID() . '" />' ?>
+			<?php echo '<input type="hidden" name="id" value="' . $project->getID() . '" />'; ?>
 			<input type="hidden" name="active" value="1"/>
 
 			<div style="margin-top: 0.2em;">
 				<hr class="ruler">
-				 <input type="submit" class="btn" value="<?= ($new ? 'Opprett prosjekt' : 'Lagre endringer') ?>"></input>
-				 <?php if (!$new){?><input type="submit" class="btn" name="delete" value="Slett"></input><?php } ?>
+				 <input type="submit" class="btn" value="<?php echo $new ? 'Opprett prosjekt' : 'Lagre endringer'; ?>"></input>
+				 <?php if (!$new) {?><input type="submit" class="btn" name="delete" value="Slett"></input><?php } ?>
 			</div>
 		</form>
 	</main>

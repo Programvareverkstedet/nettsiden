@@ -1,28 +1,28 @@
 <?php
 ini_set('display_errors', '1');
 date_default_timezone_set('Europe/Oslo');
-setlocale(LC_ALL, 'nb_NO');
-error_reporting(E_ALL);
+setlocale(\LC_ALL, 'nb_NO');
+error_reporting(\E_ALL);
 require __DIR__ . '/../../../inc/navbar.php';
 require __DIR__ . '/../../../src/_autoload.php';
 require __DIR__ . '/../../../config.php';
-require_once(__DIR__ . '/../../../vendor/simplesamlphp/simplesamlphp/lib/_autoload.php');
-$as = new \SimpleSAML\Auth\Simple('default-sp');
+require_once __DIR__ . '/../../../vendor/simplesamlphp/simplesamlphp/lib/_autoload.php';
+$as = new SimpleSAML\Auth\Simple('default-sp');
 $attrs = $as->getAttributes();
 
-$pdo = new \PDO($DB_DSN, $DB_USER, $DB_PASS);
+$pdo = new PDO($DB_DSN, $DB_USER, $DB_PASS);
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-$userManager = new \pvv\admin\UserManager($pdo);
+$userManager = new pvv\admin\UserManager($pdo);
 
-require_once(__DIR__ . '/../../../vendor/simplesamlphp/simplesamlphp/lib/_autoload.php');
-$as = new \SimpleSAML\Auth\Simple('default-sp');
+require_once __DIR__ . '/../../../vendor/simplesamlphp/simplesamlphp/lib/_autoload.php';
+$as = new SimpleSAML\Auth\Simple('default-sp');
 $as->requireAuth();
 $attrs = $as->getAttributes();
 $uname = $attrs['uid'][0];
 
-if(!$userManager->isAdmin($uname)){
-	echo 'Her har du ikke lov\'t\'å\'værra!!!';
-	exit();
+if (!$userManager->isAdmin($uname)) {
+  echo 'Her har du ikke lov\'t\'å\'værra!!!';
+  exit;
 }
 
 $users = $userManager->getAllUserData();
@@ -59,38 +59,38 @@ $users = $userManager->getAllUserData();
 			</tr>
 
 			<?php
-			$users_to_update = array();
-			foreach($users as $i => $data){
-				$uname = $data['name'];
-				$groupFlag = $userManager->getUsergroups($uname);
+        $users_to_update = [];
+        foreach ($users as $i => $data) {
+          $uname = $data['name'];
+          $groupFlag = $userManager->getUsergroups($uname);
 
-				array_push($users_to_update, $uname);
-			?>
+          $users_to_update[] = $uname;
+      ?>
 
 				<tr>
-					<td><?= $uname ?></td>
+					<td><?php echo $uname; ?></td>
 					<?php
-					foreach($userManager->usergroups as $name => $group){
-						echo '<td><input type="checkbox" ' . (($groupFlag & $group) ? 'checked' : '') . ' name="' . $uname . '_' . $name . '" class="usergroupcheckbox">' . $name . '</td>';
-					}
-					?>
+            foreach ($userManager->usergroups as $name => $group) {
+              echo '<td><input type="checkbox" ' . (($groupFlag & $group) ? 'checked' : '') . ' name="' . $uname . '_' . $name . '" class="usergroupcheckbox">' . $name . '</td>';
+            }
+          ?>
 				</tr>
 
 			<?php
-			}
-			foreach($users_to_update as $uname) {
-				echo '<input type="hidden" name="user_to_update" value="' . $uname . '" />';
-			}
-			
-			?>
+      }
+      foreach ($users_to_update as $uname) {
+        echo '<input type="hidden" name="user_to_update" value="' . $uname . '" />';
+      }
+
+      ?>
 
 			<tr class="newuserrow">
 				<td class="newuserelement"><input type="text" name="newuser" class="newuserinput"></td>
 				<?php
-					foreach($userManager->usergroups as $name => $group){
-						echo '<td><input type="checkbox" name="newuser_' . $name . '" class="usergroupcheckbox">' . $name . '</td>';
-					}
-				?>
+          foreach ($userManager->usergroups as $name => $group) {
+            echo '<td><input type="checkbox" name="newuser_' . $name . '" class="usergroupcheckbox">' . $name . '</td>';
+          }
+        ?>
 			</tr>
 		</table>
 		<input type="submit" class="btn" value="Lagre">

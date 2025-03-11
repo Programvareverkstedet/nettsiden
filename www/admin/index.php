@@ -1,11 +1,11 @@
 <?php
-require_once dirname(dirname(__DIR__)) . implode(DIRECTORY_SEPARATOR, ['', 'inc', 'include.php']);
+require_once dirname(__DIR__, 2) . implode(\DIRECTORY_SEPARATOR, ['', 'inc', 'include.php']);
 
-$pdo = new \PDO($DB_DSN, $DB_USER, $DB_PASS);
+$pdo = new PDO($DB_DSN, $DB_USER, $DB_PASS);
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-$userManager = new \pvv\admin\UserManager($pdo);
+$userManager = new pvv\admin\UserManager($pdo);
 
-$as = new \SimpleSAML\Auth\Simple('default-sp');
+$as = new SimpleSAML\Auth\Simple('default-sp');
 $as->requireAuth();
 $attrs = $as->getAttributes();
 $uname = $attrs['uid'][0];
@@ -14,10 +14,10 @@ $isAdmin = $userManager->isAdmin($uname);
 $projectGroup = $userManager->hasGroup($uname, 'prosjekt');
 $activityGroup = $userManager->hasGroup($uname, 'aktiviteter');
 
-if(!($isAdmin | $projectGroup | $activityGroup)){
-	header('Content-Type: text/plain', true, 403);
-	echo "Her har du ikke lov't'å'værra!!!\r\n";
-	exit();
+if (!($isAdmin | $projectGroup | $activityGroup)) {
+  header('Content-Type: text/plain', true, 403);
+  echo "Her har du ikke lov't'å'værra!!!\r\n";
+  exit;
 }
 ?>
 <!DOCTYPE html>
@@ -45,22 +45,22 @@ if(!($isAdmin | $projectGroup | $activityGroup)){
 		<h2>Administrasjon</h2>
 		<ul class="tools">
 			<?php
-				if($isAdmin | $activityGroup){
-					echo '<li><a class="btn" href="aktiviteter/?page=1">Aktiviteter/Hendelser</a></li>';
-				}
+        if ($isAdmin | $activityGroup) {
+          echo '<li><a class="btn" href="aktiviteter/?page=1">Aktiviteter/Hendelser</a></li>';
+        }
 
-				if($isAdmin | $projectGroup){
-					echo '<li><a class="btn" href="prosjekter/">Prosjekter</a></li>';
-				}
+        if ($isAdmin | $projectGroup) {
+          echo '<li><a class="btn" href="prosjekter/">Prosjekter</a></li>';
+        }
 
-				if($isAdmin) {
-					echo '<li><a class="btn" href="motd/">Dagens melding</a></li>';
-				}
+        if ($isAdmin) {
+          echo '<li><a class="btn" href="motd/">Dagens melding</a></li>';
+        }
 
-				if($isAdmin){
-					echo '<li><a class="btn" href="brukere/">Brukerrettigheter</a></li>';
-				}
-			?>
+        if ($isAdmin) {
+          echo '<li><a class="btn" href="brukere/">Brukerrettigheter</a></li>';
+        }
+      ?>
 		<ul>
 	</main>
 </body>
