@@ -33,7 +33,7 @@ pkgs.mkShellNoCC {
 
       cp dist/config.local.php config.php
 
-      ln -s ../vendor/simplesamlphp/simplesamlphp/www/ www/simplesaml
+      ln -s ../vendor/simplesamlphp/simplesamlphp/public/ www/simplesaml
     fi
   '';
 }
