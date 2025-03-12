@@ -51,7 +51,6 @@ return (new PhpCsFixer\Config())
 
         // TODO: fix these
         'psr_autoloading' => false,
-        'strict_comparison' => false,
     ])
     ->setFinder($finder)
     ->setIndent("  ")

@@ -98,7 +98,7 @@ class UserManager {
     $statement->execute();
 
     $row = $statement->fetch();
-    if ($row == false) {
+    if ($row === false) {
       return 0;
     }
 

@@ -8,14 +8,14 @@ use pvv\side\Activity;
 
 class BrettspillActivity implements Activity {
   public function nextDate(\DateTimeImmutable $date) {
-    if ($date->format('H') > 17 || $date->format('H') == 16 && $date->format('i') > 15) {
+    if (intval($date->format('H')) > 17 || intval($date->format('H')) === 16 && intval($date->format('i')) > 15) {
       return $this->nextDate($date->add(new \DateInterval('P1D'))->setTime(16, 15, 0));
     }
     $date = $date->setTime(16, 15, 0);
-    if ($date->format('N') != 7) {
+    if (intval($date->format('N')) !== 7) {
       return $this->nextDate($date->add(new \DateInterval('P1D')));
     }
-    if ($date->format('W') % 2 - 1) {
+    if (intval($date->format('W')) % 2 - 1) {
       return $this->nextDate($date->add(new \DateInterval('P7D')));
     }
 
@@ -23,14 +23,14 @@ class BrettspillActivity implements Activity {
   }
 
   public function prevDate(\DateTimeImmutable $date) {
-    if ($date->format('H') < 16 || $date->format('H') == 17 && $date->format('i') < 15) {
+    if (intval($date->format('H')) < 16 || intval($date->format('H')) === 17 && intval($date->format('i')) < 15) {
       return $this->prevDate($date->sub(new \DateInterval('P1D'))->setTime(16, 15, 0));
     }
     $date = $date->setTime(16, 15, 0);
-    if ($date->format('N') != 7) {
+    if (intval($date->format('N')) !== 7) {
       return $this->prevDate($date->sub(new \DateInterval('P1D')));
     }
-    if ($date->format('W') % 2 - 1) {
+    if (intval($date->format('W')) % 2 - 1) {
       return $this->prevDate($date->sub(new \DateInterval('P7D')));
     }
 

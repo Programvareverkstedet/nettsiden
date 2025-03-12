@@ -18,7 +18,7 @@ function navbar($depth, $active = null) {
   ];
   foreach ($menuItems as $caption => $link) {
     $isActive = $active === $link;
-    if (substr($link, 0, 4) != 'http') {
+    if (substr($link, 0, 4) !== 'http') {
       $link = rtrim(str_repeat('../', $depth) . $link, '/') . '/';
     }
 
