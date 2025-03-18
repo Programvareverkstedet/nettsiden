@@ -11,6 +11,7 @@ pkgs.mkShellNoCC {
     php84Packages.php-parallel-lint
     php84Packages.php-cs-fixer
     sqlite-interactive
+    sql-formatter
   ];
   shellHook = ''
     alias runDev='php -S localhost:1080 -d error_reporting=E_ALL -d display_errors=1 -t www/'
