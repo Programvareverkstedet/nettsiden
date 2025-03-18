@@ -1,4 +1,4 @@
-{ pkgs }:
+{ pkgs, lib }:
 let
   phpEnv = pkgs.php84.buildEnv {
     extensions = { enabled, all }: enabled ++ (with all; [ iconv mbstring pdo_mysql pdo_sqlite ]);
@@ -13,19 +13,19 @@ pkgs.mkShellNoCC {
     sqlite-interactive
     sql-formatter
   ];
+
+  # Prepare dev environment with sqlite and config files
   shellHook = ''
     alias runDev='php -S localhost:1080 -d error_reporting=E_ALL -d display_errors=1 -t www/'
 
-    # Prepare dev environment with sqlite and config files
-    test -e pvv.sqlite || sqlite3 pvv.sqlite < dist/pvv_sqlite.sql
-    test -e config.php || cp -v dist/config.local.php config.php
+    declare -a PROJECT_ROOT="$("${lib.getExe pkgs.git}" rev-parse --show-toplevel)"
 
+    mkdir -p "$PROJECT_ROOT/www/galleri/bilder/slideshow"
+    test -e "$PROJECT_ROOT/pvv.sqlite" || sqlite3 "$PROJECT_ROOT/pvv.sqlite" < "$PROJECT_ROOT/dist/pvv_sqlite.sql"
+    test -e "$PROJECT_ROOT/config.php" || cp -v "$PROJECT_ROOT/dist/config.local.php" "$PROJECT_ROOT/config.php"
 
-    if [ ! -d www/galleri/bilder/slideshow ] ; then
-      mkdir -p www/galleri/bilder/slideshow
-    fi
-
-    if [ ! -d vendor ] ; then
+    if [ ! -d "$PROJECT_ROOT/vendor" ] ; then
+      pushd "$PROJECT_ROOT"
       composer install || exit $?
 
       cp dist/simplesamlphp-authsources.php vendor/simplesamlphp/simplesamlphp/config/authsources.php
@@ -35,6 +35,7 @@ pkgs.mkShellNoCC {
       cp dist/config.local.php config.php
 
       ln -s ../vendor/simplesamlphp/simplesamlphp/public/ www/simplesaml
+      popd "$PROJECT_ROOT"
     fi
   '';
 }
