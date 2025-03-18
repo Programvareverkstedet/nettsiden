@@ -16,7 +16,7 @@ pkgs.mkShellNoCC {
     alias runDev='php -S localhost:1080 -d error_reporting=E_ALL -d display_errors=1 -t www/'
 
     # Prepare dev environment with sqlite and config files
-    test -e pvv.sqlite || sqlite3 pvv.sqlite < dist/pvv.sql
+    test -e pvv.sqlite || sqlite3 pvv.sqlite < dist/pvv_sqlite.sql
     test -e config.php || cp -v dist/config.local.php config.php
 
 

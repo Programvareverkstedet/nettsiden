@@ -8,7 +8,7 @@ CREATE TABLE "events" (
 "description" TEXT
 );
 
-CREATE TABLE "projects" ( 
+CREATE TABLE "projects" (
 "id" INTEGER PRIMARY KEY AUTOINCREMENT,
 "name" TEXT,
 "description" TEXT,
