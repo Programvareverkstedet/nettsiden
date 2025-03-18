@@ -36,16 +36,16 @@ $project = new pvv\side\Project(
   $attrs['mail'][0],
   1
 );
-if ($new == 0) {
-  $project = $projectManager->getByID($projectID);
-  $owner = $projectManager->getProjectOwner($projectID);
+// if ($new == 0) {
+//   $project = $projectManager->getByID($projectID);
+//   $maintainers = $projectManager->getProjectMaintainers($projectID);
 
-  if ($owner['uname'] != $attrs['uid'][0]) {
-    header('HTTP/1.0 403 Forbidden');
-    echo 'wrong user';
-    exit;
-  }
-}
+//   if ($owner['uname'] != $attrs['uid'][0]) {
+//     header('HTTP/1.0 403 Forbidden');
+//     echo 'wrong user';
+//     exit;
+//   }
+// }
 ?>
 <!DOCTYPE html>
 <html lang="no">
@@ -74,12 +74,48 @@ if ($new == 0) {
 		<form action="update.php", method="post">
 			<p class="subtitle no-chin">Prosjektnavn</p>
 			<p class="subnote">Gi prosjektet ditt et passende navn</p>
-			<input class="wide" type="text" name="title" value="<?php echo $project->getName(); ?>" class="boxinput"><br>
+			<input class="wide" type="text" name="title" value="<?php echo $project->getTitle(); ?>" class="boxinput" required><br>
 
 			<p class="subtitle no-chin">Beskrivelse (<i style="opacity:0.5;">markdown</i>)</p>
 			<p class="subnote no-chin">Hva går prosjektet ditt ut på?</p>
 			<p class="subnote">De første to linjene blir vist på prosjektkortet, prøv å gjøre de til et fint sammendrag eller intro!</p>
-			<textarea class="tall" name="desc" style="width:100%" rows="8" class="boxinput"><?php echo implode("\n", $project->getDescription()); ?></textarea>
+			<textarea class="tall" name="desc" style="width:100%" rows="8" class="boxinput" required><?php echo implode("\n", $project->getDescriptionNo()); ?></textarea>
+
+			<p class="subtitle no-chin">Beskrivelse på engelsk (<i style="opacity:0.5;">markdown</i>)</p>
+			<p class="subnote no-chin">Gjenta på engelsk</p>
+			<textarea class="tall" name="desc_en" style="width:100%" rows="8" class="boxinput" required><?php echo implode("\n", $project->getDescriptionEn()); ?></textarea>
+
+			<p class="subtitle no-chin">Gitea-link</p>
+			<p class="subnote">Link til prosjektet på Gitea</p>
+			<input class="wide" type="text" name="gitea" value="<?php echo $project->getGiteaLink(); ?>" class="boxinput" required><br>
+
+			<p class="subtitle no-chin">Issue board-link</p>
+			<p class="subnote">Link til issue board på Gitea</p>
+			<input class="wide" type="text" name="issue" value="<?php echo $project->getIssueBoardLink(); ?>" class="boxinput" required><br>
+
+			<p class="subtitle no-chin">Wiki-link</p>
+			<p class="subnote">Link til wiki-side</p>
+			<input class="wide" type="text" name="wiki" value="<?php echo $project->getWikiLink(); ?>" class="boxinput"><br>
+
+			<p class="subtitle no-chin">Programmeringsspråk</p>
+			<p class="subnote">Hvilke programmeringsspråk brukes i prosjektet?</p>
+			<input class="wide" type="text" name="langs" value="<?php echo $project->getProgrammingLanguages(); ?>" class="boxinput"><br>
+
+			<p class="subtitle no-chin">Teknologier</p>
+			<p class="subnote">Hvilke teknologier brukes i prosjektet?</p>
+			<input class="wide" type="text" name="techs" value="<?php echo $project->getTechnologies(); ?>" class="boxinput"><br>
+
+			<p class="subtitle no-chin">Nøkkelord</p>
+			<p class="subnote">Nøkkelord som beskriver prosjektet</p>
+			<input class="wide" type="text" name="keywords" value="<?php echo $project->getKeywords(); ?>" class="boxinput"><br>
+
+			<p class="subtitle no-chin">Lisens</p>
+			<p class="subnote">Hvilken lisens bruker prosjektet?</p>
+			<input class="wide" type="text" name="license" value="<?php echo $project->getLicense(); ?>" class="boxinput"><br>
+
+			<p class="subtitle no-chin">Logo-URL</p>
+			<p class="subnote">Link til logo for prosjektet</p>
+			<input class="wide" type="text" name="logo" value="<?php echo $project->getLogoURL(); ?>" class="boxinput"><br>
 
 			<?php echo '<input type="hidden" name="id" value="' . $project->getID() . '" />'; ?>
 			<input type="hidden" name="active" value="1"/>

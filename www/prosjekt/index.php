@@ -71,7 +71,6 @@ $projects = $projectManager->getAll();
 			<br>
 			<center>
 				<a class="btn" href="edit.php?new=1">Lag prosjekt</a>
-				<a class="btn" href="mine.php">Mine prosjekter</a>
 			</center>
 			<br>
 		<?php
@@ -84,7 +83,7 @@ $projects = $projectManager->getAll();
 			<div class="projects-container">
 
 			<?php
-        $randProjects = array_rand($projects, min(6, count($projects)));
+        $randProjects = array_rand($projects, min(8, count($projects)));
         if (!is_array($randProjects)) {
           $randProjects = [$randProjects];
         }
