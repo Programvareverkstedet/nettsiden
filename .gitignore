@@ -1,6 +1,7 @@
-/result
-/config.php
 *.sqlite
+/cache
+/config.php
+/result
 /test.sql
 /vendor/
 /www/simplesaml
