@@ -11,7 +11,6 @@ h2 em {
 	font-size: .5em;
 	line-height: 2em;
 	float: left;
-	margin-right: 1em;
 	border: .1em solid gray;
 	padding: 0 1em;
 	border-radius: .25em;
@@ -107,7 +106,6 @@ p + .subtext {
 }
 @media screen and (max-width: 50rem) {
 	h2 {
-		text-align: center;
 		position: relative;
 		border-bottom-left-radius: 0.3em;
 		border-bottom-right-radius: 0.3em;

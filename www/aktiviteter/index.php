@@ -55,6 +55,7 @@ $day = (isset($_GET['day']))
 				<em><?php echo $event->getRelativeDate(); ?></em>
 				<?php if (Agenda::isToday($event->getStart())) { ?></strong><?php } ?>
 				<?php if ($event->getURL()) { ?>
+				<br>
 				<a href="<?php echo $event->getURL(); ?>"><?php echo $event->getName(); ?></a>
 				<?php } else { ?>
 				<?php echo $event->getName(); ?>

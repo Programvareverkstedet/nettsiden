@@ -37,7 +37,7 @@ if (!$event) {
 				<?php if (Agenda::isToday($event->getStart())) { ?><strong><?php } ?>
 				<em><?php echo $event->getRelativeDate(); ?></em>
 				<?php if (Agenda::isToday($event->getStart())) { ?></strong><?php } ?>
-
+				<br>
 				<?php echo $event->getName(); ?>
 			</h2>
 			<ul class="subtext">
