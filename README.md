@@ -1,3 +1,4 @@
+
 # Programvareverkstedets nettside
 
 A website created with the latest and greatest web technologies.
@@ -15,8 +16,9 @@ The development environment can be setup with:
 
     nix develop
 
-For this you will need to install the nix package manager and possibly set the experimental features in your nix config, likely located at /etc/nix/nix.conf or $HOME/.config/nix/nix.conf
-Installing nix with your package manager might not work without some tweaking, but the upstream script should just work which you can find [https://nixos.org/download/](here).
+For this you will need to install the nix package manager and possibly set the experimental features in your nix config, likely located at /etc/nix/nix.conf or $HOME/.config/nix/nix.conf.
+
+Installing nix with your package manager might not work without some tweaking, but the upstream script should just work which you can find [here](https://nixos.org/download/).
 
     experimental-features = flakes nix-command
 
