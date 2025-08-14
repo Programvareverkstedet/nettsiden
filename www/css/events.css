@@ -131,4 +131,8 @@ p + .subtext {
 	article >.subtext {
 		margin-top: -1em !important;
 	}
+
+	.subtext li {
+		display: block;
+	}
 }
