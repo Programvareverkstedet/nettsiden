@@ -164,7 +164,7 @@ require_once \dirname(__DIR__, 2) . implode(\DIRECTORY_SEPARATOR, ['', 'inc', 'i
                 <div class="serviceContent">
                   <h2 class="serviceTitle">Minecraft</h2>
                   <p class="serviceDescription">Vi har en egen Minecraft-server <b>for medlemmer</b>, som du kan koble til med IP-adressen <b>minecraft.pvv.ntnu.no</b>. Spør om whitelist på matrix/discord.</p>
-                  <div class="serviceLink"><a href="https://isvegg.pvv.ntnu.no/kart/" target="_blank">Gå til verdenskartet vårt</a></div>
+                  <div class="serviceLink"><a href="https://minecraft.pvv.ntnu.no" target="_blank">Gå til verdenskartet vårt</a></div>
                 </div>
                 <img class="serviceImage" src="img/minecraft.png" alt="Minecraft-logo">
               </div>
