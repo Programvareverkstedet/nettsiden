@@ -129,29 +129,29 @@ require_once \dirname(__DIR__, 2) . implode(\DIRECTORY_SEPARATOR, ['', 'inc', 'i
 
               <div class="service">
                 <div class="serviceContent">
-                  <h2 class="serviceTitle">Proxmox @joshua</h2>
-                  <p class="serviceDescription">Joshua er en av våre VM-tjenere, her kan du kjøre enten fulle VM-er eller konteinere. Bare Drift har tilgang på disse tjenerne.</p>
-                  <div class="serviceLink"><a href="https://joshua.pvv.ntnu.no:8006" target="_blank">Gå til joshua.pvv.ntnu.no</a></div>
+                  <h2 class="serviceTitle">Proxmox @blossom</h2>
+                  <p class="serviceDescription">Blossom er den sterkeste av våre VM-tjenere, her kan du kjøre enten fulle VM-er eller konteinere. Bare Drift har tilgang på disse tjenerne.</p>
+                  <div class="serviceLink"><a href="https://blossom.pvv.ntnu.no:8006" target="_blank">Gå til blossom.pvv.ntnu.no</a></div>
                 </div>
                 <img class="serviceImage" src="img/proxmox.png" alt="Proxmox-logo">
               </div>
 
               <div class="service">
                 <div class="serviceContent">
-                  <h2 class="serviceTitle">Proxmox @andresbu</h2>
-                  <p class="serviceDescription">Andresbu er en kraftigere VM-tjener, men har fortsatt en del rusk i maskineriet.</p>
-                  <div class="serviceLink"><a href="https://andresbu.pvv.ntnu.no:8006" target="_blank">Gå til andresbu.pvv.ntnu.no</a></div>
+                  <h2 class="serviceTitle">Proxmox @bubbles</h2>
+                  <p class="serviceDescription">Bubbles er den svakeste av våre VM-tjenere.</p>
+                  <div class="serviceLink"><a href="https://bubbles.pvv.ntnu.no:8006" target="_blank">Gå til bubbles.pvv.ntnu.no</a></div>
                 </div>
                 <img class="serviceImage" src="img/proxmox.png" alt="Proxmox-logo">
               </div>
 
               <div class="service">
                 <div class="serviceContent">
-                  <h2 class="serviceTitle">ESXI @asgore</h2>
-                  <p class="serviceDescription">Asgore er vår eldste og største VM-tjener, og kjører ESXI.</p>
-                  <div class="serviceLink"><a href="https://asgore.pvv.ntnu.no" target="_blank">Gå til asgore.pvv.ntnu.no</a></div>
+                  <h2 class="serviceTitle">Proxmox @buttercup</h2>
+                  <p class="serviceDescription">Buttercup er en av våre VM-tjenere.</p>
+                  <div class="serviceLink"><a href="https://buttercup.pvv.ntnu.no" target="_blank">Gå til buttercup.pvv.ntnu.no</a></div>
                 </div>
-                <img class="serviceImage" src="img/esxi.png" alt="ESXI-logo">
+                <img class="serviceImage" src="img/proxmox.png" alt="Proxmox-logo">
               </div>
             </div>
           </div>
