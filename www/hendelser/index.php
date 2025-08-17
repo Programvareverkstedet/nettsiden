@@ -66,9 +66,5 @@ $translation = ['I dag', 'I morgen', 'Denne uka', 'Neste uke', 'Denne måneden',
 			<?php } ?>
 		<?php } ?>
 
-		<div style="text-align: center; margin-bottom: 2em;">
-			<a style="padding-left: 2em; padding-right: 2em;" class="btn" style="" href="../kalender/">Kalender</a>
-		</div>
-
 	</main>
 </body>
