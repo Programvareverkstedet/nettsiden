@@ -149,7 +149,7 @@ require_once \dirname(__DIR__, 2) . implode(\DIRECTORY_SEPARATOR, ['', 'inc', 'i
                 <div class="serviceContent">
                   <h2 class="serviceTitle">Proxmox @buttercup</h2>
                   <p class="serviceDescription">Buttercup er en av våre VM-tjenere.</p>
-                  <div class="serviceLink"><a href="https://buttercup.pvv.ntnu.no" target="_blank">Gå til buttercup.pvv.ntnu.no</a></div>
+                  <div class="serviceLink"><a href="https://buttercup.pvv.ntnu.no:8006" target="_blank">Gå til buttercup.pvv.ntnu.no</a></div>
                 </div>
                 <img class="serviceImage" src="img/proxmox.png" alt="Proxmox-logo">
               </div>
