@@ -45,6 +45,7 @@ main {
 
 .serviceContent {
   flex-grow: 1;
+  margin-right: 4%;
 }
 
 .serviceTitle {
@@ -91,3 +92,18 @@ main {
   }
 }
 
+@media (max-width: 400px) {
+  .serviceImage {
+    width: 25%;
+    height: auto;
+  }
+  .serviceContent {
+    width: 50%;
+  }
+}
+
+@media (max-width: 360px) {
+  .serviceContent {
+    font-size: 14px;
+  }
+}
