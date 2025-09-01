@@ -109,8 +109,6 @@ $doorTime = date('H:i', $doorEntry->time);
 		</div>
 
 		<div class="gridl">
-      <img src="/sosiale/fadderuke-2025.png" width="100%">
-      <br>
 			<?php
         $title = $motd['title'];
 

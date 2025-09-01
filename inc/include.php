@@ -27,9 +27,9 @@ use pvv\side\Agenda;
 $agenda = new Agenda([
   // new \pvv\side\social\NerdepitsaActivity,
   // new \pvv\side\social\AnimekveldActivity,
-  // new pvv\side\social\HackekveldActivity(),
-  // new pvv\side\social\BrettspillActivity(),
-  // new pvv\side\social\DriftkveldActivity(),
+   new pvv\side\social\HackekveldActivity(),
+   new pvv\side\social\BrettspillActivity(),
+   new pvv\side\social\DriftkveldActivity(),
   new pvv\side\DBActivity($pdo),
 ]);
 
