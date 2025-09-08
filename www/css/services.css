@@ -24,6 +24,7 @@ main {
 }
 
 .categoryLabel {
+  padding-top: 5px;
   background-color: #002244;
   color: white;
 
@@ -92,7 +93,16 @@ main {
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 480px) {
+  .categoryContainer {
+    border-radius: unset;
+    border: unset;
+    box-shadow: unset;
+    margin-bottom: unset;
+  }
+  .serviceWrapper {
+    width: 100%;
+  }
   .serviceImage {
     width: 25%;
     height: auto;
