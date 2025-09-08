@@ -67,7 +67,6 @@ nav {
 	height: 3em;
 	display: table;
 	white-space: nowrap;
-	border: #024 0.1em solid;
 }
 nav #menu, nav #login {
 	display: table-cell;
