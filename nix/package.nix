@@ -7,7 +7,7 @@ php.buildComposerProject rec {
   src = ./..;
   pname = "pvv-nettsiden";
   version = "0.0.1";
-  vendorHash = "sha256-8UYf7FhrTKgCa2e8GwhU8EF1AfWzZtgseTZqUAGOL0U=";
+  vendorHash = "sha256-7I7Fdp5DvCwCdYY66Mv0hZ+a8xRzQt+WMUKG544k7Fc=";
 
   passthru.simplesamlphpPath = "share/php/pvv-nettsiden/vendor/simplesamlphp/simplesamlphp";
 
