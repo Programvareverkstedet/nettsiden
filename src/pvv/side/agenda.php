@@ -21,7 +21,7 @@ class Agenda {
     $this->activities = $activities;
   }
 
-  public static function getFormattedDate(\DateTime $date): string {
+  public static function getFormattedDate(\DateTimeImmutable $date): string {
     return $date->format('l j. M H.i');
   }
 
