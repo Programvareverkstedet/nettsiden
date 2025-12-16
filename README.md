@@ -35,3 +35,5 @@ To make your account into an admin account, run:
     sqlite3 pvv.sqlite "INSERT INTO users (uname, groups) VALUES ('YOUR_USERNAME', 1);"
 
 ## Hosting
+
+![](./.gitea/hosting.jpg)
