@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace pvv\side;
 
-use DateTime;
-use DateTimeImmutable;
-
 class Agenda {
   private array $activities;
 
@@ -24,8 +21,8 @@ class Agenda {
     $this->activities = $activities;
   }
 
-  public static function getFormattedDate(DateTime $date): string {
-    return $date->format("l j. M H.i");
+  public static function getFormattedDate(\DateTime $date): string {
+    return $date->format('l j. M H.i');
   }
 
   /**
@@ -74,7 +71,7 @@ class Agenda {
     $result = [[], [], [], [], [], []];
     $events = $this->getEventsBetween(
       new \DateTimeImmutable()->setTime(0, 0),
-      new \DateTimeImmutable()->setTime(23, 59)->add(new \DateInterval("P1M")),
+      new \DateTimeImmutable()->setTime(23, 59)->add(new \DateInterval('P1M')),
     );
     foreach ($events as $event) {
       $index = self::NEXT_MONTH;
@@ -108,8 +105,8 @@ class Agenda {
     );
     usort(
       $result,
-      static fn($a, $b) => $a->getStart()->getTimeStamp() <
-      $b->getStart()->getTimeStamp()
+      static fn($a, $b) => $a->getStart()->getTimeStamp()
+      < $b->getStart()->getTimeStamp()
         ? -1
         : 1,
     );
@@ -118,22 +115,22 @@ class Agenda {
   }
 
   public static function isToday(\DateTimeImmutable $date): bool {
-    return $date->format("dmY") == date("dmY");
+    return $date->format('dmY') === date('dmY');
   }
 
   public static function isTomorrow(\DateTimeImmutable $date): bool {
-    return $date->sub(new \DateInterval("P1D"))->format("dmY") == date("dmY");
+    return $date->sub(new \DateInterval('P1D'))->format('dmY') === date('dmY');
   }
 
   public static function isThisWeek(\DateTimeImmutable $date): bool {
-    return $date->format("WY") == date("WY");
+    return $date->format('WY') === date('WY');
   }
 
   public static function isNextWeek(\DateTimeImmutable $date): bool {
-    return $date->sub(new \DateInterval("P7D"))->format("WY") == date("WY");
+    return $date->sub(new \DateInterval('P7D'))->format('WY') === date('WY');
   }
 
   public static function isThisMonth(\DateTimeImmutable $date): bool {
-    return $date->format("mY") == date("mY");
+    return $date->format('mY') === date('mY');
   }
 }

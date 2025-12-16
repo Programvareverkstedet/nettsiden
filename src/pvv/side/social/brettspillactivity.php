@@ -9,19 +9,19 @@ use pvv\side\Activity;
 class BrettspillActivity implements Activity {
   public function nextDate(\DateTimeImmutable $date): \DateTimeImmutable {
     if (
-      intval($date->format("H")) > 17 ||
-      (intval($date->format("H")) === 16 && intval($date->format("i")) > 15)
+      (int) $date->format('H') > 17
+      || ((int) $date->format('H') === 16 && (int) $date->format('i') > 15)
     ) {
       return $this->nextDate(
-        $date->add(new \DateInterval("P1D"))->setTime(16, 15, 0),
+        $date->add(new \DateInterval('P1D'))->setTime(16, 15, 0),
       );
     }
     $date = $date->setTime(16, 15, 0);
-    if (intval($date->format("N")) !== 7) {
-      return $this->nextDate($date->add(new \DateInterval("P1D")));
+    if ((int) $date->format('N') !== 7) {
+      return $this->nextDate($date->add(new \DateInterval('P1D')));
     }
-    if ((intval($date->format("W")) % 2) - 1) {
-      return $this->nextDate($date->add(new \DateInterval("P7D")));
+    if (((int) $date->format('W') % 2) - 1) {
+      return $this->nextDate($date->add(new \DateInterval('P7D')));
     }
 
     return $date;
@@ -29,19 +29,19 @@ class BrettspillActivity implements Activity {
 
   public function prevDate(\DateTimeImmutable $date): \DateTimeImmutable {
     if (
-      intval($date->format("H")) < 16 ||
-      (intval($date->format("H")) === 17 && intval($date->format("i")) < 15)
+      (int) $date->format('H') < 16
+      || ((int) $date->format('H') === 17 && (int) $date->format('i') < 15)
     ) {
       return $this->prevDate(
-        $date->sub(new \DateInterval("P1D"))->setTime(16, 15, 0),
+        $date->sub(new \DateInterval('P1D'))->setTime(16, 15, 0),
       );
     }
     $date = $date->setTime(16, 15, 0);
-    if (intval($date->format("N")) !== 7) {
-      return $this->prevDate($date->sub(new \DateInterval("P1D")));
+    if ((int) $date->format('N') !== 7) {
+      return $this->prevDate($date->sub(new \DateInterval('P1D')));
     }
-    if ((intval($date->format("W")) % 2) - 1) {
-      return $this->prevDate($date->sub(new \DateInterval("P7D")));
+    if (((int) $date->format('W') % 2) - 1) {
+      return $this->prevDate($date->sub(new \DateInterval('P7D')));
     }
 
     return $date;

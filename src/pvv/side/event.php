@@ -4,44 +4,41 @@ declare(strict_types=1);
 
 namespace pvv\side;
 
-use DateTimeImmutable;
-use DateInterval;
-
 abstract class Event {
-  private DateTimeImmutable $start;
+  private \DateTimeImmutable $start;
 
-  public function __construct(DateTimeImmutable $start) {
+  public function __construct(\DateTimeImmutable $start) {
     $this->start = $start;
   }
 
-  public function getStart(): DateTimeImmutable {
+  public function getStart(): \DateTimeImmutable {
     return $this->start;
   }
 
   public function getRelativeDate(): string {
     if (Agenda::isToday($this->getStart())) {
-      return "i dag";
+      return 'i dag';
     }
     if (Agenda::isTomorrow($this->getStart())) {
-      return "i morgen";
+      return 'i morgen';
     }
     if (
-      Agenda::isThisWeek($this->getStart()) ||
-      $this->getStart()->sub(new DateInterval("P4D"))->getTimestamp() < time()
+      Agenda::isThisWeek($this->getStart())
+      || $this->getStart()->sub(new \DateInterval('P4D'))->getTimestamp() < time()
     ) {
-      return $this->getStart()->format("l");
+      return $this->getStart()->format('l');
     }
     if (Agenda::isNextWeek($this->getStart())) {
-      return "neste uke";
+      return 'neste uke';
     }
     if (Agenda::isThisMonth($this->getStart())) {
-      return "denne måneden";
+      return 'denne måneden';
     }
 
-    return $this->getStart()->format("j. F");
+    return $this->getStart()->format('j. F');
   }
 
-  abstract public function getStop(): DateTimeImmutable;
+  abstract public function getStop(): \DateTimeImmutable;
 
   abstract public function getName(): string;
 
@@ -53,7 +50,7 @@ abstract class Event {
 
   abstract public function getImageURL(): string;
 
-  /*
+  /**
    * @return string[]
    */
   abstract public function getDescription(): array;

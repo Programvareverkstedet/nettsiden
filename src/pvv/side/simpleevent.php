@@ -4,14 +4,12 @@ declare(strict_types=1);
 
 namespace pvv\side;
 
-use DateTimeImmutable;
-
 class SimpleEvent extends Event {
   private int $id;
   private string $name;
   private array $descr;
-  private DateTimeImmutable $start;
-  private DateTimeImmutable $end;
+  private \DateTimeImmutable $start;
+  private \DateTimeImmutable $end;
   private string $org;
   private string $loc;
 
@@ -38,11 +36,11 @@ class SimpleEvent extends Event {
     return $this->id;
   }
 
-  public function getStart(): DateTimeImmutable {
+  public function getStart(): \DateTimeImmutable {
     return $this->start;
   }
 
-  public function getStop(): DateTimeImmutable {
+  public function getStop(): \DateTimeImmutable {
     return $this->end;
   }
 
@@ -59,11 +57,11 @@ class SimpleEvent extends Event {
   }
 
   public function getURL(): string {
-    return "/hendelser/info.php?id=" . $this->id;
+    return '/hendelser/info.php?id=' . $this->id;
   }
 
   public function getImageURL(): string {
-    return "/";
+    return '/';
   }
 
   public function getDescription(): array {
@@ -71,6 +69,6 @@ class SimpleEvent extends Event {
   }
 
   public function getColor(): string {
-    return "#3b7";
+    return '#3b7';
   }
 }

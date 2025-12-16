@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace pvv\admin;
 
-use PDO;
-
 class UserManager {
-  private PDO $pdo;
+  private \PDO $pdo;
 
   public array $usergroups = [
     'admin' => 1,
@@ -15,7 +13,7 @@ class UserManager {
     'aktiviteter' => 4,
   ];
 
-  public function __construct(PDO $pdo) {
+  public function __construct(\PDO $pdo) {
     $this->pdo = $pdo;
   }
 

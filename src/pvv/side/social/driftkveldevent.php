@@ -4,11 +4,10 @@ declare(strict_types=1);
 
 namespace pvv\side\social;
 
-use DateTimeImmutable;
 use pvv\side\Event;
 
 class DriftkveldEvent extends Event {
-  public function getStop(): DateTimeImmutable {
+  public function getStop(): \DateTimeImmutable {
     return $this->getStart()->add(new \DateInterval('PT4H1800S'));
   }
 
