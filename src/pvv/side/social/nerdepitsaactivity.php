@@ -5,9 +5,10 @@ declare(strict_types=1);
 namespace pvv\side\social;
 
 use pvv\side\Activity;
+use pvv\side\Event;
 
 class NerdepitsaActivity implements Activity {
-  public function nextDate(\DateTimeImmutable $date) {
+  public function nextDate(\DateTimeImmutable $date): \DateTimeImmutable {
     if (intval($date->format('H')) > 19) {
       return $this->nextDate($date->add(new \DateInterval('P1D'))->setTime(19, 0, 0));
     }
@@ -22,7 +23,7 @@ class NerdepitsaActivity implements Activity {
     return $date;
   }
 
-  public function prevDate(\DateTimeImmutable $date) {
+  public function prevDate(\DateTimeImmutable $date): \DateTimeImmutable {
     if (intval($date->format('H')) < 19) {
       return $this->prevDate($date->sub(new \DateInterval('P1D'))->setTime(19, 0, 0));
     }
@@ -37,11 +38,11 @@ class NerdepitsaActivity implements Activity {
     return $date;
   }
 
-  public function getNextEventFrom(\DateTimeImmutable $date) { /* : Event */
+  public function getNextEventFrom(\DateTimeImmutable $date): ?Event {
     return new NerdepitsaEvent($this->nextDate($date));
   }
 
-  public function getPreviousEventFrom(\DateTimeImmutable $date) { /* : Event */
+  public function getPreviousEventFrom(\DateTimeImmutable $date): ?Event {
     return new NerdepitsaEvent($this->prevDate($date));
   }
 }

@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace pvv\side\social;
 
+use DateTimeImmutable;
 use pvv\side\Activity;
 
 class HackekveldActivity implements Activity {
-  public function nextDate(\DateTimeImmutable $date) {
+  public function nextDate(\DateTimeImmutable $date): DateTimeImmutable {
     if (intval($date->format('H')) > 18 || intval($date->format('H')) === 17 && intval($date->format('i')) > 30) {
       return $this->nextDate($date->add(new \DateInterval('P1D'))->setTime(18, 15, 0));
     }
@@ -22,7 +23,7 @@ class HackekveldActivity implements Activity {
     return $date;
   }
 
-  public function prevDate(\DateTimeImmutable $date) {
+  public function prevDate(\DateTimeImmutable $date): DateTimeImmutable {
     if (intval($date->format('H')) < 17 || intval($date->format('H')) === 18 && intval($date->format('i')) < 30) {
       return $this->prevDate($date->sub(new \DateInterval('P1D'))->setTime(18, 15, 0));
     }
@@ -37,11 +38,11 @@ class HackekveldActivity implements Activity {
     return $date;
   }
 
-  public function getNextEventFrom(\DateTimeImmutable $date) { /* : Event */
+  public function getNextEventFrom(\DateTimeImmutable $date): HackekveldEvent {
     return new HackekveldEvent($this->nextDate($date));
   }
 
-  public function getPreviousEventFrom(\DateTimeImmutable $date) { /* : Event */
+  public function getPreviousEventFrom(\DateTimeImmutable $date): HackekveldEvent {
     return new HackekveldEvent($this->prevDate($date));
   }
 }

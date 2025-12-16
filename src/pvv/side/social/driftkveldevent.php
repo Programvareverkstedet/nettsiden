@@ -4,34 +4,35 @@ declare(strict_types=1);
 
 namespace pvv\side\social;
 
+use DateTimeImmutable;
 use pvv\side\Event;
 
 class DriftkveldEvent extends Event {
-  public function getStop() {
+  public function getStop(): DateTimeImmutable {
     return $this->getStart()->add(new \DateInterval('PT4H1800S'));
   }
 
-  public function getName() { /* : string */
+  public function getName(): string {
     return 'Driftkveld';
   }
 
-  public function getLocation() { /* : Location */
+  public function getLocation(): string {
     return 'Terminalrommet / Discord / IRC';
   }
 
-  public function getOrganiser() { /* : User */
+  public function getOrganiser(): string {
     return 'Torstein Nordgård-Hansen';
   }
 
-  public function getURL() { /* : string */
+  public function getURL(): string {
     return '/driftkveld/';
   }
 
-  public function getImageURL() {
+  public function getImageURL(): string {
     return '/sosiale/drift.jpg';
   }
 
-  public function getDescription() {
+  public function getDescription(): array {
     return [
       'Vil du drifte?',
       'Vil du være kul kis TM?',
@@ -42,7 +43,7 @@ class DriftkveldEvent extends Event {
     ];
   }
 
-  public function getColor() {
+  public function getColor(): string {
     return '#35a';
   }
 }

@@ -7,31 +7,31 @@ namespace pvv\side\social;
 use pvv\side\Event;
 
 class NerdepitsaEvent extends Event {
-  public function getStop() {
+  public function getStop(): \DateTimeImmutable {
     return $this->getStart()->add(new \DateInterval('PT2H1800S'));
   }
 
-  public function getName() {
+  public function getName(): string {
     return 'Nerdepitsa';
   }
 
-  public function getLocation() { /* : Location */
+  public function getLocation(): string {
     return 'Peppes Kjøpmansgata';
   }
 
-  public function getOrganiser() { /* : User */
+  public function getOrganiser(): string {
     return 'Anders Christensen';
   }
 
-  public function getURL() { /* : string */
+  public function getURL(): string {
     return '/nerdepitsa/';
   }
 
-  public function getImageURL() {
+  public function getImageURL(): string {
     return '/sosiale/nerdepitsa.jpg';
   }
 
-  public function getDescription() {
+  public function getDescription(): array {
     return [
       'Hei, har du lyst til å bli med på pizzaspising annenhver fredag? Vi møtes på Peppes i Kjøpmannsgata fredag klokken 19.00 hver partallsuke!',
       '',
@@ -43,7 +43,7 @@ class NerdepitsaEvent extends Event {
     ];
   }
 
-  public function getColor() {
+  public function getColor(): string {
     return '#c35';
   }
 }

@@ -4,20 +4,22 @@ declare(strict_types=1);
 
 namespace pvv\admin;
 
-class UserManager {
-  private $pdo;
+use PDO;
 
-  public $usergroups = [
+class UserManager {
+  private PDO $pdo;
+
+  public array $usergroups = [
     'admin' => 1,
     'prosjekt' => 2,
     'aktiviteter' => 4,
   ];
 
-  public function __construct($pdo) {
+  public function __construct(PDO $pdo) {
     $this->pdo = $pdo;
   }
 
-  public function setupUser($uname, $groups = 0): void {
+  public function setupUser(string $uname, int $groups = 0): void {
     $query = 'INSERT INTO users (uname, groups) VALUES (:uname, :groups)';
     $statement = $this->pdo->prepare($query);
     $statement->bindParam(':uname', $uname, \PDO::PARAM_STR);
@@ -25,14 +27,14 @@ class UserManager {
     $statement->execute();
   }
 
-  public function updateFlags($uname, $flags): void {
+  public function updateFlags(string $uname, int $flags): void {
     $query = 'UPDATE users set groups=:groups WHERE uname=:uname';
     $statement = $this->pdo->prepare($query);
     $statement->bindParam(':groups', $flags, \PDO::PARAM_INT);
     $statement->bindParam(':uname', $uname, \PDO::PARAM_STR);
   }
 
-  public function addGroup($uname, $group): void {
+  public function addGroup(string $uname, int $group): void {
     $userFlags = $this->getUsergroups($uname);
 
     if ($userFlags) {
@@ -41,7 +43,7 @@ class UserManager {
     }
   }
 
-  public function removeGroup($uname, $group): void {
+  public function removeGroup(string $uname, int $group): void {
     $userFlags = $this->getUsergroups($uname);
 
     if ($userFlags) {
@@ -50,7 +52,7 @@ class UserManager {
     }
   }
 
-  public function setGroups($uname, $groups): void {
+  public function setGroups(string $uname, int $groups): void {
     $query = 'SELECT * FROM users WHERE uname=:uname LIMIT 1';
     $statement = $this->pdo->prepare($query);
     $statement->bindParam(':uname', $uname, \PDO::PARAM_STR);
@@ -68,18 +70,18 @@ class UserManager {
     }
   }
 
-  public function hasGroup($uname, $groupName) {
+  public function hasGroup(string $uname, string $groupName): bool {
     $userFlags = $this->getUsergroups($uname);
 
-    return $userFlags & $this->usergroups[$groupName];
+    return (bool) ($userFlags & $this->usergroups[$groupName]);
   }
 
   // for convenience
-  public function isAdmin($uname) {
+  public function isAdmin(string $uname): bool {
     return $this->hasGroup($uname, 'admin');
   }
 
-  public function getFlagfromNames($names) {
+  public function getFlagfromNames(array $names): int {
     $resultFlag = 0;
 
     foreach ($this->usergroups as $name => $flag) {
@@ -91,7 +93,7 @@ class UserManager {
     return $resultFlag;
   }
 
-  public function getUsergroups($uname) {
+  public function getUsergroups(string $uname): int {
     $query = 'SELECT groups FROM users WHERE uname=:uname LIMIT 1';
     $statement = $this->pdo->prepare($query);
     $statement->bindParam(':uname', $uname, \PDO::PARAM_STR);
@@ -105,7 +107,10 @@ class UserManager {
     return $row[0];
   }
 
-  public function getUsergroupNames($uname) {
+  /**
+   * @return string[]
+   */
+  public function getUsergroupNames($uname): array {
     $usersGroups = [];
 
     $userFlags = $this->getUsergroups($uname);
@@ -119,7 +124,10 @@ class UserManager {
     return $usersGroups;
   }
 
-  public function getAllUserData() {
+  /**
+   * @return array<int,array{name:string,groups:string[]}>
+   */
+  public function getAllUserData(): array {
     $query = 'SELECT uname FROM users ORDER BY uname ASC';
     $statement = $this->pdo->prepare($query);
     $statement->execute();

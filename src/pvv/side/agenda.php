@@ -4,25 +4,37 @@ declare(strict_types=1);
 
 namespace pvv\side;
 
+use DateTime;
+use DateTimeImmutable;
+
 class Agenda {
-  private $activities;
+  private array $activities;
 
-  public const TODAY = 0;
-  public const TOMORROW = 1;
-  public const THIS_WEEK = 2;
-  public const NEXT_WEEK = 3;
-  public const THIS_MONTH = 4;
-  public const NEXT_MONTH = 5;
+  public const int TODAY = 0;
+  public const int TOMORROW = 1;
+  public const int THIS_WEEK = 2;
+  public const int NEXT_WEEK = 3;
+  public const int THIS_MONTH = 4;
+  public const int NEXT_MONTH = 5;
 
-  public function __construct($activities) {
+  /**
+   * @param array<int,DBActivity> $activities
+   */
+  public function __construct(array $activities) {
     $this->activities = $activities;
   }
 
-  public static function getFormattedDate($date) {
-    return $date->format('l j. M H.i');
+  public static function getFormattedDate(DateTime $date): string {
+    return $date->format("l j. M H.i");
   }
 
-  public function getEventsBetween(\DateTimeImmutable $from, \DateTimeImmutable $to) {
+  /**
+   * @return array<Event>
+   */
+  public function getEventsBetween(
+    \DateTimeImmutable $from,
+    \DateTimeImmutable $to,
+  ) {
     $results = [];
     for ($i = 0; $i < \count($this->activities); ++$i) {
       $result = [];
@@ -47,16 +59,22 @@ class Agenda {
         $result[] = $b;
       }
     }
-    usort($result, static fn($a, $b) => ($a->getStart() < $b->getStart()) ? -1 : 1);
+    usort(
+      $result,
+      static fn($a, $b) => $a->getStart() < $b->getStart() ? -1 : 1,
+    );
 
     return $result;
   }
 
-  public function getNextDays() {
+  /**
+   * @return array<int,array>
+   */
+  public function getNextDays(): array {
     $result = [[], [], [], [], [], []];
     $events = $this->getEventsBetween(
-      (new \DateTimeImmutable())->setTime(0, 0),
-      (new \DateTimeImmutable())->setTime(23, 59)->add(new \DateInterval('P1M'))
+      new \DateTimeImmutable()->setTime(0, 0),
+      new \DateTimeImmutable()->setTime(23, 59)->add(new \DateInterval("P1M")),
     );
     foreach ($events as $event) {
       $index = self::NEXT_MONTH;
@@ -77,38 +95,45 @@ class Agenda {
     return $result;
   }
 
-  public function getNextOfEach(\DateTimeImmutable $startDate) {
-    $result = array_filter(array_map(
-      static fn($a) => $a->getNextEventFrom($startDate),
-      $this->activities
-    ), static fn($a) => isset($a));
+  /**
+   * @return array<Event>
+   */
+  public function getNextOfEach(\DateTimeImmutable $startDate): array {
+    $result = array_filter(
+      array_map(
+        static fn($a) => $a->getNextEventFrom($startDate),
+        $this->activities,
+      ),
+      static fn($a) => isset($a),
+    );
     usort(
       $result,
-      static fn($a, $b) => ($a->getStart()->getTimeStamp() < $b->getStart()->getTimeStamp())
-            ? -1
-            : 1
+      static fn($a, $b) => $a->getStart()->getTimeStamp() <
+      $b->getStart()->getTimeStamp()
+        ? -1
+        : 1,
     );
 
     return $result;
   }
 
-  public static function isToday(\DateTimeImmutable $date) {
-    return $date->format('dmY') == date('dmY');
+  public static function isToday(\DateTimeImmutable $date): bool {
+    return $date->format("dmY") == date("dmY");
   }
 
-  public static function isTomorrow(\DateTimeImmutable $date) {
-    return $date->sub(new \DateInterval('P1D'))->format('dmY') == date('dmY');
+  public static function isTomorrow(\DateTimeImmutable $date): bool {
+    return $date->sub(new \DateInterval("P1D"))->format("dmY") == date("dmY");
   }
 
-  public static function isThisWeek(\DateTimeImmutable $date) {
-    return $date->format('WY') == date('WY');
+  public static function isThisWeek(\DateTimeImmutable $date): bool {
+    return $date->format("WY") == date("WY");
   }
 
-  public static function isNextWeek(\DateTimeImmutable $date) {
-    return $date->sub(new \DateInterval('P7D'))->format('WY') == date('WY');
+  public static function isNextWeek(\DateTimeImmutable $date): bool {
+    return $date->sub(new \DateInterval("P7D"))->format("WY") == date("WY");
   }
 
-  public static function isThisMonth(\DateTimeImmutable $date) {
-    return $date->format('mY') == date('mY');
+  public static function isThisMonth(\DateTimeImmutable $date): bool {
+    return $date->format("mY") == date("mY");
   }
 }

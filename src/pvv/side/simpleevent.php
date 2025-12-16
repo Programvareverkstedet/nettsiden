@@ -4,16 +4,27 @@ declare(strict_types=1);
 
 namespace pvv\side;
 
-class SimpleEvent extends Event {
-  private $id;
-  private $name;
-  private $descr;
-  private $start;
-  private $end;
-  private $org;
-  private $loc;
+use DateTimeImmutable;
 
-  public function __construct($id, $name, \DateTimeImmutable $start, \DateTimeImmutable $end, $org, $loc, $descr, $_isDBEvent = false) {
+class SimpleEvent extends Event {
+  private int $id;
+  private string $name;
+  private array $descr;
+  private DateTimeImmutable $start;
+  private DateTimeImmutable $end;
+  private string $org;
+  private string $loc;
+
+  public function __construct(
+    int $id,
+    string $name,
+    \DateTimeImmutable $start,
+    \DateTimeImmutable $end,
+    string $org,
+    string $loc,
+    string $descr,
+    bool $_isDBEvent = false,
+  ) {
     $this->id = $id;
     $this->name = $name;
     $this->start = $start;
@@ -23,41 +34,43 @@ class SimpleEvent extends Event {
     $this->descr = explode("\n", $descr);
   }
 
-  public function getID() {
+  public function getID(): int {
     return $this->id;
   }
 
-  public function getStart() {
+  public function getStart(): DateTimeImmutable {
     return $this->start;
   }
 
-  public function getStop() {
+  public function getStop(): DateTimeImmutable {
     return $this->end;
   }
 
-  public function getOrganiser() {
+  public function getOrganiser(): string {
     return $this->org;
   }
 
-  public function getLocation() {
+  public function getLocation(): string {
     return $this->loc;
   }
 
-  public function getName() {
+  public function getName(): string {
     return $this->name;
   }
 
-  public function getURL() {
-    return '/hendelser/info.php?id=' . $this->id;
+  public function getURL(): string {
+    return "/hendelser/info.php?id=" . $this->id;
   }
 
-  public function getImageURL(): void {}
+  public function getImageURL(): string {
+    return "/";
+  }
 
-  public function getDescription() {
+  public function getDescription(): array {
     return $this->descr;
   }
 
-  public function getColor() {
-    return '#3b7';
+  public function getColor(): string {
+    return "#3b7";
   }
 }

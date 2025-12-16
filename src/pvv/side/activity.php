@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace pvv\side;
 
-interface Activity {
-  public function getNextEventFrom(\DateTimeImmutable $date) /* : Event */;
+use pvv\side\Event;
 
-  public function getPreviousEventFrom(\DateTimeImmutable $date) /* : Event */;
+interface Activity {
+  public function getNextEventFrom(\DateTimeImmutable $date): ?Event;
+
+  public function getPreviousEventFrom(\DateTimeImmutable $date): ?Event;
 }
