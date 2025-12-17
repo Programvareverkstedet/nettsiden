@@ -16,13 +16,13 @@ $config = [
             'user:user' => [
                 'uid' => ['user'],
                 'group' => ['users'],
-                'cn' => '/home/pvv/d/user',
+                'cn' => 'Ole Petter',
                 'mail' => 'user+test@pvv.ntnu.no',
             ],
             'admin:admin' => [
                 'uid' => ['admin'],
-                'group' => ['admins'],
-                'cn' => '/home/pvv/d/admin',
+                'group' => ['admin'],
+                'cn' => 'Admin Adminsson',
                 'mail' => 'admin+test@pvv.ntnu.no',
             ],
         ],
