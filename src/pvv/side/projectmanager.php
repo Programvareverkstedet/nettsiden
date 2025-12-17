@@ -25,7 +25,7 @@ class ProjectManager {
         $dbProj['id'],
         $dbProj['name'],
         $dbProj['description'],
-        $dbProj['active'],
+        (bool) $dbProj['active'],
       );
       $projects[] = $project;
     }
@@ -48,7 +48,7 @@ class ProjectManager {
       $dbProj['id'],
       $dbProj['name'],
       $dbProj['description'],
-      $dbProj['active'],
+      (bool) $dbProj['active'],
     );
   }
 
@@ -76,7 +76,7 @@ class ProjectManager {
           $dbProj['id'],
           $dbProj['name'],
           $dbProj['description'],
-          $dbProj['active'],
+          (bool) $dbProj['active'],
         );
         $projects[] = $project;
       }
@@ -101,8 +101,8 @@ class ProjectManager {
         'uname' => $dbUsr['uname'],
         'mail' => $dbUsr['mail'],
         'role' => $dbUsr['role'],
-        'lead' => $dbUsr['lead'],
-        'owner' => $dbUsr['owner'],
+        'lead' => (bool) $dbUsr['lead'],
+        'owner' => (bool) $dbUsr['owner'],
       ];
     }
 
@@ -125,8 +125,8 @@ class ProjectManager {
       'uname' => $dbOwner['uname'],
       'mail' => $dbOwner['mail'],
       'role' => $dbOwner['role'],
-      'lead' => $dbOwner['lead'],
-      'owner' => $dbOwner['owner'],
+      'lead' => (bool) $dbOwner['lead'],
+      'owner' => (bool) $dbOwner['owner'],
     ];
   }
 }

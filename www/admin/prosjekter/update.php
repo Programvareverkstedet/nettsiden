@@ -33,7 +33,7 @@ $desc = $_POST['desc'];
 $name = $_POST['organisername'];
 $uname = $_POST['organiser'];
 $mail = $_POST['organiseremail'];
-$active = ($_POST['active'] ?? 0);
+$active = ($_POST['active'] ?? false);
 
 
 if ($id == 0) {
@@ -42,7 +42,7 @@ if ($id == 0) {
 
   $statement->bindParam(':title', $title, PDO::PARAM_STR);
   $statement->bindParam(':desc', $desc, PDO::PARAM_STR);
-  $statement->bindParam(':active', $active, PDO::PARAM_INT);
+  $statement->bindParam(':active', $active, PDO::PARAM_BOOL);
 
   $statement->execute();
 
@@ -59,7 +59,7 @@ if ($id == 0) {
 
   $statement->bindParam(':title', $title, PDO::PARAM_STR);
   $statement->bindParam(':desc', $desc, PDO::PARAM_STR);
-  $statement->bindParam(':active', $active, PDO::PARAM_INT);
+  $statement->bindParam(':active', $active, PDO::PARAM_BOOL);
   $statement->bindParam(':id', $id, PDO::PARAM_INT);
 
   $statement->execute();

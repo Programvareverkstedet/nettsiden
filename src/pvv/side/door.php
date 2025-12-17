@@ -78,7 +78,7 @@ class Door {
     $query = 'INSERT INTO door(time, open) VALUES (:time, :open)';
     $statement = $this->pdo->prepare($query);
     $statement->bindParam(':time', $time, \PDO::PARAM_STR);
-    $statement->bindParam(':open', $open, \PDO::PARAM_STR);
+    $statement->bindParam(':open', $open, \PDO::PARAM_BOOL);
     $statement->execute();
 
     $this->removeOld();

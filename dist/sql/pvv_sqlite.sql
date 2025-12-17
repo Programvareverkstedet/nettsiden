@@ -12,7 +12,7 @@ CREATE TABLE "projects" (
   "id" INTEGER PRIMARY KEY AUTOINCREMENT,
   "name" TEXT,
   "description" TEXT,
-  "active" BOOLEAN
+  "active" BOOLEAN DEFAULT TRUE
 );
 
 CREATE TABLE "projectmembers" (
@@ -21,8 +21,8 @@ CREATE TABLE "projectmembers" (
   "uname" TEXT,
   "mail" TEXT,
   "role" TEXT,
-  "lead" BOOLEAN DEFAULT 0,
-  "owner" BOOLEAN DEFAULT 0
+  "lead" BOOLEAN DEFAULT FALSE,
+  "owner" BOOLEAN DEFAULT FALSE
 );
 
 CREATE TABLE "users" ("uname" TEXT, "groups" INT DEFAULT 0);
