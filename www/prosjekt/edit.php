@@ -14,38 +14,45 @@ $pdo = new PDO($DB_DSN, $DB_USER, $DB_PASS);
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $projectManager = new pvv\side\ProjectManager($pdo);
 
-$new = 0;
+$project_is_new = false;
 if (isset($_GET['new'])) {
-  $new = $_GET['new'];
+  $project_is_new = $_GET['new'];
 }
 
 $projectID = 0;
 if (isset($_GET['id'])) {
   $projectID = $_GET['id'];
-} elseif ($new == 0) {
+} elseif (!$project_is_new) {
   echo "\nID not set";
   exit;
 }
 
 $project = new pvv\side\Project(
-  0,
-  'Nytt Prosjekt',
-  '',
-  $attrs['cn'][0],
-  $attrs['uid'][0],
-  $attrs['mail'][0],
-  1
+  id: 0,
+  title: 'Nytt Prosjekt',
+  description_en: null,
+  description_no: null,
+  gitea_link: null,
+  issue_board_link: null,
+  wiki_link: null,
+  programming_languages: null,
+  technologies: null,
+  keywords: null,
+  license: null,
+  logo_url: null
 );
-// if ($new == 0) {
-//   $project = $projectManager->getByID($projectID);
-//   $maintainers = $projectManager->getProjectMaintainers($projectID);
 
-//   if ($owner['uname'] != $attrs['uid'][0]) {
-//     header('HTTP/1.0 403 Forbidden');
-//     echo 'wrong user';
-//     exit;
-//   }
-// }
+if (!$project_is_new) {
+  $project = $projectManager->getByID($projectID);
+  $maintainers = $projectManager->getProjectMaintainers($projectID);
+
+  if ($owner['uname'] != $attrs['uid'][0]) {
+    header('HTTP/1.0 403 Forbidden');
+    echo 'wrong user';
+    exit;
+  }
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="no">
@@ -87,11 +94,11 @@ $project = new pvv\side\Project(
 
 			<p class="subtitle no-chin">Gitea-link</p>
 			<p class="subnote">Link til prosjektet på Gitea</p>
-			<input class="wide" type="text" name="gitea" value="<?php echo $project->getGiteaLink(); ?>" class="boxinput" required><br>
+			<input class="wide" type="text" name="gitea" value="<?php echo $project->getGiteaLink(); ?>" class="boxinput"><br>
 
 			<p class="subtitle no-chin">Issue board-link</p>
 			<p class="subnote">Link til issue board på Gitea</p>
-			<input class="wide" type="text" name="issue" value="<?php echo $project->getIssueBoardLink(); ?>" class="boxinput" required><br>
+			<input class="wide" type="text" name="issue" value="<?php echo $project->getIssueBoardLink(); ?>" class="boxinput"><br>
 
 			<p class="subtitle no-chin">Wiki-link</p>
 			<p class="subnote">Link til wiki-side</p>
@@ -99,15 +106,15 @@ $project = new pvv\side\Project(
 
 			<p class="subtitle no-chin">Programmeringsspråk</p>
 			<p class="subnote">Hvilke programmeringsspråk brukes i prosjektet?</p>
-			<input class="wide" type="text" name="langs" value="<?php echo $project->getProgrammingLanguages(); ?>" class="boxinput"><br>
+			<input class="wide" type="text" name="langs" value="<?php echo implode("\n", $project->getProgrammingLanguages()); ?>" class="boxinput"><br>
 
 			<p class="subtitle no-chin">Teknologier</p>
 			<p class="subnote">Hvilke teknologier brukes i prosjektet?</p>
-			<input class="wide" type="text" name="techs" value="<?php echo $project->getTechnologies(); ?>" class="boxinput"><br>
+			<input class="wide" type="text" name="techs" value="<?php echo implode("\n", $project->getTechnologies()); ?>" class="boxinput"><br>
 
 			<p class="subtitle no-chin">Nøkkelord</p>
 			<p class="subnote">Nøkkelord som beskriver prosjektet</p>
-			<input class="wide" type="text" name="keywords" value="<?php echo $project->getKeywords(); ?>" class="boxinput"><br>
+			<input class="wide" type="text" name="keywords" value="<?php echo implode("\n", $project->getKeywords()); ?>" class="boxinput"><br>
 
 			<p class="subtitle no-chin">Lisens</p>
 			<p class="subnote">Hvilken lisens bruker prosjektet?</p>
@@ -122,8 +129,8 @@ $project = new pvv\side\Project(
 
 			<div style="margin-top: 0.2em;">
 				<hr class="ruler">
-				 <input type="submit" class="btn" value="<?php echo $new ? 'Opprett prosjekt' : 'Lagre endringer'; ?>"></input>
-				 <?php if (!$new) {?><input type="submit" class="btn" name="delete" value="Slett"></input><?php } ?>
+				 <input type="submit" class="btn" value="<?php echo $project_is_new ? 'Opprett prosjekt' : 'Lagre endringer'; ?>"></input>
+				 <?php if (!$project_is_new) {?><input type="submit" class="btn" name="delete" value="Slett"></input><?php } ?>
 			</div>
 		</form>
 	</main>

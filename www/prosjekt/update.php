@@ -29,8 +29,14 @@ $uname = $attrs['uid'][0];
 $mail = $attrs['mail'][0];
 
 
-if ($id == 0) {
-  $query = 'INSERT INTO projects (name, description, active) VALUES (:title, :desc, TRUE)';
+
+if ($id == 0) { // Create new project
+  $query = <<<END
+    INSERT INTO
+      project(name, description, active)
+    VALUES
+      (:title, :desc, :active)
+  END;
   $statement = $pdo->prepare($query);
 
   $statement->bindParam(':title', $title, PDO::PARAM_STR);
@@ -39,7 +45,7 @@ if ($id == 0) {
   $statement->execute();
   $new_id = $pdo->lastInsertId();
 
-  $ownerQuery = "INSERT INTO projectmembers (projectid, name, uname, mail, role, lead, owner) VALUES (:id, :owner, :owneruname, :owneremail, 'Prosjektleder', TRUE, TRUE)";
+  $ownerQuery = "INSERT INTO project_maintainer (projectid, name, uname, mail, role, lead, owner) VALUES (:id, :owner, :owneruname, :owneremail, 'Prosjektleder', TRUE, TRUE)";
   $statement = $pdo->prepare($ownerQuery);
   $statement->bindParam(':id', $new_id, PDO::PARAM_STR);
   $statement->bindParam(':owner', $name, PDO::PARAM_STR);
@@ -47,7 +53,7 @@ if ($id == 0) {
   $statement->bindParam(':owneremail', $mail, PDO::PARAM_STR);
 
   $statement->execute();
-} else {
+} else { // Update existing project
   $projectManager = new pvv\side\ProjectManager($pdo);
   $owner = $projectManager->getProjectOwner($id);
   $members = $projectManager->getProjectMembers($id);
