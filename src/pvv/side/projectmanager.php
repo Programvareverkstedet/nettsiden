@@ -142,4 +142,33 @@ class ProjectManager {
 
     return $maintainers;
   }
+
+  /**
+   * @return array{name:string,uname:string,link:string,mail:string}|null
+   */
+  public function getProjectOwner(int $id): ?array {
+    $query = '
+      SELECT name, uname, link, mail FROM project
+      JOIN project__project_maintainer ON project.id = project__project_maintainer.project_id
+      JOIN project_maintainer ON project__project_maintainer.uname = project_maintainer.uname
+      WHERE project.id = :id AND project__project_maintainer.owner = TRUE
+      LIMIT 1
+    ';
+
+    $statement = $this->pdo->prepare($query);
+    $statement->bindParam(':id', $id, \PDO::PARAM_STR);
+    $statement->execute();
+
+    $owner = $statement->fetch();
+    if (!$owner) {
+      return null;
+    }
+
+    return [
+      'name' => $owner['name'],
+      'uname' => $owner['uname'],
+      'link' => $owner['link'],
+      'mail' => $owner['mail'],
+    ];
+  }
 }

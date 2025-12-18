@@ -68,10 +68,16 @@ class Project {
     return $this->title;
   }
 
+  /**
+   * @return string[]
+   */
   public function getDescriptionEn(): array {
     return $this->description_en;
   }
 
+  /**
+   * @return string[]
+   */
   public function getDescriptionNo(): array {
     return $this->description_no;
   }
@@ -88,14 +94,23 @@ class Project {
     return $this->wiki_link;
   }
 
+  /**
+   * @return string[]
+   */
   public function getProgrammingLanguages(): array {
     return $this->programming_languages;
   }
 
+  /**
+   * @return string[]
+   */
   public function getTechnologies(): array {
     return $this->technologies;
   }
 
+  /**
+   * @return string[]
+   */
   public function getKeywords(): array {
     return $this->keywords;
   }

@@ -92,16 +92,28 @@ $projects = $projectManager->getAll();
           $owner = $projectManager->getProjectOwner($project->getID());
       ?>
 
-			<a class="nostyle" href="info.php?id=<?php echo $project->getID(); ?>"><div class="project-card">
-				<div class="card-content">
-					<h4 class="project-title"><?php echo $project->getName(); ?></h4>
-					<?php
-            $Parsedown = new Parsedown();
-            echo $Parsedown->text(implode("\n", array_slice($project->getDescription(), 0, 2)));
-          ?>
-				</div>
-				<p class="project-organizer">Organisert av <?php echo $owner['name']; ?></p>
-			</div></a>
+			<a class="nostyle" href="info.php?id=<?php echo $project->getID(); ?>">
+			  <div class="project-card">
+			  	<div class="card-content">
+			  		<h4 class="project-title"><?php echo $project->getTitle(); ?></h4>
+						<p>
+			  		  <?php
+                $Parsedown = new Parsedown();
+                echo $Parsedown->text(implode("\n", array_slice($project->getDescriptionNo(), 0, 2)));
+              ?>
+						</p>
+						<?php echo $project->getGiteaLink() ?>
+						<?php echo $project->getIssueBoardLink() ?>
+						<?php echo $project->getLogoURL() ?>
+						<?php echo $project->getProgrammingLanguages() ?>
+						<?php echo $project->getTechnologies() ?>
+						<?php echo $project->getKeywords() ?>
+						<?php echo $project->getLicense() ?>
+						<?php echo $project->getWikiLink() ?>
+			  	</div>
+			  	<p class="project-organizer">Organisert av <?php echo $owner['name']; ?></p>
+			  </div>
+			</a>
 			<?php } ?>
 			</div>
 			<center>
