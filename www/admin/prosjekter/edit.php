@@ -37,13 +37,18 @@ if (isset($_GET['id'])) {
 }
 
 $project = new pvv\side\Project(
-  0,
-  'Kult Prosjekt',
-  '',
-  'kåre knoll',
-  'pvvadmin',
-  'drift@pvv.ntnu.no',
-  0
+  id: 0,
+  title: 'Kult Prosjekt',
+  description_en: '',
+  description_no: '',
+  gitea_link: 'https://git.pvv.ntnu.no/Projects/kultprosjekt',
+  issue_board_link: 'https://git.pvv.ntnu.no/Projects/kultprosjekt/issues',
+  wiki_link: 'https://wiki.pvv.ntnu.no/wiki/Kult_Prosjekt',
+  programming_languages: 'PHP, HTML, CSS, JavaScript',
+  technologies: 'MySQL, REST, AJAX',
+  keywords: 'web, very-cool',
+  license: 'GPL-3.0',
+  logo_url: '',
 );
 if ($new == 0) {
   $project = $projectManager->getByID($projectID);
@@ -56,7 +61,7 @@ $owner = [
   'mail' => '',
 ];
 foreach ($members as $i => $data) {
-  if ($data['owner']) {
+  if ($data['is_owner']) {
     $owner = $data;
   }
 }

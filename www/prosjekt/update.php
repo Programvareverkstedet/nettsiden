@@ -6,9 +6,25 @@ require __DIR__ . '/../../config.php';
 $pdo = new PDO($DB_DSN, $DB_USER, $DB_PASS);
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-if (!isset($_POST['title']) || !isset($_POST['desc']) || !isset($_POST['active'])) {
-  header('Location: ' . $_SERVER['HTTP_REFERER']);
-  exit;
+$required_fields = [
+  'title',
+  'desc_no',
+  'desc_en',
+  'gitea',
+  'issue',
+  'wiki',
+  'langs',
+  'techs',
+  'keywords',
+  'license',
+  'logo'
+];
+
+foreach ($required_fields as $field) {
+  if (!isset($_POST[$field])) {
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
+    exit;
+  }
 }
 
 require_once __DIR__ . '/../../vendor/simplesamlphp/simplesamlphp/lib/_autoload.php';
@@ -16,41 +32,96 @@ $as = new SimpleSAML\Auth\Simple('default-sp');
 $as->requireAuth();
 $attrs = $as->getAttributes();
 
-$id = $_POST['id'];
+$id = $_POST['id'] ?? 0;
 $do_delete = isset($_POST['delete']);
 $do_join_or_leave = isset($_POST['join_or_leave']);
 
-$active = $_POST['active'];
-
 $title = $_POST['title'];
-$desc = $_POST['desc'];
+$desc_no = $_POST['desc_no'];
+$desc_en = $_POST['desc_en'];
+$gitea = $_POST['gitea'];
+$issue = $_POST['issue'];
+$wiki = $_POST['wiki'];
+$langs = $_POST['langs'];
+$techs = $_POST['techs'];
+$keywords = $_POST['keywords'];
+$license = $_POST['license'];
+$logo = $_POST['logo'];
+
 $name = $attrs['cn'][0];
 $uname = $attrs['uid'][0];
 $mail = $attrs['mail'][0];
 
-
-
 if ($id == 0) { // Create new project
   $query = <<<END
     INSERT INTO
-      project(name, description, active)
+      project(
+        title,
+        description_no,
+        description_en,
+        gitea_link,
+        issue_board_link,
+        wiki_link,
+        languages,
+        technologies,
+        keywords,
+        license,
+        logo_url
+      )
     VALUES
-      (:title, :desc, :active)
+      (
+        :title,
+        :desc_no,
+        :desc_en,
+        :gitea,
+        :issue,
+        :wiki,
+        :langs,
+        :techs,
+        :keywords,
+        :license,
+        :logo
+      )
   END;
   $statement = $pdo->prepare($query);
 
   $statement->bindParam(':title', $title, PDO::PARAM_STR);
-  $statement->bindParam(':desc', $desc, PDO::PARAM_STR);
+  $statement->bindParam(':desc_no', $desc_no, PDO::PARAM_STR);
+  $statement->bindParam(':desc_en', $desc_en, PDO::PARAM_STR);
+  $statement->bindParam(':gitea', $gitea, PDO::PARAM_STR);
+  $statement->bindParam(':issue', $issue, PDO::PARAM_STR);
+  $statement->bindParam(':wiki', $wiki, PDO::PARAM_STR);
+  $statement->bindParam(':langs', $langs, PDO::PARAM_STR);
+  $statement->bindParam(':techs', $techs, PDO::PARAM_STR);
+  $statement->bindParam(':keywords', $keywords, PDO::PARAM_STR);
+  $statement->bindParam(':license', $license, PDO::PARAM_STR);
+  $statement->bindParam(':logo', $logo, PDO::PARAM_STR);
 
   $statement->execute();
-  $new_id = $pdo->lastInsertId();
+  $new_project_id = $pdo->lastInsertId();
 
-  $ownerQuery = "INSERT INTO project_maintainer (projectid, name, uname, mail, role, lead, owner) VALUES (:id, :owner, :owneruname, :owneremail, 'Prosjektleder', TRUE, TRUE)";
+  $ownerQuery = <<<END
+    INSERT INTO
+      project_maintainer (
+        uname,
+        project_id,
+        name,
+        email
+      )
+    VALUES
+      (
+        :username,
+        :project_id,
+        :user_real_name,
+        :user_email
+      )
+  END;
+
   $statement = $pdo->prepare($ownerQuery);
-  $statement->bindParam(':id', $new_id, PDO::PARAM_STR);
-  $statement->bindParam(':owner', $name, PDO::PARAM_STR);
-  $statement->bindParam(':owneruname', $uname, PDO::PARAM_STR);
-  $statement->bindParam(':owneremail', $mail, PDO::PARAM_STR);
+  $statement->bindParam(':username', $uname, PDO::PARAM_STR);
+  $statement->bindParam(':project_id', $new_project_id, PDO::PARAM_INT);
+  $statement->bindParam(':user_real_name', $name, PDO::PARAM_STR);
+  $statement->bindParam(':user_email', $mail, PDO::PARAM_STR);
 
   $statement->execute();
 } else { // Update existing project
