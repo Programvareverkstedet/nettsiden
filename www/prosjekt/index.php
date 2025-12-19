@@ -93,26 +93,58 @@ $projects = $projectManager->getAll();
       ?>
 
 			<a class="nostyle" href="info.php?id=<?php echo $project->getID(); ?>">
-			  <div class="project-card">
-			  	<div class="card-content">
-			  		<h4 class="project-title"><?php echo $project->getTitle(); ?></h4>
-						<p>
-			  		  <?php
+        <article class="project-card">
+
+          <header class="project-header">
+            <?php if (!empty($project->getLogoURL())): ?>
+              <img src="<?php echo htmlspecialchars($project->getLogoURL()); ?>"
+                   alt=""
+                   class="project-logo">
+            <?php endif; ?>
+
+            <h4 class="project-title">
+              <?php echo htmlspecialchars($project->getTitle()); ?>
+            </h4>
+          </header>
+
+          <div class="card-content">
+            <p class="project-description">
+              <?php
                 $Parsedown = new Parsedown();
-                echo $Parsedown->text(implode("\n", array_slice($project->getDescriptionNo(), 0, 2)));
+                echo $Parsedown->text(
+                    implode("\n", $project->getDescriptionEn())
+                );
               ?>
-						</p>
-						<?php echo $project->getGiteaLink() ?>
-						<?php echo $project->getIssueBoardLink() ?>
-						<?php echo $project->getLogoURL() ?>
-						<?php echo $project->getProgrammingLanguages() ?>
-						<?php echo $project->getTechnologies() ?>
-						<?php echo $project->getKeywords() ?>
-						<?php echo $project->getLicense() ?>
-						<?php echo $project->getWikiLink() ?>
-			  	</div>
-			  	<p class="project-organizer">Organisert av <?php echo $owner['name']; ?></p>
-			  </div>
+            </p>
+
+            <?php if (!empty($project->getTechnologies())): ?>
+              <div class="project-tags">
+                <?php foreach ($project->getTechnologies() as $tech): ?>
+                  <span class="tag"><?php echo trim($tech); ?></span>
+                <?php endforeach; ?>
+              </div>
+            <?php endif; ?>
+          </div>
+
+          <footer class="project-footer">
+            <span class="project-organizer">
+              Organisert av <?php echo htmlspecialchars($owner['name']); ?>
+            </span>
+
+            <div class="project-links">
+              <?php if ($project->getGiteaLink()): ?>
+                <a href="<?php echo $project->getGiteaLink(); ?>" title="Repository"></a>
+              <?php endif; ?>
+              <?php if ($project->getIssueBoardLink()): ?>
+                <a href="<?php echo $project->getIssueBoardLink(); ?>" title="Issues">🐞</a>
+              <?php endif; ?>
+              <?php if ($project->getWikiLink()): ?>
+                <a href="<?php echo $project->getWikiLink(); ?>" title="Wiki">📖</a>
+              <?php endif; ?>
+            </div>
+          </footer>
+
+        </article>
 			</a>
 			<?php } ?>
 			</div>

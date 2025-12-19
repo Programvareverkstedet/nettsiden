@@ -18,7 +18,7 @@ if (!$userManager->hasGroup($uname, 'prosjekt')) {
 
 $projectID = $_GET['id'];
 
-$query = 'DELETE FROM projects WHERE id=\'' . $projectID . '\'';
+$query = 'DELETE FROM project WHERE id=\'' . $projectID . '\'';
 $statement = $pdo->prepare($query);
 $statement->execute();
 
