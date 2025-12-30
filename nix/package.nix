@@ -28,9 +28,9 @@ php.buildComposerProject rec {
 
   postInstall = ''
     install -Dm644 dist/simplesaml-prod/config.php            "$out"/${passthru.simplesamlphpPath}/config/config.php
-    install -Dm644 dist/simplesaml-prod/authsources.php       "$$out/${passthru.simplesamlphpPath}/config/authsources.php
-    install -Dm644 dist/simplesaml-prod/saml20-idp-remote.php "$$out/${passthru.simplesamlphpPath}/metadata/saml20-idp-remote.php
-    install -Dm644 dist/config.source-env.php                 "$$out/share/php/pvv-nettsiden/config.php
+    install -Dm644 dist/simplesaml-prod/authsources.php       "$out"/${passthru.simplesamlphpPath}/config/authsources.php
+    install -Dm644 dist/simplesaml-prod/saml20-idp-remote.php "$out"/${passthru.simplesamlphpPath}/metadata/saml20-idp-remote.php
+    install -Dm644 dist/config.source-env.php                 "$out"/share/php/pvv-nettsiden/config.php
 
     ${lib.pipe extra_files [
       (lib.mapAttrsToList (target_path: source_path: ''
