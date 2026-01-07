@@ -29,7 +29,7 @@ You should now be able to access the site at [http://localhost:1080](http://loca
 
 Sometimes it is useful to completely reset the state of the project, deleting the data, redownloading dependencies, etc. You can do this by running `./scripts/reset.sh`. Be careful, as this will delete all data in the database!
 
-> [!WARN]
+> [!WARNING]
 > Even when resetting the project with the reset script, there are some situation where you need to clear your cookies or your browser cache to get a clean state.
 > How to do this varies between browsers, so please refer to your browser's documentation for instructions.
 
