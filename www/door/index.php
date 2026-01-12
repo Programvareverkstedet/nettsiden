@@ -31,9 +31,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $period = (string) htmlspecialchars($_GET['period']);
 
     if ($period == 'day') {
-      $startTime = time() - (60 * 60 * 24);
+      $startTime = (new \DateTimeImmutable())
+        ->setTimestamp(time())
+        ->sub(new \DateInterval('P1D'));
     } elseif ($period == 'week') {
-      $startTime = time() - (60 * 60 * 24 * 7);
+      $startTime = (new \DateTimeImmutable())
+        ->setTimestamp(time())
+        ->sub(new \DateInterval('P1W'));
     } else {
       echo '{"status": "error", "message": "Invalid period"}';
       exit;

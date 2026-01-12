@@ -39,7 +39,7 @@ class Door {
     $query
       = 'SELECT time, open FROM door WHERE time > :startTime ORDER BY time DESC';
     $statement = $this->pdo->prepare($query);
-    $statement->bindParam(':startTime', $startTime, \PDO::PARAM_STR);
+    $statement->bindParam(':startTime', $startTime->getTimestamp(), \PDO::PARAM_INT);
     $statement->execute();
 
     $doorEvents = [];
