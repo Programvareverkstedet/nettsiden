@@ -76,7 +76,9 @@ function handleSetState(): void {
     exit;
   }
 
-  $door->createEvent((int) $event->time, $event->isDoorOpen ? 1 : 0);
+  $time = (new \DateTimeImmutable())->setTimestamp((int) $event->time);
+
+  $door->createEvent($time, $event->isDoorOpen);
   echo '{"status": "OK"}';
 }
 

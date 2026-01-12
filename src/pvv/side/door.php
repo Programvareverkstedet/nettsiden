@@ -7,6 +7,8 @@ namespace pvv\side;
 class Door {
   private $pdo;
 
+  const DAYS_OF_DOOR_HISTORY = 7;
+
   public function __construct(\PDO $pdo) {
     $this->pdo = $pdo;
   }
@@ -67,7 +69,7 @@ class Door {
   }
 
   private function removeOld(): void {
-    $firstValidTime = time() - 60 * 60 * 24 * 7; // One week before now
+    $firstValidTime = time() - 60 * 60 * 24 * self::DAYS_OF_DOOR_HISTORY;
     $query = 'DELETE FROM door WHERE time < :firstValid';
     $statement = $this->pdo->prepare($query);
     $statement->bindParam(':firstValid', $firstValidTime, \PDO::PARAM_STR);
@@ -77,7 +79,7 @@ class Door {
   public function createEvent(\DateTimeImmutable $time, bool $open): void {
     $query = 'INSERT INTO door(time, open) VALUES (:time, :open)';
     $statement = $this->pdo->prepare($query);
-    $statement->bindParam(':time', $time, \PDO::PARAM_STR);
+    $statement->bindParam(':time', $time->getTimestamp(), \PDO::PARAM_INT);
     $statement->bindParam(':open', $open, \PDO::PARAM_BOOL);
     $statement->execute();
 
