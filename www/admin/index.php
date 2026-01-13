@@ -44,23 +44,21 @@ if (!($isAdmin | $projectGroup | $activityGroup)) {
 	<main>
 		<h2>Administrasjon</h2>
 		<ul class="tools">
-			<?php
-        if ($isAdmin | $activityGroup) {
-          echo '<li><a class="btn" href="aktiviteter/?page=1">Aktiviteter/Hendelser</a></li>';
-        }
+			<?php if ($isAdmin | $activityGroup) : ?>
+        <li><a class="btn" href="aktiviteter/?page=1">Aktiviteter/Hendelser</a></li>
+      <?php endif ?>
 
-        if ($isAdmin | $projectGroup) {
-          echo '<li><a class="btn" href="prosjekter/">Prosjekter</a></li>';
-        }
+      <?php if ($isAdmin | $projectGroup) : ?>
+        <li><a class="btn" href="prosjekter/?page=1">Prosjekter</a></li>
+      <?php endif ?>
 
-        if ($isAdmin) {
-          echo '<li><a class="btn" href="motd/">Dagens melding</a></li>';
-        }
+      <?php if ($isAdmin) : ?>
+        <li><a class="btn" href="motd/">Dagens melding</a></li>
+      <?php endif ?>
 
-        if ($isAdmin) {
-          echo '<li><a class="btn" href="brukere/">Brukerrettigheter</a></li>';
-        }
-      ?>
+      <?php if ($isAdmin) : ?>
+        <li><a class="btn" href="brukere/">Brukerrettigheter</a></li>
+      <?php endif ?>
 		<ul>
 	</main>
 </body>
