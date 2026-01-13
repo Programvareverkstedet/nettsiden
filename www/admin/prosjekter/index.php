@@ -43,7 +43,7 @@ if(isset($_POST['organiser'])){
 // filter
 $projects = array_values(array_filter(
   $projects,
-  static fn($project) => preg_match('/.*' . $filterTitle . '.*/i', $project->getName())
+  static fn($project) => preg_match('/.*' . $filterTitle . '.*/i', $project->getTitle())
 ));
 ?>
 <!DOCTYPE html>
@@ -87,17 +87,17 @@ $projects = array_values(array_filter(
 
               $project = $projects[$i];
               $projectID = $project->getID();
-              $owner = $projectManager->getProjectOwner($projectID);
+              $organizers = $projectManager->getProjectOrganizers($projectID);
           ?>
 
 						<li>
 							<div class="event admin">
 								<div class="event-info">
-									<h3 class="no-chin"><?php echo $project->getName() . ' (ID: ' . $projectID . ')'; ?></h3>
-									<p class="subnote"><?php echo 'Organisert av: ' . $owner['name']; ?></p>
+									<h3 class="no-chin"><?php echo $project->getTitle() . ' (ID: ' . $projectID . ')'; ?></h3>
+									<p class="subnote"><?php echo 'Organisert av: ' . implode(',', array_map(function($org) { return $org->getName(); }, $organizers)); ?></p>
 									<?php
                     $Parsedown = new Parsedown();
-                    echo $Parsedown->text(implode("\n", $project->getDescription()));
+                    echo $Parsedown->text(implode("\n", $project->getDescriptionNo()));
                   ?>
 								</div>
 

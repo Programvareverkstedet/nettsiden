@@ -91,14 +91,30 @@
 
 /* edit */
 form .wide {
-	min-width: 66%;
+	min-width: 100%;
 }
+
 form .tall {
 	min-height: calc(100vh - 28em);
 }
+
 @media screen and (max-width: 50rem) {
 	form .wide {
 		width: calc(100% - 2em);
 		margin: 0 1em;
 	}
+}
+
+form .input-group {
+  display: flex;
+}
+
+form .input-group-item {
+  flex: 1;
+  margin: 0 0.5em;
+}
+
+form .input-group-item input.boxinput,textarea {
+  width: 100%;
+  box-sizing: border-box;
 }

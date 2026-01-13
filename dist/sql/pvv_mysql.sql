@@ -37,11 +37,12 @@ CREATE TABLE project (
   `gitea_link` TEXT,
   `issue_board_link` TEXT,
   `wiki_link` TEXT,
-  `languages` TEXT,
+  `programming_languages` TEXT,
   `technologies` TEXT,
   `keywords` TEXT,
   `license` TEXT,
   `logo_url` TEXT,
+  `is_hidden` BOOLEAN DEFAULT FALSE,
   FOREIGN KEY (group_id) REFERENCES project_group (id) ON DELETE SET DEFAULT
 );
 
@@ -50,7 +51,7 @@ CREATE TABLE project_maintainer (
   `project_id` INTEGER NOT NULL,
   `name` TEXT NOT NULL,
   `email` TEXT,
-  `is_owner` BOOLEAN DEFAULT FALSE,
+  `is_organizer` BOOLEAN DEFAULT FALSE,
   PRIMARY KEY (uname, project_id),
   FOREIGN KEY (project_id) REFERENCES project (id) ON DELETE CASCADE
 );

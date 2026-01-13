@@ -17,7 +17,24 @@ class ProjectManager {
    * @return Project[]
    */
   public function getAll(): array {
-    $query = 'SELECT * FROM project ORDER BY id ASC';
+    $query = '
+      SELECT
+        id,
+        title,
+        description_en,
+        description_no,
+        gitea_link,
+        issue_board_link,
+        wiki_link,
+        programming_languages,
+        technologies,
+        keywords,
+        license,
+        logo_url,
+        is_hidden
+      FROM project
+      ORDER BY title ASC
+    ';
     $statement = $this->pdo->prepare($query);
     $statement->execute();
 
@@ -31,11 +48,12 @@ class ProjectManager {
         $dbProj['gitea_link'],
         $dbProj['issue_board_link'],
         $dbProj['wiki_link'],
-        $dbProj['languages'],
+        $dbProj['programming_languages'],
         $dbProj['technologies'],
         $dbProj['keywords'],
         $dbProj['license'],
-        $dbProj['logo_url']
+        $dbProj['logo_url'],
+        (bool) $dbProj['is_hidden']
       );
       $projects[] = $project;
     }
@@ -45,7 +63,24 @@ class ProjectManager {
 
   // TODO: groupid
   public function getByID(int $id): ?Project {
-    $query = 'SELECT * FROM project WHERE id=:id LIMIT 1';
+    $query = '
+      SELECT
+        id,
+        title,
+        description_en,
+        description_no,
+        gitea_link,
+        issue_board_link,
+        wiki_link,
+        programming_languages,
+        technologies,
+        keywords,
+        license,
+        logo_url,
+        is_hidden
+      FROM project
+      WHERE id = :id
+    ';
     $statement = $this->pdo->prepare($query);
     $statement->bindParam(':id', $id, \PDO::PARAM_INT);
     $statement->execute();
@@ -63,11 +98,12 @@ class ProjectManager {
       $dbProj['gitea_link'],
       $dbProj['issue_board_link'],
       $dbProj['wiki_link'],
-      $dbProj['languages'],
+      $dbProj['programming_languages'],
       $dbProj['technologies'],
       $dbProj['keywords'],
       $dbProj['license'],
-      $dbProj['logo_url']
+      $dbProj['logo_url'],
+      (bool) $dbProj['is_hidden']
     );
   }
 
@@ -76,30 +112,33 @@ class ProjectManager {
   /**
    * @return Project[]
    */
-  public function getByOwner(string $uname): array {
+  public function getByMaintainer(string $uname): array {
     $query = '
-      SELECT project.id FROM project
-      JOIN project_maintainer ON project.id = project_maintainer.project_id
+      SELECT
+        project.id,
+        project.title
+        project.description_en,
+        project.description_no,
+        project.gitea_link,
+        project.issue_board_link,
+        project.wiki_link,
+        project.programming_languages,
+        project.technologies,
+        project.keywords,
+        project.license,
+        project.logo_url,
+        project.is_hidden
+      FROM project_maintainer
+      JOIN project ON project.id = project_maintainer.project_id
       WHERE project_maintainer.uname = :uname
-        AND project_maintainer.is_owner = TRUE
     ';
-
     $statement = $this->pdo->prepare($query);
     $statement->bindParam(':uname', $uname, \PDO::PARAM_STR);
     $statement->execute();
 
-    $projectIDs = $statement->fetchAll();
-    $projects = [];
-    foreach ($projectIDs as $id) {
-      $id = $id['projectid'];
-
-      $query = 'SELECT * FROM projects WHERE id=:id';
-      $statement = $this->pdo->prepare($query);
-      $statement->bindParam(':id', $id, \PDO::PARAM_INT);
-      $statement->execute();
-
-      foreach ($statement->fetchAll() as $dbProj) {
-        $project = new Project(
+    $result = array_map(
+      function ($dbProj) {
+        return new Project(
           $dbProj['id'],
           $dbProj['title'],
           $dbProj['description_en'],
@@ -107,29 +146,30 @@ class ProjectManager {
           $dbProj['gitea_link'],
           $dbProj['issue_board_link'],
           $dbProj['wiki_link'],
-          $dbProj['languages'],
+          $dbProj['programming_languages'],
           $dbProj['technologies'],
           $dbProj['keywords'],
           $dbProj['license'],
-          $dbProj['logo_url']
+          $dbProj['logo_url'],
+          (bool) $dbProj['is_hidden']
         );
-        $projects[] = $project;
-      }
-    }
+      },
+      $statement->fetchAll()
+    );
 
-    return $projects;
+    return $result;
   }
 
   /**
-   * @return {uname:string,name:string,link:string,email:string,is_owner:bool}[]
+   * @return ProjectMaintainer[]
    */
-  public function getProjectMembers(int $project_id): array {
+  public function getProjectMaintainers(int $project_id): array {
     $query = '
       SELECT
         project_maintainer.uname,
         project_maintainer.name,
         project_maintainer.email,
-        project_maintainer.is_owner
+        project_maintainer.is_organizer
       FROM project_maintainer
       WHERE project_maintainer.project_id = :id
     ';
@@ -138,49 +178,53 @@ class ProjectManager {
     $statement->bindParam(':id', $project_id, \PDO::PARAM_STR);
     $statement->execute();
 
-    $maintainers = [];
-    foreach ($statement->fetchAll() as $dbUsr) {
-      $maintainers[] = [
-        'uname' => $dbUsr['uname'],
-        'name' => $dbUsr['name'],
-        'email' => $dbUsr['email'],
-        'is_owner' => (bool)$dbUsr['is_owner'],
-      ];
-    }
+    $result = array_map(
+      function ($dbUsr) {
+        return new ProjectMaintainer(
+          $dbUsr['uname'],
+          $dbUsr['name'],
+          $dbUsr['email'],
+          (bool)$dbUsr['is_organizer']
+        );
+      },
+      $statement->fetchAll()
+    );
 
-    return $maintainers;
+    return $result;
   }
 
   /**
-   * @return array{name:string,uname:string,email:string,is_owner:bool}|null
+   * @return ProjectMaintainer[]
    */
-  public function getProjectOwner(int $project_id): ?array {
+  public function getProjectOrganizers(int $project_id): array {
     $query = '
       SELECT
-        project_maintainer.name,
         project_maintainer.uname,
+        project_maintainer.name,
         project_maintainer.email,
-        project_maintainer.is_owner
+        project_maintainer.is_organizer
       FROM project_maintainer
-      WHERE project_maintainer.project_id = :id
-        AND project_maintainer.is_owner = TRUE
-      LIMIT 1
+      WHERE
+        project_maintainer.project_id = :id
+        AND project_maintainer.is_organizer = True
     ';
 
     $statement = $this->pdo->prepare($query);
     $statement->bindParam(':id', $project_id, \PDO::PARAM_STR);
     $statement->execute();
 
-    $owner = $statement->fetch();
-    if (!$owner) {
-      return null;
-    }
+    $result = array_map(
+      function ($dbUsr) {
+        return new ProjectMaintainer(
+          $dbUsr['uname'],
+          $dbUsr['name'],
+          $dbUsr['email'],
+          (bool)$dbUsr['is_organizer']
+        );
+      },
+      $statement->fetchAll()
+    );
 
-    return [
-      'name' => $owner['name'],
-      'uname' => $owner['uname'],
-      'email' => $owner['email'],
-      'is_owner' => (bool)$owner['is_owner'],
-    ];
+    return $result;
   }
 }
