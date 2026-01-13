@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace pvv\side;
 
+use DateTimeImmutable;
+
 class Door {
   private $pdo;
 
@@ -14,7 +16,7 @@ class Door {
   }
 
   /**
-   * @return array{time: int, open: bool}[]
+   * @return array{time: DateTimeImmutable, open: bool}[]
    */
   public function getAll(): array {
     $query = 'SELECT time, open FROM door ORDER BY time DESC';
@@ -24,7 +26,7 @@ class Door {
     $doorEvents = [];
     foreach ($statement->fetchAll() as $row) {
       $doorEvents[] = [
-        'time' => (int) $row['time'],
+        'time' => (new DateTimeImmutable)->setTimestamp((int) $row['time']),
         'open' => (bool) $row['open'],
       ];
     }
@@ -33,19 +35,21 @@ class Door {
   }
 
   /**
-   * @return array{time: int, open: bool}[]
+   * @return array{time: DateTimeImmutable, open: bool}[]
    */
   public function getEntriesAfter(\DateTimeImmutable $startTime): array {
+    $timestamp = $startTime->getTimestamp();
+
     $query
       = 'SELECT time, open FROM door WHERE time > :startTime ORDER BY time DESC';
     $statement = $this->pdo->prepare($query);
-    $statement->bindParam(':startTime', $startTime->getTimestamp(), \PDO::PARAM_INT);
+    $statement->bindParam(':startTime', $timestamp, \PDO::PARAM_INT);
     $statement->execute();
 
     $doorEvents = [];
     foreach ($statement->fetchAll() as $row) {
       $doorEvents[] = [
-        'time' => (int) $row['time'],
+        'time' => (new DateTimeImmutable)->setTimestamp((int) $row['time']),
         'open' => (bool) $row['open'],
       ];
     }
@@ -54,7 +58,7 @@ class Door {
   }
 
   /**
-   * @return array{time: int, open: bool}
+   * @return array{time: DateTimeImmutable, open: bool}
    */
   public function getCurrent(): array {
     $query = 'SELECT time, open FROM door ORDER BY time DESC LIMIT 1';
@@ -63,7 +67,7 @@ class Door {
     $row = $statement->fetch();
 
     return [
-      'time' => (int) $row['time'],
+      'time' => (new DateTimeImmutable)->setTimestamp((int) $row['time']),
       'open' => (bool) $row['open'],
     ];
   }
@@ -72,7 +76,7 @@ class Door {
     $firstValidTime = time() - 60 * 60 * 24 * self::DAYS_OF_DOOR_HISTORY;
     $query = 'DELETE FROM door WHERE time < :firstValid';
     $statement = $this->pdo->prepare($query);
-    $statement->bindParam(':firstValid', $firstValidTime, \PDO::PARAM_STR);
+    $statement->bindParam(':firstValid', $firstValidTime, \PDO::PARAM_INT);
     $statement->execute();
   }
 

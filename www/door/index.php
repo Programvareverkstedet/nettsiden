@@ -51,14 +51,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     echo json_encode([
       'status'        => 'OK',
-      'entries'       => $lines,
+      'entries'       => array_map(function ($line) {
+        return [
+          'time' => $line['time']->getTimestamp(),
+          'open' => $line['open'],
+        ];
+      }, $lines),
     ]);
   } else {
     // Only last entry
     $line = (object) $door->getCurrent();
     echo json_encode([
       'status'        => 'OK',
-      'time'          => $line->time,
+      'time'          => $line->time->getTimestamp(),
       'open'          => $line->open,
     ]);
   }

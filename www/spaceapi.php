@@ -36,7 +36,7 @@ $doorEntry = (object) $door->getCurrent();
   "issue_report_channels": ["email"],
   "state": {
     "open": <?php echo $doorEntry->open ? 'true' : 'false'; ?>,
-    "lastchange": <?php echo $doorEntry->time ? $doorEntry->time : 0; ?>,
+    "lastchange": <?php echo $doorEntry->time->getTimestamp(); ?>,
     "message": "<?php echo $doorEntry->open ? 'open for public, members are present' : 'closed'; ?>"
   },
   "feeds": {
