@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inngangsverkstedet</title>
     <style>
-        body { 
+        body {
             text-align: center;
             width: 80vw;
             margin: auto auto;
@@ -26,12 +26,25 @@
         <h4>Siste 7 dager</h4>
         <canvas id="doorGraphWeek"></canvas>
     </div>
-    
-    <script src="chart.min.js"></script>
-    <script src="moment.js"></script>
-    <script src="chartjs-adapter-moment.js"></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"
+      integrity="sha384-jb8JQMbMoBUzgWatfe6COACi2ljcDdZQ2OxczGA3bGNeWe+6DChMTBJemed7ZnvJ"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/moment@2.30.1/moment.min.js"
+      integrity="sha384-+EEFFjsGn4BnW70Nv0OvoMe1VZuqS4xvx90V2MTeuYUUZSEabg7FSMWl6s2DJTAO"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/chartjs-adapter-moment@1.0.1/dist/chartjs-adapter-moment.min.js"
+      integrity="sha384-s5cwu7c1MxOfC90RGRDWeB53/7VpDTxXi0YxKJF5y9oKA99+UYxMk0qvlqso188s"
+      crossorigin="anonymous"
+    ></script>
+
     <script>
-    
+
     const graphElDay = document.getElementById("doorGraphDay");
     const graphElWeek = document.getElementById("doorGraphWeek");
 
@@ -137,7 +150,7 @@
         });
     }
 
-    
+
 
     </script>
 
