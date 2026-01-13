@@ -1,6 +1,6 @@
 CREATE TABLE events (
   `id` INTEGER PRIMARY KEY AUTO_INCREMENT,
-  `name` TEXT,
+  `name` TEXT NOT NULL,
   `start` TEXT,
   `stop` TEXT,
   `organiser` TEXT,
@@ -16,7 +16,7 @@ CREATE TABLE projects (
 );
 
 CREATE TABLE projectmembers (
-  `projectid` INTEGER,
+  `projectid` INTEGER FOREIGN KEY REFERENCES projects(id),
   `name` TEXT,
   `uname` TEXT,
   `mail` TEXT,
@@ -25,15 +25,22 @@ CREATE TABLE projectmembers (
   `owner` BOOLEAN DEFAULT FALSE
 );
 
-CREATE TABLE users (`uname` TEXT, `groups` INT DEFAULT 0);
+CREATE TABLE users (
+  `id` INTEGER PRIMARY KEY AUTO_INCREMENT,
+  `uname` TEXT NOT NULL UNIQUE,
+  `groups` INT NOT NULL DEFAULT 0
+);
 
 CREATE TABLE motd (
   `id` INTEGER PRIMARY KEY AUTO_INCREMENT,
-  `title` TEXT,
-  `content` TEXT
+  `title` TEXT NOT NULL,
+  `content` TEXT NOT NULL
 );
 
-CREATE TABLE door (`time` INTEGER PRIMARY KEY, `open` BOOLEAN);
+CREATE TABLE door (
+  `time` INTEGER PRIMARY KEY,
+  `open` BOOLEAN NOT NULL
+);
 
 INSERT INTO
   door (time, open)
