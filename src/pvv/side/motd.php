@@ -4,6 +4,35 @@ declare(strict_types=1);
 
 namespace pvv\side;
 
+class MOTDItem {
+  private string $title;
+  /** @var string[] */
+  private array $content;
+
+  /**
+   * @param string[] $content
+   */
+  public function __construct(string $title, array $content) {
+    $this->title = $title;
+    $this->content = $content;
+  }
+
+  public function getTitle(): string {
+    return $this->title;
+  }
+
+  /**
+   * @return string[]
+   */
+  public function getContent(): array {
+    return $this->content;
+  }
+
+  public function getContentAsString(): string {
+    return implode("\n", $this->content);
+  }
+}
+
 class MOTD {
   private $pdo;
 
@@ -15,7 +44,7 @@ class MOTD {
     if (\is_array($content)) {
       $content = implode('_', $content);
     }
-    $query = 'INSERT INTO motd(title, content) VALUES (:title, :content);';
+    $query = 'INSERT INTO motd(title, content) VALUES (:title, :content)';
     $statement = $this->pdo->prepare($query);
 
     $statement->bindParam(':title', $title, \PDO::PARAM_STR);
@@ -24,10 +53,7 @@ class MOTD {
     $statement->execute();
   }
 
-  /**
-   * @return array{title: string, content: string[]}
-   */
-  public function getMOTD(): array {
+  public function getMOTD(): MOTDItem {
     $query = '
       SELECT
         title,
@@ -41,11 +67,16 @@ class MOTD {
 
     $data = $statement->fetch();
 
-    return ['title' => $data[0], 'content' => explode("\n", $data[1])];
+    $result = new MOTDItem(
+      $data['title'],
+      explode("\n", $data['content']),
+    );
+
+    return $result;
   }
 
   /**
-   * @return array{title: string, content: string[]}
+   * @return MOTDItem[]
    */
   public function getMOTD_history(int $limit = 5): array {
     $query = '
@@ -60,8 +91,16 @@ class MOTD {
     $statement->bindParam(':limit', $limit, \PDO::PARAM_STR);
     $statement->execute();
 
-    $data = $statement->fetch();
+    $result = array_map(
+      function ($item) {
+        return new MOTDItem(
+          $item['title'],
+          explode("\n", $item['content']),
+        );
+      },
+      $statement->fetchAll(),
+    );
 
-    return ['title' => $data[0], 'content' => explode("\n", $data[1])];
+    return $result;
   }
 }

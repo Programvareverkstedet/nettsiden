@@ -119,7 +119,7 @@ $doorTime = $doorEntry->time->format('H:i');
 
 		<div class="gridl">
 			<?php
-        $title = $motd['title'];
+        $title = $motd->getTitle();
 
         echo '<h1>';
         if ($title == '') {
@@ -130,7 +130,7 @@ $doorTime = $doorEntry->time->format('H:i');
         echo '</h1>';
 
         $Parsedown = new Parsedown();
-        echo $Parsedown->text(implode("\n", $motd['content']));
+        echo $Parsedown->text($motd->getContentAsString());
       ?>
 		</div>
 	</main>

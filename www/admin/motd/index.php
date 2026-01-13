@@ -56,10 +56,10 @@ $motd = $motdfetcher->getMOTD();
 		<form action="update.php", method="post">
 			<p class="subtitle no-chin">Tittel</p>
 			<p class="subnote">Ikke nødvendig</p>
-			<input type="text" name="title" value="<?php echo $motd['title']; ?>" class="boxinput" style="width:66%;"><br>
+			<input type="text" name="title" value="<?php echo $motd->getTitle(); ?>" class="boxinput" style="width:66%;"><br>
 
 			<p class="subtitle no-chin">Innhold (<i>markdown</i>)</p>
-			<textarea name="content" style="width:100%" rows="8" class="boxinput"><?php echo implode("\n", $motd['content']); ?></textarea>
+			<textarea name="content" style="width:100%" rows="8" class="boxinput"><?php echo $motd->getContentAsString(); ?></textarea>
 
 			<div style="margin-top: 2em;">
 				<hr class="ruler">
