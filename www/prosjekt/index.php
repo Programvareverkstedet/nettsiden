@@ -89,7 +89,7 @@ $projects = $projectManager->getAll();
         }
         foreach ($randProjects as $i) {
           $project = $projects[$i];
-          $owner = $projectManager->getProjectOwner($project->getID());
+          $organizers = $projectManager->getProjectOrganizers($project->getID());
       ?>
 
 			<a class="nostyle" href="info.php?id=<?php echo $project->getID(); ?>">
@@ -128,7 +128,9 @@ $projects = $projectManager->getAll();
 
           <footer class="project-footer">
             <span class="project-organizer">
-              Organisert av <?php echo htmlspecialchars($owner['name']); ?>
+              Organisert av <?php echo htmlspecialchars(implode(', ', array_map(function ($org) {
+                return $org->getName();
+              }, $organizers))); ?>
             </span>
 
             <div class="project-links">

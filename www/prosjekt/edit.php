@@ -70,68 +70,156 @@ if (!$project_is_new) {
 
 
 <body>
-	<nav>
-		<?php echo navbar(1, 'prosjekt'); ?>
-		<?php echo loginbar(null, $pdo); ?>
-	</nav>
+  <nav>
+    <?php echo navbar(1, 'prosjekt'); ?>
+    <?php echo loginbar(null, $pdo); ?>
+  </nav>
 
-	<main>
-		<h2>Nytt prosjekt</h2>
+  <main>
+    <h2>Nytt prosjekt</h2>
 
-		<form action="update.php", method="post">
-			<p class="subtitle no-chin">Prosjektnavn</p>
-			<p class="subnote">Gi prosjektet ditt et passende navn</p>
-			<input class="wide" type="text" name="title" value="<?php echo $project->getTitle(); ?>" class="boxinput" required><br>
+    <form action="update.php", method="post">
+      <p class="subtitle no-chin">Prosjektnavn</p>
+      <p class="subnote">Gi prosjektet ditt et passende navn</p>
+      <input class="wide" type="text" name="title" value="<?php echo $project->getTitle(); ?>" class="boxinput" required><br>
 
-			<p class="subtitle no-chin">Beskrivelse (<i style="opacity:0.5;">markdown</i>)</p>
-			<p class="subnote no-chin">Hva går prosjektet ditt ut på?</p>
-			<p class="subnote">De første to linjene blir vist på prosjektkortet, prøv å gjøre de til et fint sammendrag eller intro!</p>
-			<textarea class="tall" name="desc_no" style="width:100%" rows="8" class="boxinput" required><?php echo implode("\n", $project->getDescriptionNo()); ?></textarea>
+      <div class="input-group">
+        <div class="input-group-item">
+          <p class="subtitle no-chin">Beskrivelse (<i style="opacity:0.5;">markdown</i>)</p>
+          <p class="subnote no-chin">Hva går prosjektet ditt ut på?</p>
+          <p class="subnote">De første to linjene blir vist på prosjektkortet, prøv å gjøre de til et fint sammendrag eller intro!</p>
+          <textarea name="desc_no" rows="3" class="boxinput" required><?php echo implode("\n", $project->getDescriptionNo()); ?></textarea>
+        </div>
 
-			<p class="subtitle no-chin">Beskrivelse på engelsk (<i style="opacity:0.5;">markdown</i>)</p>
-			<p class="subnote no-chin">Gjenta på engelsk</p>
-			<textarea class="tall" name="desc_en" style="width:100%" rows="8" class="boxinput" required><?php echo implode("\n", $project->getDescriptionEn()); ?></textarea>
+        <div class="input-group-item">
+          <p class="subtitle no-chin">Beskrivelse på engelsk (<i style="opacity:0.5;">markdown</i>)</p>
+          <p class="subnote no-chin">Gjenta på engelsk</p>
+          <br>
+          <textarea name="desc_en" rows="3" class="boxinput" required><?php echo implode("\n", $project->getDescriptionEn()); ?></textarea>
+        </div>
+      </div>
 
-			<p class="subtitle no-chin">Gitea-link</p>
-			<p class="subnote">Link til prosjektet på Gitea</p>
-			<input class="wide" type="text" name="gitea" value="<?php echo $project->getGiteaLink(); ?>" class="boxinput"><br>
+      <div class="input-group">
+        <div class="input-group-item">
+          <p class="subtitle no-chin">Gitea-link</p>
+          <p class="subnote">Link til prosjektet på Gitea</p>
+          <input
+            type="text"
+            name="gitea"
+            placeholder="https://git.pvv.ntnu.no/Projects/mittprosjekt"
+            value="<?php echo $project->getGiteaLink(); ?>"
+            class="boxinput"
+          >
+        </div>
 
-			<p class="subtitle no-chin">Issue board-link</p>
-			<p class="subnote">Link til issue board på Gitea</p>
-			<input class="wide" type="text" name="issue" value="<?php echo $project->getIssueBoardLink(); ?>" class="boxinput"><br>
+        <div class="input-group-item">
+          <p class="subtitle no-chin">Issue board-link</p>
+          <p class="subnote">Link til issue board på Gitea</p>
+          <input
+            type="text"
+            name="issue"
+            placeholder="https://git.pvv.ntnu.no/Projects/mittprosjekt/issues"
+            value="<?php echo $project->getIssueBoardLink(); ?>"
+            class="boxinput"
+          >
+        </div>
+      </div>
 
-			<p class="subtitle no-chin">Wiki-link</p>
-			<p class="subnote">Link til wiki-side</p>
-			<input class="wide" type="text" name="wiki" value="<?php echo $project->getWikiLink(); ?>" class="boxinput"><br>
+      <div class="input-group">
+        <div class="input-group-item">
+         <p class="subtitle no-chin">Logo-URL</p>
+         <p class="subnote">Link til logo for prosjektet</p>
+         <input
+           type="text"
+           name="logo"
+           placeholder="https://www.pvv.ntnu.no/~user/pictures/logos/prosjektlogo.png"
+           value="<?php echo $project->getLogoURL(); ?>"
+           class="boxinput"
+         >
+       </div>
 
-			<p class="subtitle no-chin">Programmeringsspråk</p>
-			<p class="subnote">Hvilke programmeringsspråk brukes i prosjektet?</p>
-			<input class="wide" type="text" name="langs" value="<?php echo implode("\n", $project->getProgrammingLanguages()); ?>" class="boxinput"><br>
+        <div class="input-group-item">
+          <p class="subtitle no-chin">Wiki-link</p>
+          <p class="subnote">Link til wiki-side</p>
+          <input
+            type="text"
+            name="wiki"
+            placeholder="https://wiki.pvv.ntnu.no/wiki/Prosjekter/Mitt_Prosjekt"
+            value="<?php echo $project->getWikiLink(); ?>"
+            class="boxinput"
+          >
+        </div>
+      </div>
 
-			<p class="subtitle no-chin">Teknologier</p>
-			<p class="subnote">Hvilke teknologier brukes i prosjektet?</p>
-			<input class="wide" type="text" name="techs" value="<?php echo implode("\n", $project->getTechnologies()); ?>" class="boxinput"><br>
+      <div class="input-group">
+        <div class="input-group-item">
+          <p class="subtitle no-chin">Programmeringsspråk</p>
+          <p class="subnote">Hvilke programmeringsspråk brukes i prosjektet?</p>
+          <input
+            type="text"
+            name="programming-languages"
+            placeholder="php,javascript,html,css"
+            value="<?php echo implode("\n", $project->getProgrammingLanguages()); ?>"
+            class="boxinput"
+          >
+        </div>
 
-			<p class="subtitle no-chin">Nøkkelord</p>
-			<p class="subnote">Nøkkelord som beskriver prosjektet</p>
-			<input class="wide" type="text" name="keywords" value="<?php echo implode("\n", $project->getKeywords()); ?>" class="boxinput"><br>
+        <div class="input-group-item">
+          <p class="subtitle no-chin">Teknologier</p>
+          <p class="subnote">Hvilke teknologier brukes i prosjektet?</p>
+          <input
+            type="text"
+            name="technologies"
+            placeholder="mysql,rest,ajax"
+            value="<?php echo implode("\n", $project->getTechnologies()); ?>"
+            class="boxinput"
+          >
+        </div>
 
-			<p class="subtitle no-chin">Lisens</p>
-			<p class="subnote">Hvilken lisens bruker prosjektet?</p>
-			<input class="wide" type="text" name="license" value="<?php echo $project->getLicense(); ?>" class="boxinput"><br>
+        <div class="input-group-item">
+          <p class="subtitle no-chin">Nøkkelord</p>
+          <p class="subnote">Nøkkelord som beskriver prosjektet</p>
+          <input
+            type="text"
+            name="keywords"
+            placeholder="web,very-cool"
+            value="<?php echo implode("\n", $project->getKeywords()); ?>"
+            class="boxinput"
+          >
+        </div>
+      </div>
 
-			<p class="subtitle no-chin">Logo-URL</p>
-			<p class="subnote">Link til logo for prosjektet</p>
-			<input class="wide" type="text" name="logo" value="<?php echo $project->getLogoURL(); ?>" class="boxinput"><br>
+      <div class="input-group">
+        <div class="input-group-item">
+          <p class="subtitle no-chin">Lisens</p>
+          <p class="subnote">Hvilken lisens bruker prosjektet?</p>
+          <input
+            type="text"
+            name="license"
+            placeholder="GPL-3.0"
+            value="<?php echo $project->getLicense(); ?>"
+            class="boxinput"
+          >
+         </div>
+         <div class="input-group-item">
+           <p class="subtitle no-chin">Skult</p>
+           <p class="subnote">Skal prosjektet være skjult fra prosjektindeksen?</p>
+           <input
+             type="checkbox"
+             name="is_hidden"
+             value="<?php echo $project->isHidden(); ?>"
+           >
+          </div>
+      </div>
 
-			<?php echo '<input type="hidden" name="id" value="' . $project->getID() . '" />'; ?>
-			<input type="hidden" name="active" value="1"/>
+      <?php echo '<input type="hidden" name="id" value="' . $project->getID() . '" />'; ?>
+      <input type="hidden" name="active" value="1"/>
 
-			<div style="margin-top: 0.2em;">
-				<hr class="ruler">
-				 <input type="submit" class="btn" value="<?php echo $project_is_new ? 'Opprett prosjekt' : 'Lagre endringer'; ?>"></input>
-				 <?php if (!$project_is_new) {?><input type="submit" class="btn" name="delete" value="Slett"></input><?php } ?>
-			</div>
-		</form>
-	</main>
+      <div style="margin-top: 0.2em;">
+        <hr class="ruler">
+         <input type="submit" class="btn" value="<?php echo $project_is_new ? 'Opprett prosjekt' : 'Lagre endringer'; ?>"></input>
+         <?php if (!$project_is_new) {?><input type="submit" class="btn" name="delete" value="Slett"></input><?php } ?>
+      </div>
+    </form>
+  </main>
 </body>

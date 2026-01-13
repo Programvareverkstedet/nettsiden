@@ -20,7 +20,7 @@ if (!$project) {
   exit;
 }
 
-$members = $projectManager->getProjectMembers($projectID);
+$members = $projectManager->getProjectMaintainers($projectID);
 $normal_members = $members;
 foreach ($normal_members as $i => $data) {
   if ($data['lead']) {
@@ -65,10 +65,10 @@ if ($attrs) {
 
 	<main class="contentsplit">
 		<div class="gridr">
-			<h2><?php echo $project->getName(); ?></h2>
+			<h2><?php echo $project->getTitle(); ?></h2>
 			<?php
         $Parsedown = new Parsedown();
-        echo $Parsedown->text(implode("\n", $project->getDescription()));
+        echo $Parsedown->text(implode("\n", $project->getDescriptionEn()));
       ?>
 		</div>
 

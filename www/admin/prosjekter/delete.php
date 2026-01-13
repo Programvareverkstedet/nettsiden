@@ -18,8 +18,9 @@ if (!$userManager->hasGroup($uname, 'prosjekt')) {
 
 $projectID = $_GET['id'];
 
-$query = 'DELETE FROM project WHERE id=\'' . $projectID . '\'';
+$query = 'DELETE FROM project WHERE id=:projectID';
 $statement = $pdo->prepare($query);
+$statement->bindParam(':projectID', $projectID, PDO::PARAM_INT);
 $statement->execute();
 
 header('Location: ' . $_SERVER['HTTP_REFERER']);

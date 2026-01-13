@@ -18,6 +18,7 @@ class Project {
   // NOTE: spdx identifier
   private ?string $license;
   private ?string $logo_url;
+  private bool $is_hidden;
 
   public function __construct(
     int $id,
@@ -32,6 +33,7 @@ class Project {
     ?string $keywords,
     ?string $license,
     ?string $logo_url,
+    bool $is_hidden = false,
   ) {
     $this->id = $id;
     $this->title = $title;
@@ -58,6 +60,7 @@ class Project {
       = $keywords === null || $keywords === '' ? [] : explode(',', $keywords);
     $this->license = $license;
     $this->logo_url = $logo_url;
+    $this->is_hidden = $is_hidden;
   }
 
   public function getID(): int {
@@ -121,5 +124,41 @@ class Project {
 
   public function getLogoURL(): ?string {
     return $this->logo_url;
+  }
+
+  public function isHidden(): bool {
+    return $this->is_hidden;
+  }
+}
+
+class ProjectMaintainer {
+  private string $uname;
+  private string $name;
+  private string $email;
+  private bool $is_organizer;
+
+  public function __construct(
+    string $uname,
+    string $name,
+    string $email,
+    bool $is_organizer,
+  ) {
+    $this->uname = $uname;
+    $this->name = $name;
+    $this->email = $email;
+    $this->is_organizer = $is_organizer;
+  }
+
+  public function getUname(): string {
+    return $this->uname;
+  }
+  public function getName(): string {
+    return $this->name;
+  }
+  public function getEmail(): string {
+    return $this->email;
+  }
+  public function isOrganizer(): bool {
+    return $this->is_organizer;
   }
 }
