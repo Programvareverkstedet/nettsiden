@@ -28,8 +28,14 @@ class MOTD {
    * @return array{title: string, content: string[]}
    */
   public function getMOTD(): array {
-    $query
-      = 'SELECT motd.title, motd.content FROM motd ORDER BY motd.id DESC LIMIT 1';
+    $query = '
+      SELECT
+        title,
+        content
+      FROM motd
+      ORDER BY id DESC
+      LIMIT 1
+    ';
     $statement = $this->pdo->prepare($query);
     $statement->execute();
 
@@ -42,8 +48,14 @@ class MOTD {
    * @return array{title: string, content: string[]}
    */
   public function getMOTD_history(int $limit = 5): array {
-    $query
-      = 'SELECT motd.title, motd.content FROM motd ORDER BY motd.id DESC LIMIT :limit';
+    $query = '
+      SELECT
+        title,
+        content
+      FROM motd
+      ORDER BY id DESC
+      LIMIT :limit
+    ';
     $statement = $this->pdo->prepare($query);
     $statement->bindParam(':limit', $limit, \PDO::PARAM_STR);
     $statement->execute();

@@ -19,7 +19,13 @@ class Door {
    * @return array{time: DateTimeImmutable, open: bool}[]
    */
   public function getAll(): array {
-    $query = 'SELECT time, open FROM door ORDER BY time DESC';
+    $query = '
+      SELECT
+        time,
+        open
+      FROM door
+      ORDER BY time DESC
+    ';
     $statement = $this->pdo->prepare($query);
     $statement->execute();
 
@@ -40,8 +46,14 @@ class Door {
   public function getEntriesAfter(\DateTimeImmutable $startTime): array {
     $timestamp = $startTime->getTimestamp();
 
-    $query
-      = 'SELECT time, open FROM door WHERE time > :startTime ORDER BY time DESC';
+    $query = '
+      SELECT
+        time,
+        open
+      FROM door
+      WHERE time > :startTime
+      ORDER BY time DESC
+    ';
     $statement = $this->pdo->prepare($query);
     $statement->bindParam(':startTime', $timestamp, \PDO::PARAM_INT);
     $statement->execute();
@@ -61,7 +73,14 @@ class Door {
    * @return array{time: DateTimeImmutable, open: bool}
    */
   public function getCurrent(): array {
-    $query = 'SELECT time, open FROM door ORDER BY time DESC LIMIT 1';
+    $query = '
+      SELECT
+        time,
+        open
+      FROM door
+      ORDER BY time DESC
+      LIMIT 1
+    ';
     $statement = $this->pdo->prepare($query);
     $statement->execute();
     $row = $statement->fetch();
