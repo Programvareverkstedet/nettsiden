@@ -4,14 +4,13 @@ namespace pvv\side;
 
 require_once \dirname(__DIR__, 2) . implode(\DIRECTORY_SEPARATOR, ['', 'inc', 'include.php']);
 
-# TODO: no me gusta galore, please choose some better colors, omg
-
-# Light blue monochromatic color palette
 $colorPalette = [
-  "#D1F8EF60",
-  "#3674B560",
-  "#A1E3F960",
-  "#578FCA60",
+    '#FFB3BA',
+    '#FFCFAA',
+    '#FFFFBA',
+    '#BAFFC9',
+    '#BAE1FF',
+    '#E2BAFF',
 ];
 
 function rgbToHsl(int $r, int $g, int $b): array
@@ -111,11 +110,14 @@ function generateHighlightColor(string $hexColor): string {
     $g = hexdec(substr($hexColor, 3, 2));
     $b = hexdec(substr($hexColor, 5, 2));
     $a = hexdec(substr($hexColor, 7, 2));
+    if (!$a) {
+        $a = 255;
+    }
 
     $hsl = rgbToHsl($r, $g, $b);
 
-    // Increase lightness by 20%, cap at 100%
-    $hsl['l'] = min(100, $hsl['l'] + 20);
+    // Increase lightness by 8%, cap at 100%
+    $hsl['l'] = min(100, $hsl['l'] + 8);
 
     $rgb = hslToRgb($hsl['h'], $hsl['s'], $hsl['l']);
 
