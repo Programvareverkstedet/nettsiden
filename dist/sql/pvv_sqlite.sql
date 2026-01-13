@@ -38,9 +38,7 @@ CREATE TABLE "motd" (
   "content" TEXT NOT NULL
 );
 
-CREATE TABLE "door" ("time" INTEGER PRIMARY KEY, "open" BOOLEAN);
-
-INSERT INTO
-  "door"("time", "open")
-VALUES
-  (0, FALSE);
+CREATE TABLE "door" (
+  "time" INTEGER PRIMARY KEY,
+  "open" BOOLEAN NOT NULL
+);

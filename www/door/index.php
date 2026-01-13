@@ -60,7 +60,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     ]);
   } else {
     // Only last entry
-    $line = (object) $door->getCurrent();
+    $line = $door->getCurrent();
+    if (is_null($line)) {
+      echo '{"status": "error", "message": "No door data"}';
+      exit;
+    }
+    $line = (object) $line;
     echo json_encode([
       'status'        => 'OK',
       'time'          => $line->time->getTimestamp(),

@@ -9,7 +9,16 @@ $motdfetcher = new pvv\side\MOTD($pdo);
 $motd = $motdfetcher->getMOTD();
 
 $door = new pvv\side\Door($pdo);
-$doorEntry = (object) $door->getCurrent();
+$doorEntry = $door->getCurrent();
+if (!is_null($doorEntry)) {
+  $doorEntry = (object) $doorEntry;
+} else {
+  $doorEntry = (object) [
+    'time' => new DateTimeImmutable('@0'),
+    'open' => false,
+  ];
+}
+
 if ($doorEntry->time->getTimestamp() < (time() - 60 * 30)) {
   $doorStateText = 'Ingen data fra dørsensor';
 } else {

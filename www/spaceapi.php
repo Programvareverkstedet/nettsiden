@@ -9,7 +9,15 @@ $pdo = new PDO($DB_DSN, $DB_USER, $DB_PASS);
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 $door = new pvv\side\Door($pdo);
-$doorEntry = (object) $door->getCurrent();
+$doorEntry = $door->getCurrent();
+if (!is_null($doorEntry)) {
+  $doorEntry = (object) $doorEntry;
+} else {
+  $doorEntry = (object) [
+    'time' => new DateTimeImmutable('@0'),
+    'open' => false,
+  ];
+}
 
 ?>
 {

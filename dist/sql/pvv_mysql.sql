@@ -39,11 +39,6 @@ CREATE TABLE motd (
 );
 
 CREATE TABLE door (
-  `time` DATETIME PRIMARY KEY,
+  `time` INTEGER PRIMARY KEY,
   `open` BOOLEAN NOT NULL
 );
-
-INSERT INTO
-  `door`(`time`, `open`)
-VALUES
-  (0, FALSE);

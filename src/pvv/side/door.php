@@ -70,9 +70,9 @@ class Door {
   }
 
   /**
-   * @return array{time: DateTimeImmutable, open: bool}
+   * @return ?array{time: DateTimeImmutable, open: bool}
    */
-  public function getCurrent(): array {
+  public function getCurrent(): ?array {
     $query = '
       SELECT
         time,
@@ -84,6 +84,10 @@ class Door {
     $statement = $this->pdo->prepare($query);
     $statement->execute();
     $row = $statement->fetch();
+
+    if (!$row) {
+      return null;
+    }
 
     return [
       'time' => (new DateTimeImmutable)->setTimestamp((int) $row['time']),
