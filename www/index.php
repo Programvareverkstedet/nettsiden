@@ -65,7 +65,7 @@ $doorTime = $doorEntry->getTime()->format('H:i');
 				<a class="btn" href="om/"><li>Om PVV</li></a>
 				<a class="btn focus" href="paamelding/"><li>Bli medlem!</li></a>
 				<a class="btn" href="https://use.mazemap.com/#config=ntnu&v=1&zlevel=2&center=10.406281,63.417093&zoom=19.5&campuses=ntnu&campusid=1&sharepoitype=poi&sharepoi=38159&utm_medium=longurl">Veibeskrivelse</li></a>
-				<div id="doorIndicator" class="<?php echo $doorEntry->isOpen() ? 'doorIndicator_OPEN' : 'doorIndicator_CLOSED'; ?>" onclick="location.href='/door/graph.html'">
+				<div id="doorIndicator" class="<?php echo $doorEntry->isOpen() ? 'doorIndicator_OPEN' : 'doorIndicator_CLOSED'; ?>" onclick="location.href='/door/graph.php'">
 					<p class="doorStateText"><?php echo $doorStateText; ?></p>
 					<p class="doorStateTime">(Oppdatert <?php echo $doorTime; ?>)</p>
 				</div>

@@ -1,9 +1,18 @@
+<?php
+require_once dirname(__DIR__, 2) . implode(\DIRECTORY_SEPARATOR, ['', 'inc', 'include.php']);
+?>
+
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="../css/normalize.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/nav.css">
+    <link rel="stylesheet" href="../css/events.css">
+    <meta name="theme-color" content="#024" />
     <title>Inngangsverkstedet</title>
     <style>
       body {
@@ -17,14 +26,27 @@
       }
     </style>
   </head>
+
   <body>
-    <h2>En kort analyse av nerders døgnrytme i deres naturlige habitat, PVV</h2>
-    <div id="graphDiv">
-      <h4>Siste 24 timer</h4>
-      <canvas id="doorGraphDay"></canvas>
-      <h4>Siste 7 dager</h4>
-      <canvas id="doorGraphWeek"></canvas>
-    </div>
+    <nav id="navbar" class="">
+      <?php echo navbar(1, 'galleri'); ?>
+		  <?php echo loginbar(null, $pdo); ?>
+    </nav>
+
+    <main style="margin: 5em 0 2em 0;">
+      <h2>En kort analyse av nerders døgnrytme i deres naturlige habitat, PVV</h2>
+      <div id="graphDiv">
+        <h4>Siste 24 timer</h4>
+        <div style="margin: 20px;">
+          <canvas id="doorGraphDay"></canvas>
+        </div>
+
+        <h4>Siste 7 dager</h4>
+        <div style="margin: 20px;">
+          <canvas id="doorGraphWeek"></canvas>
+        </div>
+      </div>
+    </main>
 
     <script
       src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"
