@@ -15,11 +15,41 @@ $services = [
         ],
         [
             "name" => "GitHub",
-            "description" => "Våre offentlige kodebrønner, åpent for verden!",
+            "description" => "Speiling av våre mest interessante prosjekter på GitHub",
             "link" => "https://github.com/Programvareverkstedet/",
             "link_text" => "Gå til GitHub",
             "image" => "img/github.png",
         ],
+        [
+            "name" => "Codeberg",
+            "description" => "Speiling av våre mest interessante prosjekter på Codeberg",
+            "link" => "https://codeberg.org/Programvareverkstedet/",
+            "link_text" => "Gå til Codeberg",
+            "image" => "img/codeberg.svg",
+        ]
+    ],
+    "Webmail" => [
+        [
+            "name" => "Roundcube",
+            "description" => "En av våre webmail-klienter for epost.",
+            "link" => "https://webmail.pvv.ntnu.no/",
+            "link_text" => "Gå til Roundcube",
+            "image" => "img/roundcube.svg",
+        ],
+        [
+            "name" => "Snappymail",
+            "description" => "En annen av våre webmail-klienter for epost.",
+            "link" => "https://snappymail.pvv.ntnu.no/",
+            "link_text" => "Gå til Snappymail",
+            "image" => "img/snappymail.svg",
+        ],
+        [
+            "name" => "Alps",
+            "description" => "Jaggu enda en webmail-klient for epost.",
+            "link" => "https://alps.pvv.ntnu.no/",
+            "link_text" => "Gå til Alps",
+            "image" => "img/alps.svg",
+        ]
     ],
     "Kommunikasjon" => [
         [
@@ -46,8 +76,8 @@ $services = [
         [
             "name" => "Epost",
             "description" => "Som PVV-medlem får du din egen @pvv.ntnu.no-adresse, som kan brukes med alle vanlige epostprotokoller.",
-            "link" => "https://www.pvv.ntnu.no/mail/",
-            "link_text" => "Gå til Webmail",
+            "link" => "https://webmail.pvv.ntnu.no/",
+            "link_text" => "Gå til Rouncubcube webmail",
             "image" => "img/email.png",
         ],
         [
@@ -67,32 +97,25 @@ $services = [
             "image" => "img/php.png",
         ],
         [
+            "name" => "Gopherhull",
+            "description" => "PVV driver en egen gopher-tjener for nostalgikere og retroentusiaster.",
+            "link" => "https://wiki.pvv.ntnu.no/wiki/Tjenester/Gopherhull",
+            "link_text" => "Se dokumentasjon for gophertjening",
+            "image" => "img/gopher.png",
+        ],
+        [
+            "name" => "Wiki",
+            "description" => "PVVs wiki er åpen for alle medlemmer, og kan brukes til dokumentasjon, notater, prosjektsider og mye mer.",
+            "link" => "https://wiki.pvv.ntnu.no",
+            "link_text" => "Gå til wiki.pvv.ntnu.no",
+            "image" => "img/mediawiki.svg",
+        ],
+        [
             "name" => "PVV-siden",
             "description" => "Du befinner deg nå på PVV sin offisielle hjemmeside. Den er skrevet i PHP og kjører på en egen server.",
             "link" => "https://git.pvv.ntnu.no/Projects/nettsiden",
             "link_text" => "Se koden på gitea",
             "image" => "../pvv-logo.png",
-        ],
-        [
-            "name" => "Proxmox @blossom",
-            "description" => "Blossom er den sterkeste av våre VM-tjenere, her kan du kjøre enten fulle VM-er eller konteinere. Bare Drift har tilgang på disse tjenerne.",
-            "link" => "https://blossom.pvv.ntnu.no:8006",
-            "link_text" => "Gå til blossom.pvv.ntnu.no",
-            "image" => "img/proxmox.png",
-        ],
-        [
-            "name" => "Proxmox @bubbles",
-            "description" => "Bubbles er den svakeste av våre VM-tjenere.",
-            "link" => "https://bubbles.pvv.ntnu.no:8006",
-            "link_text" => "Gå til bubbles.pvv.ntnu.no",
-            "image" => "img/proxmox.png",
-        ],
-        [
-            "name" => "Proxmox @buttercup",
-            "description" => "Buttercup er en av våre VM-tjenere.",
-            "link" => "https://buttercup.pvv.ntnu.no:8006",
-            "link_text" => "Gå til buttercup.pvv.ntnu.no",
-            "image" => "img/proxmox.png",
         ],
     ],
     "Underholdning" => [
