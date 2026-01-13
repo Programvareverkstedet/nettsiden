@@ -70,7 +70,12 @@ if ($start_date >= $stop_date) {
 
 
 if ($id == 0) {
-  $query = 'INSERT INTO events (name, start, stop, organiser, location, description) VALUES (:title, :start, :stop, :organiser, :loc, :desc)';
+  $query = '
+    INSERT INTO
+      events(name, start, stop, organiser, location, description)
+    VALUES
+      (:title, :start, :stop, :organiser, :loc, :desc)
+  ';
   $statement = $pdo->prepare($query);
 
   $statement->bindParam(':title', $title, PDO::PARAM_STR);
@@ -80,7 +85,19 @@ if ($id == 0) {
   $statement->bindParam(':organiser', $organiser, PDO::PARAM_STR);
   $statement->bindParam(':loc', $location, PDO::PARAM_STR);
 } else {
-  $query = 'UPDATE events SET name=:title, start=:start, stop=:stop, organiser=:organiser, location=:loc, description=:desc WHERE id=:id';
+  $query = '
+    UPDATE
+      events
+    SET
+      name = :title,
+      start = :start,
+      stop = :stop,
+      organiser = :organiser,
+      location = :loc,
+      description = :desc
+    WHERE
+      id = :id
+  ';
   $statement = $pdo->prepare($query);
 
   $statement->bindParam(':title', $title, PDO::PARAM_STR);

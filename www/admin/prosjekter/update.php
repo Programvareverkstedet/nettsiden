@@ -37,7 +37,12 @@ $active = ($_POST['active'] ?? false);
 
 
 if ($id == 0) {
-  $query = 'INSERT INTO projects (name, description, active) VALUES (:title, :desc, :active)';
+  $query = '
+    INSERT INTO
+      projects(name, description, active)
+    VALUES
+      (:title, :desc, :active)
+  ';
   $statement = $pdo->prepare($query);
 
   $statement->bindParam(':title', $title, PDO::PARAM_STR);
@@ -46,7 +51,12 @@ if ($id == 0) {
 
   $statement->execute();
 
-  $ownerQuery = 'INSERT INTO projectmembers (projectid, name, uname, mail, role, lead, owner) VALUES (last_insert_rowid(), :owner, :owneruname, :owneremail, \'Prosjektleder\', 1, 1)';
+  $ownerQuery = '
+    INSERT INTO
+      projectmembers(projectid, name, uname, mail, role, lead, owner)
+    VALUES
+      (last_insert_rowid(), :owner, :owneruname, :owneremail, \'Prosjektleder\', 1, 1)
+  ';
   $statement = $pdo->prepare($ownerQuery);
   $statement->bindParam(':owner', $name, PDO::PARAM_STR);
   $statement->bindParam(':owneruname', $uname, PDO::PARAM_STR);
@@ -54,7 +64,16 @@ if ($id == 0) {
 
   $statement->execute();
 } else {
-  $query = 'UPDATE projects SET name=:title, description=:desc, active=:active WHERE id=:id';
+  $query = '
+    UPDATE
+      projects
+    SET
+      name = :title,
+      description = :desc,
+      active = :active
+    WHERE
+      id = :id
+  ';
   $statement = $pdo->prepare($query);
 
   $statement->bindParam(':title', $title, PDO::PARAM_STR);
@@ -64,7 +83,14 @@ if ($id == 0) {
 
   $statement->execute();
 
-  $query = 'UPDATE projectmembers SET name=:name, uname=:uname, mail=:mail';
+  $query = '
+    UPDATE
+      projectmembers
+    SET
+      name = :name,
+      uname = :uname,
+      mail = :mail
+  ';
   $statement = $pdo->prepare($query);
 
   $statement->bindParam(':name', $name, PDO::PARAM_STR);
