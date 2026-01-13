@@ -136,7 +136,7 @@ $services = [
         "services" => [
         [
             "name" => "Gitea",
-            "description" => "Vår interne git-tjener, åpen for alle medlemmer",
+            "description" => "Vår interne git-tjener, åpen for alle medlemmer. Kommer med CI/CD, nettside-artifakter, pakke-register og mye mer.",
             "link" => "https://git.pvv.ntnu.no",
             "link_text" => "Gå til git.pvv.ntnu.no",
             "image" => "img/gitea.svg",
@@ -146,7 +146,7 @@ $services = [
             "description" => "Speiling av våre mest interessante prosjekter på GitHub",
             "link" => "https://github.com/Programvareverkstedet/",
             "link_text" => "Gå til GitHub",
-            "image" => "img/github.png",
+            "image" => "img/github.svg",
         ],
         [
             "name" => "Codeberg",
@@ -282,6 +282,46 @@ $services = [
             ],
         ],
     ],
+    "physical" => [
+        "title" => "Fysiske tjenester",
+        "services" => [
+            [
+                "name" => "Dibbler",
+                "description" => "PVV har en liten kiosk-datamaskin som lar deg kjøpe godis og pølser, drevet av PVVVV-samlespleisegruppa.",
+                "link" => "https://wiki.pvv.ntnu.no/wiki/Tjenester/Dibbler",
+                "link_text" => "Se dokumentasjon på wiki",
+                "image" => "img/dibbler.png",
+            ],
+            // [
+            //     "name" => "Worblehat",
+            //     "description" => "Bibliotekssystemet vårt, som lar deg finne og låne bøker i PVVs bibliotek.",
+            //     "link" => "https://wiki.pvv.ntnu.no/wiki/Tjenester/Worblehat",
+            //     "link_text" => "Se dokumentasjon på wiki",
+            //     "image" => "img/worblehat.png",
+            // ],
+            [
+                "name" => "Grzegorz",
+                "description" => "Grzegorz er en musikkspiller, den spiller mye dank. Du kan styre den med vevgrensesnitt og diverse API-er.",
+                "link" => "https://georg.pvv.ntnu.no",
+                "link_text" => "Gå til Georg's vevgrensesnitt",
+                "image" => "img/grzegorz.png",
+            ],
+            [
+                "name" => "Dørbjelle",
+                "description" => "PVVs dørbjelle er koblet til internett, og lar deg ringe på hvis du spør botten pent på Discordh eller Matrix",
+                "link" => "https://wiki.pvv.ntnu.no/wiki/Tjenester/D%C3%B8rbjelle",
+                "link_text" => "Se dokumentasjon på wiki",
+                "image" => "img/doorbell.png",
+            ],
+            [
+                "name" => "Terminaler",
+                "description" => "PVV har flere terminaler plassert på terminalrommet; her kan du logge inn med PVV-brukeren din og gjøre øvinger eller lære om Linux.",
+                "link" => "https://wiki.pvv.ntnu.no/wiki/Tjenester/Terminaler",
+                "link_text" => "Se dokumentasjon på wiki",
+                "image" => "img/terminal.png",
+            ],
+        ],
+    ]
 ];
 
 $servicesArrayKeys = array_keys($services);
