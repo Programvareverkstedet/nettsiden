@@ -10,19 +10,20 @@ CREATE TABLE "events" (
 
 CREATE TABLE "projects" (
   "id" INTEGER PRIMARY KEY AUTOINCREMENT,
-  "name" TEXT,
+  "name" TEXT NOT NULL,
   "description" TEXT,
   "active" BOOLEAN DEFAULT TRUE
 );
 
 CREATE TABLE "projectmembers" (
+  "id" INTEGER PRIMARY KEY AUTOINCREMENT,
   "projectid" INTEGER REFERENCES projects(id),
-  "name" TEXT,
-  "uname" TEXT,
+  "name" TEXT NOT NULL,
+  "uname" TEXT NOT NULL REFERENCES users(uname),
   "mail" TEXT,
   "role" TEXT,
-  "lead" BOOLEAN DEFAULT FALSE,
-  "owner" BOOLEAN DEFAULT FALSE
+  "lead" BOOLEAN NOT NULL DEFAULT FALSE,
+  "owner" BOOLEAN NOT NULL DEFAULT FALSE
 );
 
 CREATE TABLE "users" (
@@ -40,6 +41,6 @@ CREATE TABLE "motd" (
 CREATE TABLE "door" ("time" INTEGER PRIMARY KEY, "open" BOOLEAN);
 
 INSERT INTO
-  door (time, open)
+  "door"("time", "open")
 VALUES
   (0, FALSE);
