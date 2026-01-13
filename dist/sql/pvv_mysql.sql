@@ -33,10 +33,6 @@ CREATE TABLE motd (
   `content` TEXT
 );
 
-/*
-INSERT INTO motd (title, content)
-VALUES ("MOTD ./dev.sh", "du kan endre motd i admin panelet");
-*/
 CREATE TABLE door (`time` INTEGER PRIMARY KEY, `open` BOOLEAN);
 
 INSERT INTO
