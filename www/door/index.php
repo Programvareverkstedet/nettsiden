@@ -50,13 +50,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     echo json_encode([
-      'status'        => 'OK',
-      'entries'       => array_map(function ($line) {
-        return [
-          'time' => $line['time']->getTimestamp(),
-          'open' => $line['open'],
-        ];
-      }, $lines),
+      'status' => 'OK',
+      'entries' => array_map(
+        function ($line) {
+          return [
+            'time' => $line->getTimestamp(),
+            'open' => $line->isOpen(),
+          ];
+        },
+        $lines
+      ),
     ]);
   } else {
     // Only last entry
@@ -65,11 +68,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       echo '{"status": "error", "message": "No door data"}';
       exit;
     }
-    $line = (object) $line;
     echo json_encode([
-      'status'        => 'OK',
-      'time'          => $line->time->getTimestamp(),
-      'open'          => $line->open,
+      'status' => 'OK',
+      'time' => $line->getTimestamp(),
+      'open' => $line->isOpen(),
     ]);
   }
 }
@@ -101,9 +103,9 @@ function getChanges($items) {
   $res = [];
 
   foreach ($items as $item) {
-    if ($item['open'] !== $prevState) {
+    if ($item->isOpen() !== $prevState) {
       $res[] = $item;
-      $prevState = $item['open'];
+      $prevState = $item->isOpen();
     }
   }
 

@@ -6,6 +6,28 @@ namespace pvv\side;
 
 use DateTimeImmutable;
 
+class DoorStatus {
+  private DateTimeImmutable $time;
+  private bool $open;
+
+  public function __construct(DateTimeImmutable $time, bool $open) {
+    $this->time = $time;
+    $this->open = $open;
+  }
+
+  public function getTime(): DateTimeImmutable {
+    return $this->time;
+  }
+
+  public function getTimeStamp(): int {
+    return $this->time->getTimestamp();
+  }
+
+  public function isOpen(): bool {
+    return $this->open;
+  }
+}
+
 class Door {
   private $pdo;
 
@@ -16,7 +38,7 @@ class Door {
   }
 
   /**
-   * @return array{time: DateTimeImmutable, open: bool}[]
+   * @return DoorStatus[]
    */
   public function getAll(): array {
     $query = '
@@ -29,19 +51,21 @@ class Door {
     $statement = $this->pdo->prepare($query);
     $statement->execute();
 
-    $doorEvents = [];
-    foreach ($statement->fetchAll() as $row) {
-      $doorEvents[] = [
-        'time' => (new DateTimeImmutable)->setTimestamp((int) $row['time']),
-        'open' => (bool) $row['open'],
-      ];
-    }
+    $result = array_map(
+      function ($row) {
+        return new DoorStatus(
+          (new DateTimeImmutable)->setTimestamp((int) $row['time']),
+          (bool) $row['open'],
+        );
+      },
+      $statement->fetchAll(),
+    );
 
-    return $doorEvents;
+    return $result;
   }
 
   /**
-   * @return array{time: DateTimeImmutable, open: bool}[]
+   * @return DoorStatus[]
    */
   public function getEntriesAfter(\DateTimeImmutable $startTime): array {
     $timestamp = $startTime->getTimestamp();
@@ -58,21 +82,20 @@ class Door {
     $statement->bindParam(':startTime', $timestamp, \PDO::PARAM_INT);
     $statement->execute();
 
-    $doorEvents = [];
-    foreach ($statement->fetchAll() as $row) {
-      $doorEvents[] = [
-        'time' => (new DateTimeImmutable)->setTimestamp((int) $row['time']),
-        'open' => (bool) $row['open'],
-      ];
-    }
+    $result = array_map(
+      function ($row) {
+        return new DoorStatus(
+          (new DateTimeImmutable)->setTimestamp((int) $row['time']),
+          (bool) $row['open'],
+        );
+      },
+      $statement->fetchAll(),
+    );
 
-    return $doorEvents;
+    return $result;
   }
 
-  /**
-   * @return ?array{time: DateTimeImmutable, open: bool}
-   */
-  public function getCurrent(): ?array {
+  public function getCurrent(): ?DoorStatus {
     $query = '
       SELECT
         time,
@@ -89,10 +112,12 @@ class Door {
       return null;
     }
 
-    return [
-      'time' => (new DateTimeImmutable)->setTimestamp((int) $row['time']),
-      'open' => (bool) $row['open'],
-    ];
+    $result = new DoorStatus(
+      (new DateTimeImmutable)->setTimestamp((int) $row['time']),
+      (bool) $row['open'],
+    );
+
+    return $result;
   }
 
   private function removeOld(): void {

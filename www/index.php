@@ -1,4 +1,7 @@
 <?php
+
+use pvv\side\DoorStatus;
+
 require_once dirname(__DIR__) . implode(\DIRECTORY_SEPARATOR, ['', 'inc', 'include.php']);
 
 $translation = ['I dag', 'I morgen', 'Denne uka', 'Neste uke', 'Denne måneden', 'Neste måned'];
@@ -10,25 +13,23 @@ $motd = $motdfetcher->getMOTD();
 
 $door = new pvv\side\Door($pdo);
 $doorEntry = $door->getCurrent();
-if (!is_null($doorEntry)) {
-  $doorEntry = (object) $doorEntry;
-} else {
-  $doorEntry = (object) [
-    'time' => new DateTimeImmutable('@0'),
-    'open' => false,
-  ];
+if (is_null($doorEntry)) {
+  $doorEntry = new DoorStatus(
+    new DateTimeImmutable('@0'),
+    false,
+  );
 }
 
-if ($doorEntry->time->getTimestamp() < (time() - 60 * 30)) {
+if ($doorEntry->getTimestamp() < (time() - 60 * 30)) {
   $doorStateText = 'Ingen data fra dørsensor';
 } else {
-  if ($doorEntry->open) {
+  if ($doorEntry->isOpen()) {
     $doorStateText = 'Døren er <b>åpen</b>';
   } else {
     $doorStateText = 'Døren er <b>ikke åpen</b>';
   }
 }
-$doorTime = $doorEntry->time->format('H:i');
+$doorTime = $doorEntry->getTime()->format('H:i');
 ?>
 <!DOCTYPE html>
 <html lang="no">
@@ -64,7 +65,7 @@ $doorTime = $doorEntry->time->format('H:i');
 				<a class="btn" href="om/"><li>Om PVV</li></a>
 				<a class="btn focus" href="paamelding/"><li>Bli medlem!</li></a>
 				<a class="btn" href="https://use.mazemap.com/#config=ntnu&v=1&zlevel=2&center=10.406281,63.417093&zoom=19.5&campuses=ntnu&campusid=1&sharepoitype=poi&sharepoi=38159&utm_medium=longurl">Veibeskrivelse</li></a>
-				<div id="doorIndicator" class="<?php echo $doorEntry->open ? 'doorIndicator_OPEN' : 'doorIndicator_CLOSED'; ?>" onclick="location.href='/door/graph.html'">
+				<div id="doorIndicator" class="<?php echo $doorEntry->isOpen() ? 'doorIndicator_OPEN' : 'doorIndicator_CLOSED'; ?>" onclick="location.href='/door/graph.html'">
 					<p class="doorStateText"><?php echo $doorStateText; ?></p>
 					<p class="doorStateTime">(Oppdatert <?php echo $doorTime; ?>)</p>
 				</div>

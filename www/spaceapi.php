@@ -10,14 +10,14 @@ $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 $door = new pvv\side\Door($pdo);
 $doorEntry = $door->getCurrent();
-if (!is_null($doorEntry)) {
-  $doorEntry = (object) $doorEntry;
-} else {
-  $doorEntry = (object) [
-    'time' => new DateTimeImmutable('@0'),
-    'open' => false,
-  ];
-}
+// if (!is_null($doorEntry)) {
+//   $doorEntry = (object) $doorEntry;
+// } else {
+//   $doorEntry = (object) [
+//     'time' => new DateTimeImmutable('@0'),
+//     'open' => false,
+//   ];
+// }
 
 ?>
 {
@@ -43,9 +43,9 @@ if (!is_null($doorEntry)) {
   },
   "issue_report_channels": ["email"],
   "state": {
-    "open": <?php echo $doorEntry->open ? 'true' : 'false'; ?>,
-    "lastchange": <?php echo $doorEntry->time->getTimestamp(); ?>,
-    "message": "<?php echo $doorEntry->open ? 'open for public, members are present' : 'closed'; ?>"
+    "open": <?php echo $doorEntry->isOpen() ? 'true' : 'false'; ?>,
+    "lastchange": <?php echo $doorEntry->getTimeStamp(); ?>,
+    "message": "<?php echo $doorEntry->isOpen() ? 'open for public, members are present' : 'closed'; ?>"
   },
   "feeds": {
     "wiki": {
