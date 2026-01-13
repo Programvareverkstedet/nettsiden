@@ -264,13 +264,13 @@ $services = [
                 "link_text" => "Gå til verdenskartet vårt",
                 "image" => "img/minecraft.png",
             ],
-            [
-                "name" => "MiniFlux RSS reader",
-                "description" => "Trenger du en cross-platform RSS/Atom-leser for å følge med på omverdenen som det er 1990? ",
-                "link" => "https://feeds.pvv.ntnu.no",
-                "link_text" => "Gå til MiniFlux",
-                "image" => "img/rss.svg",
-            ],
+            // [
+            //     "name" => "MiniFlux RSS reader",
+            //     "description" => "Trenger du en cross-platform RSS/Atom-leser for å følge med på omverdenen som det er 1990? ",
+            //     "link" => "https://feeds.pvv.ntnu.no",
+            //     "link_text" => "Gå til MiniFlux",
+            //     "image" => "img/rss.svg",
+            // ],
             [
                 "name" => "Bildegalleri",
                 "description" => "PVV har et felles bildegalleri, der alle kan legge relevante bilder, som automatisk blir inkludert på nettsiden.",
