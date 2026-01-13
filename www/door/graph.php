@@ -20,9 +20,17 @@ require_once dirname(__DIR__, 2) . implode(\DIRECTORY_SEPARATOR, ['', 'inc', 'in
         width: 80vw;
         margin: auto auto;
       }
+
       #graphDiv {
         display: flex;
         flex-direction: column;
+      }
+
+      .graphbox {
+        margin: 20px;
+        padding: 10px;
+        border: 5px solid #00407F;
+        border-radius: 10px;
       }
     </style>
   </head>
@@ -37,12 +45,12 @@ require_once dirname(__DIR__, 2) . implode(\DIRECTORY_SEPARATOR, ['', 'inc', 'in
       <h2>En kort analyse av nerders døgnrytme i deres naturlige habitat, PVV</h2>
       <div id="graphDiv">
         <h4>Siste 24 timer</h4>
-        <div style="margin: 20px;">
+        <div class="graphbox">
           <canvas id="doorGraphDay"></canvas>
         </div>
 
         <h4>Siste 7 dager</h4>
-        <div style="margin: 20px;">
+        <div class="graphbox">
           <canvas id="doorGraphWeek"></canvas>
         </div>
       </div>
@@ -108,19 +116,6 @@ require_once dirname(__DIR__, 2) . implode(\DIRECTORY_SEPARATOR, ['', 'inc', 'in
         return data.slice(0, i);
       }
 
-      // https://www.chartjs.org/docs/latest/configuration/canvas-background.html
-      const bgColorPlugin = {
-        id: "bgColorPlugin",
-        beforeDraw: (chart, args, options) => {
-          const { ctx } = chart;
-          ctx.save();
-          ctx.globalCompositeOperation = "destination-over";
-          ctx.fillStyle = options.color || "#99ffff";
-          ctx.fillRect(0, 0, chart.width, chart.height);
-          ctx.restore();
-        },
-      };
-
       function displayLineDiagram(canv, data, timeunit) {
         let ctx = canv.getContext("2d");
         let dotColor = data.map((entry) =>
@@ -182,12 +177,8 @@ require_once dirname(__DIR__, 2) . implode(\DIRECTORY_SEPARATOR, ['', 'inc', 'in
                     tooltipItem.formattedValue === "1" ? "Åpent" : "Stengt",
                 },
               },
-              bgColorPlugin: {
-                color: "#EEEEEE",
-              },
             },
           },
-          plugins: [bgColorPlugin],
         });
       }
     </script>
