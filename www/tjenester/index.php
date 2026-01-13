@@ -11,7 +11,7 @@ $services = [
             "description" => "Vår interne git-tjener, åpen for alle medlemmer",
             "link" => "https://git.pvv.ntnu.no",
             "link_text" => "Gå til git.pvv.ntnu.no",
-            "image" => "img/gitea.png",
+            "image" => "img/gitea.svg",
         ],
         [
             "name" => "GitHub",
@@ -64,14 +64,14 @@ $services = [
             ),
             "link" => "https://chat.pvv.ntnu.no",
             "link_text" => "Gå til chat.pvv.ntnu.no",
-            "image" => "img/element.png",
+            "image" => "img/element.svg",
         ],
         [
             "name" => "Discord",
             "description" => "Vår hovedkanal, her finner du alt fra ofisielle announcements til memes og driftsdiskusjoner.",
             "link" => "https://discord.gg/WpaHGV8K",
             "link_text" => "Gå til Discord",
-            "image" => "img/discord.png",
+            "image" => "img/discord.svg",
         ],
         [
             "name" => "Epost",
@@ -131,7 +131,7 @@ $services = [
             "description" => "Trenger du en cross-platform RSS/Atom-leser for å følge med på omverdenen som det er 1990? ",
             "link" => "https://feeds.pvv.ntnu.no",
             "link_text" => "Gå til MiniFlux",
-            "image" => "img/rss.png",
+            "image" => "img/rss.svg",
         ],
         [
             "name" => "Bildegalleri",
