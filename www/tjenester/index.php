@@ -306,6 +306,13 @@ $services = [
                 "link_text" => "Gå til verdenskartet vårt",
                 "image" => "img/minecraft.png",
             ],
+            [
+                "name" => "Mapcrafter",
+                "description" => "Det finnes enda et verdenskart for minecraft, mapcrafter. Her kan du se verdenskartet fra en mer isometrisk vinkel.",
+                "link" => "http://isvegg.pvv.ntnu.no/kart",
+                "link_text" => "Gå til det andre verdenskartet vårt",
+                "image" => "img/mapcrafter.webp",
+            ],
             // [
             //     "name" => "MiniFlux RSS reader",
             //     "description" => "Trenger du en cross-platform RSS/Atom-leser for å følge med på omverdenen som det er 1990? ",
