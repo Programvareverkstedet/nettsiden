@@ -256,32 +256,6 @@ $services = [
             ],
         ],
     ],
-    "recreational" => [
-        "title" => "Underholdning og fritid",
-        "services" => [
-            [
-                "name" => "Minecraft",
-                "description" => "Vi har en egen Minecraft-server for medlemmer, som du kan koble til med IP-adressen minecraft.pvv.ntnu.no. Spør om whitelist på matrix/discord.",
-                "link" => "https://minecraft.pvv.ntnu.no",
-                "link_text" => "Gå til verdenskartet vårt",
-                "image" => "img/minecraft.png",
-            ],
-            // [
-            //     "name" => "MiniFlux RSS reader",
-            //     "description" => "Trenger du en cross-platform RSS/Atom-leser for å følge med på omverdenen som det er 1990? ",
-            //     "link" => "https://feeds.pvv.ntnu.no",
-            //     "link_text" => "Gå til MiniFlux",
-            //     "image" => "img/rss.svg",
-            // ],
-            [
-                "name" => "Bildegalleri",
-                "description" => "PVV har et felles bildegalleri, der alle kan legge relevante bilder, som automatisk blir inkludert på nettsiden.",
-                "link" => "https://www.pvv.ntnu.no/galleri/",
-                "link_text" => "Se galleriet",
-                "image" => "img/gallery.png",
-            ],
-        ],
-    ],
     "physical" => [
         "title" => "Fysiske tjenester",
         "services" => [
@@ -321,7 +295,46 @@ $services = [
                 "image" => "img/terminal.png",
             ],
         ],
-    ]
+    ],
+    "other" => [
+        "title" => "Annet",
+        "services" => [
+            [
+                "name" => "Minecraft",
+                "description" => "Vi har en egen Minecraft-server for medlemmer, som du kan koble til med IP-adressen minecraft.pvv.ntnu.no. Spør om whitelist på matrix/discord.",
+                "link" => "https://minecraft.pvv.ntnu.no",
+                "link_text" => "Gå til verdenskartet vårt",
+                "image" => "img/minecraft.png",
+            ],
+            // [
+            //     "name" => "MiniFlux RSS reader",
+            //     "description" => "Trenger du en cross-platform RSS/Atom-leser for å følge med på omverdenen som det er 1990? ",
+            //     "link" => "https://feeds.pvv.ntnu.no",
+            //     "link_text" => "Gå til MiniFlux",
+            //     "image" => "img/rss.svg",
+            // ],
+            [
+                "name" => "Bildegalleri",
+                "description" => "PVV har et felles bildegalleri, der alle kan legge relevante bilder, som automatisk blir inkludert på nettsiden.",
+                "link" => "https://www.pvv.ntnu.no/galleri/",
+                "link_text" => "Se galleriet",
+                "image" => "img/gallery.png",
+            ],
+	    [
+                "name" => "Vaultwarden",
+                "description" => implode(
+                    " ",
+		    [
+                      "PVV har en passordlagringstjeneste, hvor medlemmer kan lagre passordene sine, og drift kan dele passord mellom seg.",
+                      "Passordene blir kryptert og dekryptert på klientsiden, så det er ikke mulig for drift å snoke rundt i passordene dine."
+                    ],
+                ),
+                "link" => "https://pw.pvv.ntnu.no/",
+                "link_text" => "Gå til vevgrensesnittet",
+                "image" => "img/vaultwarden.svg",
+            ],
+        ],
+    ],
 ];
 
 $servicesArrayKeys = array_keys($services);
