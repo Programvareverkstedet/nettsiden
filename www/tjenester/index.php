@@ -241,6 +241,13 @@ $services = [
                 "image" => "img/gopher.png",
             ],
             [
+                "name" => "Brukerdatabaser",
+                "description" => "PVV har en MariaDB server som er tilgjengelig for bruk av alle medlemmer, gjennom et spesielt administatorverktøy.",
+                "link" => "https://git.pvv.ntnu.no/Projects/muscl",
+                "link_text" => "Se prosjektsiden til administatorverktøyet",
+                "image" => "img/database.svg",
+            ],
+            [
                 "name" => "Wiki",
                 "description" => "PVVs wiki er åpen for alle medlemmer, og kan brukes til dokumentasjon, notater, prosjektsider og mye mer.",
                 "link" => "https://wiki.pvv.ntnu.no",
