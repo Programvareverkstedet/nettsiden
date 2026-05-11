@@ -78,12 +78,12 @@ if ($id == 0) {
   ';
   $statement = $pdo->prepare($query);
 
-  $statement->bindParam(':title', $title, PDO::PARAM_STR);
-  $statement->bindParam(':desc', $desc, PDO::PARAM_STR);
-  $statement->bindParam(':start', $start, PDO::PARAM_STR);
-  $statement->bindParam(':stop', $stop, PDO::PARAM_STR);
-  $statement->bindParam(':organiser', $organiser, PDO::PARAM_STR);
-  $statement->bindParam(':loc', $location, PDO::PARAM_STR);
+  $statement->bindValue(':title', $title, PDO::PARAM_STR);
+  $statement->bindValue(':desc', $desc, PDO::PARAM_STR);
+  $statement->bindValue(':start', $start, PDO::PARAM_STR);
+  $statement->bindValue(':stop', $stop, PDO::PARAM_STR);
+  $statement->bindValue(':organiser', $organiser, PDO::PARAM_STR);
+  $statement->bindValue(':loc', $location, PDO::PARAM_STR);
 } else {
   $query = '
     UPDATE
@@ -100,13 +100,13 @@ if ($id == 0) {
   ';
   $statement = $pdo->prepare($query);
 
-  $statement->bindParam(':title', $title, PDO::PARAM_STR);
-  $statement->bindParam(':desc', $desc, PDO::PARAM_STR);
-  $statement->bindParam(':start', $start, PDO::PARAM_STR);
-  $statement->bindParam(':stop', $stop, PDO::PARAM_STR);
-  $statement->bindParam(':organiser', $organiser, PDO::PARAM_STR);
-  $statement->bindParam(':loc', $location, PDO::PARAM_STR);
-  $statement->bindParam(':id', $id, PDO::PARAM_INT);
+  $statement->bindValue(':title', $title, PDO::PARAM_STR);
+  $statement->bindValue(':desc', $desc, PDO::PARAM_STR);
+  $statement->bindValue(':start', $start, PDO::PARAM_STR);
+  $statement->bindValue(':stop', $stop, PDO::PARAM_STR);
+  $statement->bindValue(':organiser', $organiser, PDO::PARAM_STR);
+  $statement->bindValue(':loc', $location, PDO::PARAM_STR);
+  $statement->bindValue(':id', $id, PDO::PARAM_INT);
 }
 
 $statement->execute();

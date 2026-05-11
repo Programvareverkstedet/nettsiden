@@ -39,7 +39,7 @@ class DBActivity implements Activity {
   public function getEventByID(int $id): SimpleEvent {
     $query = 'SELECT * FROM events WHERE id=:id LIMIT 1';
     $statement = $this->pdo->prepare($query);
-    $statement->bindParam(':id', $id, \PDO::PARAM_INT);
+    $statement->bindValue(':id', $id, \PDO::PARAM_INT);
     $statement->execute();
 
     $dbEvent = $statement->fetch();

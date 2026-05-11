@@ -47,8 +47,8 @@ class MOTD {
     $query = 'INSERT INTO motd(title, content) VALUES (:title, :content)';
     $statement = $this->pdo->prepare($query);
 
-    $statement->bindParam(':title', $title, \PDO::PARAM_STR);
-    $statement->bindParam(':content', $content, \PDO::PARAM_STR);
+    $statement->bindValue(':title', $title, \PDO::PARAM_STR);
+    $statement->bindValue(':content', $content, \PDO::PARAM_STR);
 
     $statement->execute();
   }
@@ -88,7 +88,7 @@ class MOTD {
       LIMIT :limit
     ';
     $statement = $this->pdo->prepare($query);
-    $statement->bindParam(':limit', $limit, \PDO::PARAM_STR);
+    $statement->bindValue(':limit', $limit, \PDO::PARAM_STR);
     $statement->execute();
 
     $result = array_map(

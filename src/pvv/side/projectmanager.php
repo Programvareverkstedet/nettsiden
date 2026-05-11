@@ -36,7 +36,7 @@ class ProjectManager {
   public function getByID(int $id): ?Project {
     $query = 'SELECT * FROM projects WHERE id=:id LIMIT 1';
     $statement = $this->pdo->prepare($query);
-    $statement->bindParam(':id', $id, \PDO::PARAM_INT);
+    $statement->bindValue(':id', $id, \PDO::PARAM_INT);
     $statement->execute();
 
     $dbProj = $statement->fetch();
@@ -58,7 +58,7 @@ class ProjectManager {
   public function getByOwner(string $uname): array {
     $query = 'SELECT projectid FROM projectmembers WHERE uname=:uname';
     $statement = $this->pdo->prepare($query);
-    $statement->bindParam(':uname', $uname, \PDO::PARAM_STR);
+    $statement->bindValue(':uname', $uname, \PDO::PARAM_STR);
     $statement->execute();
 
     $projectIDs = $statement->fetchAll();
@@ -68,7 +68,7 @@ class ProjectManager {
 
       $query = 'SELECT * FROM projects WHERE id=:id';
       $statement = $this->pdo->prepare($query);
-      $statement->bindParam(':id', $id, \PDO::PARAM_INT);
+      $statement->bindValue(':id', $id, \PDO::PARAM_INT);
       $statement->execute();
 
       foreach ($statement->fetchAll() as $dbProj) {
@@ -91,7 +91,7 @@ class ProjectManager {
   public function getProjectMembers(int $id): array {
     $query = 'SELECT * FROM projectmembers WHERE projectid=:id';
     $statement = $this->pdo->prepare($query);
-    $statement->bindParam(':id', $id, \PDO::PARAM_STR);
+    $statement->bindValue(':id', $id, \PDO::PARAM_STR);
     $statement->execute();
 
     $members = [];
@@ -115,7 +115,7 @@ class ProjectManager {
   public function getProjectOwner(int $id): array {
     $query = 'SELECT * FROM projectmembers WHERE (projectid=:id AND owner=1)';
     $statement = $this->pdo->prepare($query);
-    $statement->bindParam(':id', $id, \PDO::PARAM_STR);
+    $statement->bindValue(':id', $id, \PDO::PARAM_STR);
     $statement->execute();
 
     $dbOwner = $statement->fetch();

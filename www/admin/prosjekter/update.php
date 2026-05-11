@@ -45,9 +45,9 @@ if ($id == 0) {
   ';
   $statement = $pdo->prepare($query);
 
-  $statement->bindParam(':title', $title, PDO::PARAM_STR);
-  $statement->bindParam(':desc', $desc, PDO::PARAM_STR);
-  $statement->bindParam(':active', $active, PDO::PARAM_BOOL);
+  $statement->bindValue(':title', $title, PDO::PARAM_STR);
+  $statement->bindValue(':desc', $desc, PDO::PARAM_STR);
+  $statement->bindValue(':active', $active, PDO::PARAM_BOOL);
 
   $statement->execute();
 
@@ -58,9 +58,9 @@ if ($id == 0) {
       (last_insert_rowid(), :owner, :owneruname, :owneremail, \'Prosjektleder\', 1, 1)
   ';
   $statement = $pdo->prepare($ownerQuery);
-  $statement->bindParam(':owner', $name, PDO::PARAM_STR);
-  $statement->bindParam(':owneruname', $uname, PDO::PARAM_STR);
-  $statement->bindParam(':owneremail', $mail, PDO::PARAM_STR);
+  $statement->bindValue(':owner', $name, PDO::PARAM_STR);
+  $statement->bindValue(':owneruname', $uname, PDO::PARAM_STR);
+  $statement->bindValue(':owneremail', $mail, PDO::PARAM_STR);
 
   $statement->execute();
 } else {
@@ -76,10 +76,10 @@ if ($id == 0) {
   ';
   $statement = $pdo->prepare($query);
 
-  $statement->bindParam(':title', $title, PDO::PARAM_STR);
-  $statement->bindParam(':desc', $desc, PDO::PARAM_STR);
-  $statement->bindParam(':active', $active, PDO::PARAM_BOOL);
-  $statement->bindParam(':id', $id, PDO::PARAM_INT);
+  $statement->bindValue(':title', $title, PDO::PARAM_STR);
+  $statement->bindValue(':desc', $desc, PDO::PARAM_STR);
+  $statement->bindValue(':active', $active, PDO::PARAM_BOOL);
+  $statement->bindValue(':id', $id, PDO::PARAM_INT);
 
   $statement->execute();
 
@@ -93,9 +93,9 @@ if ($id == 0) {
   ';
   $statement = $pdo->prepare($query);
 
-  $statement->bindParam(':name', $name, PDO::PARAM_STR);
-  $statement->bindParam(':uname', $uname, PDO::PARAM_STR);
-  $statement->bindParam(':mail', $mail, PDO::PARAM_STR);
+  $statement->bindValue(':name', $name, PDO::PARAM_STR);
+  $statement->bindValue(':uname', $uname, PDO::PARAM_STR);
+  $statement->bindValue(':mail', $mail, PDO::PARAM_STR);
 
   $statement->execute();
 }

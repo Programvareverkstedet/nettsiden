@@ -20,16 +20,16 @@ class UserManager {
   public function setupUser(string $uname, int $groups = 0): void {
     $query = 'INSERT INTO users (uname, groups) VALUES (:uname, :groups)';
     $statement = $this->pdo->prepare($query);
-    $statement->bindParam(':uname', $uname, \PDO::PARAM_STR);
-    $statement->bindParam(':groups', $groups, \PDO::PARAM_INT);
+    $statement->bindValue(':uname', $uname, \PDO::PARAM_STR);
+    $statement->bindValue(':groups', $groups, \PDO::PARAM_INT);
     $statement->execute();
   }
 
   public function updateFlags(string $uname, int $flags): void {
     $query = 'UPDATE users set groups=:groups WHERE uname=:uname';
     $statement = $this->pdo->prepare($query);
-    $statement->bindParam(':groups', $flags, \PDO::PARAM_INT);
-    $statement->bindParam(':uname', $uname, \PDO::PARAM_STR);
+    $statement->bindValue(':groups', $flags, \PDO::PARAM_INT);
+    $statement->bindValue(':uname', $uname, \PDO::PARAM_STR);
   }
 
   public function addGroup(string $uname, int $group): void {
@@ -53,15 +53,15 @@ class UserManager {
   public function setGroups(string $uname, int $groups): void {
     $query = 'SELECT * FROM users WHERE uname=:uname LIMIT 1';
     $statement = $this->pdo->prepare($query);
-    $statement->bindParam(':uname', $uname, \PDO::PARAM_STR);
+    $statement->bindValue(':uname', $uname, \PDO::PARAM_STR);
     $statement->execute();
     $row = $statement->fetch();
 
     if ($row) {
       $query = 'UPDATE users set groups=:groups WHERE uname=:uname';
       $statement = $this->pdo->prepare($query);
-      $statement->bindParam(':groups', $groups, \PDO::PARAM_INT);
-      $statement->bindParam(':uname', $uname, \PDO::PARAM_STR);
+      $statement->bindValue(':groups', $groups, \PDO::PARAM_INT);
+      $statement->bindValue(':uname', $uname, \PDO::PARAM_STR);
       $statement->execute();
     } else {
       $this->setupUser($uname, $groups);
@@ -94,7 +94,7 @@ class UserManager {
   public function getUsergroups(string $uname): int {
     $query = 'SELECT groups FROM users WHERE uname=:uname LIMIT 1';
     $statement = $this->pdo->prepare($query);
-    $statement->bindParam(':uname', $uname, \PDO::PARAM_STR);
+    $statement->bindValue(':uname', $uname, \PDO::PARAM_STR);
     $statement->execute();
 
     $row = $statement->fetch();

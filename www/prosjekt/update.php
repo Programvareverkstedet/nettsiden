@@ -33,18 +33,18 @@ if ($id == 0) {
   $query = 'INSERT INTO projects (name, description, active) VALUES (:title, :desc, TRUE)';
   $statement = $pdo->prepare($query);
 
-  $statement->bindParam(':title', $title, PDO::PARAM_STR);
-  $statement->bindParam(':desc', $desc, PDO::PARAM_STR);
+  $statement->bindValue(':title', $title, PDO::PARAM_STR);
+  $statement->bindValue(':desc', $desc, PDO::PARAM_STR);
 
   $statement->execute();
   $new_id = $pdo->lastInsertId();
 
   $ownerQuery = "INSERT INTO projectmembers (projectid, name, uname, mail, role, lead, owner) VALUES (:id, :owner, :owneruname, :owneremail, 'Prosjektleder', TRUE, TRUE)";
   $statement = $pdo->prepare($ownerQuery);
-  $statement->bindParam(':id', $new_id, PDO::PARAM_STR);
-  $statement->bindParam(':owner', $name, PDO::PARAM_STR);
-  $statement->bindParam(':owneruname', $uname, PDO::PARAM_STR);
-  $statement->bindParam(':owneremail', $mail, PDO::PARAM_STR);
+  $statement->bindValue(':id', $new_id, PDO::PARAM_STR);
+  $statement->bindValue(':owner', $name, PDO::PARAM_STR);
+  $statement->bindValue(':owneruname', $uname, PDO::PARAM_STR);
+  $statement->bindValue(':owneremail', $mail, PDO::PARAM_STR);
 
   $statement->execute();
 } else {
@@ -64,18 +64,18 @@ if ($id == 0) {
     if ($is_member) {// leave
       $query = 'DELETE FROM projectmembers WHERE projectid=:id AND uname=:uname and lead=FALSE and owner=FALSE;';
       $statement = $pdo->prepare($query);
-      $statement->bindParam(':id', $id, PDO::PARAM_STR);
-      $statement->bindParam(':uname', $uname, PDO::PARAM_STR);
+      $statement->bindValue(':id', $id, PDO::PARAM_STR);
+      $statement->bindValue(':uname', $uname, PDO::PARAM_STR);
 
       $statement->execute();
       echo 'leave';
     } else {// join
       $query = "INSERT INTO projectmembers (projectid, name, uname, mail, role, lead, owner) VALUES (:id, :name, :uname, :mail, 'Medlem', FALSE, FALSE)";
       $statement = $pdo->prepare($query);
-      $statement->bindParam(':id', $id, PDO::PARAM_STR);
-      $statement->bindParam(':name', $name, PDO::PARAM_STR);
-      $statement->bindParam(':uname', $uname, PDO::PARAM_STR);
-      $statement->bindParam(':mail', $mail, PDO::PARAM_STR);
+      $statement->bindValue(':id', $id, PDO::PARAM_STR);
+      $statement->bindValue(':name', $name, PDO::PARAM_STR);
+      $statement->bindValue(':uname', $uname, PDO::PARAM_STR);
+      $statement->bindValue(':mail', $mail, PDO::PARAM_STR);
 
       $statement->execute();
       echo 'join';
@@ -96,12 +96,12 @@ if ($id == 0) {
 
     $query = 'DELETE FROM projects WHERE id=:id';
     $statement = $pdo->prepare($query);
-    $statement->bindParam(':id', $id, PDO::PARAM_INT);
+    $statement->bindValue(':id', $id, PDO::PARAM_INT);
     $statement->execute();
 
     $query = 'DELETE FROM projectmembers WHERE projectid=:id';
     $statement = $pdo->prepare($query);
-    $statement->bindParam(':id', $id, PDO::PARAM_INT);
+    $statement->bindValue(':id', $id, PDO::PARAM_INT);
     $statement->execute();
 
     $pdo->commit();
@@ -109,9 +109,9 @@ if ($id == 0) {
     $query = 'UPDATE projects SET name=:title, description=:desc WHERE id=:id';
     $statement = $pdo->prepare($query);
 
-    $statement->bindParam(':title', $title, PDO::PARAM_STR);
-    $statement->bindParam(':desc', $desc, PDO::PARAM_STR);
-    $statement->bindParam(':id', $id, PDO::PARAM_INT);
+    $statement->bindValue(':title', $title, PDO::PARAM_STR);
+    $statement->bindValue(':desc', $desc, PDO::PARAM_STR);
+    $statement->bindValue(':id', $id, PDO::PARAM_INT);
 
     $statement->execute();
   }

@@ -68,8 +68,6 @@ class Door {
    * @return DoorStatus[]
    */
   public function getEntriesAfter(\DateTimeImmutable $startTime): array {
-    $timestamp = $startTime->getTimestamp();
-
     $query = '
       SELECT
         time,
@@ -79,7 +77,7 @@ class Door {
       ORDER BY time DESC
     ';
     $statement = $this->pdo->prepare($query);
-    $statement->bindParam(':startTime', $timestamp, \PDO::PARAM_INT);
+    $statement->bindValue(':startTime', $startTime->getTimestamp(), \PDO::PARAM_INT);
     $statement->execute();
 
     $result = array_map(
@@ -124,15 +122,15 @@ class Door {
     $firstValidTime = time() - 60 * 60 * 24 * self::DAYS_OF_DOOR_HISTORY;
     $query = 'DELETE FROM door WHERE time < :firstValid';
     $statement = $this->pdo->prepare($query);
-    $statement->bindParam(':firstValid', $firstValidTime, \PDO::PARAM_INT);
+    $statement->bindValue(':firstValid', $firstValidTime, \PDO::PARAM_INT);
     $statement->execute();
   }
 
   public function createEvent(\DateTimeImmutable $time, bool $open): void {
     $query = 'INSERT INTO door(time, open) VALUES (:time, :open)';
     $statement = $this->pdo->prepare($query);
-    $statement->bindParam(':time', $time->getTimestamp(), \PDO::PARAM_INT);
-    $statement->bindParam(':open', $open, \PDO::PARAM_BOOL);
+    $statement->bindValue(':time', $time->getTimestamp(), \PDO::PARAM_INT);
+    $statement->bindValue(':open', $open, \PDO::PARAM_BOOL);
     $statement->execute();
 
     $this->removeOld();
