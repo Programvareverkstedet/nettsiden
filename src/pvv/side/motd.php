@@ -67,12 +67,10 @@ class MOTD {
 
     $data = $statement->fetch();
 
-    $result = new MOTDItem(
+    return new MOTDItem(
       $data['title'],
       explode("\n", $data['content']),
     );
-
-    return $result;
   }
 
   /**
@@ -92,12 +90,10 @@ class MOTD {
     $statement->execute();
 
     $result = array_map(
-      function ($item) {
-        return new MOTDItem(
-          $item['title'],
-          explode("\n", $item['content']),
-        );
-      },
+      static fn ($item) => new MOTDItem(
+        $item['title'],
+        explode("\n", $item['content']),
+      ),
       $statement->fetchAll(),
     );
 

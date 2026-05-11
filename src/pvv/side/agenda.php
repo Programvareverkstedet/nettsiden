@@ -58,7 +58,7 @@ class Agenda {
     }
     usort(
       $result,
-      static fn($a, $b) => $a->getStart() < $b->getStart() ? -1 : 1,
+      static fn ($a, $b) => $a->getStart() < $b->getStart() ? -1 : 1,
     );
 
     return $result;
@@ -98,14 +98,14 @@ class Agenda {
   public function getNextOfEach(\DateTimeImmutable $startDate): array {
     $result = array_filter(
       array_map(
-        static fn($a) => $a->getNextEventFrom($startDate),
+        static fn ($a) => $a->getNextEventFrom($startDate),
         $this->activities,
       ),
-      static fn($a) => isset($a),
+      static fn ($a) => isset($a),
     );
     usort(
       $result,
-      static fn($a, $b) => $a->getStart()->getTimeStamp()
+      static fn ($a, $b) => $a->getStart()->getTimeStamp()
       < $b->getStart()->getTimeStamp()
         ? -1
         : 1,

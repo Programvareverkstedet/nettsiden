@@ -4,18 +4,16 @@ declare(strict_types=1);
 
 namespace pvv\side;
 
-use DateTimeImmutable;
-
 class DoorStatus {
-  private DateTimeImmutable $time;
+  private \DateTimeImmutable $time;
   private bool $open;
 
-  public function __construct(DateTimeImmutable $time, bool $open) {
+  public function __construct(\DateTimeImmutable $time, bool $open) {
     $this->time = $time;
     $this->open = $open;
   }
 
-  public function getTime(): DateTimeImmutable {
+  public function getTime(): \DateTimeImmutable {
     return $this->time;
   }
 
@@ -31,7 +29,7 @@ class DoorStatus {
 class Door {
   private $pdo;
 
-  const DAYS_OF_DOOR_HISTORY = 7;
+  public const DAYS_OF_DOOR_HISTORY = 7;
 
   public function __construct(\PDO $pdo) {
     $this->pdo = $pdo;
@@ -52,12 +50,10 @@ class Door {
     $statement->execute();
 
     $result = array_map(
-      function ($row) {
-        return new DoorStatus(
-          (new DateTimeImmutable)->setTimestamp((int) $row['time']),
-          (bool) $row['open'],
-        );
-      },
+      static fn ($row) => new DoorStatus(
+        new \DateTimeImmutable()->setTimestamp((int) $row['time']),
+        (bool) $row['open'],
+      ),
       $statement->fetchAll(),
     );
 
@@ -81,12 +77,10 @@ class Door {
     $statement->execute();
 
     $result = array_map(
-      function ($row) {
-        return new DoorStatus(
-          (new DateTimeImmutable)->setTimestamp((int) $row['time']),
-          (bool) $row['open'],
-        );
-      },
+      static fn ($row) => new DoorStatus(
+        new \DateTimeImmutable()->setTimestamp((int) $row['time']),
+        (bool) $row['open'],
+      ),
       $statement->fetchAll(),
     );
 
@@ -110,12 +104,10 @@ class Door {
       return null;
     }
 
-    $result = new DoorStatus(
-      (new DateTimeImmutable)->setTimestamp((int) $row['time']),
+    return new DoorStatus(
+      new \DateTimeImmutable()->setTimestamp((int) $row['time']),
       (bool) $row['open'],
     );
-
-    return $result;
   }
 
   private function removeOld(): void {

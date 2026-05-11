@@ -114,6 +114,5 @@ class DBActivity implements Activity {
     }
 
     return null;
-
   }
 }

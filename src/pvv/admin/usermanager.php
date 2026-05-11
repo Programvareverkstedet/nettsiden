@@ -45,7 +45,7 @@ class UserManager {
     $userFlags = $this->getUsergroups($uname);
 
     if ($userFlags) {
-      $newFlags = ($userFlags & (~ $group));
+      $newFlags = ($userFlags & (~$group));
       $this->updateFlags($uname, $newFlags);
     }
   }
