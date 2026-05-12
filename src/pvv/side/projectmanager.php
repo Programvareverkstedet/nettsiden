@@ -210,7 +210,7 @@ class ProjectManager {
     ';
 
     $statement = $this->pdo->prepare($query);
-    $statement->bindParam(':id', $project_id, \PDO::PARAM_STR);
+    $statement->bindValue(':id', $project_id, \PDO::PARAM_STR);
     $statement->execute();
 
     $result = array_map(
