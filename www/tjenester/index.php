@@ -289,7 +289,7 @@ $services = [
             ],
             [
                 "name" => "Dørbjelle",
-                "description" => "PVVs dørbjelle er koblet til internett, og lar deg ringe på hvis du spør botten pent på Discordh eller Matrix",
+                "description" => "PVVs dørbjelle er koblet til internett, og lar deg ringe på hvis du spør botten pent på Discord eller Matrix",
                 "link" => "https://wiki.pvv.ntnu.no/wiki/Tjenester/D%C3%B8rbjelle",
                 "link_text" => "Se dokumentasjon på wiki",
                 "image" => "img/doorbell.png",
