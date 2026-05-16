@@ -136,7 +136,7 @@ $services = [
         "services" => [
         [
             "name" => "Gitea",
-            "description" => "Vår interne git-tjener, åpen for alle medlemmer. Kommer med CI/CD, nettside-artifakter, pakke-register og mye mer.",
+            "description" => "Vår interne git-tjener, åpen for alle medlemmer. Kommer med CI/CD, nettside-artefakter, pakke-register og mye mer.",
             "link" => "https://git.pvv.ntnu.no",
             "link_text" => "Gå til git.pvv.ntnu.no",
             "image" => "img/gitea.svg",
