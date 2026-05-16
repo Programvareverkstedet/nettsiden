@@ -202,7 +202,7 @@ $services = [
             ],
             [
                 "name" => "Discord",
-                "description" => "Vår hovedkanal, her finner du alt fra ofisielle announcements til memes og driftsdiskusjoner.",
+                "description" => "Vår hovedkanal, her finner du alt fra offisielle announcements til memes og driftsdiskusjoner.",
                 "link" => "https://discord.gg/WpaHGV8K",
                 "link_text" => "Gå til Discord",
                 "image" => "img/discord.svg",
