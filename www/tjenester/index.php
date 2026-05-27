@@ -4,132 +4,6 @@ namespace pvv\side;
 
 require_once \dirname(__DIR__, 2) . implode(\DIRECTORY_SEPARATOR, ['', 'inc', 'include.php']);
 
-$colorPalette = [
-    '#FFB3BA',
-    '#FFCFAA',
-    '#FFFFBA',
-    '#BAFFC9',
-    '#BAE1FF',
-    '#E2BAFF',
-];
-
-function rgbToHsl(int $r, int $g, int $b): array
-{
-    // Assert valid RGB range
-    if ($r < 0 || $r > 255 || $g < 0 || $g > 255 || $b < 0 || $b > 255) {
-        throw new \InvalidArgumentException('RGB values must be between 0 and 255');
-    }
-
-    $r /= 255;
-    $g /= 255;
-    $b /= 255;
-
-    $max = max($r, $g, $b);
-    $min = min($r, $g, $b);
-    $delta = $max - $min;
-
-    $l = ($max + $min) / 2;
-
-    if ($delta == 0) {
-        $h = 0;
-        $s = 0;
-    } else {
-        $s = $delta / (1 - abs(2 * $l - 1));
-
-        if ($max === $r) {
-            $h = 60 * (($g - $b) / $delta);
-            if ($h < 0) {
-                $h += 360;
-            }
-        } elseif ($max === $g) {
-            $h = 60 * ((($b - $r) / $delta) + 2);
-        } else {
-            $h = 60 * ((($r - $g) / $delta) + 4);
-        }
-    }
-
-    return [
-        'h' => round($h, 2),
-        's' => round($s * 100, 2),
-        'l' => round($l * 100, 2),
-    ];
-}
-
-function hslToRgb(float $h, float $s, float $l): array
-{
-    // Assert valid HSL ranges
-    if ($h < 0 || $h > 360) {
-        throw new \InvalidArgumentException('Hue must be between 0 and 360');
-    }
-    if ($s < 0 || $s > 100 || $l < 0 || $l > 100) {
-        throw new \InvalidArgumentException('Saturation and Lightness must be between 0 and 100');
-    }
-
-    $s /= 100;
-    $l /= 100;
-
-    $c = (1 - abs(2 * $l - 1)) * $s;
-    $m = $l - $c / 2;
-
-    // Determine hue sector explicitly
-    if ($h < 60) {
-        $r1 = $c;
-        $g1 = ($h / 60) * $c;
-        $b1 = 0;
-    } elseif ($h < 120) {
-        $r1 = (2 - $h / 60) * $c;
-        $g1 = $c;
-        $b1 = 0;
-    } elseif ($h < 180) {
-        $r1 = 0;
-        $g1 = $c;
-        $b1 = (($h - 120) / 60) * $c;
-    } elseif ($h < 240) {
-        $r1 = 0;
-        $g1 = (4 - $h / 60) * $c;
-        $b1 = $c;
-    } elseif ($h < 300) {
-        $r1 = (($h - 240) / 60) * $c;
-        $g1 = 0;
-        $b1 = $c;
-    } else { // h < 360
-        $r1 = $c;
-        $g1 = 0;
-        $b1 = (6 - $h / 60) * $c;
-    }
-
-    return [
-        'r' => (int) round(($r1 + $m) * 255),
-        'g' => (int) round(($g1 + $m) * 255),
-        'b' => (int) round(($b1 + $m) * 255),
-    ];
-}
-
-function generateHighlightColor(string $hexColor): string {
-    $r = hexdec(substr($hexColor, 1, 2));
-    $g = hexdec(substr($hexColor, 3, 2));
-    $b = hexdec(substr($hexColor, 5, 2));
-    $a = hexdec(substr($hexColor, 7, 2));
-    if (!$a) {
-        $a = 255;
-    }
-
-    $hsl = rgbToHsl($r, $g, $b);
-
-    // Increase lightness by 8%, cap at 100%
-    $hsl['l'] = min(100, $hsl['l'] + 8);
-
-    $rgb = hslToRgb($hsl['h'], $hsl['s'], $hsl['l']);
-
-    return sprintf(
-        "#%02x%02x%02x%02x",
-        $rgb['r'],
-        $rgb['g'],
-        $rgb['b'],
-        $a,
-    );
-}
-
 $services = [
     "vcs" => [
         "title" => "Versjonskontroll og utvikling",
@@ -351,74 +225,48 @@ $services = [
     ],
 ];
 
-$servicesArrayKeys = array_keys($services);
-for ($i = 0; $i < count($services); $i++) {
-    $servicesKey = $servicesArrayKeys[$i];
-    $services[$servicesKey]['bgcolor'] = $colorPalette[$i % count($colorPalette)];
-}
-
 ?>
 <!DOCTYPE html>
 <html lang="no">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <link rel="shortcut icon" href="/favicon.ico">
-  <link rel="stylesheet" href="/css/normalize.css">
-  <link rel="stylesheet" href="/css/style.css">
-  <link rel="stylesheet" href="/css/services.css">
-  <meta name="theme-color" content="#024" />
-  <title>Tjenesteverkstedet</title>
-  <style>
-    <?php foreach ($services as $categoryId => $category):
-      $categoryClass = '.category-' . htmlspecialchars($categoryId);
-    ?>
-      <?php echo $categoryClass; ?> {
-        background: linear-gradient(135deg, <?php echo generateHighlightColor($category['bgcolor']) ?>, <?php echo $category['bgcolor']; ?>);
-      }
-    <?php endforeach; ?>
-  </style>
-</head>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/services.css">
+    <meta name="theme-color" content="#024" />
+    <title>Tjenesteverkstedet</title>
+  </head>
 
-<header>Tjenesteverkstedet</header>
+  <body>
+    <header>Tjenesteverkstedet</header>
 
-<body>
-  <nav>
-    <?php echo navbar(1, 'tjenester'); ?>
-    <?php echo loginbar($sp, $pdo); ?>
-  </nav>
-  <main>
-    <div class="serviceGrid">
-      <?php foreach ($services as $categoryId => $category):
-        $categoryClass = 'category-' . htmlspecialchars($categoryId);
-      ?>
+    <nav>
+      <?php echo navbar(1, 'tjenester'); ?>
+      <?php echo loginbar($sp, $pdo); ?>
+    </nav>
 
-        <div class="baseServiceCard categoryTitleCard <?php echo $categoryClass; ?>">
-          <h3 class="categoryTitle">
-            <?php echo htmlspecialchars($category['title']); ?>
-          </h3>
-        </div>
-
-        <?php foreach ($category['services'] as $service): ?>
-        <div class="baseServiceCard serviceCard <?php echo $categoryClass; ?>">
-          <div class="serviceContent">
-            <h3 class="serviceTitle"><?php echo htmlspecialchars($service['name']); ?></h3>
-            <p class="serviceDescription"><?php echo htmlspecialchars($service['description']); ?></p>
-            <div class="serviceLink">
-              <a href="<?php echo htmlspecialchars($service['link']); ?>" target="_blank">
-                <?php echo htmlspecialchars($service['link_text']); ?>
-              </a>
+    <main>
+      <div class="serviceWrapper">
+        <?php foreach ($services as $categoryName => $category): ?>
+        <div class="categoryContainer">
+          <div class="categoryLabel"><?php echo htmlspecialchars($category['title']); ?></div>
+          <div class="categoryContent">
+            <?php foreach ($category['services'] as $service): ?>
+            <div class="service">
+              <div class="serviceContent">
+                <h2 class="serviceTitle"><?php echo htmlspecialchars($service['name']); ?></h2>
+                <p class="serviceDescription"><?php echo htmlspecialchars($service['description']); ?></p>
+                <div class="serviceLink"><a href="<?php echo htmlspecialchars($service['link']); ?>" target="_blank"><?php echo htmlspecialchars($service['link_text']); ?></a></div>
+              </div>
+              <img class="serviceImage" src="<?php echo htmlspecialchars($service['image']); ?>" alt="<?php echo htmlspecialchars($service['name']); ?>-logo">
             </div>
+            <?php endforeach; ?>
           </div>
-
-          <img class="serviceImage"
-               src="<?php echo htmlspecialchars($service['image']); ?>"
-               alt="<?php echo htmlspecialchars($service['name']); ?> logo">
         </div>
         <?php endforeach; ?>
-      <?php endforeach; ?>
-    </div>
-  </main>
-</body>
-
+      </div>
+    </main>
+  </body>
 </html>
