@@ -58,18 +58,21 @@ require_once dirname(__DIR__, 2) . implode(\DIRECTORY_SEPARATOR, ['', 'inc', 'in
 
     <script
       src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"
-      integrity="sha384-jb8JQMbMoBUzgWatfe6COACi2ljcDdZQ2OxczGA3bGNeWe+6DChMTBJemed7ZnvJ"
+      integrity="sha512-WoViKhKD4qI2WruSZqv9+kvM4WfFhUMQCLN4QlDTt5aU56fLQy2gYoxWIqlEnXqJy/+Ac5q/hk1oWfqnMDhwMA=="
       crossorigin="anonymous"
+      referrerpolicy="no-referrer"
     ></script>
     <script
-      src="https://cdn.jsdelivr.net/npm/moment@2.30.1/moment.min.js"
-      integrity="sha384-+EEFFjsGn4BnW70Nv0OvoMe1VZuqS4xvx90V2MTeuYUUZSEabg7FSMWl6s2DJTAO"
+      src="https://cdn.jsdelivr.net/npm/date-fns@4.4.0/cdn.min.js"
+      integrity="sha512-mA7EWmvK4CWPMTbkqGfSNZBMdN9F8+wQGlUqlOxSKv1tJeDKblnuZa7bJkobcg3cnCQ+BrZGX3uenWCFq6cmEA=="
       crossorigin="anonymous"
+      referrerpolicy="no-referrer"
     ></script>
     <script
-      src="https://cdn.jsdelivr.net/npm/chartjs-adapter-moment@1.0.1/dist/chartjs-adapter-moment.min.js"
-      integrity="sha384-s5cwu7c1MxOfC90RGRDWeB53/7VpDTxXi0YxKJF5y9oKA99+UYxMk0qvlqso188s"
+      src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3.0.0/dist/chartjs-adapter-date-fns.bundle.min.js"
+      integrity="sha512-VPUN3sK5Jce8lVuVWfTZolO+BDodUHFq1QsNHmszMbKpYrQzjCxvC0FDG7igWCYBcsFDpqhcVq4sQ851OqhAPg=="
       crossorigin="anonymous"
+      referrerpolicy="no-referrer"
     ></script>
 
     <script>
