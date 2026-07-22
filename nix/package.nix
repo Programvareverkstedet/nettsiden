@@ -22,7 +22,7 @@ php.buildComposerProject rec {
   };
   pname = "pvv-nettsiden";
   version = "0.0.1";
-  vendorHash = "sha256-3pDP0fh5bmxsx5aN332Q7Es4QD2VzYhD4fGcXFZcdbI=";
+  vendorHash = "sha256-LGOqcNOMAhTCGB7hK4WseRlNE0oqApqPBAraqgD2r+Y=";
 
   passthru.simplesamlphpPath = "share/php/pvv-nettsiden/vendor/simplesamlphp/simplesamlphp";
 
