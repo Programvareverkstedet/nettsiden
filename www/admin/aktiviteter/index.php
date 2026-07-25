@@ -92,12 +92,13 @@ $events = array_values(array_filter(
 						<li>
 							<div class="event admin">
 								<div class="event-info">
-									<h3 class="no-chin"><?php echo $event->getName() . ' (ID: ' . $eventID . ')'; ?></h3>
+									<h3 class="no-chin"><?php echo htmlspecialchars($event->getName()) . ' (ID: ' . $eventID . ')'; ?></h3>
 									<p class="subnote">
 										<?php echo $event->getStart()->format('(Y-m-d H:i:s)') . ' - ' . $event->getStop()->format('(Y-m-d H:i:s)'); ?>
 									</p>
 									<?php
                     $Parsedown = new Parsedown();
+                    $Parsedown->setSafeMode(true);
                     echo $Parsedown->text(implode("\n", $event->getDescription()));
                   ?>
 								</div>
@@ -132,9 +133,9 @@ $events = array_values(array_filter(
 				<h2>Filter</h2>
 				<form action="." method="get">
 					<p class="no-chin">Navn</p>
-					<?php echo '<input type="text" name="title" class="boxinput" value="' . $filterTitle . '">'; ?><br>
+					<?php echo '<input type="text" name="title" class="boxinput" value="' . htmlspecialchars($filterTitle) . '">'; ?><br>
 					<p class="no-chin">Organisator</p>
-					<?php echo '<input type="text" name="organiser" class="boxinput" value="' . $filterOrganiser . '">'; ?><br>
+					<?php echo '<input type="text" name="organiser" class="boxinput" value="' . htmlspecialchars($filterOrganiser) . '">'; ?><br>
 
 					<div style="margin-top: 2em;">
 						<input type="submit" class="btn" value="Filtrer"></input>

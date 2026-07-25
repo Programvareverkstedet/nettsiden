@@ -118,8 +118,8 @@ $imageTemplate = '
             '%user'         =>  htmlspecialchars($imguser),
             '%time'         =>  $modTime,
             '%name'         =>  htmlspecialchars($displaypath),
-            '%path'         =>  $serverPath . $value,
-            '%thumbnail'    =>  $serverPath . '/.thumbnails' . $value . '.png',
+            '%path'         =>  htmlspecialchars($serverPath . $value),
+            '%thumbnail'    =>  htmlspecialchars($serverPath . '/.thumbnails' . $value . '.png'),
             '%realname'     =>  htmlspecialchars($realname),
           ];
           echo strtr($imageTemplate, $vars);

@@ -38,17 +38,18 @@ if (!$event) {
 				<em><?php echo $event->getRelativeDate(); ?></em>
 				<?php if (Agenda::isToday($event->getStart())) { ?></strong><?php } ?>
 				<br>
-				<?php echo $event->getName(); ?>
+				<?php echo htmlspecialchars($event->getName()); ?>
 			</h2>
 			<ul class="subtext">
 				<li>Tid: <strong><?php echo Agenda::getFormattedDate($event->getStart()); ?></strong></li>
-				<li>Sted: <strong><?php echo $event->getLocation(); ?></strong></li>
-				<li>Arrangør: <strong><?php echo $event->getOrganiser(); ?></strong></li>
+				<li>Sted: <strong><?php echo htmlspecialchars($event->getLocation()); ?></strong></li>
+				<li>Arrangør: <strong><?php echo htmlspecialchars($event->getOrganiser()); ?></strong></li>
 			</ul>
 
 			<?php $description = $event->getDescription(); ?>
 			<?php
         $Parsedown = new Parsedown();
+        $Parsedown->setSafeMode(true);
         echo $Parsedown->text(implode("\n", $description));
       ?>
 		</article>

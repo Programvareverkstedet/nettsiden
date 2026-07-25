@@ -109,7 +109,7 @@ $projects = array_values(array_filter(
 			<h2>Filter</h2>
 			<form action="mine.php" method="get">
 				<p class="no-chin">Navn</p>
-				<?php echo '<input type="text" name="filter" class="boxinput" value="' . $filter . '">'; ?><br>
+				<?php echo '<input type="text" name="filter" class="boxinput" value="' . htmlspecialchars($filter) . '">'; ?><br>
 
 				<div style="margin-top: 2em;">
 					<input type="submit" class="btn" value="Filtrer"></input>

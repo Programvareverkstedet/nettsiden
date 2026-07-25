@@ -56,18 +56,18 @@ $day = (isset($_GET['day']))
 				<?php if (Agenda::isToday($event->getStart())) { ?></strong><?php } ?>
 				<?php if ($event->getURL()) { ?>
 				<br>
-				<a href="<?php echo $event->getURL(); ?>"><?php echo $event->getName(); ?></a>
+				<a href="<?php echo htmlspecialchars($event->getURL()); ?>"><?php echo htmlspecialchars($event->getName()); ?></a>
 				<?php } else { ?>
-				<?php echo $event->getName(); ?>
+				<?php echo htmlspecialchars($event->getName()); ?>
 				<?php } ?>
 				<?php if ($event->getImageURL()) { ?>
-				<img src="<?php echo $event->getImageURL(); ?>">
+				<img src="<?php echo htmlspecialchars($event->getImageURL()); ?>">
 				<?php } ?>
 			</h2>
 			<ul class="subtext">
 				<li>Tid: <strong><?php echo Agenda::getFormattedDate($event->getStart()); ?></strong></li>
-				<li>Sted: <strong><?php echo $event->getLocation(); ?></strong></li>
-				<li>Arrangør: <strong><?php echo $event->getOrganiser(); ?></strong></li>
+				<li>Sted: <strong><?php echo htmlspecialchars($event->getLocation()); ?></strong></li>
+				<li>Arrangør: <strong><?php echo htmlspecialchars($event->getOrganiser()); ?></strong></li>
 			</ul>
 
 			<?php $description = $event->getDescription(); ?>
@@ -76,6 +76,7 @@ $day = (isset($_GET['day']))
 			} ?>
 			<?php
         $Parsedown = new \Parsedown();
+        $Parsedown->setSafeMode(true);
         echo $Parsedown->text(implode("\n", $description));
       ?>
 		</article>
