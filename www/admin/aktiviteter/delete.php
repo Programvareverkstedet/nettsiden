@@ -18,8 +18,9 @@ if (!$userManager->hasGroup($uname, 'aktiviteter')) {
 
 $eventID = $_GET['id'];
 
-$query = 'DELETE FROM events WHERE id=\'' . $eventID . '\'';
+$query = 'DELETE FROM events WHERE id=:id';
 $statement = $pdo->prepare($query);
+$statement->bindValue(':id', $eventID, \PDO::PARAM_INT);
 $statement->execute();
 
 header('Location: ' . $_SERVER['HTTP_REFERER']);
