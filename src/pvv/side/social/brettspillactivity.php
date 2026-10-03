@@ -20,9 +20,6 @@ class BrettspillActivity implements Activity {
     if ((int) $date->format('N') !== 7) {
       return $this->nextDate($date->add(new \DateInterval('P1D')));
     }
-    if (((int) $date->format('W') % 2) - 1) {
-      return $this->nextDate($date->add(new \DateInterval('P7D')));
-    }
 
     return $date;
   }
@@ -39,9 +36,6 @@ class BrettspillActivity implements Activity {
     $date = $date->setTime(16, 15, 0);
     if ((int) $date->format('N') !== 7) {
       return $this->prevDate($date->sub(new \DateInterval('P1D')));
-    }
-    if (((int) $date->format('W') % 2) - 1) {
-      return $this->prevDate($date->sub(new \DateInterval('P7D')));
     }
 
     return $date;
