@@ -23,9 +23,6 @@
 
     overlays.default = final: prev: {
       inherit (self.packages.${final.stdenv.hostPlatform.system}) pvv-nettsiden;
-      formats = prev.formats // {
-        php = import ./nix/php-generator.nix { pkgs = prev; lib = prev.lib; };
-      };
     };
 
     nixosModules.default = nix/module.nix;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-require_once dirname(__DIR__, 4) . \DIRECTORY_SEPARATOR . 'config.php';
+require dirname(__DIR__, 4) . \DIRECTORY_SEPARATOR . 'config.php';
 
 /**
  * The configuration of SimpleSAMLphp

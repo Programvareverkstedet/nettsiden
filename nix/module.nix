@@ -36,9 +36,11 @@ in
       default = { };
       type = types.submodule {
         freeformType = format.type;
-        options = lib.mapAttrsRecursiveCond
+        options = let
+          phpSpecialType = types.addCheck types.attrs (v: v ? _phpType);
+        in lib.mapAttrsRecursiveCond
           (attrs: !(attrs ? "type"))
-          (_: option: option // { type = types.either option.type format.lib.types.raw; })
+          (_: option: option // { type = types.either option.type phpSpecialType; })
         {
           DOOR_SECRET = mkOption {
             type = types.str;
@@ -140,25 +142,7 @@ in
   };
 
 
-  config = mkIf cfg.enable (let
-    # NOTE: This should absolutely not be necessary, but for some reason this file refuses to import
-    #       the toplevel configuration file.
-    # NOTE: Nvm, don't this this was the problem after all?
-    finalPackage = cfg.package.overrideAttrs (_: _: {
-      postInstall = let
-        f = x: lib.escapeShellArg (format.lib.valueToString x);
-      in cfg.package.postInstall + ''
-        substituteInPlace $out/${cfg.package.passthru.simplesamlphpPath}/config/config.php \
-          --replace '$SAML_COOKIE_SECURE'   ${f cfg.settings.SAML.COOKIE_SECURE} \
-          --replace '$SAML_COOKIE_SALT'     ${f cfg.settings.SAML.COOKIE_SALT} \
-          --replace '$SAML_ADMIN_PASSWORD'  ${f cfg.settings.SAML.ADMIN_PASSWORD} \
-          --replace '$SAML_ADMIN_NAME'      ${f cfg.settings.SAML.ADMIN_NAME} \
-          --replace '$SAML_ADMIN_EMAIL'     ${f cfg.settings.SAML.ADMIN_EMAIL} \
-          --replace '$SAML_TRUSTED_DOMAINS' ${f cfg.settings.SAML.TRUSTED_DOMAINS} \
-          --replace '$CACHE_DIRECTORY'      ${f cfg.settings.CACHE_DIRECTORY}
-      '';
-    });
-  in {
+  config = mkIf cfg.enable {
     users.users = mkIf (cfg.user == "pvv-nettsiden") {
       "pvv-nettsiden" = {
         description = "PVV Website Service User";
@@ -188,26 +172,26 @@ in
         enableACME = mkDefault true;
         locations = {
           "/" = {
-            root = "${finalPackage}/share/php/pvv-nettsiden/www/";
+            root = "${cfg.package}/share/php/pvv-nettsiden/www/";
             index = "index.php";
           };
 
           "~ \\.php$".extraConfig = ''
             include ${pkgs.nginx}/conf/fastcgi_params;
-            fastcgi_param SCRIPT_FILENAME ${finalPackage}/share/php/pvv-nettsiden/www$fastcgi_script_name;
+            fastcgi_param SCRIPT_FILENAME ${cfg.package}/share/php/pvv-nettsiden/www$fastcgi_script_name;
             fastcgi_pass unix:${config.services.phpfpm.pools."pvv-nettsiden".socket};
           '';
 
           # based on https://simplesamlphp.org/docs/stable/simplesamlphp-install.html#configuring-nginx
           "^~ /simplesaml/" = {
-            alias = "${finalPackage}/${finalPackage.passthru.simplesamlphpPath}/public/";
+            alias = "${cfg.package}/${cfg.package.passthru.simplesamlphpPath}/public/";
             index = "index.php";
 
             extraConfig = ''
               location ~ ^/simplesaml/(?<phpfile>.+?\.php)(?<pathinfo>/.*)?$ {
                 include ${pkgs.nginx}/conf/fastcgi_params;
                 fastcgi_pass unix:${config.services.phpfpm.pools."pvv-nettsiden".socket};
-                fastcgi_param SCRIPT_FILENAME ${finalPackage}/${finalPackage.passthru.simplesamlphpPath}/public/$phpfile;
+                fastcgi_param SCRIPT_FILENAME ${cfg.package}/${cfg.package.passthru.simplesamlphpPath}/public/$phpfile;
 
                 # Must be prepended with the baseurlpath
                 fastcgi_param SCRIPT_NAME /simplesaml/$phpfile;
@@ -239,7 +223,15 @@ in
       user = cfg.user;
       group = cfg.group;
 
-      phpEnv.PVV_CONFIG_FILE = toString (format.generate "pvv-nettsiden-conf.php" cfg.settings);
+      phpEnv.PVV_CONFIG_FILE = let
+        # { DB.DSN = "..."; } -> { DB_DSN = "..."; }.
+        flattenSettings = prefix: lib.concatMapAttrs (name: value: let
+          name' = if prefix == "" then name else "${prefix}_${name}";
+        in
+          if lib.isAttrs value && !(value ? _phpType)
+          then flattenSettings name' value
+          else { ${name'} = value; });
+      in toString (format.generate "pvv-nettsiden-conf.php" (flattenSettings "" cfg.settings));
 
       settings = {
         "listen.owner" = config.services.nginx.user;
@@ -250,5 +242,5 @@ in
         "pm.max_requests" = mkDefault 500;
       };
     };
-  });
+  };
 }
